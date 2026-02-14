@@ -1,0 +1,13 @@
+{
+  "name": "edX",
+  "provider": "edX",
+  "description": "Free online courses from top universities including Harvard, MIT, and more.",
+  "url": "https://www.edx.org/",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["mooc", "universities", "courses", "certifications"],
+  "featured": true
+}

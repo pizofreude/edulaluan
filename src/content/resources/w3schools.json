@@ -1,0 +1,13 @@
+{
+  "name": "W3Schools",
+  "provider": "W3Schools",
+  "description": "Free web development tutorials and references on HTML, CSS, JavaScript, and more.",
+  "url": "https://www.w3schools.com/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["web-development", "tutorials", "html", "css", "javascript"],
+  "featured": false
+}

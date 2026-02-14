@@ -1,0 +1,13 @@
+{
+  "name": "The Odin Project",
+  "provider": "The Odin Project",
+  "description": "Free full-stack web development curriculum with a supportive community.",
+  "url": "https://www.theodinproject.com/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["web-development", "full-stack", "curriculum", "community"],
+  "featured": true
+}

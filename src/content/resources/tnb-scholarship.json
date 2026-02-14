@@ -1,0 +1,13 @@
+{
+  "name": "TNB Scholarship",
+  "provider": "Tenaga Nasional Berhad",
+  "description": "Scholarship for students pursuing engineering and technical fields.",
+  "url": "https://www.tnb.com.my/",
+  "category": "scholarship",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "free",
+  "mode": "hybrid",
+  "language": ["en", "ms"],
+  "tags": ["scholarship", "engineering", "technical", "corporate"],
+  "featured": false
+}

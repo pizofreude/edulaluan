@@ -1,0 +1,13 @@
+{
+  "name": "PTPTN Loan",
+  "provider": "Perbadanan Tabung Pendidikan Tinggi Nasional",
+  "description": "National Higher Education Fund for Malaysian students pursuing tertiary education at local institutions.",
+  "url": "https://www.ptptn.gov.my/",
+  "category": "financial-aid",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["en", "ms"],
+  "tags": ["loan", "tertiary", "government", "local"],
+  "featured": true
+}

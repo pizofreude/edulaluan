@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ResourceCard from '../components/ResourceCard';
+import FilterBar from '../components/FilterBar';
+import { getCollection } from 'astro:content';
+
+const resources = await getCollection('resources');
+
+// Serialize resources for the React component
+const serializedResources = resources.map(r => ({
+  id: r.id,
+  data: r.data
+}));
+---
+
+<Layout title="All Resources - EduLaluan">
+  <Header />
+  
+  <main class="min-h-screen bg-slate-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">Educational Resources</h1>
+        <p class="text-xl text-muted-foreground">
+          Browse our complete collection of {resources.length} educational opportunities for Malaysian communities.
+        </p>
+      </div>
+      
+      <!-- Filter and Resources - Client-side component -->
+      <div id="resources-container"></div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script define:vars={{ serializedResources }}>
+  // Client-side filtering logic
+  import React from 'react';
+  import { createRoot } from 'react-dom/client';
+  import FilterBar from '../components/FilterBar';
+  import ResourceCard from '../components/ResourceCard';
+
+  function ResourcesPage({ resources }) {
+    const [filteredResources, setFilteredResources] = React.useState(resources);
+
+    const handleFilterChange = (filters) => {
+      let filtered = [...resources];
+
+      // Search filter
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase();
+        filtered = filtered.filter(r =>
+          r.data.name.toLowerCase().includes(searchLower) ||
+          r.data.description.toLowerCase().includes(searchLower) ||
+          r.data.provider.toLowerCase().includes(searchLower) ||
+          r.data.tags.some(tag => tag.toLowerCase().includes(searchLower))
+        );
+      }
+
+      // Category filter
+      if (filters.category !== 'all') {
+        filtered = filtered.filter(r => r.data.category === filters.category);
+      }
+
+      // Income group filter
+      if (filters.incomeGroup !== 'all') {
+        filtered = filtered.filter(r => r.data.incomeGroups.includes(filters.incomeGroup));
+      }
+
+      // Cost filter
+      if (filters.cost !== 'all') {
+        filtered = filtered.filter(r => r.data.cost === filters.cost);
+      }
+
+      setFilteredResources(filtered);
+    };
+
+    return (
+      <>
+        <FilterBar onFilterChange={handleFilterChange} totalResults={filteredResources.length} />
+        
+        {filteredResources.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredResources.map((resource) => (
+              <ResourceCard key={resource.id} resource={resource.data} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-lg text-muted-foreground mb-4">
+              No resources found matching your criteria.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Try adjusting your filters to see more results.
+            </p>
+          </div>
+        )}
+      </>
+    );
+  }
+
+  // Render the component
+  const container = document.getElementById('resources-container');
+  if (container) {
+    const root = createRoot(container);
+    root.render(<ResourcesPage resources={serializedResources} />);
+  }
+</script>

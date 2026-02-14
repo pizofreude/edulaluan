@@ -1,0 +1,13 @@
+{
+  "name": "Udemy Free Courses",
+  "provider": "Udemy",
+  "description": "Thousands of free online courses on various topics including tech, business, and personal development.",
+  "url": "https://www.udemy.com/courses/free/",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["courses", "skills", "tech", "business"],
+  "featured": false
+}

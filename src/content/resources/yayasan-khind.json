@@ -1,0 +1,13 @@
+{
+  "name": "Yayasan Khind Scholarship",
+  "provider": "Yayasan Khind",
+  "description": "Scholarship for underprivileged students pursuing tertiary education.",
+  "url": "https://www.yayasankhind.com.my/",
+  "category": "scholarship",
+  "incomeGroups": ["B40"],
+  "cost": "free",
+  "mode": "in-person",
+  "language": ["en", "ms"],
+  "tags": ["scholarship", "b40", "tertiary", "foundation"],
+  "featured": false
+}

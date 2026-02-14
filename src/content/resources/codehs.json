@@ -1,0 +1,13 @@
+{
+  "name": "CodeHS",
+  "provider": "CodeHS",
+  "description": "Free online computer science curriculum with interactive coding exercises and courses.",
+  "url": "https://codehs.com/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["coding", "computer-science", "interactive", "free"],
+  "featured": false
+}

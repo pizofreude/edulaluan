@@ -1,0 +1,13 @@
+{
+  "name": "R for Data Science",
+  "provider": "Hadley Wickham & Garrett Grolemund",
+  "description": "Free online book teaching R programming for data science and visualization.",
+  "url": "https://r4ds.had.co.nz/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["data-science", "r-programming", "visualization", "book"],
+  "featured": false
+}

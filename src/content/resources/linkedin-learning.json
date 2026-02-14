@@ -1,0 +1,13 @@
+{
+  "name": "LinkedIn Learning Free Courses",
+  "provider": "LinkedIn",
+  "description": "Professional development courses with some free content available.",
+  "url": "https://www.linkedin.com/learning/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["professional", "skills", "career", "business"],
+  "featured": false
+}

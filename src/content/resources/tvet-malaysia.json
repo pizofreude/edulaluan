@@ -1,0 +1,13 @@
+{
+  "name": "TVET Malaysia Programs",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Technical and Vocational Education and Training programs across Malaysia.",
+  "url": "https://www.moe.gov.my/",
+  "category": "tvet",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms"],
+  "tags": ["vocational", "technical", "government", "skills"],
+  "featured": true
+}

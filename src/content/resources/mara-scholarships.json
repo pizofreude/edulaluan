@@ -1,0 +1,13 @@
+{
+  "name": "MARA Scholarships",
+  "provider": "Majlis Amanah Rakyat",
+  "description": "Various scholarship programs for Bumiputera students to pursue higher education locally and overseas.",
+  "url": "https://www.mara.gov.my/",
+  "category": "scholarship",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "hybrid",
+  "language": ["ms", "en"],
+  "tags": ["scholarship", "government", "bumiputera", "overseas", "local"],
+  "featured": true
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Petronas Education Sponsorship Programme",
+  "provider": "Petronas",
+  "description": "Scholarship program for outstanding students to pursue engineering and science degrees.",
+  "url": "https://www.petronas.com/",
+  "category": "scholarship",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "hybrid",
+  "language": ["en"],
+  "tags": ["scholarship", "engineering", "science", "corporate"],
+  "featured": true
+}

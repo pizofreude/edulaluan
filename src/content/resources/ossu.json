@@ -1,0 +1,13 @@
+{
+  "name": "Open Source Society University (OSSU)",
+  "provider": "OSSU Community",
+  "description": "Free self-taught computer science education curriculum equivalent to a complete undergraduate degree.",
+  "url": "https://github.com/ossu/computer-science",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["computer-science", "self-paced", "curriculum", "free"],
+  "featured": true
+}

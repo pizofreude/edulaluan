@@ -1,0 +1,13 @@
+{
+  "name": "AWS Skill Builder",
+  "provider": "Amazon Web Services",
+  "description": "Free cloud computing courses and certifications from AWS.",
+  "url": "https://skillbuilder.aws/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["cloud", "aws", "certifications", "tech"],
+  "featured": false
+}

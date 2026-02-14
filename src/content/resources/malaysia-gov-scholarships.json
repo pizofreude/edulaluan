@@ -1,0 +1,13 @@
+{
+  "name": "Malaysia Government Scholarships",
+  "provider": "Public Service Department Malaysia",
+  "description": "Various scholarship programs for outstanding students to pursue degree and postgraduate studies.",
+  "url": "https://www.jpa.gov.my/",
+  "category": "scholarship",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "hybrid",
+  "language": ["ms", "en"],
+  "tags": ["scholarship", "government", "jpa", "postgraduate", "overseas"],
+  "featured": true
+}

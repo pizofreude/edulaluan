@@ -1,0 +1,13 @@
+{
+  "name": "Microsoft Learn",
+  "provider": "Microsoft",
+  "description": "Free training modules and certifications for Microsoft technologies and Azure.",
+  "url": "https://learn.microsoft.com/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["microsoft", "azure", "certifications", "cloud"],
+  "featured": false
+}

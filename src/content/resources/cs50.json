@@ -1,0 +1,13 @@
+{
+  "name": "CS50 by Harvard",
+  "provider": "Harvard University",
+  "description": "Harvard's famous introduction to computer science course, available free online.",
+  "url": "https://cs50.harvard.edu/",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["computer-science", "harvard", "programming", "free"],
+  "featured": true
+}
