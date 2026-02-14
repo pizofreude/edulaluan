@@ -26,7 +26,7 @@ interface NavigatorProps {
 }
 
 type IncomeGroup = 'B40' | 'M40' | 'T20' | 'Not sure';
-type Goal = 'Scholarships' | 'Free Courses' | 'Skills Training' | 'Financial Aid' | 'Degree Programs';
+type Goal = 'Scholarships' | 'Free Courses' | 'Skills Training' | 'Financial Aid' | 'Degree Programs' | 'Secondary Education' | 'Elite Institutions';
 
 const Navigator: React.FC<NavigatorProps> = ({ resources }) => {
   const [step, setStep] = useState(1);
@@ -34,14 +34,16 @@ const Navigator: React.FC<NavigatorProps> = ({ resources }) => {
   const [goal, setGoal] = useState<Goal | null>(null);
 
   const incomeGroups: IncomeGroup[] = ['B40', 'M40', 'T20', 'Not sure'];
-  const goals: Goal[] = ['Scholarships', 'Free Courses', 'Skills Training', 'Financial Aid', 'Degree Programs'];
+  const goals: Goal[] = ['Scholarships', 'Free Courses', 'Skills Training', 'Financial Aid', 'Degree Programs', 'Secondary Education', 'Elite Institutions'];
 
   const categoryMap: Record<Goal, string[]> = {
     'Scholarships': ['scholarship'],
     'Free Courses': ['mooc'],
     'Skills Training': ['digital-skills', 'tvet'],
     'Financial Aid': ['financial-aid'],
-    'Degree Programs': ['degree'],
+    'Degree Programs': ['degree', 'mooc'],
+    'Secondary Education': ['secondary-education'],
+    'Elite Institutions': ['elite-institutions'],
   };
 
   const filteredResources = resources.filter((resource) => {

@@ -14,6 +14,7 @@ interface Filters {
   category: string;
   incomeGroup: string;
   cost: string;
+  educationLevel: string;
 }
 
 const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, totalResults }) => {
@@ -21,6 +22,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, totalResults }) =
   const [category, setCategory] = useState('all');
   const [incomeGroup, setIncomeGroup] = useState('all');
   const [cost, setCost] = useState('all');
+  const [educationLevel, setEducationLevel] = useState('all');
 
   React.useEffect(() => {
     onFilterChange({
@@ -28,17 +30,19 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, totalResults }) =
       category,
       incomeGroup,
       cost,
+      educationLevel,
     });
-  }, [search, category, incomeGroup, cost, onFilterChange]);
+  }, [search, category, incomeGroup, cost, educationLevel, onFilterChange]);
 
   const clearFilters = () => {
     setSearch('');
     setCategory('all');
     setIncomeGroup('all');
     setCost('all');
+    setEducationLevel('all');
   };
 
-  const hasActiveFilters = search || category !== 'all' || incomeGroup !== 'all' || cost !== 'all';
+  const hasActiveFilters = search || category !== 'all' || incomeGroup !== 'all' || cost !== 'all' || educationLevel !== 'all';
 
   return (
     <div className="bg-white border rounded-lg p-6 mb-6">
@@ -51,7 +55,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, totalResults }) =
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
         {/* Search */}
         <div>
           <label htmlFor="search" className="block text-sm font-medium mb-2">
@@ -83,6 +87,8 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, totalResults }) =
             <option value="financial-aid">Financial Aid</option>
             <option value="digital-skills">Digital Skills</option>
             <option value="degree">Degree Programs</option>
+            <option value="secondary-education">Secondary Education (SBP)</option>
+            <option value="elite-institutions">Elite Institutions</option>
             <option value="community">Community</option>
             <option value="other">Other</option>
           </Select>
@@ -119,6 +125,25 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, totalResults }) =
             <option value="free">Free</option>
             <option value="subsidized">Subsidized</option>
             <option value="paid">Paid</option>
+          </Select>
+        </div>
+
+        {/* Education Level */}
+        <div>
+          <label htmlFor="education-level" className="block text-sm font-medium mb-2">
+            Education Level
+          </label>
+          <Select
+            id="education-level"
+            value={educationLevel}
+            onChange={(e) => setEducationLevel(e.target.value)}
+          >
+            <option value="all">All Levels</option>
+            <option value="primary">Primary (Std 1-6)</option>
+            <option value="secondary">Secondary (Form 1-5)</option>
+            <option value="post-secondary">Post-Secondary (STPM/Diploma)</option>
+            <option value="tertiary">Tertiary (Degree+)</option>
+            <option value="all-levels">All Levels</option>
           </Select>
         </div>
       </div>

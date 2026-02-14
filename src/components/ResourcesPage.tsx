@@ -16,6 +16,7 @@ interface Resource {
     language: string[];
     tags: string[];
     featured: boolean;
+    educationLevel?: string[];
   };
 }
 
@@ -26,7 +27,7 @@ interface ResourcesPageProps {
 const ResourcesPage: React.FC<ResourcesPageProps> = ({ resources }) => {
   const [filteredResources, setFilteredResources] = useState(resources);
 
-  const handleFilterChange = (filters: { search: string; category: string; incomeGroup: string; cost: string }) => {
+  const handleFilterChange = (filters: { search: string; category: string; incomeGroup: string; cost: string; educationLevel: string }) => {
     let filtered = [...resources];
 
     // Search filter
@@ -53,6 +54,13 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ resources }) => {
     // Cost filter
     if (filters.cost !== 'all') {
       filtered = filtered.filter(r => r.data.cost === filters.cost);
+    }
+
+    // Education level filter
+    if (filters.educationLevel !== 'all') {
+      filtered = filtered.filter(r => 
+        r.data.educationLevel && r.data.educationLevel.includes(filters.educationLevel)
+      );
     }
 
     setFilteredResources(filtered);
