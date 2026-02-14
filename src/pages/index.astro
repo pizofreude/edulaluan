@@ -92,7 +92,7 @@ const categories = [...new Set(resources.map(r => r.data.category))];
                   {resource.data.cost}
                 </span>
                 {resource.data.incomeGroups.map((group) => (
-                  <span key={group} class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-slate-100 text-slate-800">
+                  <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-slate-100 text-slate-800">
                     {group}
                   </span>
                 ))}
