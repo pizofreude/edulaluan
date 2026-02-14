@@ -198,7 +198,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 ## 📧 Contact
 
 - GitHub: [@pizofreude](https://github.com/pizofreude)
-- Repository: [pizofreude/edulaluan](https://github.com/pizofreude/edulaluan)
+- Form: [EduLaluan Forms](https://edulaluan.netlify.app/contribute/)
 
 ## ⚠️ Disclaimer
 
