@@ -12,13 +12,17 @@
 ## ✨ Features
 
 - **🎯 Smart Navigator**: Answer simple questions to get personalized resource recommendations
-- **🔍 Advanced Filtering**: Search and filter by category, income group, cost, and more
-- **📚 Comprehensive Database**: 40+ curated educational resources including:
-  - Government scholarships (PTPTN, PTPK, MARA, JPA)
-  - Free online courses (edX, Coursera, MIT OCW, CS50)
+- **🔍 Advanced Filtering**: Search and filter by category, income group, cost, and education level
+- **📚 Comprehensive Database**: 146+ curated educational resources including:
+  - 77 Malaysian government boarding schools (SBP/Sekolah Berasrama Penuh)
+  - Government scholarships (PTPTN, PTPK, MARA, JPA, Khazanah, Petronas)
+  - Free online courses (edX, Coursera, MIT OCW, CS50, Code.org)
   - Digital skills training (freeCodeCamp, 42 Penang, KrackedDevs)
   - Financial aid programs
   - TVET and vocational training
+  - Elite boarding schools (Eton, Le Rosey, Phillips Exeter, MCKK)
+  - Top universities (Oxford, Stanford, ETH Zurich)
+- **🎓 Education Level Filtering**: Resources tagged by Malaysian education system (Primary, Secondary, Post-Secondary, Tertiary)
 - **💰 Income-Specific**: Resources tagged for B40, M40, and T20 households
 - **🌐 Multi-Language**: Support for English and Bahasa Malaysia content
 - **📱 Mobile-First**: Fully responsive design for all devices
@@ -128,11 +132,12 @@ Resources are stored as JSON files in `src/content/resources/`. To add a new res
   "mode": "online",
   "language": ["en", "ms"],
   "tags": ["tag1", "tag2"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["secondary", "tertiary"]
 }
 ```
 
-**Categories**: `scholarship`, `mooc`, `tvet`, `financial-aid`, `digital-skills`, `degree`, `community`, `other`
+**Categories**: `scholarship`, `mooc`, `tvet`, `financial-aid`, `digital-skills`, `degree`, `secondary-education`, `elite-institutions`, `community`, `other`
 
 **Income Groups**: `B40` (< RM4,850), `M40` (RM4,850-10,970), `T20` (> RM10,970)
 
@@ -141,6 +146,8 @@ Resources are stored as JSON files in `src/content/resources/`. To add a new res
 **Mode**: `online`, `in-person`, `hybrid`
 
 **Languages**: `en`, `ms`, `zh`, `ta`
+
+**Education Levels** (optional): `primary` (Std 1-6), `secondary` (Form 1-5/SPM), `post-secondary` (STPM/Diploma), `tertiary` (Degree+), `all-levels`
 
 3. The resource will automatically appear on the site after rebuilding
 
