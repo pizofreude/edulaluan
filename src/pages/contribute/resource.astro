@@ -1,0 +1,331 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Button } from '../../components/ui/button';
+---
+
+<Layout title="Submit Education Resource - EduLaluan">
+  <div class="container mx-auto px-4 py-8 max-w-3xl">
+    
+    <!-- Header -->
+    <div class="mb-8">
+      <a href="/contribute" class="text-malaysia-teal-600 hover:text-malaysia-teal-700 mb-4 inline-block">
+        ← Back to Contribute
+      </a>
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">
+        📚 Submit Education Resource
+      </h1>
+      <p class="text-gray-600">
+        Share an educational resource that can help Malaysian families. All fields marked with * are required.
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form 
+      name="resource-submission" 
+      method="POST" 
+      data-netlify="true" 
+      netlify-honeypot="bot-field"
+      class="bg-white border rounded-lg p-6 space-y-6"
+    >
+      
+      <!-- Hidden fields for Netlify -->
+      <input type="hidden" name="form-name" value="resource-submission" />
+      <p class="hidden">
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+
+      <!-- Basic Information -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Basic Information</h2>
+        
+        <div>
+          <label for="resourceName" class="block text-sm font-medium text-gray-700 mb-1">
+            Resource Name *
+          </label>
+          <input 
+            type="text" 
+            id="resourceName" 
+            name="resourceName" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., Khan Academy Computer Science"
+          />
+        </div>
+
+        <div>
+          <label for="provider" class="block text-sm font-medium text-gray-700 mb-1">
+            Provider/Organization *
+          </label>
+          <input 
+            type="text" 
+            id="provider" 
+            name="provider" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., Khan Academy"
+          />
+        </div>
+
+        <div>
+          <label for="url" class="block text-sm font-medium text-gray-700 mb-1">
+            Website URL *
+          </label>
+          <input 
+            type="url" 
+            id="url" 
+            name="url" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="https://example.com"
+          />
+          <p class="text-xs text-gray-500 mt-1">Official website URL only (no shortened links)</p>
+        </div>
+
+        <div>
+          <label for="description" class="block text-sm font-medium text-gray-700 mb-1">
+            Description * (150-500 words)
+          </label>
+          <textarea 
+            id="description" 
+            name="description" 
+            required 
+            rows="6"
+            minlength="150"
+            maxlength="3000"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="Describe the resource: What is it? Who is it for? What does it offer? How can students access it?"
+          ></textarea>
+          <p class="text-xs text-gray-500 mt-1">Minimum 150 characters. Be clear and informative.</p>
+        </div>
+      </div>
+
+      <!-- Category & Details -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Category & Details</h2>
+        
+        <div>
+          <label for="category" class="block text-sm font-medium text-gray-700 mb-1">
+            Category *
+          </label>
+          <select 
+            id="category" 
+            name="category" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          >
+            <option value="">-- Select Category --</option>
+            <option value="scholarship">Scholarship</option>
+            <option value="mooc">MOOC / Free Online Course</option>
+            <option value="tvet">TVET / Vocational Training</option>
+            <option value="financial-aid">Financial Aid / Loan</option>
+            <option value="digital-skills">Digital Skills / Coding</option>
+            <option value="degree">Degree Program / University</option>
+            <option value="secondary-education">Secondary Education / Boarding School</option>
+            <option value="community">Community Initiative</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Income Group Applicability * (select at least one)
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="incomeGroups" value="B40" class="rounded" />
+              <span>B40 (&lt; RM4,850/month)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="incomeGroups" value="M40" class="rounded" />
+              <span>M40 (RM4,850-10,970/month)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="incomeGroups" value="T20" class="rounded" />
+              <span>T20 (&gt; RM10,970/month)</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Cost Structure *
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="cost" value="free" required />
+              <span>Free (no cost)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="cost" value="subsidized" required />
+              <span>Subsidized (partially funded)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="cost" value="paid" required />
+              <span>Paid (full cost required)</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Delivery Mode *
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="mode" value="online" required />
+              <span>Online</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="mode" value="in-person" required />
+              <span>In-Person</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="mode" value="hybrid" required />
+              <span>Hybrid (both online and in-person)</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Education Level (optional, select all that apply)
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="primary" />
+              <span>Primary (Std 1-6)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="secondary" />
+              <span>Secondary (Form 1-5, SPM)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="post-secondary" />
+              <span>Post-Secondary (STPM, Diploma, Foundation)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="tertiary" />
+              <span>Tertiary (Degree, Master's, PhD)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="all-levels" />
+              <span>All Levels</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Languages Available * (select at least one)
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="languages" value="en" />
+              <span>English</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="languages" value="ms" />
+              <span>Bahasa Malaysia</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="languages" value="zh" />
+              <span>Chinese</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="languages" value="ta" />
+              <span>Tamil</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="tags" class="block text-sm font-medium text-gray-700 mb-1">
+            Tags (optional)
+          </label>
+          <input 
+            type="text" 
+            id="tags" 
+            name="tags" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., stem, scholarship, engineering, free (comma-separated)"
+          />
+          <p class="text-xs text-gray-500 mt-1">Add descriptive tags separated by commas</p>
+        </div>
+      </div>
+
+      <!-- Your Contact Info -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Your Contact Info</h2>
+        <p class="text-sm text-gray-600">We'll use this to contact you if we need clarification.</p>
+        
+        <div>
+          <label for="submitterName" class="block text-sm font-medium text-gray-700 mb-1">
+            Your Name
+          </label>
+          <input 
+            type="text" 
+            id="submitterName" 
+            name="submitterName" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="Optional"
+          />
+        </div>
+
+        <div>
+          <label for="submitterEmail" class="block text-sm font-medium text-gray-700 mb-1">
+            Your Email *
+          </label>
+          <input 
+            type="email" 
+            id="submitterEmail" 
+            name="submitterEmail" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="your@email.com"
+          />
+        </div>
+
+        <div>
+          <label for="submitterOrganization" class="block text-sm font-medium text-gray-700 mb-1">
+            Organization (if applicable)
+          </label>
+          <input 
+            type="text" 
+            id="submitterOrganization" 
+            name="submitterOrganization" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="Optional"
+          />
+        </div>
+
+        <div>
+          <label for="additionalNotes" class="block text-sm font-medium text-gray-700 mb-1">
+            Additional Notes (optional)
+          </label>
+          <textarea 
+            id="additionalNotes" 
+            name="additionalNotes" 
+            rows="3"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="Any other information we should know?"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4">
+        <Button 
+          type="submit" 
+          className="w-full bg-malaysia-teal-600 hover:bg-malaysia-teal-700 text-white py-3 text-lg"
+        >
+          Submit Resource for Review
+        </Button>
+        <p class="text-xs text-gray-500 text-center mt-3">
+          By submitting, you confirm that this information is accurate and you have the right to share it.
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+</Layout>
