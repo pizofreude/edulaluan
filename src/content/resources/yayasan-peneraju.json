@@ -1,0 +1,13 @@
+{
+  "name": "Yayasan Peneraju Scholarship",
+  "provider": "Yayasan Peneraju Pendidikan Bumiputera",
+  "description": "Scholarship for Bumiputera students to pursue degree programs at top universities locally and internationally.",
+  "url": "https://www.yayasanpeneraju.org.my/",
+  "category": "scholarship",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "free",
+  "mode": "hybrid",
+  "language": ["ms", "en"],
+  "tags": ["scholarship", "bumiputera", "top-universities", "international"],
+  "featured": false
+}

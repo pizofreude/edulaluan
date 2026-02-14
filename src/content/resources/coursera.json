@@ -1,0 +1,13 @@
+{
+  "name": "Coursera",
+  "provider": "Coursera",
+  "description": "Online courses from top universities and companies. Many free audit options available.",
+  "url": "https://www.coursera.org/",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["mooc", "universities", "courses", "audit"],
+  "featured": true
+}

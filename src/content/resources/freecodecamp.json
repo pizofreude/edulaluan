@@ -1,0 +1,13 @@
+{
+  "name": "freeCodeCamp",
+  "provider": "freeCodeCamp.org",
+  "description": "Free online coding bootcamp with certifications in web development, data science, and more.",
+  "url": "https://www.freecodecamp.org/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["coding", "bootcamp", "certifications", "web-development"],
+  "featured": true
+}

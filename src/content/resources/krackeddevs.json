@@ -1,0 +1,13 @@
+{
+  "name": "KrackedDevs",
+  "provider": "KrackedDevs Community",
+  "description": "Free tech education resources and community for Malaysian developers and learners.",
+  "url": "https://krackeddevs.com/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["tech", "community", "developers", "free"],
+  "featured": true
+}

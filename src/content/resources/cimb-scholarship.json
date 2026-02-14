@@ -1,0 +1,13 @@
+{
+  "name": "CIMB Foundation Scholarship",
+  "provider": "CIMB Foundation",
+  "description": "Scholarship for ASEAN students pursuing undergraduate studies.",
+  "url": "https://www.cimbfoundation.com/",
+  "category": "scholarship",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "free",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["scholarship", "asean", "undergraduate", "banking"],
+  "featured": false
+}

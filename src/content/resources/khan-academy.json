@@ -1,0 +1,13 @@
+{
+  "name": "Khan Academy",
+  "provider": "Khan Academy",
+  "description": "Free educational resources covering math, science, programming, and more for all ages.",
+  "url": "https://www.khanacademy.org/",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["education", "math", "science", "programming", "free"],
+  "featured": true
+}

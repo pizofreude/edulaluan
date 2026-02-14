@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import { getCollection } from 'astro:content';
+
+const resources = await getCollection('resources');
+const featuredResources = resources.filter(r => r.data.featured).slice(0, 6);
+const totalResources = resources.length;
+const categories = [...new Set(resources.map(r => r.data.category))];
+---
+
+<Layout title="EduLaluan - Smart Education Resource Navigator">
+  <Header />
+  
+  <main>
+    <Hero />
+    
+    <!-- Stats Section -->
+    <section class="py-12 bg-slate-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div>
+            <div class="text-4xl font-bold text-malaysia-teal mb-2">{totalResources}+</div>
+            <div class="text-muted-foreground">Educational Resources</div>
+          </div>
+          <div>
+            <div class="text-4xl font-bold text-malaysia-teal mb-2">{categories.length}</div>
+            <div class="text-muted-foreground">Resource Categories</div>
+          </div>
+          <div>
+            <div class="text-4xl font-bold text-malaysia-teal mb-2">3</div>
+            <div class="text-muted-foreground">Income Groups Served</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Three simple steps to find the perfect educational resources for you
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-malaysia-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+            <h3 class="text-xl font-semibold mb-3">Select Your Income Group</h3>
+            <p class="text-muted-foreground">Tell us your household income bracket (B40, M40, or T20) to get personalized recommendations.</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-malaysia-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+            <h3 class="text-xl font-semibold mb-3">Choose Your Goal</h3>
+            <p class="text-muted-foreground">Select what you're looking for: scholarships, courses, skills training, or financial aid.</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-malaysia-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+            <h3 class="text-xl font-semibold mb-3">Discover Resources</h3>
+            <p class="text-muted-foreground">Get a curated list of resources tailored to your needs with direct links to apply.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Resources -->
+    <section class="py-16 bg-slate-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Resources</h2>
+          <p class="text-xl text-muted-foreground">
+            Popular and highly recommended educational opportunities
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {featuredResources.map((resource) => (
+            <div class="border rounded-lg p-6 bg-white hover:shadow-lg transition-shadow">
+              <h3 class="text-lg font-semibold mb-2">{resource.data.name}</h3>
+              <p class="text-sm text-muted-foreground mb-3">{resource.data.provider}</p>
+              <p class="text-sm mb-4">{resource.data.description}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                  resource.data.cost === 'free' ? 'bg-green-100 text-green-800' :
+                  resource.data.cost === 'subsidized' ? 'bg-blue-100 text-blue-800' :
+                  'bg-amber-100 text-amber-800'
+                }`}>
+                  {resource.data.cost}
+                </span>
+                {resource.data.incomeGroups.map((group) => (
+                  <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-slate-100 text-slate-800">
+                    {group}
+                  </span>
+                ))}
+              </div>
+              <a 
+                href={resource.data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-sm font-medium text-malaysia-teal hover:text-malaysia-teal-700"
+              >
+                Learn more
+                <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          ))}
+        </div>
+        
+        <div class="text-center">
+          <a 
+            href="/resources"
+            class="inline-flex items-center justify-center px-6 py-3 bg-malaysia-teal hover:bg-malaysia-teal-700 text-white font-semibold rounded-lg transition-colors"
+          >
+            View All Resources
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-br from-malaysia-teal to-teal-700 rounded-2xl p-12 text-center text-white">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Journey?</h2>
+          <p class="text-xl mb-8 text-teal-50">
+            Let us help you find the perfect educational resources for your goals.
+          </p>
+          <a 
+            href="/navigate"
+            class="inline-flex items-center justify-center px-8 py-3 bg-malaysia-gold hover:bg-malaysia-gold-700 text-white font-semibold rounded-lg shadow-lg transition-colors"
+          >
+            Start Navigating Now
+            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

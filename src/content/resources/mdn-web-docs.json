@@ -1,0 +1,13 @@
+{
+  "name": "MDN Web Docs",
+  "provider": "Mozilla",
+  "description": "Comprehensive web development documentation and learning resources from Mozilla.",
+  "url": "https://developer.mozilla.org/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["web-development", "documentation", "mozilla", "reference"],
+  "featured": false
+}

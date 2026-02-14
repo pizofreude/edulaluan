@@ -1,0 +1,13 @@
+{
+  "name": "myKasih Foundation",
+  "provider": "myKasih Foundation",
+  "description": "Education assistance and food aid programs for poor families in Malaysia.",
+  "url": "https://www.mykasih.com/",
+  "category": "financial-aid",
+  "incomeGroups": ["B40"],
+  "cost": "free",
+  "mode": "in-person",
+  "language": ["en", "ms"],
+  "tags": ["ngo", "assistance", "food-aid", "education"],
+  "featured": false
+}

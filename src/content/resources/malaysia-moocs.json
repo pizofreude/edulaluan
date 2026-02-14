@@ -1,0 +1,13 @@
+{
+  "name": "Malaysia MOOCs",
+  "provider": "Ministry of Higher Education Malaysia",
+  "description": "Free online courses from Malaysian universities on various subjects.",
+  "url": "https://moocs.gov.my/",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["ms", "en"],
+  "tags": ["mooc", "government", "malaysian-universities", "courses"],
+  "featured": true
+}

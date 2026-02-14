@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Navigator from '../components/Navigator';
+import { getCollection } from 'astro:content';
+
+const resources = await getCollection('resources');
+
+// Serialize resources for the React component
+const serializedResources = resources.map(r => ({
+  id: r.id,
+  data: r.data
+}));
+---
+
+<Layout title="Navigate Resources - EduLaluan">
+  <Header />
+  
+  <main class="min-h-screen bg-slate-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="mb-8 text-center">
+        <h1 class="text-4xl font-bold mb-4">Find Your Perfect Resource</h1>
+        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+          Answer a few questions and we'll recommend the best educational resources for your situation.
+        </p>
+      </div>
+      
+      <Navigator client:load resources={serializedResources} />
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

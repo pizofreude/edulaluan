@@ -1,0 +1,13 @@
+{
+  "name": "Google Gemilang Program",
+  "provider": "Google Malaysia",
+  "description": "Digital skills training program for Malaysians to improve employability in tech.",
+  "url": "https://grow.google/intl/en_my/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en", "ms"],
+  "tags": ["google", "digital-skills", "employability", "tech"],
+  "featured": true
+}

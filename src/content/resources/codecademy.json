@@ -1,0 +1,13 @@
+{
+  "name": "Codecademy Free Courses",
+  "provider": "Codecademy",
+  "description": "Interactive coding lessons with free courses in various programming languages.",
+  "url": "https://www.codecademy.com/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["coding", "interactive", "programming", "lessons"],
+  "featured": false
+}

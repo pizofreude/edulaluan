@@ -1,0 +1,13 @@
+{
+  "name": "MIT OpenCourseWare",
+  "provider": "Massachusetts Institute of Technology",
+  "description": "Free access to MIT course materials across all subjects.",
+  "url": "https://ocw.mit.edu/",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["mit", "courses", "university", "free"],
+  "featured": true
+}

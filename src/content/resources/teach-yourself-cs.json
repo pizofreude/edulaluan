@@ -1,0 +1,13 @@
+{
+  "name": "Teach Yourself Computer Science",
+  "provider": "Oz Nova & Myles Byrne",
+  "description": "Self-study guide for computer science fundamentals with recommended resources and books.",
+  "url": "https://teachyourselfcs.com/",
+  "category": "mooc",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["computer-science", "self-study", "fundamentals", "resources"],
+  "featured": false
+}

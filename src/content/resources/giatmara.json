@@ -1,0 +1,13 @@
+{
+  "name": "Giatmara",
+  "provider": "Giatmara MARA",
+  "description": "Vocational training centers offering technical skills programs for youth.",
+  "url": "https://www.giatmara.gov.my/",
+  "category": "tvet",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms"],
+  "tags": ["vocational", "technical", "youth", "mara"],
+  "featured": false
+}

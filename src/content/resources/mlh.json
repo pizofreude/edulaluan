@@ -1,0 +1,13 @@
+{
+  "name": "Major League Hacking (MLH)",
+  "provider": "Major League Hacking",
+  "description": "Global hackathon community connecting students to tech opportunities and competitions.",
+  "url": "https://mlh.io/",
+  "category": "community",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "hybrid",
+  "language": ["en"],
+  "tags": ["hackathon", "community", "tech", "students"],
+  "featured": false
+}

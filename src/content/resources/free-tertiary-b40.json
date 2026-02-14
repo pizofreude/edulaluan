@@ -1,0 +1,13 @@
+{
+  "name": "Free Tertiary Education for B40",
+  "provider": "Ministry of Higher Education Malaysia",
+  "description": "Free tertiary education at public universities for B40 families with household income below RM4,850.",
+  "url": "https://www.mohe.gov.my/",
+  "category": "degree",
+  "incomeGroups": ["B40"],
+  "cost": "free",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["university", "government", "b40", "public-universities"],
+  "featured": true
+}

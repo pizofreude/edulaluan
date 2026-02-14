@@ -1,0 +1,13 @@
+{
+  "name": "Scrimba",
+  "provider": "Scrimba",
+  "description": "Interactive coding screencasts for learning web development with hands-on practice.",
+  "url": "https://scrimba.com/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["web-development", "interactive", "screencasts", "practice"],
+  "featured": false
+}

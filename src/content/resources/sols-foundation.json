@@ -1,0 +1,13 @@
+{
+  "name": "SOLS 24/7 Foundation",
+  "provider": "SOLS 24/7",
+  "description": "Free education programs and skills training for underprivileged youth in Malaysia.",
+  "url": "https://sols247.org/",
+  "category": "community",
+  "incomeGroups": ["B40"],
+  "cost": "free",
+  "mode": "in-person",
+  "language": ["en", "ms"],
+  "tags": ["ngo", "skills", "youth", "free-education"],
+  "featured": false
+}

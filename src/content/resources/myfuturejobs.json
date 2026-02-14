@@ -1,0 +1,13 @@
+{
+  "name": "MyFutureJobs",
+  "provider": "TalentCorp Malaysia",
+  "description": "Career guidance and job portal for Malaysians with skills training resources.",
+  "url": "https://www.myfuturejobs.gov.my/",
+  "category": "community",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["ms", "en"],
+  "tags": ["career", "jobs", "training", "government"],
+  "featured": false
+}

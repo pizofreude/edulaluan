@@ -1,0 +1,13 @@
+{
+  "name": "42 Penang",
+  "provider": "42 Network",
+  "description": "Tuition-free peer-to-peer coding school in Penang. No teachers, no classrooms, just project-based learning.",
+  "url": "https://42penang.my/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["coding", "peer-learning", "project-based", "tuition-free"],
+  "featured": true
+}

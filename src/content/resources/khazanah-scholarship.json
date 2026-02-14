@@ -1,0 +1,13 @@
+{
+  "name": "Khazanah Scholarship",
+  "provider": "Khazanah Nasional",
+  "description": "Prestigious scholarship for outstanding Malaysian students for degree and postgraduate studies.",
+  "url": "https://www.khazanah.com.my/",
+  "category": "scholarship",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "hybrid",
+  "language": ["en"],
+  "tags": ["scholarship", "prestigious", "postgraduate", "corporate"],
+  "featured": true
+}

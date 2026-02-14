@@ -1,0 +1,13 @@
+{
+  "name": "PTPK Scholarship",
+  "provider": "Kumpulan Wang Pinjaman Pelajaran Kerajaan",
+  "description": "Government Education Loan Fund for students from B40 families pursuing diploma and degree programs.",
+  "url": "https://www.ptpk.gov.my/",
+  "category": "scholarship",
+  "incomeGroups": ["B40"],
+  "cost": "free",
+  "mode": "in-person",
+  "language": ["ms"],
+  "tags": ["scholarship", "government", "b40", "diploma", "degree"],
+  "featured": true
+}

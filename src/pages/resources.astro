@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ResourcesPage from '../components/ResourcesPage';
+import { getCollection } from 'astro:content';
+
+const resources = await getCollection('resources');
+
+// Serialize resources for the React component
+const serializedResources = resources.map(r => ({
+  id: r.id,
+  data: r.data
+}));
+---
+
+<Layout title="All Resources - EduLaluan">
+  <Header />
+  
+  <main class="min-h-screen bg-slate-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">Educational Resources</h1>
+        <p class="text-xl text-muted-foreground">
+          Browse our complete collection of {resources.length} educational opportunities for Malaysian communities.
+        </p>
+      </div>
+      
+      <ResourcesPage client:load resources={serializedResources} />
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
