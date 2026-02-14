@@ -1,0 +1,370 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Button } from '../../components/ui/button';
+---
+
+<Layout title="Submit Financial Aid Program - EduLaluan">
+  <div class="container mx-auto px-4 py-8 max-w-3xl">
+    
+    <!-- Header -->
+    <div class="mb-8">
+      <a href="/contribute" class="text-malaysia-teal-600 hover:text-malaysia-teal-700 mb-4 inline-block">
+        ← Back to Contribute
+      </a>
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">
+        💰 Submit Financial Aid Program
+      </h1>
+      <p class="text-gray-600">
+        Share your scholarship, grant, bursary, or sponsorship program. Help students access education. All fields marked with * are required.
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form 
+      name="financial-aid-submission" 
+      method="POST" 
+      data-netlify="true" 
+      netlify-honeypot="bot-field"
+      class="bg-white border rounded-lg p-6 space-y-6"
+    >
+      
+      <!-- Hidden fields for Netlify -->
+      <input type="hidden" name="form-name" value="financial-aid-submission" />
+      <p class="hidden">
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+
+      <!-- Program Information -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Program Information</h2>
+        
+        <div>
+          <label for="programName" class="block text-sm font-medium text-gray-700 mb-1">
+            Aid Program Name *
+          </label>
+          <input 
+            type="text" 
+            id="programName" 
+            name="programName" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., Community Education Scholarship 2026"
+          />
+        </div>
+
+        <div>
+          <label for="providerName" class="block text-sm font-medium text-gray-700 mb-1">
+            Provider Name *
+          </label>
+          <input 
+            type="text" 
+            id="providerName" 
+            name="providerName" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., ABC Foundation / John Doe / XYZ Corporation"
+          />
+        </div>
+
+        <div>
+          <label for="providerType" class="block text-sm font-medium text-gray-700 mb-1">
+            Provider Type *
+          </label>
+          <select 
+            id="providerType" 
+            name="providerType" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          >
+            <option value="">-- Select Provider Type --</option>
+            <option value="government">Government Agency</option>
+            <option value="ngo">Private Foundation / NGO</option>
+            <option value="corporate">Corporate / Company</option>
+            <option value="individual">Individual Donor</option>
+            <option value="institution">Educational Institution</option>
+            <option value="religious">Religious Organization</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="websiteUrl" class="block text-sm font-medium text-gray-700 mb-1">
+            Website URL (optional for individuals)
+          </label>
+          <input 
+            type="url" 
+            id="websiteUrl" 
+            name="websiteUrl" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="https://example.com"
+          />
+        </div>
+
+        <div>
+          <label for="contactEmail" class="block text-sm font-medium text-gray-700 mb-1">
+            Program Contact Email *
+          </label>
+          <input 
+            type="email" 
+            id="contactEmail" 
+            name="contactEmail" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="program@example.com"
+          />
+        </div>
+      </div>
+
+      <!-- Aid Details -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Aid Details</h2>
+        
+        <div>
+          <label for="description" class="block text-sm font-medium text-gray-700 mb-1">
+            Program Description *
+          </label>
+          <textarea 
+            id="description" 
+            name="description" 
+            required 
+            rows="6"
+            minlength="150"
+            maxlength="3000"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="Describe: Who is eligible? What is covered (tuition, living expenses, books)? How much (amount or percentage)? Duration (one-time, per semester, per year)?"
+          ></textarea>
+          <p class="text-xs text-gray-500 mt-1">Minimum 150 characters. Be specific about coverage and eligibility.</p>
+        </div>
+
+        <div>
+          <label for="aidCategory" class="block text-sm font-medium text-gray-700 mb-1">
+            Aid Category *
+          </label>
+          <select 
+            id="aidCategory" 
+            name="aidCategory" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          >
+            <option value="">-- Select Category --</option>
+            <option value="scholarship">Scholarship (merit-based)</option>
+            <option value="bursary">Bursary (need-based)</option>
+            <option value="loan">Loan (repayable)</option>
+            <option value="grant">Grant (non-repayable)</option>
+            <option value="sponsorship">Sponsorship</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Eligibility -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Eligibility Criteria</h2>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Income Group * (select all that apply)
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="incomeGroups" value="B40" class="rounded" />
+              <span>B40 (&lt; RM4,850/month)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="incomeGroups" value="M40" class="rounded" />
+              <span>M40 (RM4,850-10,970/month)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="incomeGroups" value="T20" class="rounded" />
+              <span>T20 (&gt; RM10,970/month)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="incomeGroups" value="all" class="rounded" />
+              <span>All income groups</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Education Level * (select all that apply)
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="primary" />
+              <span>Primary (Std 1-6)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="secondary" />
+              <span>Secondary (Form 1-5, SPM)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="post-secondary" />
+              <span>Post-Secondary (STPM, Diploma, Foundation)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="educationLevel" value="tertiary" />
+              <span>Tertiary (Degree, Master's, PhD)</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="fieldOfStudy" class="block text-sm font-medium text-gray-700 mb-1">
+            Field of Study (optional)
+          </label>
+          <input 
+            type="text" 
+            id="fieldOfStudy" 
+            name="fieldOfStudy" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., Engineering, Medicine, Islamic Studies (or leave blank for all fields)"
+          />
+        </div>
+
+        <div>
+          <label for="otherRequirements" class="block text-sm font-medium text-gray-700 mb-1">
+            Other Requirements (optional)
+          </label>
+          <textarea 
+            id="otherRequirements" 
+            name="otherRequirements" 
+            rows="3"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., Minimum 3.5 CGPA, active in co-curricular activities, must be Bumiputera"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Application Details -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Application Details</h2>
+        
+        <div>
+          <label for="applicationUrl" class="block text-sm font-medium text-gray-700 mb-1">
+            Application URL (optional)
+          </label>
+          <input 
+            type="url" 
+            id="applicationUrl" 
+            name="applicationUrl" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="https://apply.example.com"
+          />
+        </div>
+
+        <div>
+          <label for="applicationPeriod" class="block text-sm font-medium text-gray-700 mb-1">
+            Application Period
+          </label>
+          <input 
+            type="text" 
+            id="applicationPeriod" 
+            name="applicationPeriod" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., January-March annually, Open year-round"
+          />
+        </div>
+
+        <div>
+          <label for="selectionProcess" class="block text-sm font-medium text-gray-700 mb-1">
+            Selection Process (optional)
+          </label>
+          <textarea 
+            id="selectionProcess" 
+            name="selectionProcess" 
+            rows="3"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., Interview + academic results + essay"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Your Contact Info -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Your Contact Info</h2>
+        
+        <div>
+          <label for="submitterName" class="block text-sm font-medium text-gray-700 mb-1">
+            Your Name *
+          </label>
+          <input 
+            type="text" 
+            id="submitterName" 
+            name="submitterName" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          />
+        </div>
+
+        <div>
+          <label for="submitterRole" class="block text-sm font-medium text-gray-700 mb-1">
+            Your Role *
+          </label>
+          <input 
+            type="text" 
+            id="submitterRole" 
+            name="submitterRole" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="e.g., Program Coordinator, Donor Representative"
+          />
+        </div>
+
+        <div>
+          <label for="submitterEmail" class="block text-sm font-medium text-gray-700 mb-1">
+            Your Email *
+          </label>
+          <input 
+            type="email" 
+            id="submitterEmail" 
+            name="submitterEmail" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="your@email.com"
+          />
+        </div>
+
+        <div>
+          <label for="submitterPhone" class="block text-sm font-medium text-gray-700 mb-1">
+            Your Phone (optional)
+          </label>
+          <input 
+            type="tel" 
+            id="submitterPhone" 
+            name="submitterPhone" 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            placeholder="+60123456789"
+          />
+        </div>
+      </div>
+
+      <!-- Verification -->
+      <div class="space-y-3 p-4 bg-blue-50 rounded-md">
+        <h3 class="font-semibold text-gray-900">Verification</h3>
+        <label class="flex items-start gap-2">
+          <input type="checkbox" name="verifyAccuracy" required class="mt-1" />
+          <span class="text-sm text-gray-700">I confirm this information is accurate *</span>
+        </label>
+        <label class="flex items-start gap-2">
+          <input type="checkbox" name="verifyAuthority" required class="mt-1" />
+          <span class="text-sm text-gray-700">I have authority to submit this information on behalf of the provider *</span>
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4">
+        <Button 
+          type="submit" 
+          className="w-full bg-malaysia-gold-600 hover:bg-malaysia-gold-700 text-white py-3 text-lg"
+        >
+          Submit Financial Aid for Review
+        </Button>
+        <p class="text-xs text-gray-500 text-center mt-3">
+          Your submission will be reviewed before publication to ensure legitimacy and accuracy.
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+</Layout>
