@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Tuanku Aishah Rohani (SGS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Tuanku Aishah Rohani (SGS) in Seremban, Negeri Sembilan, is a premier science-focused boarding school named after the late Tuanku Aishah Rohani, wife of Yang di-Pertuan Agong. SGS specializes in providing advanced STEM education for academically talented students. The school offers Form 1-5 education with curriculum emphasis on science, technology, engineering, and mathematics, preparing students for competitive placements in top technical and medical programs. As a government Sekolah Menengah Sains, fees are highly subsidized, enabling bright students from B40 and M40 families to access specialized science education regardless of financial background. SGS features state-of-the-art science laboratories for physics, chemistry, biology, and advanced sciences, modern computer centers with latest technology, mathematics resource rooms, well-equipped library, sports facilities, and comfortable boarding quarters. The STEM-focused curriculum includes hands-on experiments, research projects, science fairs, and participation in national and international science competitions. Experienced science teachers with strong academic backgrounds provide rigorous instruction and mentorship. The boarding environment fosters collaborative learning, peer tutoring, and development of scientific thinking and problem-solving skills. Students engage in science clubs, robotics, innovation projects, and academic competitions. Co-curricular activities balance academics with sports and leadership development. Admission is highly competitive, prioritizing students with exceptional aptitude in science and mathematics. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SGS graduates consistently secure placements in medicine, engineering, and science programs at top Malaysian and international universities.",
+  "url": "https://sgs.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "negeri-sembilan"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

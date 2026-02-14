@@ -1,0 +1,14 @@
+{
+  "name": "Cheltenham Ladies' College",
+  "provider": "Cheltenham Ladies' College",
+  "description": "Cheltenham Ladies' College is one of the UK's leading independent boarding and day schools for girls, founded in 1853. Located in the spa town of Cheltenham, the school serves girls aged 11-18 and has a reputation for academic excellence and empowering young women. Annual boarding fees range from $50,000-$60,000 USD. The college offers A-Levels and IB Diploma, consistently achieving outstanding results with graduates progressing to Oxford, Cambridge, Imperial, and top international universities. The school provides substantial bursaries and scholarships, with over £2.5 million awarded annually based on financial need and merit. With approximately 850 students including 450 boarders from over 40 countries, CLC maintains a diverse international community. The college emphasizes STEM education, with exceptional science and mathematics programs, while also maintaining strong arts, humanities, and sports offerings. Notable alumnae include scientists, politicians, artists, and business leaders. The school's modern facilities include state-of-the-art laboratories, performance spaces, and sports centers.",
+  "url": "https://www.cheltladiescollege.org",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "uk", "girls-school", "premier", "stem", "ib-curriculum"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

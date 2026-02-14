@@ -1,0 +1,14 @@
+{
+  "name": "London School of Economics",
+  "provider": "London School of Economics and Political Science",
+  "description": "The London School of Economics and Political Science (LSE), founded in 1895, is the world's leading social science university, specializing in economics, politics, law, sociology, and related fields. For international students, annual costs total approximately $55,000-$65,000 USD including tuition (£27,500-$34,000), accommodation, and London living expenses. LSE offers competitive undergraduate support through the LSE Undergraduate Support Scheme with awards up to £22,000 annually, though international student aid is limited compared to US universities. The university enrolls approximately 12,500 students (5,000 undergraduates) from 150+ countries, creating the most internationally diverse campus in the UK with 70% international students. Located in Holborn, central London, students access Parliament, courts, museums, and global businesses. LSE has produced 18 Nobel laureates, 37 world leaders, and numerous influential economists and social scientists. The university excels in economics (#2 globally), politics, international relations, law, and sociology. Acceptance rate is approximately 12% for undergraduates. Malaysian students have strong representation, particularly in economics and finance programs. Graduates achieve exceptional career outcomes with high employability in finance, consulting, government, and international organizations. Starting salaries average £35,000+.",
+  "url": "https://www.lse.ac.uk",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "uk", "economics", "social-sciences", "london", "politics"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

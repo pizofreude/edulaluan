@@ -9,5 +9,6 @@
   "mode": "in-person",
   "language": ["ms", "en"],
   "tags": ["university", "government", "b40", "public-universities"],
-  "featured": true
+  "featured": true,
+  "educationLevel": ["tertiary"]
 }

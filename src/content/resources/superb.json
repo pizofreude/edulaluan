@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Agama Persekutuan Bentong (SUPERB)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Agama Persekutuan Bentong, known as SUPERB, is a prestigious federal religious secondary school located in Bentong, Pahang. As part of the Sekolah Berasrama Penuh (SBP) network, SUPERB provides fully residential education that integrates Islamic studies with mainstream academic subjects. The school serves Forms 1-5 students (ages 13-17) leading to SPM certification, offering a unique curriculum that balances religious education with science, mathematics, languages, and humanities. SUPERB's educational philosophy emphasizes producing students who excel academically while being firmly grounded in Islamic values, ethics, and practices. Students receive comprehensive religious instruction including Quran studies, Islamic jurisprudence, Arabic language, and Islamic civilization, alongside the national curriculum. The school features modern facilities including equipped classrooms, science laboratories, computer labs, prayer halls, library resources, sports facilities, and comfortable boarding accommodations. Beyond academics, students participate in diverse co-curricular activities including religious societies, academic clubs, sports, arts, and community service, fostering holistic development. The boarding environment promotes Islamic character, discipline, brotherhood, and spiritual growth while maintaining high academic standards. As a government-funded institution, SUPERB is highly subsidized with minimal fees, making quality Islamic education accessible to students from B40 and M40 families. Admission is competitive based on academic achievement, religious knowledge assessments, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 intake). SUPERB graduates are recognized for their balanced excellence in both religious and secular knowledge, successfully pursuing higher education in Islamic studies, science, and various professional fields.",
+  "url": "https://superb.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "islamic-education", "sbp", "pahang", "zon-timur"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Gopeng (I-GOP)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Gopeng in Gopeng, Perak is a government Sekolah Berasrama Penuh (SBP) offering Form 1-5 secondary education (ages 13-17) leading to SPM certification. As a fully residential school with an integrated curriculum approach, I-GOP provides comprehensive boarding facilities and structured environment promoting academic excellence, character development, and independence. The integrated curriculum combines academic subjects with Islamic studies and character education, providing holistic development grounded in national values and religious principles. The school is highly subsidized by the Malaysian government, with minimal fees making quality boarding education accessible to B40 and M40 families. Students benefit from experienced teachers, modern facilities, and extensive co-curricular programs including sports, uniformed bodies, clubs, and Islamic activities. The boarding system instills discipline, time management, and collaborative skills essential for future success. Located in the historic town of Gopeng, I-GOP serves students from across Perak and neighboring states. The integrated approach ensures students develop strong moral foundations alongside academic competencies, preparing them to become responsible and ethical citizens. Admission is competitive, based on primary school academic performance (formerly UPSR), co-curricular achievements, and interview assessments. Applications for Form 1 admission open annually through https://spskt1.moe.gov.my (typically January-February). I-GOP graduates consistently gain admission to top Form 6 programs, matriculation, and diploma courses, with many proceeding to Malaysian public universities.",
+  "url": "https://igop.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "sbp", "integrated-curriculum", "perak"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Hulu Terengganu (SAHUT)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Hulu Terengganu, abbreviated as SAHUT, is a premier science secondary school located in Kuala Berang, Hulu Terengganu. As a Sekolah Berasrama Penuh (SBP), SAHUT provides fully residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) education. The school offers an intensive science-focused curriculum leading to SPM certification, designed to nurture future scientists, engineers, medical professionals, and technology innovators from the rural interior regions of Terengganu. SAHUT features well-equipped science laboratories, modern technology infrastructure, comprehensive library resources, and dedicated teaching staff committed to excellence in science education. Students engage actively in research projects, science competitions, innovation challenges, and academic olympiads at district, state, and national levels, developing strong scientific foundations and practical research skills. The school's location in Hulu Terengganu provides unique opportunities to connect scientific learning with local environmental and cultural contexts. Beyond academics, SAHUT promotes holistic development through diverse co-curricular activities including robotics clubs, science societies, mathematics associations, sports programs, uniformed bodies, and community service initiatives. The boarding environment fosters discipline, independence, teamwork, and supportive peer relationships while maintaining rigorous academic standards. Students develop critical thinking, problem-solving abilities, and scientific inquiry skills essential for success in higher education and STEM careers. As a government SBP, SAHUT is highly subsidized with minimal fees, making quality science education accessible to talented students from B40 and M40 families, particularly those from rural areas. Admission is competitive based on academic achievement, science aptitude assessments, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 intake). SAHUT graduates consistently excel in universities, particularly in medicine, engineering, and pure sciences, bringing positive change to their communities.",
+  "url": "https://sahut.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "terengganu", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

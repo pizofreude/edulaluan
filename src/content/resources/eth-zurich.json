@@ -1,0 +1,14 @@
+{
+  "name": "ETH Zurich",
+  "provider": "ETH Zurich - Swiss Federal Institute of Technology",
+  "description": "ETH Zurich (Swiss Federal Institute of Technology), founded in 1855, is one of the world's leading universities for science and technology, consistently ranked in the global top 10. Despite relatively low tuition fees (CHF 1,460/~$1,650 per year for all students including internationals), total annual costs for international students exceed $86,000 USD due to Switzerland's high cost of living—accommodation, food, health insurance, and living expenses in Zurich total approximately $24,000-$30,000 per year. ETH offers limited scholarships for international students, primarily the Excellence Scholarship covering living expenses. The university enrolls approximately 24,000 students (11,000 undergraduates) from 120+ countries. ETH has produced 21 Nobel laureates including Albert Einstein. The institution excels in engineering, computer science, mathematics, natural sciences, and architecture. Teaching is primarily in German for undergraduate programs, with English options in master's programs. Acceptance rates vary but undergraduate admission is moderately selective. Malaysian students studying at ETH often receive Malaysian government scholarships. The Zurich location provides access to a global business hub and exceptional quality of life. Graduates achieve outstanding outcomes with high placement at tech companies and research institutions worldwide.",
+  "url": "https://ethz.ch",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "switzerland", "stem", "research", "engineering", "computer-science"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["coding", "interactive", "programming", "lessons"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["secondary", "post-secondary", "tertiary"]
 }

@@ -9,5 +9,6 @@
   "mode": "in-person",
   "language": ["ms"],
   "tags": ["scholarship", "government", "b40", "diploma", "degree"],
-  "featured": true
+  "featured": true,
+  "educationLevel": ["post-secondary", "tertiary"]
 }

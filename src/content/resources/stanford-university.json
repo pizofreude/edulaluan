@@ -1,0 +1,14 @@
+{
+  "name": "Stanford University",
+  "provider": "Stanford University",
+  "description": "Stanford University, founded in 1885, is one of the world's premier research universities located in Silicon Valley, California. Annual costs total approximately $84,000 USD including tuition ($62,484), fees, room, and board. Stanford's financial aid program is exceptionally generous—families earning under $150,000 pay no tuition, and those under $100,000 also receive free room and board. International students receive the same need-blind consideration as US students. The average need-based grant exceeds $75,000. Stanford enrolls approximately 7,600 undergraduates from 90+ countries. With a 5:1 student-faculty ratio and acceptance rate under 4%, Stanford offers intimate learning at a world-class institution. The university excels in engineering, computer science, business, and virtually all disciplines. Located in the heart of Silicon Valley, students access unparalleled entrepreneurship and tech industry opportunities—many startups, including Google and Instagram, were founded by Stanford students. Malaysian students form a notable part of the international community. The 8,180-acre campus features Spanish Colonial architecture and year-round sunshine. Graduates achieve exceptional outcomes with high placement at top tech companies and graduate schools.",
+  "url": "https://www.stanford.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "usa", "silicon-valley", "stem", "entrepreneurship", "research"],
+  "featured": true,
+  "educationLevel": ["tertiary"]
+}

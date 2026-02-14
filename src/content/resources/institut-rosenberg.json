@@ -1,0 +1,14 @@
+{
+  "name": "Institut auf dem Rosenberg",
+  "provider": "Institut auf dem Rosenberg",
+  "description": "Often regarded as the world's most expensive boarding school, Institut auf dem Rosenberg in St. Gallen, Switzerland offers an ultra-luxury educational experience for students aged 6-18. Founded in 1889, the school provides individualized education with a student-to-teacher ratio of 3:1. Students can pursue Swiss Matura, German Abitur, IB Diploma, A-Levels, or US High School Diploma. Annual costs exceed $150,000 USD, covering tuition, boarding, and comprehensive extracurricular programs including entrepreneurship initiatives and global expeditions. The school emphasizes innovation, entrepreneurship, and preparing future leaders through its \"Artisans of Life\" philosophy. Financial aid is limited but available for exceptional candidates. The institution attracts students from over 50 countries and maintains strong university placement records at top global institutions.",
+  "url": "https://www.instrosenberg.ch",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en", "ms"],
+  "tags": ["boarding-school", "switzerland", "luxury", "ib-curriculum", "entrepreneurship"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

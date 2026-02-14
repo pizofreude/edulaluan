@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["web-development", "full-stack", "curriculum", "community"],
-  "featured": true
+  "featured": true,
+  "educationLevel": ["post-secondary", "tertiary"]
 }

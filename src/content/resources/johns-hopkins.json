@@ -1,0 +1,14 @@
+{
+  "name": "Johns Hopkins University",
+  "provider": "Johns Hopkins University",
+  "description": "Johns Hopkins University, founded in 1876, is a world-leading research university in Baltimore, Maryland. Annual costs average $86,065 USD including tuition ($63,340), fees, room, and board. Hopkins meets 100% of demonstrated financial need for all admitted students, including internationals—the average need-based grant exceeds $60,000, making it accessible despite high sticker price. The university enrolls approximately 6,000 undergraduates from 120+ countries. Hopkins is renowned for biomedical engineering, public health, medicine, and international studies, hosting the #1 ranked engineering program and world-class medical institutions. The university invests over $3 billion annually in research, providing unparalleled undergraduate research opportunities. Students can access resources at the Johns Hopkins Hospital and Applied Physics Laboratory. Acceptance rate is approximately 7%. The diverse student body includes significant international representation with Malaysian students particularly strong in engineering and pre-medicine tracks. Graduates achieve outstanding outcomes with high medical school acceptance rates and placement at top companies and graduate programs. The Baltimore location provides urban engagement opportunities.",
+  "url": "https://www.jhu.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "usa", "research", "medicine", "engineering", "biomedical"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

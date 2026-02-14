@@ -1,0 +1,14 @@
+{
+  "name": "University of Pennsylvania",
+  "provider": "University of Pennsylvania",
+  "description": "The University of Pennsylvania (Penn), founded in 1740 by Benjamin Franklin, is an Ivy League institution in Philadelphia. Annual costs total approximately $87,860 USD including tuition ($66,104), fees, and living expenses. Penn is need-blind for US applicants and meets 100% of demonstrated financial need, with average grants of $62,000. International students receive need-aware financial aid with substantial resources available. Penn enrolls approximately 10,000 undergraduates from 100+ countries. The university uniquely combines liberal arts with pre-professional education, home to the prestigious Wharton School of Business (undergraduate), as well as top programs in engineering, nursing, and arts & sciences. Penn's interdisciplinary approach encourages students to take courses across schools. Located in University City, Philadelphia, students access urban opportunities while enjoying a cohesive campus. Acceptance rate is approximately 6%. Notable alumni include Elon Musk, numerous Fortune 500 CEOs, and political leaders. Malaysian students have strong representation, particularly in Wharton and engineering. Graduates achieve exceptional career outcomes with median starting salaries exceeding $85,000.",
+  "url": "https://www.upenn.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "usa", "ivy-league", "business", "wharton", "engineering"],
+  "featured": true,
+  "educationLevel": ["tertiary"]
+}

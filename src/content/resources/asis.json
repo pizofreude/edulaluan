@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Alam Shah (ASiS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Alam Shah (ASiS) in Cheras, Kuala Lumpur, is a renowned science boarding school established in 2000. ASiS specializes in STEM education, offering Form 1-5 education with strong emphasis on science, technology, engineering, and mathematics. Named after Sultan Alam Shah of Selangor, the school has built an excellent reputation for academic achievement and university placement success. As a government Sekolah Berasrama Penuh, fees are highly subsidized, making specialized science education accessible to talented students from B40 and M40 families. Located in the capital city, ASiS students benefit from proximity to universities, research institutions, and science museums for educational enrichment. The school features advanced science laboratories (physics, chemistry, biology), ICT facilities, mathematics resource centers, library, sports complex, and modern dormitories. ASiS's curriculum emphasizes hands-on science experiments, research methodology, problem-solving, and critical thinking. Students participate in national science competitions and research fairs. The boarding environment promotes collaborative learning, peer tutoring, and development of independence. Experienced science teachers with strong academic backgrounds provide mentorship and guidance. Admission is highly competitive, prioritizing students with strong aptitude in science and mathematics, based on primary school results (formerly UPSR), co-curricular achievements, and interviews. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). ASiS graduates consistently gain admission to competitive medicine, engineering, and science programs at top universities.",
+  "url": "https://www.asis.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "kuala-lumpur"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

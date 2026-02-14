@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Machang (SMACH)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Machang, abbreviated as SMACH, is a distinguished science secondary school located in Machang, Kelantan. As a Sekolah Berasrama Penuh (SBP), SMACH provides comprehensive residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) education. The school offers an intensive science-focused curriculum leading to SPM certification, designed to nurture future scientists, engineers, medical professionals, and technology innovators from Kelantan and surrounding regions. SMACH features well-equipped science laboratories, modern technology infrastructure, digital learning resources, and dedicated teaching staff committed to excellence in science education. Students actively participate in research projects, science competitions, innovation challenges, and academic olympiads at district, state, and national levels, developing strong scientific foundations and practical research skills. The school emphasizes hands-on learning, experimental methodology, and inquiry-based education to foster genuine scientific understanding and curiosity. Beyond academics, SMACH promotes holistic development through diverse co-curricular activities including robotics clubs, science societies, mathematics associations, sports programs, uniformed bodies, and community service initiatives. The boarding environment cultivates discipline, independence, teamwork, and lasting friendships while maintaining rigorous academic standards. Students develop critical thinking, problem-solving abilities, and analytical skills essential for success in higher education and STEM careers. As a government SBP, SMACH is highly subsidized with minimal fees, ensuring quality science education remains accessible to talented students from B40 and M40 families in Kelantan, particularly those from rural areas. Admission is competitive based on academic achievement, science aptitude assessments, and personal interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 intake). SMACH graduates consistently excel in universities, particularly in medicine, engineering, and pure sciences, contributing to Malaysia's scientific community and bringing positive change to their home communities.",
+  "url": "https://smach.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "kelantan", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

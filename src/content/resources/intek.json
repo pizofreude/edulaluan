@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Kuantan (INTEK)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Kuantan, or INTEK, is an integrated residential secondary school located in Kuantan, the capital of Pahang. As part of the prestigious Integrasi network, INTEK combines academic excellence with comprehensive character development through an innovative integrated curriculum. The school serves Forms 1-5 students (ages 13-17) leading to SPM certification, offering both science and arts streams with equal emphasis on academic achievement and holistic education. INTEK's integrated approach incorporates Islamic values, leadership training, and 21st-century skills into the mainstream curriculum, preparing students for higher education and global citizenship. The school features modern facilities including well-equipped classrooms, science laboratories, computer labs, sports complexes, and comfortable boarding accommodations. Students engage in diverse co-curricular activities spanning academics, sports, arts, and community service. The boarding environment promotes discipline, self-reliance, and strong interpersonal skills while fostering a supportive learning community. As a government SBP, INTEK is highly subsidized with minimal fees, ensuring quality integrated education remains accessible to deserving students from B40 and M40 families regardless of socioeconomic background. Admission is competitive based on academic merit, aptitude assessments, and interviews. Applications open annually through the official SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). INTEK graduates are known for their academic excellence, strong character, and leadership qualities, successfully pursuing higher education and contributing meaningfully to Malaysian society.",
+  "url": "https://intek.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "integrated-curriculum", "sbp", "pahang", "zon-timur"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

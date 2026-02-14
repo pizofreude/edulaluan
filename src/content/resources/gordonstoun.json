@@ -1,0 +1,14 @@
+{
+  "name": "Gordonstoun",
+  "provider": "Gordonstoun School",
+  "description": "Gordonstoun is a co-educational boarding school in Moray, Scotland, founded in 1934 by educationalist Kurt Hahn. Famous for being attended by Prince Philip and Prince Charles, the school serves students aged 8-18. Annual boarding fees range from $45,000-$55,000 USD. Gordonstoun is renowned for its distinctive educational philosophy emphasizing outdoor education, service, and character development alongside academic achievement. Students complete A-Levels or IB Diploma while participating in expeditions, seamanship training (the school has its own sailing vessel), and community service projects. The school's \"Round Square\" approach develops resilience, leadership, and social responsibility. Financial assistance is available through the school's bursary program, supporting approximately 20% of students. With around 550 students from over 40 countries, Gordonstoun maintains a strong international community. The school's unique combination of academic rigor and adventurous outdoor education produces graduates who progress to leading universities and develop into well-rounded global citizens.",
+  "url": "https://www.gordonstoun.org.uk",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "uk", "outdoor-education", "royalty", "scotland", "ib-curriculum"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "New York University",
+  "provider": "New York University",
+  "description": "New York University (NYU), founded in 1831, is a major private research university in the heart of Manhattan and one of the largest private universities in the US. Annual costs total approximately $86,606 USD including tuition ($60,438), fees, and living expenses in New York City. NYU provides substantial financial aid with over $800 million distributed annually—the average need-based grant is approximately $45,000, though international students face more limited aid options compared to US students. NYU enrolls approximately 30,000 undergraduates from 133 countries, making it one of the most internationally diverse US universities. The university excels in business (Stern School), arts (Tisch School), law, medicine, and liberal arts. With no traditional campus, NYU integrates into Greenwich Village, offering unparalleled access to NYC's cultural, business, and internship opportunities. The university operates global campuses in Abu Dhabi and Shanghai. Acceptance rate is approximately 13%. Notable alumni include multiple Nobel laureates, Academy Award winners, and business leaders. Malaysian students have strong representation across programs, particularly in business and arts. Graduates benefit from extensive NYC networking and career opportunities.",
+  "url": "https://www.nyu.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "usa", "urban", "arts", "business", "international"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

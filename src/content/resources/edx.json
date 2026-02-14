@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["mooc", "universities", "courses", "certifications"],
-  "featured": true
+  "featured": true,
+  "educationLevel": ["post-secondary", "tertiary"]
 }

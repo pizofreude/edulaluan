@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Tuanku Munawir (SASER)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Tuanku Munawir (SASER) in Seremban, Negeri Sembilan, is a science-focused boarding school with a GPS of 1.16 in SPM 2024, ranking among Malaysia's top SBP institutions. Named after Tuanku Munawir, the Yang di-Pertuan Besar of Negeri Sembilan, the school specializes in STEM education while maintaining comprehensive academic programs. SASER offers Form 1-5 education with emphasis on science, technology, engineering, and mathematics, preparing students for competitive university placements in technical fields. As a government Sekolah Berasrama Penuh, fees are highly subsidized, enabling talented students from B40 and M40 families to access specialized science education without financial burden. The school features advanced science laboratories, computer facilities, mathematics resource centers, and modern boarding facilities. SASER's curriculum combines rigorous academic training with hands-on experiments, research projects, and participation in national science competitions. The boarding environment fosters collaborative learning, peer tutoring, and development of independence and discipline. Experienced teachers with strong science backgrounds provide mentorship and guidance. Admission is highly competitive, prioritizing students with strong aptitude in science and mathematics, based on primary school results (formerly UPSR), co-curricular achievements, and interviews. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SASER graduates consistently gain admission to top engineering, medicine, and science programs at Malaysian and international universities.",
+  "url": "https://www.saser.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "top-ranked", "stem", "sbp", "negeri-sembilan", "gps-116"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

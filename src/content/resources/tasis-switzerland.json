@@ -1,0 +1,14 @@
+{
+  "name": "TASIS Switzerland",
+  "provider": "The American School in Switzerland",
+  "description": "The American School in Switzerland (TASIS) in Lugano is the oldest American boarding school in Europe, founded in 1956. Serving students aged 3-18 with boarding from grade 7, TASIS offers American High School Diploma, AP courses, and IB Diploma programs. Annual boarding fees range from $90,000-$105,000 USD including tuition, accommodation, and activities. The school enrolls approximately 700 students from 60+ nationalities, creating a truly international environment. Located on a hillside overlooking Lugano and Lake Lugano, the campus provides stunning views and proximity to Italian culture. TASIS emphasizes arts, academics, and global citizenship, with extensive fine arts and performing arts programs. The school offers need-based financial aid, with scholarships available covering up to 50% of costs for qualified students. Students benefit from TASIS's Academic Travel Program, exploring European culture through educational trips. Graduates gain admission to top American universities including Ivy League schools, as well as leading European and UK institutions. The school maintains strong university counseling with personalized guidance.",
+  "url": "https://www.tasis.ch",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "switzerland", "american", "international", "ib-curriculum", "arts"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

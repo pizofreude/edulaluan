@@ -9,5 +9,6 @@
   "mode": "hybrid",
   "language": ["ms", "en"],
   "tags": ["scholarship", "government", "jpa", "postgraduate", "overseas"],
-  "featured": true
+  "featured": true,
+  "educationLevel": ["tertiary"]
 }

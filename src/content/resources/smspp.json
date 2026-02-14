@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Pasir Puteh (SMSPP)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Pasir Puteh, known as SMSPP, is a premier science secondary school located in Pasir Puteh, Kelantan. As a Sekolah Berasrama Penuh (SBP), SMSPP provides fully residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) disciplines. The school offers an intensive science-focused curriculum leading to SPM certification, with strong emphasis on developing future scientists, engineers, medical professionals, and researchers. SMSPP features advanced science laboratories, modern technology facilities, comprehensive library collections, and experienced teaching staff passionate about science education excellence. Students engage actively in research projects, science fairs, innovation competitions, and national academic olympiads, developing robust scientific knowledge and practical research skills. The school's coastal location provides unique opportunities for environmental and marine science exploration. Beyond academics, SMSPP promotes holistic student development through extensive co-curricular programs including robotics teams, science clubs, mathematics societies, sports activities, uniformed bodies, and cultural programs. The boarding environment fosters discipline, self-reliance, collaborative learning, and strong peer support networks while maintaining high academic expectations. Students develop critical thinking, analytical reasoning, and scientific problem-solving abilities essential for university education and professional careers in STEM fields. As a government SBP, SMSPP is highly subsidized with minimal fees, making quality science education accessible to talented students from B40 and M40 families throughout Kelantan and neighboring areas. The school serves as an important educational institution for students from rural and coastal communities, providing opportunities that might otherwise be unavailable. Admission is competitive based on academic merit, science aptitude tests, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). SMSPP graduates have achieved remarkable success in prestigious universities, particularly in medicine, engineering, pure sciences, and environmental studies, contributing to Malaysia's scientific advancement.",
+  "url": "https://smspp.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "kelantan", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Phillips Academy Andover",
+  "provider": "Phillips Academy",
+  "description": "Phillips Academy in Andover, Massachusetts, founded in 1778, is one of the oldest and most prestigious boarding schools in the United States. Serving grades 9-12, Andover enrolls approximately 1,150 students from all 50 states and 45+ countries. Annual tuition and boarding total approximately $65,000 USD. Andover is renowned for its need-blind admission policy and exceptional financial aid program—47% of students receive financial assistance averaging $54,000, with the school distributing over $30 million annually in aid. Many families with incomes under $75,000 pay nothing. The school offers over 300 courses across 18 departments, emphasizing inquiry-based learning and critical thinking. Graduates consistently gain admission to Harvard, Yale, MIT, Stanford, and other top universities, with Andover being the #1 feeder school to Harvard. The 500-acre campus features world-class facilities including the Addison Gallery of American Art. Notable alumni include Presidents George H.W. Bush and George W. Bush, and numerous leaders in various fields.",
+  "url": "https://www.andover.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "usa", "historic", "prestigious", "financial-aid", "prep-school"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

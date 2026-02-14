@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Gua Musang (GUAMSS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Gua Musang, abbreviated as GUAMSS, is a premier science secondary school located in Gua Musang, Kelantan. As a Sekolah Berasrama Penuh (SBP), GUAMSS provides fully residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) disciplines. The school offers an intensive science-focused curriculum leading to SPM certification, designed to nurture future scientists, engineers, medical professionals, and researchers from Kelantan's interior and Orang Asli communities. GUAMSS features modern science laboratories, advanced technology infrastructure, comprehensive library resources, and experienced teaching staff committed to excellence in science education. Students engage actively in research projects, science fairs, innovation competitions, and academic olympiads at district, state, and national levels, developing strong scientific foundations and practical research skills. The school's strategic location in Gua Musang allows it to serve diverse communities including indigenous populations, providing quality education opportunities that promote social mobility and equity. Beyond academics, GUAMSS promotes holistic development through extensive co-curricular activities including robotics clubs, science societies, mathematics associations, sports teams, uniformed bodies, and cultural programs that celebrate diversity. The boarding environment fosters discipline, independence, multicultural understanding, and supportive peer relationships while maintaining high academic standards. Students develop critical thinking, problem-solving skills, and scientific inquiry abilities essential for success in higher education and professional careers. As a government SBP, GUAMSS is highly subsidized with minimal fees, making quality science education accessible to talented students from B40 and M40 families, with special emphasis on reaching underserved rural and indigenous communities. Admission is competitive based on academic merit, science aptitude tests, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). GUAMSS graduates have excelled in universities and professional fields, serving as role models and change agents in their communities.",
+  "url": "https://guamss.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "kelantan", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

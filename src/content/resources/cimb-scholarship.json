@@ -9,5 +9,6 @@
   "mode": "in-person",
   "language": ["en"],
   "tags": ["scholarship", "asean", "undergraduate", "banking"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["tertiary"]
 }

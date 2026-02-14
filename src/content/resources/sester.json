@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Kuala Terengganu (SESTER)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Kuala Terengganu, widely known as SESTER, is a premier science secondary school located in the state capital of Kuala Terengganu. As a Sekolah Berasrama Penuh (SBP), SESTER provides fully residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) disciplines. The school offers an intensive science-focused curriculum leading to SPM certification, with strong emphasis on developing future scientists, engineers, researchers, and medical professionals. SESTER features advanced science laboratories, modern technology facilities, comprehensive library collections, and highly qualified teaching staff committed to excellence in science education. Students engage actively in research projects, science fairs, innovation competitions, and national academic olympiads, developing robust scientific knowledge and practical research skills. The school's strategic location in the state capital provides additional opportunities for collaborations with universities, research institutions, and industry partners. Beyond academics, SESTER promotes holistic student development through extensive co-curricular programs including robotics teams, science clubs, mathematics societies, sports activities, uniformed bodies, and cultural programs. The boarding environment fosters discipline, self-reliance, collaborative learning, and strong peer support networks while maintaining high academic expectations. Students develop critical thinking, analytical reasoning, and scientific problem-solving abilities essential for university education and professional careers in STEM fields. As a government SBP, SESTER is highly subsidized with minimal fees, making quality science education accessible to talented students from B40 and M40 families throughout Terengganu and neighboring states. Admission is competitive based on academic merit, science aptitude tests, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). SESTER graduates have achieved remarkable success in prestigious universities, particularly in medicine, engineering, and pure sciences.",
+  "url": "https://sester.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "terengganu", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

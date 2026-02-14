@@ -9,5 +9,6 @@
   "mode": "in-person",
   "language": ["en", "ms"],
   "tags": ["scholarship", "b40", "tertiary", "foundation"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["tertiary"]
 }

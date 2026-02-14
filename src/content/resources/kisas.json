@@ -1,0 +1,14 @@
+{
+  "name": "Kolej Islam Sultan Alam Shah (KISAS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Kolej Islam Sultan Alam Shah (KISAS) in Klang, Selangor, is Malaysia's premier Islamic boarding school, established in 2007. KISAS uniquely combines academic excellence with comprehensive Islamic education, offering an integrated curriculum that prepares students for both SPM examinations and strong Islamic scholarship. The school serves Form 1-5 students (ages 13-17) in a fully residential setting that emphasizes moral development, Islamic values, and modern knowledge. As a government Sekolah Berasrama Penuh, KISAS is highly subsidized, making integrated Islamic education accessible to B40 and M40 families. The school features modern facilities including Islamic studies resource centers, science laboratories, ICT facilities, a central mosque, library, sports complex, and comfortable dormitories. KISAS's curriculum balances mainstream academic subjects (science, mathematics, languages, humanities) with extensive Islamic studies including Quran, Hadith, Fiqh, and Arabic language. Students benefit from qualified teachers in both academic and religious subjects. The boarding environment promotes Islamic character, discipline, and community values while preparing students for university admissions. Admission is competitive, assessing both academic merit (primary school results, formerly UPSR) and religious knowledge. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). KISAS graduates excel in diverse fields while maintaining strong Islamic identity and values, serving as role models in their communities.",
+  "url": "https://www.kisas.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "islamic-education", "integrated-curriculum", "leadership", "sbp", "selangor"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

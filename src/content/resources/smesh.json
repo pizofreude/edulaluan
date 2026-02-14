@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Sabah (SMESH)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Sabah, located in Kota Kinabalu, is a premier government Sekolah Berasrama Penuh (SBP) offering Form 1-5 secondary education (ages 13-17) leading to SPM certification. As one of the flagship science schools in East Malaysia, SMESH provides comprehensive boarding facilities and a structured environment designed to nurture academic excellence and character development among Sabahan youth. The school is highly subsidized by the Malaysian government, with minimal fees ensuring quality boarding education remains accessible to B40 and M40 families across Sabah. Specializing in STEM education, SMESH features state-of-the-art science laboratories, modern technology centers, and specialized equipment for advanced practical work in physics, chemistry, biology, and computer science. Students benefit from experienced educators, innovative teaching methodologies, and extensive co-curricular programs including science olympiads, robotics, coding clubs, sports, uniformed bodies, and cultural activities celebrating Sabah's diverse heritage. The boarding environment instills discipline, independence, and collaborative skills essential for success in higher education and careers. SMESH serves as a crucial educational hub for students from across Sabah, including rural and interior communities, providing equal access to quality science education despite geographical challenges unique to East Malaysia. The school emphasizes hands-on experimental learning and scientific inquiry to develop critical thinking and innovation. Many SMESH students overcome significant geographical and socioeconomic barriers to pursue their academic ambitions. Admission is highly competitive, based on primary school academic performance, co-curricular achievements, and interview assessments. Applications for Form 1 admission open annually through https://spskt1.moe.gov.my (typically January-February). SMESH graduates consistently achieve outstanding SPM results and gain admission to top Form 6 programs, matriculation, and diploma courses, with many proceeding to Malaysian public universities, particularly in STEM and medical fields.",
+  "url": "https://smesh.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "sbp", "science-school", "sabah", "east-malaysia"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Sultan Haji Ahmad Shah (SEMSAS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Sultan Haji Ahmad Shah, abbreviated as SEMSAS, is a distinguished science secondary school located in Kuantan, Pahang. Named in honor of the Sultan of Pahang, SEMSAS represents excellence in science education in the East Coast region. As a Sekolah Berasrama Penuh (SBP), the school provides fully residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) fields. SEMSAS offers an intensive science-focused curriculum leading to SPM certification, with particular emphasis on developing future scientists, engineers, and researchers. The school is equipped with advanced science laboratories, modern technology infrastructure, well-stocked libraries, and experienced teaching faculty dedicated to nurturing scientific excellence. Students engage in research projects, science fairs, innovation competitions, and STEM olympiads at district, state, and national levels. Beyond academics, SEMSAS promotes holistic development through comprehensive co-curricular programs including robotics clubs, mathematics societies, science associations, sports teams, and uniformed bodies. The boarding environment fosters discipline, teamwork, independent learning, and strong peer support networks. Students develop critical thinking, problem-solving skills, and scientific inquiry methods essential for higher education and professional careers. As a government SBP, SEMSAS is highly subsidized with minimal fees, ensuring quality science education remains accessible to talented students from B40 and M40 families. Admission is competitive based on academic merit, science aptitude, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). SEMSAS alumni have excelled in medical schools, engineering programs, and scientific research institutions, contributing significantly to Malaysia's technological advancement.",
+  "url": "https://semsas.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "pahang", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

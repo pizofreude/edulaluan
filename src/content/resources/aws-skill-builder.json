@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["cloud", "aws", "certifications", "tech"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["secondary", "post-secondary", "tertiary"]
 }

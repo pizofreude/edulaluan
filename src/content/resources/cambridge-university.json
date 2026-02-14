@@ -1,0 +1,14 @@
+{
+  "name": "University of Cambridge",
+  "provider": "University of Cambridge",
+  "description": "The University of Cambridge, founded in 1209, is one of the world's oldest and most prestigious universities, consistently ranking in the global top 5. For international students, annual costs range from $45,000-$80,000 USD depending on program, including tuition (£25,734 for arts, £38,352 for sciences, up to £67,194 for medicine), college fees, accommodation, and living expenses. Cambridge offers substantial financial aid through the Cambridge Bursary Scheme and college-specific awards, with many Malaysian students receiving support through Cambridge-Malaysia scholarships and government sponsorships. The collegiate system divides approximately 24,000 students (12,000 undergraduates) across 31 colleges, each providing independent living and learning communities. Cambridge's supervision system offers personalized small-group teaching with leading academics. The university has produced 121 Nobel laureates—more than any other institution. Excellence spans all disciplines including mathematics, sciences, engineering, humanities, and social sciences. Acceptance rates for international students vary by course but typically range 10-20%. Malaysian students have significant historical presence, including prominent political and business leaders. The historic city provides inspiring architecture, libraries, and museums. Graduates achieve outstanding career outcomes worldwide.",
+  "url": "https://www.cam.ac.uk",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "uk", "historic", "prestigious", "oxbridge", "nobel-laureates"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

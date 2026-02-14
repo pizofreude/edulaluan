@@ -1,0 +1,14 @@
+{
+  "name": "The Lawrenceville School",
+  "provider": "The Lawrenceville School",
+  "description": "The Lawrenceville School in Lawrenceville, New Jersey, founded in 1810, is one of America's most selective and prestigious boarding schools. Serving grades 9-12, Lawrenceville enrolls approximately 820 students from 35+ countries. Annual tuition and boarding fees total around $70,000 USD. The school operates a generous financial aid program distributing over $13 million annually, with 35% of students receiving assistance averaging $57,000. Lawrenceville's unique \"House System\" organizes students into small communities of 30-40 students living and learning together with faculty members. The school offers over 150 courses including advanced seminars equivalent to college-level work. Graduates achieve outstanding university placements with strong representation at Princeton, Penn, Yale, and other top institutions. The school is consistently ranked among the top 5 boarding schools in the US. Notable alumni include Pulitzer Prize winners, Olympic athletes, and business leaders. The 700-acre campus near Princeton features stunning architecture and exceptional facilities including innovation labs and athletics complexes.",
+  "url": "https://www.lawrenceville.org",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "usa", "selective", "prep-school", "house-system", "financial-aid"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Phillips Exeter Academy",
+  "provider": "Phillips Exeter Academy",
+  "description": "Phillips Exeter Academy in Exeter, New Hampshire, is one of America's most prestigious boarding schools, founded in 1781. Serving grades 9-12, Exeter pioneered the Harkness teaching method featuring discussion-based learning around oval tables. Annual tuition and boarding fees are approximately $65,000 USD. Remarkably, Exeter operates one of the largest secondary school financial aid programs in the world, with over $27 million distributed annually—approximately 46% of students receive aid averaging $53,000. The school is need-blind for US and Canadian applicants and meets 100% of demonstrated financial need. With 1,100 students from all 50 US states and 45+ countries, Exeter maintains exceptional diversity. The school offers over 450 courses with no AP classes—instead offering more rigorous, college-level coursework. Graduates gain admission to the world's top universities with strong representation at Ivy League schools, MIT, Stanford, and international institutions. Notable alumni include Mark Zuckerberg and numerous political leaders.",
+  "url": "https://www.exeter.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "usa", "prep-school", "elite", "financial-aid", "harkness-method"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Kolej Melayu Kuala Kangsar (MCKK)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Kolej Melayu Kuala Kangsar, often called the 'Eton of the East', is Malaysia's oldest and most prestigious fully residential school, founded in 1905. Located in Kuala Kangsar, Perak, MCKK has educated numerous Malaysian prime ministers, ministers, and leaders across various sectors. The school offers Form 1-5 education (ages 13-17) leading to SPM certification, with a strong emphasis on academic excellence, leadership, and character development. As a government Sekolah Berasrama Penuh (SBP), MCKK is highly subsidized with minimal fees, making elite education accessible to B40 and M40 families. Admission is extremely competitive, based on UPSR results (now replaced by school-based assessment), interview performance, and co-curricular achievements. The school combines rigorous academics with extensive co-curricular programs including sports, uniformed bodies, and cultural activities. MCKK's historic campus features colonial-era buildings alongside modern facilities. Applications open annually through the official SPM portal. Form 1: https://spskt1.moe.gov.my (typically January-February). The school's alumni network, known as 'Old Boys', is one of the most influential in Malaysia, providing mentorship and career opportunities for graduates.",
+  "url": "https://www.mckk.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "prestigious", "historic", "leadership", "sbp", "perak"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

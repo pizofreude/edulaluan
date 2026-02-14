@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Kota Tinggi (SAKTI)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Kota Tinggi (SAKTI) in Kota Tinggi, Johor, is a science-focused boarding school dedicated to developing Malaysia's future scientists, engineers, and innovators. SAKTI provides specialized STEM education in a supportive residential environment. The school offers Form 1-5 education with curriculum emphasis on science, technology, engineering, and mathematics, preparing students for competitive placements in technical and medical programs at universities. As a government Sekolah Menengah Sains, fees are highly subsidized, making quality science education accessible to talented students from B40 and M40 families. SAKTI features comprehensive facilities including well-equipped science laboratories for hands-on experiments in physics, chemistry, and biology, modern computer centers with educational technology, mathematics learning centers, library with scientific resources, sports facilities for physical development, and comfortable boarding quarters. The STEM curriculum emphasizes inquiry-based learning, experimental methodology, scientific thinking, problem-solving, and participation in science competitions and research projects. Experienced science teachers provide rigorous instruction and mentorship, guiding students in developing analytical skills and scientific reasoning. The boarding environment promotes collaborative learning, academic discipline, peer support, and development of independence and self-management skills. Students actively participate in science clubs, innovation projects, robotics, mathematics competitions, and various scientific activities. SAKTI balances intensive academic programs with co-curricular activities including sports, uniformed bodies, clubs, and leadership development programs. The school emphasizes character building, teamwork, and preparation for higher education challenges. Admission is competitive, based on primary school academic performance with preference for students showing strong aptitude in science and mathematics. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SAKTI graduates achieve strong academic results and successfully gain admission to medicine, engineering, and science programs at universities across Malaysia.",
+  "url": "https://sakti.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "johor"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

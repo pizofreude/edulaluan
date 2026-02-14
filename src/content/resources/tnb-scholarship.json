@@ -9,5 +9,6 @@
   "mode": "hybrid",
   "language": ["en", "ms"],
   "tags": ["scholarship", "engineering", "technical", "corporate"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["tertiary"]
 }

@@ -9,5 +9,6 @@
   "mode": "hybrid",
   "language": ["en"],
   "tags": ["hackathon", "community", "tech", "students"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["post-secondary", "tertiary"]
 }

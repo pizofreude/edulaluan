@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Agama Persekutuan Kajang (SMAPK)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Agama Persekutuan Kajang (SMAPK) in Kajang, Selangor is a government Sekolah Berasrama Penuh (SBP) offering Form 1-5 secondary education (ages 13-17) leading to SPM certification with a unique focus on Islamic education. As a fully residential Islamic school, SMAPK provides comprehensive boarding facilities and structured environment promoting academic excellence, spiritual development, strong moral character, and Islamic values. The school is highly subsidized by the Malaysian government, with minimal fees making quality Islamic boarding education accessible to B40 and M40 families. SMAPK offers a comprehensive curriculum integrating mainstream academic subjects (science, mathematics, languages, humanities) with extensive Islamic studies including Quran recitation and memorization (tahfiz), Islamic jurisprudence (fiqh), Arabic language, Islamic history, and theology. This dual-stream approach produces graduates who excel academically while possessing deep Islamic knowledge and strong Islamic character. The school emphasizes the cultivation of Islamic values, ethics, and practices in daily life, preparing students to become knowledgeable Muslims who contribute positively to society. Students benefit from experienced teachers including qualified ustaz and ustazah, modern facilities including prayer halls and tahfiz centers, and extensive co-curricular programs encompassing sports, uniformed bodies, Islamic societies, and Arabic language clubs. The boarding system instills discipline, time management, collaborative skills, and adherence to Islamic principles essential for future success. SMAPK's Islamic environment provides a nurturing atmosphere for spiritual growth alongside academic achievement. Admission is competitive, based on primary school academic performance (formerly UPSR), co-curricular achievements, interview assessments, and demonstrated commitment to Islamic education. Applications for Form 1 admission open annually through https://spskt1.moe.gov.my (typically January-February). SMAPK graduates consistently gain admission to top Form 6 programs, matriculation, diploma courses, and Islamic studies programs, with many proceeding to Malaysian public universities and Islamic universities both locally and abroad.",
+  "url": "https://smapk.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "sbp", "selangor", "islamic-education"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

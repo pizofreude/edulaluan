@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Tun Abdul Razak (InSTAR)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Tun Abdul Razak, abbreviated as InSTAR, is a premier integrated residential school named after Malaysia's second Prime Minister. Located in Pahang, InSTAR exemplifies educational excellence through its distinctive integrated curriculum approach. The school serves Forms 1-5 students (ages 13-17) leading to SPM certification, offering comprehensive education that seamlessly blends academic achievement with character development, Islamic values, and leadership training. InSTAR's integrated methodology ensures students receive not just subject knowledge but also critical thinking skills, ethical grounding, and global competencies essential for 21st-century success. The school offers both science and arts streams, supported by state-of-the-art facilities including modern classrooms, well-equipped laboratories, computer centers, extensive library collections, sports complexes, and quality boarding accommodations. Students engage in diverse co-curricular activities spanning academic competitions, sports, performing arts, uniformed bodies, and community service projects. The residential setting fosters discipline, self-management, collaborative skills, and strong peer relationships. Named after a visionary leader, InSTAR instills leadership qualities and social responsibility in every student. As a government SBP, the school is highly subsidized with minimal fees, ensuring quality integrated education remains accessible to deserving students from B40 and M40 families. Admission is highly competitive based on academic merit, aptitude assessments, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). InSTAR graduates consistently excel in higher education and professional careers, embodying the school's commitment to producing well-rounded, ethical leaders.",
+  "url": "https://instar.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "integrated-curriculum", "sbp", "pahang", "zon-timur"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

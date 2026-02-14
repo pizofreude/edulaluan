@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Jempol (INTEJ)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Jempol (INTEJ) in Jempol, Negeri Sembilan, is an integrated boarding school offering a unique blend of academic and Islamic education. Established to provide comprehensive education combining secular subjects with Islamic studies, INTEJ serves both boys and girls in a fully residential setting. The school offers Form 1-5 education leading to SPM certification, with an integrated curriculum that balances modern academic subjects with Quranic studies, Islamic jurisprudence, Arabic language, and Islamic values. As a government SBP school, fees are highly subsidized, making quality integrated education accessible to B40 and M40 families seeking both academic excellence and Islamic education for their children. INTEJ features modern facilities including science laboratories, computer labs, Islamic studies centers, well-stocked library, surau, sports facilities, and separate boarding quarters for male and female students. The integrated curriculum ensures students develop strong foundations in mathematics, sciences, and languages while deepening their understanding of Islamic principles and practices. Teachers are experienced in both conventional and Islamic education methodologies. The boarding environment promotes Islamic values, discipline, mutual respect, and academic diligence. Students participate in co-curricular activities including Quran recitation competitions, Islamic debates, sports, and uniformed bodies. Admission is competitive, based on academic performance, co-curricular records, and demonstrated interest in Islamic education. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). INTEJ graduates are well-prepared for higher education in both conventional and Islamic institutions.",
+  "url": "https://intej.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "integrated-curriculum", "islamic-education", "sbp", "negeri-sembilan"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

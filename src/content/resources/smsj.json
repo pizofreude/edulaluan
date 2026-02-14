@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Johor (SMSJ)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Johor (SMSJ) in Kluang, Johor, is one of the state's premier science-focused boarding schools, established to nurture academically talented students with strong aptitude in STEM fields. SMSJ provides specialized science education in a fully residential environment, preparing students for higher education in technical and scientific disciplines. The school offers Form 1-5 education with strong curriculum emphasis on science, technology, engineering, and mathematics, while maintaining comprehensive coverage of languages and humanities. As a government Sekolah Menengah Sains, fees are highly subsidized, enabling bright students from B40 and M40 families to access quality science education without financial constraints. SMSJ features state-of-the-art facilities including advanced science laboratories for conducting experiments in physics, chemistry, biology, and specialized scientific disciplines, modern computer centers equipped with latest technology, mathematics resource centers, well-stocked library with extensive scientific literature and research materials, sports complexes, and comfortable boarding facilities. The STEM-focused curriculum emphasizes hands-on learning, scientific inquiry, research methodology, analytical thinking, and active participation in science fairs, competitions, and olympiads at district, state, and national levels. Experienced science teachers with strong academic credentials and passion for STEM education provide rigorous instruction, guidance, and mentorship. The boarding environment fosters collaborative learning, academic excellence, peer tutoring, and development of critical thinking and innovation skills. Students engage in diverse activities including science clubs, robotics teams, innovation projects, mathematics competitions, and research initiatives. SMSJ maintains balance between intensive academics and co-curricular programs including sports, uniformed bodies, and leadership development. Admission is highly competitive, prioritizing students with exceptional performance and demonstrated passion for science and mathematics. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SMSJ graduates consistently achieve excellent results and secure placements in competitive medicine, engineering, and science programs at top universities.",
+  "url": "https://smsj.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "johor"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

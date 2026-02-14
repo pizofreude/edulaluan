@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Tuanku Abdul Rahman (STAR)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Tuanku Abdul Rahman in Ipoh, Perak is a government Sekolah Berasrama Penuh (SBP) offering Form 1-5 secondary education (ages 13-17) leading to SPM certification. As a fully residential school, STAR provides comprehensive boarding facilities and structured environment promoting academic excellence, character development, and independence. The school is highly subsidized by the Malaysian government, with minimal fees making quality boarding education accessible to B40 and M40 families. Students benefit from experienced teachers, modern facilities, and extensive co-curricular programs including sports, uniformed bodies, clubs, and cultural activities. The boarding system instills discipline, time management, and collaborative skills essential for future success. As one of Perak's premier SBP schools located in the state capital, STAR has a long-standing tradition of academic excellence and holistic student development. The school provides a nurturing environment where students from diverse backgrounds live and learn together, fostering national unity and cultural understanding. STAR's strategic location in Ipoh provides students with access to cultural and educational resources in the city. Admission is competitive, based on primary school academic performance (formerly UPSR), co-curricular achievements, and interview assessments. Applications for Form 1 admission open annually through https://spskt1.moe.gov.my (typically January-February). STAR graduates consistently gain admission to top Form 6 programs, matriculation, and diploma courses, with many proceeding to Malaysian public universities.",
+  "url": "https://www.star.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "sbp", "perak"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

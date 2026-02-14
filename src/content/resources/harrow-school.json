@@ -1,0 +1,14 @@
+{
+  "name": "Harrow School",
+  "provider": "Harrow School",
+  "description": "Harrow School is one of England's most famous boys' boarding schools, founded in 1572 under a Royal Charter. Located in northwest London, Harrow has educated seven British Prime Ministers, including Winston Churchill, and numerous distinguished alumni across politics, business, and the arts. The school serves boys aged 13-18, offering A-Levels and Pre-U qualifications. Annual fees range from $55,000-$65,000 USD. Harrow provides substantial financial assistance through its Bursary Fund, with over £4 million distributed annually to support talented students regardless of background. The school maintains a distinctive house system with 12 boarding houses, each fostering a strong community identity. Students wear the iconic Harrow straw hat and traditional uniform. Academic standards are exceptional, with graduates regularly gaining places at Oxford, Cambridge, Imperial, LSE, and top US universities. Harrow emphasizes all-round education including sports, music, drama, and leadership development. International students form approximately 20% of the student body.",
+  "url": "https://www.harrowschool.org.uk",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "uk", "boys-school", "elite", "historic", "london"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

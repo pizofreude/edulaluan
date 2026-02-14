@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Kuching (SAINSKU)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Kuching, known as SAINSKU, is a premier government Sekolah Berasrama Penuh (SBP) in Kuching, Sarawak, offering Form 1-5 secondary education (ages 13-17) leading to SPM certification. As one of the oldest and most established science schools in East Malaysia, SAINSKU provides comprehensive boarding facilities and a structured environment designed to nurture academic excellence among Sarawakian youth. The school is highly subsidized by the Malaysian government, with minimal fees ensuring quality boarding education remains accessible to B40 and M40 families across Sarawak's diverse communities. Located in Sarawak's capital city, SAINSKU serves as a crucial educational hub for students from throughout the state, including those from rural longhouses and interior regions who face unique geographical challenges in accessing quality education. Specializing in STEM education, SAINSKU features advanced science laboratories, modern technology centers, extensive library resources, and specialized equipment for practical work in physics, chemistry, biology, and mathematics. Students benefit from experienced educators, innovative teaching methodologies, and comprehensive co-curricular programs including science olympiads, robotics competitions, coding clubs, sports, uniformed bodies, and cultural activities celebrating Sarawak's rich multicultural heritage. The boarding system instills discipline, independence, and collaborative skills while fostering lifelong friendships among students from diverse ethnic backgrounds. SAINSKU particularly emphasizes developing scientific thinking and research capabilities, with many students participating in national-level science competitions and innovation challenges. The school provides strong support systems to help students from rural areas adapt to urban boarding life while maintaining their cultural identities. Admission is highly competitive, based on primary school academic performance, co-curricular achievements, and interview assessments. Applications for Form 1 admission open annually through https://spskt1.moe.gov.my (typically January-February). SAINSKU graduates consistently achieve outstanding SPM results and gain admission to top Form 6 programs, matriculation, and diploma courses, with many proceeding to Malaysian public universities in STEM, medical, and engineering fields, contributing significantly to Sarawak's development.",
+  "url": "https://sainsku.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "sbp", "science-school", "sarawak", "east-malaysia"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

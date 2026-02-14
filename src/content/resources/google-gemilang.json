@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en", "ms"],
   "tags": ["google", "digital-skills", "employability", "tech"],
-  "featured": true
+  "featured": true,
+  "educationLevel": ["secondary", "post-secondary", "tertiary"]
 }

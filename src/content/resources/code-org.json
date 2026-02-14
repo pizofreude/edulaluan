@@ -1,0 +1,14 @@
+{
+  "name": "Code.org",
+  "provider": "Code.org",
+  "description": "Non-profit organization providing free computer science education for students of all ages. Offers interactive coding courses from basic block-based programming to advanced JavaScript and Python. Features the popular 'Hour of Code' initiative with one-hour tutorials on various topics. Includes comprehensive K-12 CS curriculum, professional development for teachers, and resources in 70+ languages. All courses are completely free with no ads. Perfect for beginners starting their coding journey or students building foundational programming skills. Courses cover game development, web design, app creation, and core CS concepts. Trusted by millions of students worldwide and integrated into schools across 180+ countries. Certificates available upon course completion. Self-paced learning with video tutorials, interactive exercises, and projects.",
+  "url": "https://code.org/",
+  "category": "digital-skills",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "free",
+  "mode": "online",
+  "language": ["en"],
+  "tags": ["coding", "computer-science", "programming", "beginner-friendly", "k12", "free", "hour-of-code"],
+  "featured": false,
+  "educationLevel": ["primary", "secondary"]
+}

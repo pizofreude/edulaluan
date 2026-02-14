@@ -1,0 +1,14 @@
+{
+  "name": "Institut Le Rosey",
+  "provider": "Institut Le Rosey",
+  "description": "Known as the \"School of Kings,\" Institut Le Rosey is one of the world's most prestigious and expensive boarding schools, founded in 1880. The school operates from two campuses: Rolle on Lake Geneva (September-March) and Gstaad in the Alps (January-March). Serving ages 8-18, Le Rosey offers French and Swiss Matura, IB Diploma, and a bilingual French-English curriculum. Annual fees exceed $130,000 USD, making it one of the most expensive schools globally. Notable alumni include royalty from multiple countries, business leaders, and influential figures. The school maintains a 1:5 teacher-student ratio and enrolls approximately 420 students from over 60 countries. While expensive, Le Rosey offers limited need-based financial aid. The institution provides exceptional facilities including a concert hall, sailing center, equestrian center, and comprehensive arts programs. Graduates attend the world's top universities.",
+  "url": "https://www.rosey.ch",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "switzerland", "prestigious", "royalty", "bilingual", "ib-curriculum"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

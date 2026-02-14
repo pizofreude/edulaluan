@@ -1,0 +1,14 @@
+{
+  "name": "TASIS England",
+  "provider": "TASIS The American School in England",
+  "description": "TASIS The American School in England, located in the village of Thorpe near Surrey, is a leading American international boarding school founded in 1976. Serving students aged 3-18 with boarding from grade 9, the school offers American High School Diploma, AP courses, and IB Diploma programs. Annual boarding fees range from $65,000-$75,000 USD. The school maintains a diverse student body of approximately 750 students from 50+ countries. Situated just 30 minutes from central London, students benefit from easy access to world-class museums, theaters, and cultural experiences while enjoying a safe campus environment. TASIS England provides need-based financial aid and merit scholarships, with awards ranging from 10-50% of tuition for qualified international students. The school emphasizes American educational values combined with global perspectives. Strong performing arts, athletics, and outdoor education programs complement rigorous academics. Graduates gain admission to top universities in the US, UK, and worldwide, with dedicated university counseling supporting the application process. The school maintains particularly strong placement records at American universities.",
+  "url": "https://www.tasisengland.org",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "uk", "american", "international", "ib-curriculum", "london"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

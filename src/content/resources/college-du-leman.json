@@ -1,0 +1,14 @@
+{
+  "name": "Collège du Léman",
+  "provider": "Collège du Léman International School",
+  "description": "Collège du Léman is a leading bilingual international boarding and day school in Geneva, Switzerland, serving students aged 2-18. Founded in 1960, the school offers French Baccalaureate, IB Diploma, Swiss Matura, and US High School Diploma programs. Annual boarding fees range from $80,000-$100,000 USD. The school's bilingual approach (French-English) from early years gives students fluency in both languages. With over 2,000 students from 120+ nationalities, it's one of Switzerland's largest international schools. The school maintains modern facilities including innovation labs, sports centers, and arts studios. Financial aid and merit scholarships are available, covering up to 50% of tuition for qualified international students. Located on Lake Geneva's shores with views of Mont Blanc, the campus provides an inspiring learning environment. Graduates progress to top universities worldwide with strong placement records at Swiss Federal Institutes, European universities, and North American institutions.",
+  "url": "https://www.cdl.ch",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "switzerland", "ib-curriculum", "bilingual", "geneva"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

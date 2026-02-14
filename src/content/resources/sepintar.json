@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Rawang (SEPINTAR)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Rawang (SEPINTAR) in Rawang, Selangor is a government Sekolah Berasrama Penuh (SBP) offering Form 1-5 secondary education (ages 13-17) leading to SPM certification. As a fully residential school, SEPINTAR provides comprehensive boarding facilities and structured environment promoting academic excellence, character development, and independence. The school is highly subsidized by the Malaysian government, with minimal fees making quality boarding education accessible to B40 and M40 families. As an integrated school, SEPINTAR offers a balanced curriculum combining academic rigor with co-curricular development, preparing students for diverse pathways in science, arts, and technical fields. The school emphasizes holistic education through its integrated approach, nurturing well-rounded individuals equipped with critical thinking, leadership, and collaborative skills. Students benefit from experienced teachers, modern facilities, and extensive co-curricular programs including sports, uniformed bodies, clubs, and cultural activities. The boarding system instills discipline, time management, and collaborative skills essential for future success. SEPINTAR's integrated curriculum ensures students receive comprehensive exposure to various fields of study while maintaining strong academic foundations. Admission is competitive, based on primary school academic performance (formerly UPSR), co-curricular achievements, and interview assessments. Applications for Form 1 admission open annually through https://spskt1.moe.gov.my (typically January-February). SEPINTAR graduates consistently gain admission to top Form 6 programs, matriculation, and diploma courses, with many proceeding to Malaysian public universities across diverse disciplines.",
+  "url": "https://sepintar.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "sbp", "selangor", "integrated-curriculum"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["microsoft", "azure", "certifications", "cloud"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["post-secondary", "tertiary"]
 }

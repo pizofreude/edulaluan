@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Sultan Iskandar (ISKANDAR)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Sultan Iskandar (ISKANDAR) in Mersing, Johor, is a science-focused boarding school named after Sultan Iskandar of Johor. ISKANDAR specializes in providing advanced STEM education to academically talented students in a fully residential setting. The school offers Form 1-5 education with strong curriculum emphasis on science, technology, engineering, and mathematics, preparing students for competitive university placements in technical and medical fields. As a government Sekolah Menengah Sains, fees are highly subsidized, enabling bright students from B40 and M40 families to access specialized science education without financial constraints. ISKANDAR features state-of-the-art facilities including advanced science laboratories for physics, chemistry, biology, and specialized scientific disciplines, modern computer centers equipped with latest technology, mathematics resource centers, comprehensive library with extensive scientific literature, sports complexes, and comfortable boarding facilities. The STEM-focused curriculum emphasizes hands-on experimentation, scientific inquiry, research methodology, analytical thinking, and active participation in science competitions, olympiads, and innovation challenges at district, state, and national levels. Experienced science educators with strong academic credentials provide rigorous instruction, personalized guidance, and mentorship to develop students' problem-solving abilities and scientific reasoning. The boarding environment fosters collaborative learning, academic discipline, peer tutoring, and development of critical thinking and innovation skills essential for scientific careers. Students engage in diverse activities including science clubs, robotics teams, innovation projects, mathematics competitions, and research initiatives. ISKANDAR balances intensive academic excellence with comprehensive co-curricular programs including sports, uniformed bodies, clubs, and leadership development. The school emphasizes character building, teamwork, and holistic development. Admission is highly competitive, prioritizing students with exceptional academic performance and demonstrated passion for science and mathematics. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). ISKANDAR graduates consistently achieve excellent results and secure competitive placements in medicine, engineering, and science programs at top Malaysian universities.",
+  "url": "https://iskandar.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "johor"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

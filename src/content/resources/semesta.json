@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Tengku Abdullah (SEMESTA)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Tengku Abdullah, known as SEMESTA, is a premier science secondary school located in Raub, Pahang. Named after the Tengku Mahkota (Crown Prince) of Pahang, SEMESTA represents commitment to excellence in science education. As a Sekolah Berasrama Penuh (SBP), the school provides comprehensive residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) disciplines. SEMESTA offers an intensive science-focused curriculum leading to SPM certification, designed to nurture future scientists, engineers, medical professionals, and researchers. The school features modern science laboratories, advanced technology infrastructure, digital learning resources, and experienced educators passionate about scientific excellence. Students participate actively in research projects, science competitions, innovation challenges, and academic olympiads at various levels, developing strong foundations in scientific methodology and critical thinking. Beyond academics, SEMESTA emphasizes holistic student development through extensive co-curricular activities including science clubs, robotics teams, mathematics societies, sports programs, and uniformed bodies. The boarding environment cultivates discipline, independence, collaborative learning, and lasting friendships while maintaining rigorous academic standards. Students develop problem-solving abilities, analytical thinking, and scientific curiosity essential for success in higher education and STEM careers. As a government SBP, SEMESTA is highly subsidized with minimal fees, making quality science education accessible to talented students from B40 and M40 families throughout the region. Admission is competitive based on academic achievement, science aptitude assessments, and personal interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 intake). SEMESTA graduates consistently excel in universities, particularly in medicine, engineering, and pure sciences, contributing to Malaysia's scientific and technological development.",
+  "url": "https://semesta.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "pahang", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

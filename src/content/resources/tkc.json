@@ -1,0 +1,14 @@
+{
+  "name": "Kolej Tunku Kurshiah (TKC)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Kolej Tunku Kurshiah (TKC) in Seremban, Negeri Sembilan, is Malaysia's oldest girls' boarding school, established in 1956. With a GPS of 1.05 in SPM 2024, TKC maintains its position among the nation's top academic institutions. Named after the Tunku Ampuan of Negeri Sembilan, the school has a distinguished history of nurturing female leaders across various sectors. TKC offers Form 1-5 education for girls aged 13-17 in a fully residential setting. As a government SBP school, tuition and boarding are highly subsidized, making elite education accessible to B40 and M40 families regardless of background. The school's curriculum emphasizes academic excellence, particularly in STEM subjects, while fostering leadership skills, critical thinking, and social responsibility. TKC's historic campus combines colonial-era buildings with modern facilities including advanced science labs, computer centers, library, sports complex, and comfortable dormitories. The boarding environment promotes independence, time management, and lifelong friendships. Admission is highly competitive, based on primary school academic achievement (formerly UPSR), co-curricular records, and interview performance. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). TKC alumnae, known as 'Old Girls', include prominent figures in medicine, law, education, business, and public service, creating a powerful support network for current students and graduates.",
+  "url": "https://www.tkc.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "girls-school", "top-ranked", "historic", "leadership", "sbp", "negeri-sembilan", "gps-105"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

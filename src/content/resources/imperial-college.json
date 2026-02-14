@@ -1,0 +1,14 @@
+{
+  "name": "Imperial College London",
+  "provider": "Imperial College London",
+  "description": "Imperial College London, founded in 1907, is one of the world's leading universities specializing in science, engineering, medicine, and business. For international students, annual costs range from $50,000-$80,000 USD depending on program, including tuition (£37,900-£40,940 for most courses), accommodation, and London living expenses. Imperial offers limited financial aid for international students, but the President's Undergraduate Scholarships provide full tuition coverage for exceptional students from underrepresented countries. The university enrolls approximately 10,000 undergraduates from 140+ countries, with over 60% international students creating a globally diverse environment. Imperial consistently ranks in the global top 10 for engineering and technology. Located in South Kensington, London, students access world-class museums and cultural institutions. The university maintains strong industry connections, particularly in tech, finance, and healthcare sectors. Acceptance rates are highly competitive at 10-15% for international students. Malaysian students form one of the largest international cohorts. Graduates achieve exceptional outcomes with high starting salaries (median £35,000+) and strong placement at tech companies, consulting firms, and graduate schools. The Imperial network provides extensive career support.",
+  "url": "https://www.imperial.ac.uk",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "uk", "stem", "london", "engineering", "medicine"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

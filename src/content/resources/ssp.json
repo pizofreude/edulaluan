@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Seri Puteri (SSP)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Seri Puteri (SSP) in Cyberjaya is an elite girls' boarding school established in 1994, originally in Kuala Lumpur before relocating to Malaysia's technology hub. SSP is unique among SBP schools, originally established for daughters of senior government servants but now admitting students based on academic merit and potential. The school offers Form 1-5 education for girls aged 13-17, emphasizing academic excellence, leadership, and technology integration. Located in Cyberjaya, students benefit from proximity to Malaysia's leading tech companies and innovation centers. As a government boarding school, fees are subsidized, though SSP maintains higher facilities standards compared to typical SBP schools. The school features state-of-the-art facilities including advanced ICT labs, science laboratories, multimedia centers, sports complex, arts facilities, and excellent dormitories. SSP's curriculum emphasizes STEM education, languages, and leadership development, preparing students for top university placements. The boarding environment fosters independence, critical thinking, and collaborative skills. Small class sizes and experienced teachers ensure personalized attention. Admission is highly competitive, based on exceptional academic performance (formerly top UPSR results), co-curricular excellence, and leadership potential demonstrated through interviews. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SSP consistently produces outstanding graduates who gain admission to top Malaysian and international universities, with many pursuing STEM careers.",
+  "url": "https://www.ssp.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40", "T20"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "girls-school", "elite", "stem", "technology", "leadership", "sbp", "selangor"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

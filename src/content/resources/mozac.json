@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Muzaffar Shah (MOZAC)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Muzaffar Shah (MOZAC) in Ayer Keroh, Melaka, is a prestigious science-focused boarding school named after the former Yang di-Pertua Negeri of Melaka. MOZAC specializes in providing advanced STEM education to academically talented students from across Malaysia. The school offers Form 1-5 education with strong emphasis on science, technology, engineering, and mathematics, preparing students for competitive university placements in technical fields. As a government Sekolah Menengah Sains, fees are highly subsidized, enabling bright students from B40 and M40 families to access specialized science education without financial burden. MOZAC features state-of-the-art facilities including advanced science laboratories for physics, chemistry, biology, and specialized sciences, modern computer centers with latest educational technology, mathematics resource centers, comprehensive library with extensive scientific literature, sports complexes, swimming pool, and comfortable boarding facilities. The STEM-focused curriculum emphasizes hands-on experimentation, scientific inquiry, research projects, and participation in science competitions and olympiads at national and international levels. Experienced science teachers with strong academic credentials provide rigorous instruction, mentorship, and guidance. The boarding environment fosters collaborative learning, academic discipline, peer tutoring, and development of critical thinking and problem-solving skills essential for scientific careers. Students engage in science clubs, innovation projects, robotics, mathematics competitions, and research initiatives. MOZAC balances intensive academic programs with comprehensive co-curricular activities including sports, uniformed bodies, and leadership development. Admission is highly competitive, prioritizing students with exceptional aptitude and passion for science and mathematics. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). MOZAC graduates consistently secure placements in top medicine, engineering, and science programs at premier universities.",
+  "url": "https://mozac.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "melaka"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

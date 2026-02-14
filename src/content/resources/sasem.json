@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Sembrong (SASEM)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Sembrong (SASEM) in Kluang, Johor, is a science-focused boarding school dedicated to nurturing academically talented students with passion for STEM fields. SASEM provides specialized science education in a supportive residential environment, preparing students for higher education in scientific and technical disciplines. The school offers Form 1-5 education with curriculum emphasis on science, technology, engineering, and mathematics, while maintaining strong foundations in languages and humanities. As a government Sekolah Menengah Sains, fees are highly subsidized, making quality science education accessible to bright students from B40 and M40 families without financial burden. SASEM features comprehensive facilities including well-equipped science laboratories for conducting experiments in physics, chemistry, and biology, modern computer centers with educational software and technology, mathematics learning centers, library stocked with scientific resources and academic materials, sports facilities for physical development, and comfortable boarding quarters. The STEM curriculum emphasizes inquiry-based learning, hands-on experimentation, scientific methodology, critical thinking, and participation in science fairs, competitions, and research projects at various levels. Experienced science teachers provide rigorous instruction, guidance, and mentorship, helping students develop analytical abilities and problem-solving skills essential for scientific careers. The boarding environment promotes collaborative learning, academic excellence, peer support, and development of independence and self-discipline. Students actively engage in science clubs, innovation projects, robotics, mathematics olympiads, and various scientific activities. SASEM balances intensive academic programs with comprehensive co-curricular activities including sports, uniformed bodies, clubs, and leadership development. The school emphasizes character building, teamwork, and holistic student development. Admission is competitive, based on primary school academic performance with preference for students demonstrating strong aptitude and interest in science and mathematics. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SASEM graduates achieve strong academic results and successfully secure placements in medicine, engineering, and science programs at universities nationwide.",
+  "url": "https://sasem.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "johor"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

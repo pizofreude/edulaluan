@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Dato' Abdul Razak (SDAR)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Dato' Abdul Razak (SDAR) in Seremban, Negeri Sembilan, is one of Malaysia's most prestigious boys' boarding schools, named after Tun Abdul Razak, the nation's second Prime Minister. Established in 1963, SDAR has consistently maintained its position among the country's top academic institutions. The school offers Form 1-5 education for boys aged 13-17, leading to SPM certification. As a government Sekolah Berasrama Penuh, fees are highly subsidized, making elite boarding education accessible to B40 and M40 families. SDAR's curriculum emphasizes academic excellence across all streams while nurturing leadership qualities, critical thinking, and nation-building values. The school features modern facilities including well-equipped science laboratories, computer centers, extensive library, sports complexes, swimming pool, and comfortable dormitories. The boarding environment promotes discipline, independence, brotherhood, and lifelong friendships. SDAR is renowned for its strong co-curricular programs in sports, uniformed bodies, clubs, and societies, producing well-rounded students who excel beyond academics. Experienced teachers provide quality instruction and mentorship. Admission is highly competitive, based on primary school academic performance (formerly UPSR), co-curricular achievements, and interview assessment. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SDAR alumni, known as 'Old Boys', include prominent leaders in government, business, medicine, engineering, and various professional fields, creating a powerful support network that benefits current students and graduates.",
+  "url": "https://sdar.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "boys-school", "top-ranked", "leadership", "sbp", "negeri-sembilan", "historic"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

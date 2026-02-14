@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Sains Sultan Haji Ahmad Shah Pekan (SHAH Pekan)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Sains Sultan Haji Ahmad Shah, commonly known as SHAH Pekan, is a premier science secondary school located in Pekan, Pahang. Named after the Sultan of Pahang, the school represents educational excellence in the East Coast region. As a Sekolah Berasrama Penuh (SBP), SHAH Pekan provides fully residential education for Forms 1-5 (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) education. The school offers a rigorous science-focused curriculum leading to SPM certification, with advanced laboratory facilities, modern teaching equipment, and experienced educators dedicated to nurturing future scientists and engineers. Students benefit from intensive academic programs, research projects, and STEM competitions at state and national levels. Beyond academics, SHAH Pekan emphasizes holistic development through extensive co-curricular activities including robotics clubs, science societies, sports, and uniformed bodies. The boarding environment fosters independence, discipline, and strong peer relationships. As a government SBP, the school is highly subsidized with minimal fees, making quality science education accessible to talented students from B40 and M40 families. Admission is competitive, based on primary school achievements, aptitude tests, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). SHAH Pekan alumni have pursued successful careers in medicine, engineering, research, and various scientific fields, contributing significantly to Malaysia's development.",
+  "url": "https://shahpekan.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "pahang", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

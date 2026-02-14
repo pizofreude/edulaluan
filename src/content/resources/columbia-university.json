@@ -1,0 +1,14 @@
+{
+  "name": "Columbia University",
+  "provider": "Columbia University",
+  "description": "Columbia University, founded in 1754, is an Ivy League institution in New York City and one of the world's most prestigious universities. Annual costs total approximately $88,992 USD including tuition ($68,400), fees, and living expenses in Manhattan. Columbia is need-blind for US applicants and provides substantial financial aid—the average grant is $66,350, with families earning under $66,000 typically paying nothing. International students receive need-aware consideration with significant aid available. The university enrolls approximately 8,500 undergraduates from 150+ countries. Columbia's Core Curriculum, established in 1919, provides rigorous liberal arts education mandatory for all students. Located in Morningside Heights, students access unparalleled New York City internship and cultural opportunities. The university excels across all disciplines including engineering (Columbia SEAS), journalism, business, and humanities. Acceptance rate is approximately 4%, making it highly selective. Notable alumni include US Presidents, Nobel laureates, and industry leaders. Malaysian students are part of Columbia's international community, with strong representation in STEM and business programs.",
+  "url": "https://www.columbia.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "usa", "ivy-league", "new-york", "liberal-arts", "research"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

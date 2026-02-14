@@ -1,0 +1,14 @@
+{
+  "name": "University of Oxford",
+  "provider": "University of Oxford",
+  "description": "The University of Oxford, founded in the 12th century, is the oldest university in the English-speaking world and consistently ranks #1 globally. For international students, annual costs range from $65,000-$80,000+ USD depending on the program, including tuition (£28,950-£44,240) and college fees, accommodation, and living expenses. Oxford operates a generous financial aid program distributing over £8.5 million annually to students from lower-income countries—Malaysian students may qualify for Oxford-Malaysia scholarships and college-specific awards. The collegiate system divides 24,000 students (including 12,000 undergraduates) across 39 independent colleges providing intimate learning communities. Oxford's tutorial system offers personalized one-on-one or small group teaching with world-leading academics. The university excels across all disciplines with particular strength in humanities, sciences, medicine, and PPE (Philosophy, Politics, Economics). Acceptance rate for international students is approximately 10-15% depending on the course. Malaysian students have strong historical representation. Graduates achieve exceptional outcomes with high employability and admission to top graduate programs worldwide. The historic city provides inspiring environment with unparalleled library and museum resources.",
+  "url": "https://www.ox.ac.uk",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "uk", "historic", "prestigious", "oxbridge", "tutorial-system"],
+  "featured": true,
+  "educationLevel": ["tertiary"]
+}

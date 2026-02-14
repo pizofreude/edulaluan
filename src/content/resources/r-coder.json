@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["data-science", "r-programming", "visualization", "book"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["tertiary"]
 }

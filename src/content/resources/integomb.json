@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Gombak (INTEGOMB)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Gombak (INTEGOMB) is currently ranked as the #1 SBP in Malaysia for 2025, achieving an outstanding Gred Purata Sekolah (GPS) of 0.93 in the SPM 2024 examination. Located in Gombak, Selangor, this government fully residential school offers Form 1-5 education with exceptional academic standards and comprehensive facilities. INTEGOMB follows the integrated curriculum combining academic excellence with Islamic education and character development. As an SBP, the school is highly subsidized by the Malaysian government, with minimal fees making quality boarding school education accessible to B40 and M40 families. Admission is highly competitive, based on primary school academic performance (formerly UPSR), co-curricular achievements, and interview assessments. Students benefit from modern facilities, experienced teachers, and a structured boarding environment that promotes discipline and self-management. The school emphasizes STEM subjects while maintaining strong humanities and language programs. Applications for Form 1 admission open annually through https://spskt1.moe.gov.my (typically January-February). INTEGOMB's recent top ranking demonstrates the quality of affordable, merit-based education available through Malaysia's SBP system, proving that excellence is accessible beyond expensive private institutions.",
+  "url": "https://www.integomb.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "top-ranked", "stem", "islamic", "sbp", "selangor", "gps-093"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

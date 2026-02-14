@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["web-development", "documentation", "mozilla", "reference"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["secondary", "post-secondary", "tertiary"]
 }

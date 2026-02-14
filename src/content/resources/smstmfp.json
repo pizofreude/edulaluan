@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Tengku Muhammad Faris Petra (SMSTMFP)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Tengku Muhammad Faris Petra, commonly known as SMSTMFP, is a prestigious science secondary school located in Pengkalan Chepa, Kota Bharu, Kelantan. Named after the Crown Prince of Kelantan, SMSTMFP represents excellence in science education in the state. As a Sekolah Berasrama Penuh (SBP), the school provides fully residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) fields. SMSTMFP offers an intensive science-focused curriculum leading to SPM certification, with strong emphasis on developing future scientists, engineers, medical professionals, and researchers. The school features state-of-the-art science laboratories, modern computer facilities, comprehensive library resources, and highly qualified teaching staff dedicated to nurturing scientific talent. Students engage actively in research projects, science fairs, innovation competitions, and national STEM olympiads, developing strong foundations in scientific methodology and critical thinking. The school's proximity to Kota Bharu provides opportunities for collaborations with universities and research institutions. Beyond academics, SMSTMFP promotes holistic development through extensive co-curricular programs including robotics clubs, science societies, mathematics associations, sports teams, uniformed bodies, and cultural activities. The boarding environment fosters discipline, teamwork, independence, and strong peer relationships while maintaining high academic standards. Students develop analytical thinking, problem-solving skills, and scientific inquiry abilities essential for higher education and professional success. As a government SBP, SMSTMFP is highly subsidized with minimal fees, making quality science education accessible to talented students from B40 and M40 families throughout Kelantan. Admission is competitive based on academic merit, science aptitude assessments, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). SMSTMFP graduates have excelled in prestigious universities, particularly in medicine, engineering, and pure sciences.",
+  "url": "https://smstmfp.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "kelantan", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

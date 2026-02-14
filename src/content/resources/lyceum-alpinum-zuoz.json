@@ -1,0 +1,14 @@
+{
+  "name": "Lyceum Alpinum Zuoz",
+  "provider": "Lyceum Alpinum Zuoz",
+  "description": "Lyceum Alpinum Zuoz is a traditional Swiss boarding school founded in 1904, located in the alpine village of Zuoz in the Engadin valley at 1,750 meters altitude. Serving grades 6-12, the school offers Swiss Matura, IB Diploma, and German Abitur programs with instruction primarily in German and English. Annual boarding fees range from $75,000-$90,000 USD. The school emphasizes academic excellence combined with alpine sports including skiing, mountaineering, and outdoor expeditions. With approximately 200-300 boarding students from over 30 countries, the school maintains an intimate learning community with small class sizes. The institution is known for its rigorous academic standards and strong science and mathematics programs. Financial aid is available on a need basis for exceptional students. The school's alpine location provides unique opportunities for environmental studies and outdoor education. Graduates achieve strong university placement rates at ETH Zurich, other Swiss universities, and international institutions.",
+  "url": "https://www.lyceum-alpinum.ch",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "switzerland", "traditional", "alpine", "ib-curriculum", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Dartmouth College",
+  "provider": "Dartmouth College",
+  "description": "Dartmouth College, founded in 1769, is an Ivy League institution in Hanover, New Hampshire, combining liberal arts education with research excellence. Annual costs total approximately $87,161 USD including tuition ($65,511), fees, and living expenses. Dartmouth is need-blind for all applicants including internationals and meets 100% of demonstrated financial need—families earning under $125,000 typically pay nothing for tuition. The average grant exceeds $65,000. Dartmouth enrolls approximately 4,500 undergraduates in an intimate learning environment emphasizing close faculty-student relationships. The unique D-Plan allows students flexibility in scheduling with year-round quarters. The college excels in liberal arts, engineering, business (Tuck School), and medicine. Located in a picturesque New England town, Dartmouth offers outdoor opportunities including skiing and hiking alongside rigorous academics. Acceptance rate is approximately 6%. The tight-knit community and strong alumni network provide exceptional career support. Notable alumni include numerous US Cabinet members, CEOs, and scholars. Malaysian and international students receive comprehensive support services. Graduates achieve strong outcomes across all sectors.",
+  "url": "https://www.dartmouth.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "usa", "ivy-league", "liberal-arts", "research", "new-england"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

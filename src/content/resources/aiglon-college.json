@@ -1,0 +1,14 @@
+{
+  "name": "Aiglon College",
+  "provider": "Aiglon College",
+  "description": "Aiglon College is a prestigious international boarding school located in the Swiss Alps at Villars-sur-Ollon, serving students aged 9-18. Founded in 1949, the school combines academic excellence with alpine adventure, offering the IB Diploma and IGCSE programs. Annual fees range from $90,000-$120,000 USD including tuition, boarding, and activities. The school's unique location at 1,300 meters altitude enables an educational philosophy centered on mountaineering, skiing, and outdoor expeditions as character-building experiences. With approximately 400 students from over 60 nationalities, Aiglon maintains a diverse international community. The school offers need-based financial aid and merit scholarships covering up to 100% of fees for exceptional students. Graduates consistently gain admission to leading universities worldwide including Oxbridge, Ivy League, and top European institutions.",
+  "url": "https://www.aiglon.ch",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "switzerland", "ib-curriculum", "alpine", "outdoor-education"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

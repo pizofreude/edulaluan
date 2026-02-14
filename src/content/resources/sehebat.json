@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Batu Pahat (SEHEBAT)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Batu Pahat (SEHEBAT) in Batu Pahat, Johor, is a premier science-focused boarding school dedicated to cultivating Malaysia's future generation of scientists, engineers, and medical professionals. SEHEBAT provides specialized STEM education in a fully residential environment. The school offers Form 1-5 education with curriculum emphasis on science, technology, engineering, and mathematics subjects, complemented by strong foundations in languages and humanities. As a government Sekolah Menengah Sains, fees are highly subsidized, making elite science education accessible to talented students from B40 and M40 families regardless of financial background. SEHEBAT features comprehensive facilities including well-equipped science laboratories for physics, chemistry, and biology experiments, modern computer centers with latest technology and educational software, mathematics learning centers, extensive library with scientific resources and journals, sports complexes for physical development, and comfortable boarding quarters. The STEM curriculum emphasizes inquiry-based learning, hands-on experimentation, scientific research methodology, critical analysis, and participation in science competitions at various levels. Experienced science educators with strong academic backgrounds provide rigorous instruction and personalized mentorship to develop students' analytical thinking and problem-solving capabilities. The boarding environment promotes collaborative learning, academic discipline, peer support in understanding complex scientific concepts, and development of independence. Students actively engage in science clubs, innovation projects, robotics, mathematics olympiads, and research initiatives. SEHEBAT balances intensive academic programs with comprehensive co-curricular activities including sports, uniformed bodies, and leadership training. Admission is highly competitive, based on primary school academic performance with strong preference for students demonstrating exceptional aptitude in science and mathematics. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SEHEBAT graduates consistently excel in securing competitive placements in medicine, engineering, and pure science programs at top universities.",
+  "url": "https://sehebat.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "johor"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Setiu (SAIS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Setiu, known as SAIS, is a distinguished science secondary school located in Setiu, Terengganu. As a Sekolah Berasrama Penuh (SBP), SAIS provides comprehensive residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) disciplines. The school offers an intensive science-focused curriculum leading to SPM certification, designed to develop future scientists, engineers, medical professionals, and technology innovators from Terengganu and surrounding regions. SAIS features modern science laboratories, advanced technology infrastructure, digital learning resources, and experienced educators passionate about science education excellence. Students actively participate in research projects, science fairs, innovation competitions, and academic olympiads at various levels, developing strong scientific knowledge, practical research skills, and analytical thinking abilities. The school's coastal location provides unique opportunities for environmental and marine science studies. Beyond academics, SAIS promotes holistic student development through extensive co-curricular programs including robotics clubs, science societies, mathematics associations, sports teams, uniformed bodies, cultural activities, and community outreach initiatives. The boarding environment cultivates discipline, self-reliance, collaborative learning, and supportive peer relationships while maintaining high academic expectations. Students develop critical thinking, problem-solving capabilities, and scientific inquiry methods essential for success in higher education and STEM careers. As a government SBP, SAIS is highly subsidized with minimal fees, ensuring quality science education remains accessible to talented students from B40 and M40 families throughout Terengganu. Admission is competitive based on academic merit, science aptitude tests, and personal interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). SAIS graduates consistently excel in universities, particularly in medicine, engineering, pure sciences, and environmental studies, contributing to Malaysia's scientific advancement and sustainable development.",
+  "url": "https://sais.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "terengganu", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

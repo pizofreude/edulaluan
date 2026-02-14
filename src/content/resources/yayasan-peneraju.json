@@ -9,5 +9,6 @@
   "mode": "hybrid",
   "language": ["ms", "en"],
   "tags": ["scholarship", "bumiputera", "top-universities", "international"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["tertiary"]
 }

@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Jeli (JeSS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Jeli, popularly known as JeSS, is a distinguished science secondary school located in Jeli, Kelantan. As a Sekolah Berasrama Penuh (SBP), JeSS provides comprehensive residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) education. The school offers an intensive science-focused curriculum leading to SPM certification, designed to develop future scientists, engineers, medical professionals, and technology innovators from Kelantan's interior regions. JeSS features well-equipped science laboratories, modern technology infrastructure, digital learning resources, and dedicated educators committed to excellence in science education. Students actively participate in research projects, science competitions, innovation challenges, and academic olympiads at various levels, developing strong scientific foundations and analytical thinking skills. The school's location in Jeli, near the Thai border, provides unique opportunities for cross-cultural learning and environmental science studies. Beyond academics, JeSS promotes holistic development through diverse co-curricular activities including robotics clubs, science societies, mathematics associations, sports programs, uniformed bodies, and community service initiatives. The boarding environment cultivates discipline, independence, teamwork, and lasting friendships while maintaining rigorous academic standards. Students develop critical thinking, problem-solving abilities, and scientific inquiry methods essential for success in higher education and STEM careers. As a government SBP, JeSS is highly subsidized with minimal fees, ensuring quality science education remains accessible to talented students from B40 and M40 families, particularly those from rural and border areas. The school plays a crucial role in providing quality education to underserved communities. Admission is competitive based on academic achievement, science aptitude assessments, and personal interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 intake). JeSS graduates consistently excel in universities, particularly in medicine, engineering, and pure sciences, bringing positive transformation to their communities and contributing to national development.",
+  "url": "https://jess.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "kelantan", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

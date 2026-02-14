@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["coding", "computer-science", "interactive", "free"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["secondary", "post-secondary", "tertiary"]
 }

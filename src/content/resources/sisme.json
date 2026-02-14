@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Selandar (SISME)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Selandar (SISME) in Melaka is an integrated boarding school offering comprehensive education that combines academic excellence with Islamic studies. SISME serves both boys and girls in a fully residential setting, providing balanced education in conventional subjects and Islamic knowledge. The school offers Form 1-5 education with an integrated curriculum covering mathematics, sciences, languages, humanities, alongside Quranic studies, Arabic language, Islamic jurisprudence (fiqh), and Islamic values education. As a government SBP Integrasi school, fees are highly subsidized, making quality integrated education accessible to B40 and M40 families seeking both academic achievement and Islamic education for their children. SISME features modern facilities including science laboratories, computer centers, Islamic studies rooms, well-stocked library with Islamic and academic resources, beautiful surau for daily prayers and religious activities, sports facilities, and separate comfortable boarding quarters for male and female students. The integrated approach ensures students develop strong academic foundations while deepening their understanding and practice of Islamic principles. Experienced teachers and religious educators provide instruction and guidance. The boarding environment promotes Islamic values, discipline, mutual respect, academic excellence, and spiritual growth. Students participate in diverse co-curricular activities including Quran recitation competitions, Islamic debates, academic competitions, sports, and uniformed bodies. SISME emphasizes character development, leadership skills, and preparation for higher education in both conventional and Islamic institutions. Admission is competitive, based on academic performance and demonstrated commitment to Islamic education. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SISME graduates are well-rounded individuals prepared for success in various academic and professional pathways.",
+  "url": "https://sisme.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "integrated-curriculum", "islamic-education", "sbp", "melaka"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

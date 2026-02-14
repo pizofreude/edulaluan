@@ -9,5 +9,6 @@
   "mode": "in-person",
   "language": ["en", "ms"],
   "tags": ["loan", "tertiary", "government", "local"],
-  "featured": true
+  "featured": true,
+  "educationLevel": ["tertiary"]
 }

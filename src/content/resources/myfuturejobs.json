@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["ms", "en"],
   "tags": ["career", "jobs", "training", "government"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["all-levels"]
 }

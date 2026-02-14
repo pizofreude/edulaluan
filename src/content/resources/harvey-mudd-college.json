@@ -1,0 +1,14 @@
+{
+  "name": "Harvey Mudd College",
+  "provider": "Harvey Mudd College",
+  "description": "Harvey Mudd College is an elite private STEM college in Claremont, California, founded in 1955. Annual costs total approximately $88,396 USD including tuition ($64,527), fees, room, and board. Despite high costs, Harvey Mudd meets 100% of demonstrated financial need—the average need-based grant is $47,000, with merit scholarships also available. The college enrolls approximately 900 undergraduates focused on engineering, science, mathematics, and computer science, while maintaining liberal arts breadth through the Claremont Colleges consortium. Harvey Mudd is renowned for rigorous academics and producing the highest-paid graduates among liberal arts colleges, with median starting salaries exceeding $95,000. The student-faculty ratio of 8:1 ensures personalized attention. Acceptance rate is approximately 13%, highly selective for STEM programs. The diverse student body includes international students from 20+ countries. Harvey Mudd emphasizes hands-on learning, undergraduate research, and the Clinic Program where students solve real-world problems for companies. Graduates progress to top graduate schools or tech companies including Google, Microsoft, and SpaceX.",
+  "url": "https://www.hmc.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "usa", "stem", "liberal-arts", "engineering", "computer-science"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

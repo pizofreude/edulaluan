@@ -1,0 +1,14 @@
+{
+  "name": "Le Régent Crans-Montana College",
+  "provider": "Le Régent International School",
+  "description": "Le Régent Crans-Montana College is a luxury alpine boarding school in the Swiss Alps at 1,500 meters altitude, offering boutique education for students aged 4-18. Founded in 2015, the school provides British curriculum (IGCSE and A-Levels), American High School Diploma, and IB Diploma programs. Annual boarding fees range from $100,000-$120,000 USD, positioning it among the most expensive schools globally. The school maintains small class sizes with maximum 8-12 students per class and a 1:4 student-teacher ratio. With approximately 100 boarding students from 35+ countries, Le Régent offers an intimate, family-style environment with personalized attention. The school's alpine location provides exceptional opportunities for skiing, mountain sports, and outdoor leadership programs. Facilities include modern classrooms, innovation labs, recording studios, and sports facilities. Limited financial aid is available for exceptional students. The school emphasizes entrepreneurship, creativity, and holistic development. Graduates progress to prestigious universities worldwide, with dedicated university counseling ensuring strong placements at Russell Group, Ivy League, and top European institutions.",
+  "url": "https://www.leregent.ch",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "switzerland", "luxury", "alpine", "ib-curriculum", "small-class"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

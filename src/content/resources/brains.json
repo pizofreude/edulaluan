@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Batu Rakit (BRaInS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Batu Rakit, popularly known as BRaInS, is a distinguished integrated residential school located in Batu Rakit, Kuala Nerus, Terengganu. As part of Malaysia's elite Integrasi school network, BRaInS delivers comprehensive education that balances academic excellence with character development through an innovative integrated curriculum. The school serves Forms 1-5 students (ages 13-17) leading to SPM certification, offering both science and arts streams with a holistic approach that integrates Islamic values, critical thinking, and leadership development into mainstream education. BRaInS emphasizes producing well-rounded students who excel academically while possessing strong moral character, ethical grounding, and social responsibility. The school features modern educational facilities including well-equipped classrooms, advanced laboratories, computer centers, extensive library resources, sports complexes, and comfortable boarding accommodations. Students participate in diverse co-curricular activities spanning academic clubs, sports teams, cultural programs, uniformed bodies, and community service projects, fostering comprehensive personal development. The integrated curriculum ensures students develop not only subject mastery but also critical thinking skills, emotional intelligence, and leadership qualities. The boarding environment promotes discipline, independence, teamwork, and lasting friendships while maintaining high academic standards. As a government SBP, BRaInS is highly subsidized with minimal fees, making quality integrated education accessible to deserving students from B40 and M40 families throughout Terengganu and beyond. Admission is selective based on academic performance, aptitude assessments, and personal interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 intake). BRaInS graduates are recognized for their balanced excellence in academics and character, successfully pursuing higher education in various fields and becoming responsible leaders in their communities and professions.",
+  "url": "https://brains.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "integrated-curriculum", "sbp", "terengganu", "zon-timur"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

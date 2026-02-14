@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Sultan Mahmud (SESMA)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Sultan Mahmud, commonly known as SESMA, is a prestigious science secondary school located in Kuala Nerus, Terengganu. Named after the Sultan of Terengganu, SESMA exemplifies excellence in science education in the East Coast region. As a Sekolah Berasrama Penuh (SBP), the school provides fully residential education for Forms 1-5 students (ages 13-17), specializing in Science, Technology, Engineering, and Mathematics (STEM) fields. SESMA offers an intensive science-focused curriculum leading to SPM certification, with strong emphasis on developing future scientists, engineers, medical professionals, and researchers. The school is equipped with state-of-the-art science laboratories, modern computer facilities, comprehensive library resources, and dedicated teaching staff committed to nurturing scientific talent. Students engage actively in research projects, science fairs, innovation competitions, and national STEM olympiads, developing strong foundations in scientific inquiry and methodology. Beyond academics, SESMA promotes holistic development through extensive co-curricular programs including robotics clubs, science societies, mathematics associations, sports teams, uniformed bodies, and cultural activities. The boarding environment fosters discipline, teamwork, self-management, and supportive peer relationships while maintaining high academic expectations. Students develop critical thinking, analytical skills, and scientific problem-solving abilities essential for higher education and professional success. As a government SBP, SESMA is highly subsidized with minimal fees, making quality science education accessible to talented students from B40 and M40 families throughout Terengganu. Admission is competitive based on academic merit, science aptitude tests, and interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 entry). SESMA graduates have excelled in prestigious universities, particularly in medicine, engineering, and pure sciences, contributing significantly to Malaysia's scientific advancement and technological innovation.",
+  "url": "https://sesma.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "sbp", "terengganu", "zon-timur", "stem"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

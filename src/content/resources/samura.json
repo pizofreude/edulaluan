@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Muar (SAMURA)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Muar (SAMURA) in Muar, Johor, is a science-focused boarding school committed to excellence in STEM education. SAMURA provides specialized science education in a fully residential environment, nurturing academically talented students to become future leaders in science, technology, engineering, and medicine. The school offers Form 1-5 education with strong curriculum emphasis on science, technology, engineering, and mathematics subjects, complemented by comprehensive language and humanities programs. As a government Sekolah Menengah Sains, fees are highly subsidized, enabling bright students from B40 and M40 families to access elite science education regardless of financial background. SAMURA features modern facilities including advanced science laboratories equipped for physics, chemistry, and biology experiments, computer centers with latest educational technology, mathematics resource rooms, extensive library with scientific literature and academic resources, sports complexes, and comfortable boarding facilities. The STEM-focused curriculum emphasizes hands-on experimentation, scientific inquiry, research methodology, analytical thinking, and active participation in science competitions, olympiads, and innovation challenges at various levels. Experienced science educators with strong academic backgrounds provide rigorous instruction, personalized guidance, and mentorship to develop students' problem-solving abilities and scientific thinking. The boarding environment fosters collaborative learning, academic discipline, peer tutoring, and development of independence and time management skills. Students engage in diverse activities including science clubs, robotics projects, innovation initiatives, mathematics competitions, and research programs. SAMURA maintains balance between intensive academic excellence and comprehensive co-curricular development through sports, uniformed bodies, clubs, and leadership training. The school emphasizes character building, teamwork, and holistic student development. Admission is highly competitive, prioritizing students with exceptional academic performance and strong aptitude in science and mathematics. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SAMURA graduates consistently achieve excellent SPM results and secure competitive placements in medicine, engineering, and science programs at top universities.",
+  "url": "https://samura.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "science-school", "stem", "sbp", "johor"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

@@ -9,5 +9,6 @@
   "mode": "online",
   "language": ["en"],
   "tags": ["computer-science", "self-paced", "curriculum", "free"],
-  "featured": true
+  "featured": true,
+  "educationLevel": ["tertiary"]
 }

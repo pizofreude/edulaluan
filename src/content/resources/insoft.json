@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Berasrama Penuh Integrasi Temerloh (InSofT)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Berasrama Penuh Integrasi Temerloh, known as InSofT, is a distinguished integrated residential school located in Temerloh, Pahang. As part of Malaysia's elite Integrasi school network, InSofT delivers comprehensive education that balances academic rigor with character formation through an innovative integrated curriculum. The school provides Forms 1-5 education (ages 13-17) leading to SPM certification, offering both science and arts streams with a unique approach that weaves Islamic values, critical thinking, and leadership development into every aspect of learning. InSofT emphasizes holistic student development, combining strong academic foundations with moral education, soft skills training, and cultural awareness. The campus features modern educational infrastructure including advanced laboratories, multimedia learning centers, library resources, sports facilities, and comfortable boarding amenities. Students participate in extensive co-curricular programs including academic clubs, sports teams, cultural activities, and community outreach initiatives. The residential environment cultivates discipline, independence, teamwork, and lifelong friendships while maintaining high academic standards. As a government SBP, InSofT is highly subsidized with minimal fees, making premium integrated education accessible to talented students from B40 and M40 families. Admission is selective based on academic performance, aptitude tests, and personal interviews. Applications open annually through the SPM portal at https://spskt1.moe.gov.my (typically January-February for Form 1 intake). InSofT alumni are recognized for their balanced excellence in academics and character, successfully pursuing tertiary education and becoming responsible leaders in various professional fields.",
+  "url": "https://insoft.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "integrated-curriculum", "sbp", "pahang", "zon-timur"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

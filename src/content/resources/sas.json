@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Sultan Alam Shah (SAS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Sultan Alam Shah (SAS) in Putrajaya is a premier boys' boarding school with a GPS of 1.17 in SPM 2024. Established in 2000 and named after Sultan Alam Shah of Selangor, SAS has quickly built a reputation for academic excellence and leadership development. The school offers Form 1-5 education for boys aged 13-17 in Malaysia's administrative capital, providing students access to modern facilities and a conducive learning environment. As a government Sekolah Berasrama Penuh, fees are highly subsidized, ensuring talented students from B40 and M40 families can access quality boarding education. SAS emphasizes balanced development through rigorous academics, strong co-curricular programs, and character-building activities. The school's strategic location in Putrajaya provides unique opportunities for educational visits to government institutions and exposure to national administration. State-of-the-art facilities include advanced science laboratories, ICT centers, sports complex, mosque, and modern dormitories. The boarding system instills discipline, independence, and time management skills essential for future success. Admission is competitive, based on primary school academic results (formerly UPSR), co-curricular achievements, and interviews. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SAS continues to produce outstanding graduates who excel in top Malaysian universities and beyond.",
+  "url": "https://www.sas.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "boys-school", "top-ranked", "leadership", "sbp", "putrajaya", "gps-117"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}

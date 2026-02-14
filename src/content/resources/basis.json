@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Sains Banting (BASiS)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Sains Banting (BASiS) in Banting, Selangor is a government Sekolah Berasrama Penuh (SBP) offering Form 1-5 secondary education (ages 13-17) leading to SPM certification with specialized focus on science and STEM education. As a fully residential science school, BASiS provides comprehensive boarding facilities and structured environment promoting academic excellence, scientific inquiry, and innovation. The school is highly subsidized by the Malaysian government, with minimal fees making quality science boarding education accessible to B40 and M40 families. BASiS specializes in developing future scientists, engineers, and STEM professionals through intensive science and mathematics curriculum emphasizing hands-on laboratory work, scientific research, problem-solving, and critical thinking. The school maintains well-equipped science laboratories, computer facilities, and research resources enabling students to conduct experiments and develop practical scientific skills. Advanced courses in Physics, Chemistry, Biology, Mathematics, and Additional Mathematics prepare students for STEM careers and university programs. The curriculum integrates theoretical knowledge with practical applications, encouraging innovation, creativity, and scientific reasoning. Students benefit from experienced science teachers, modern facilities, and extensive co-curricular programs including science clubs, robotics, coding, mathematics competitions, and research projects. Participation in national and international science competitions and olympiads provides students opportunities to showcase their talents and compete at high levels. The boarding system instills discipline, time management, and collaborative skills essential for future success in scientific fields. BASiS's STEM-focused environment cultivates curiosity, analytical thinking, and passion for science. Admission is highly competitive, prioritizing students with strong aptitude and interest in science and mathematics, based on primary school academic performance (formerly UPSR), co-curricular achievements, and interview assessments. Applications for Form 1 admission open annually through https://spskt1.moe.gov.my (typically January-February). BASiS graduates consistently gain admission to top Form 6 science programs, matriculation, A-Levels, and foundation courses, with many proceeding to prestigious Malaysian public universities in STEM fields including engineering, medicine, pharmacy, and pure sciences.",
+  "url": "https://basis.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "sbp", "selangor", "science-school"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

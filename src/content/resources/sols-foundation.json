@@ -9,5 +9,6 @@
   "mode": "in-person",
   "language": ["en", "ms"],
   "tags": ["ngo", "skills", "youth", "free-education"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["secondary", "post-secondary"]
 }

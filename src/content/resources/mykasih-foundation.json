@@ -9,5 +9,6 @@
   "mode": "in-person",
   "language": ["en", "ms"],
   "tags": ["ngo", "assistance", "food-aid", "education"],
-  "featured": false
+  "featured": false,
+  "educationLevel": ["primary", "secondary"]
 }

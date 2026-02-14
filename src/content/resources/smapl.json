@@ -1,0 +1,14 @@
+{
+  "name": "Sekolah Menengah Agama Persekutuan Labu (SMAPL)",
+  "provider": "Ministry of Education Malaysia",
+  "description": "Sekolah Menengah Agama Persekutuan Labu (SMAPL) in Labu, Negeri Sembilan, is a prestigious Islamic boarding school under the Ministry of Education's religious school system. SMAPL provides comprehensive Islamic education alongside conventional academic subjects for both boys and girls aged 13-17. The school offers Form 1-5 education with a curriculum that integrates Islamic studies, Arabic language, Quranic memorization, and modern academic subjects including mathematics, sciences, and languages. As a government-funded Islamic boarding school, fees are highly subsidized, enabling B40 and M40 families to provide their children with quality Islamic education without financial burden. SMAPL features well-equipped facilities including Islamic studies centers, science laboratories, computer labs, extensive library with Islamic literature, beautiful surau, sports complexes, and separate comfortable dormitories for male and female students. The school emphasizes character development based on Islamic values, academic excellence, and preparation for both religious and secular higher education pathways. Experienced teachers, including ustaz and ustazah with strong Islamic credentials, provide guidance and mentorship. Students engage in Quran memorization programs, Islamic competitions, Arabic debates, and various co-curricular activities. The boarding environment nurtures Islamic brotherhood and sisterhood, discipline, and spiritual growth. Admission is competitive, prioritizing students with strong academic foundations and commitment to Islamic education. Applications for Form 1 admission: https://spskt1.moe.gov.my (typically January-February). SMAPL graduates pursue diverse pathways including Islamic universities, conventional universities, and professional careers, equipped with both Islamic knowledge and modern skills.",
+  "url": "https://smapl.edu.my",
+  "category": "secondary-education",
+  "incomeGroups": ["B40", "M40"],
+  "cost": "subsidized",
+  "mode": "in-person",
+  "language": ["ms", "en"],
+  "tags": ["boarding-school", "government", "islamic-education", "sbp", "negeri-sembilan"],
+  "featured": false,
+  "educationLevel": ["secondary"]
+}

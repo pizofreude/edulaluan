@@ -1,0 +1,14 @@
+{
+  "name": "University of Chicago",
+  "provider": "University of Chicago",
+  "description": "The University of Chicago is a prestigious private research university founded in 1890, consistently ranked among the top 10 universities globally. Annual costs total approximately $89,000-$92,000 USD including tuition ($65,619), fees, room, and board. The university is need-blind for US applicants and meets 100% of demonstrated financial need—international students also receive substantial aid, with the average grant covering 70% of costs. With 94 Nobel laureates affiliated, UChicago excels in economics, physical sciences, social sciences, and humanities. The distinctive Core Curriculum ensures all undergraduates receive broad liberal arts education. Approximately 7,500 undergraduates from 50+ states and 100+ countries create a diverse intellectual community. Malaysian students have historically enrolled at UChicago, particularly in STEM and economics programs. The 217-acre Hyde Park campus in Chicago provides urban opportunities with Gothic architecture. Acceptance rate is highly selective at approximately 5%. Graduates achieve strong outcomes with median starting salaries exceeding $70,000 and admission to top graduate schools.",
+  "url": "https://www.uchicago.edu",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["university", "usa", "research", "expensive", "economics", "nobel-laureates"],
+  "featured": false,
+  "educationLevel": ["tertiary"]
+}

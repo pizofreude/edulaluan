@@ -1,0 +1,14 @@
+{
+  "name": "Eton College",
+  "provider": "Eton College",
+  "description": "Eton College is one of the world's most prestigious boys' boarding schools, founded in 1440 by King Henry VI. Located in Windsor, England, Eton has educated 20 British Prime Ministers and numerous members of royal families worldwide. The school serves boys aged 13-18, offering A-Levels and the IB Diploma. Annual fees are approximately $55,000-$65,000 USD. Despite its elite reputation, Eton operates one of the UK's most generous financial aid programs, with over £7 million awarded annually and approximately 20% of students receiving support. The school maintains exceptional academic standards with nearly all graduates gaining admission to top Russell Group universities, Oxbridge, and international institutions. Eton's distinctive traditions, combined with modern facilities and teaching methods, create a unique educational environment. The school emphasizes character development, leadership, and public service alongside academic achievement. International students, including Malaysians, are welcomed and supported through comprehensive pastoral care systems.",
+  "url": "https://www.etoncollege.com",
+  "category": "elite-institutions",
+  "incomeGroups": ["M40", "T20"],
+  "cost": "paid",
+  "mode": "in-person",
+  "language": ["en"],
+  "tags": ["boarding-school", "uk", "historic", "royalty", "boys-school", "elite"],
+  "featured": true,
+  "educationLevel": ["secondary"]
+}
