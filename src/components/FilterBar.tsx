@@ -22,18 +22,14 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, totalResults }) =
   const [incomeGroup, setIncomeGroup] = useState('all');
   const [cost, setCost] = useState('all');
 
-  const handleFilterChange = () => {
+  React.useEffect(() => {
     onFilterChange({
       search,
       category,
       incomeGroup,
       cost,
     });
-  };
-
-  React.useEffect(() => {
-    handleFilterChange();
-  }, [search, category, incomeGroup, cost]);
+  }, [search, category, incomeGroup, cost, onFilterChange]);
 
   const clearFilters = () => {
     setSearch('');

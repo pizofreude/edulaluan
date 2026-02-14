@@ -2,8 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import ResourceCard from '../components/ResourceCard';
-import FilterBar from '../components/FilterBar';
+import ResourcesPage from '../components/ResourcesPage';
 import { getCollection } from 'astro:content';
 
 const resources = await getCollection('resources');
@@ -27,84 +26,10 @@ const serializedResources = resources.map(r => ({
         </p>
       </div>
       
-      <!-- Filter and Resources - Client-side component -->
-      <div id="resources-container"></div>
+      <ResourcesPage client:load resources={serializedResources} />
     </div>
   </main>
   
   <Footer />
 </Layout>
 
-<script define:vars={{ serializedResources }}>
-  // Client-side filtering logic
-  import React from 'react';
-  import { createRoot } from 'react-dom/client';
-  import FilterBar from '../components/FilterBar';
-  import ResourceCard from '../components/ResourceCard';
-
-  function ResourcesPage({ resources }) {
-    const [filteredResources, setFilteredResources] = React.useState(resources);
-
-    const handleFilterChange = (filters) => {
-      let filtered = [...resources];
-
-      // Search filter
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase();
-        filtered = filtered.filter(r =>
-          r.data.name.toLowerCase().includes(searchLower) ||
-          r.data.description.toLowerCase().includes(searchLower) ||
-          r.data.provider.toLowerCase().includes(searchLower) ||
-          r.data.tags.some(tag => tag.toLowerCase().includes(searchLower))
-        );
-      }
-
-      // Category filter
-      if (filters.category !== 'all') {
-        filtered = filtered.filter(r => r.data.category === filters.category);
-      }
-
-      // Income group filter
-      if (filters.incomeGroup !== 'all') {
-        filtered = filtered.filter(r => r.data.incomeGroups.includes(filters.incomeGroup));
-      }
-
-      // Cost filter
-      if (filters.cost !== 'all') {
-        filtered = filtered.filter(r => r.data.cost === filters.cost);
-      }
-
-      setFilteredResources(filtered);
-    };
-
-    return (
-      <>
-        <FilterBar onFilterChange={handleFilterChange} totalResults={filteredResources.length} />
-        
-        {filteredResources.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredResources.map((resource) => (
-              <ResourceCard key={resource.id} resource={resource.data} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-lg text-muted-foreground mb-4">
-              No resources found matching your criteria.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Try adjusting your filters to see more results.
-            </p>
-          </div>
-        )}
-      </>
-    );
-  }
-
-  // Render the component
-  const container = document.getElementById('resources-container');
-  if (container) {
-    const root = createRoot(container);
-    root.render(<ResourcesPage resources={serializedResources} />);
-  }
-</script>
