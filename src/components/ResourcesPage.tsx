@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FilterBar from './FilterBar';
 import ResourceCard from './ResourceCard';
+import { Button } from './ui/button';
 
 interface IncomeGroup {
   slug: string;
