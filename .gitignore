@@ -41,3 +41,11 @@ logs/
 # Temporary files
 *.tmp
 .tmp/
+
+# AI companion bootstrappers (Ame)
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.github/copilot-instructions.md
+.kiro/
+.qwen/
