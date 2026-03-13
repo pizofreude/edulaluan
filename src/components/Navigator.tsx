@@ -1,39 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import ResourceCard from './ResourceCard';
 
+interface IncomeGroup {
+  slug: string;
+  name: string;
+}
+
 interface Resource {
   id: string;
-  data: {
-    name: string;
-    provider: string;
-    description: string;
-    url: string;
-    category: string;
-    incomeGroups: string[];
-    cost: string;
-    mode: string;
-    language: string[];
-    tags: string[];
-    featured: boolean;
-  };
+  name: string;
+  provider_name: string;
+  description: string;
+  url: string;
+  category: { slug: string; name: string } | null;
+  cost_type: { slug: string; name: string } | null;
+  mode: { slug: string; name: string } | null;
+  income_groups: Array<{ income_groups: IncomeGroup }>;
+  education_levels: Array<{ education_levels: { slug: string; name: string } }>;
+  languages: Array<{ languages: { code: string; name: string } }>;
+  tags: Array<{ tags: { slug: string; name: string } }>;
 }
 
 interface NavigatorProps {
-  resources: Resource[];
+  initialResources?: Resource[];
 }
 
-type IncomeGroup = 'B40' | 'M40' | 'T20' | 'Not sure';
+type IncomeGroupType = 'b40' | 'm40' | 't20' | 'all';
 type Goal = 'Scholarships' | 'Free Courses' | 'Skills Training' | 'Financial Aid' | 'Degree Programs' | 'Secondary Education' | 'Elite Institutions';
 
-const Navigator: React.FC<NavigatorProps> = ({ resources }) => {
+const Navigator: React.FC<NavigatorProps> = ({ initialResources = [] }) => {
   const [step, setStep] = useState(1);
-  const [incomeGroup, setIncomeGroup] = useState<IncomeGroup | null>(null);
+  const [incomeGroup, setIncomeGroup] = useState<IncomeGroupType | null>(null);
   const [goal, setGoal] = useState<Goal | null>(null);
+  const [resources, setResources] = useState<Resource[]>(initialResources);
+  const [isLoading, setIsLoading] = useState(!initialResources);
 
-  const incomeGroups: IncomeGroup[] = ['B40', 'M40', 'T20', 'Not sure'];
+  const incomeGroups: IncomeGroupType[] = ['b40', 'm40', 't20', 'all'];
   const goals: Goal[] = ['Scholarships', 'Free Courses', 'Skills Training', 'Financial Aid', 'Degree Programs', 'Secondary Education', 'Elite Institutions'];
 
   const categoryMap: Record<Goal, string[]> = {
@@ -46,16 +51,41 @@ const Navigator: React.FC<NavigatorProps> = ({ resources }) => {
     'Elite Institutions': ['elite-institutions'],
   };
 
+  // Fetch resources on mount if not provided
+  useEffect(() => {
+    if (!initialResources || initialResources.length === 0) {
+      const fetchResources = async () => {
+        try {
+          const response = await fetch('/api/resources');
+          const result = await response.json();
+          if (result.data) {
+            setResources(result.data);
+          }
+        } catch (error) {
+          console.error('Failed to fetch resources:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchResources();
+    } else {
+      setIsLoading(false);
+    }
+  }, [initialResources]);
+
   const filteredResources = resources.filter((resource) => {
     if (!incomeGroup || !goal) return false;
 
     // Filter by category
     const categories = categoryMap[goal];
-    if (!categories.includes(resource.data.category)) return false;
+    if (!resource.category || !categories.includes(resource.category.slug)) return false;
 
-    // Filter by income group (if not "Not sure")
-    if (incomeGroup !== 'Not sure' && !resource.data.incomeGroups.includes(incomeGroup)) {
-      return false;
+    // Filter by income group (if not "all")
+    if (incomeGroup !== 'all') {
+      const hasIncomeGroup = resource.income_groups.some(
+        ig => ig.income_groups.slug === incomeGroup
+      );
+      if (!hasIncomeGroup) return false;
     }
 
     return true;
@@ -74,6 +104,14 @@ const Navigator: React.FC<NavigatorProps> = ({ resources }) => {
     setIncomeGroup(null);
     setGoal(null);
   };
+
+  if (isLoading) {
+    return (
+      <div className="max-w-4xl mx-auto text-center py-12">
+        <p className="text-muted-foreground">Loading resources...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -135,12 +173,17 @@ const Navigator: React.FC<NavigatorProps> = ({ resources }) => {
                       : 'border-gray-200 hover:border-malaysia-teal hover:bg-slate-50'
                   }`}
                 >
-                  <div className="font-semibold text-lg mb-2">{group}</div>
+                  <div className="font-semibold text-lg mb-2">
+                    {group === 'b40' && 'B40'}
+                    {group === 'm40' && 'M40'}
+                    {group === 't20' && 'T20'}
+                    {group === 'all' && 'Not sure'}
+                  </div>
                   <div className="text-sm text-muted-foreground">
-                    {group === 'B40' && 'Household income below RM4,850'}
-                    {group === 'M40' && 'Household income RM4,850 - RM10,970'}
-                    {group === 'T20' && 'Household income above RM10,970'}
-                    {group === 'Not sure' && "We'll show resources for everyone"}
+                    {group === 'b40' && 'Household income below RM4,850'}
+                    {group === 'm40' && 'Household income RM4,850 - RM10,970'}
+                    {group === 't20' && 'Household income above RM10,970'}
+                    {group === 'all' && "We'll show resources for everyone"}
                   </div>
                 </button>
               ))}
@@ -193,12 +236,12 @@ const Navigator: React.FC<NavigatorProps> = ({ resources }) => {
             <CardHeader>
               <CardTitle>Your Personalized Resources</CardTitle>
               <CardDescription>
-                Found {filteredResources.length} resources for {incomeGroup} - {goal}
+                Found {filteredResources.length} resources for {incomeGroup === 'all' ? 'All Groups' : incomeGroup?.toUpperCase()} - {goal}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex gap-2 mb-4">
-                <Badge>{incomeGroup}</Badge>
+                <Badge>{incomeGroup === 'all' ? 'All Groups' : incomeGroup?.toUpperCase()}</Badge>
                 <Badge>{goal}</Badge>
               </div>
               <div className="flex gap-2">
@@ -215,7 +258,7 @@ const Navigator: React.FC<NavigatorProps> = ({ resources }) => {
           {filteredResources.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredResources.map((resource) => (
-                <ResourceCard key={resource.id} resource={resource.data} />
+                <ResourceCard key={resource.id} resource={resource} />
               ))}
             </div>
           ) : (

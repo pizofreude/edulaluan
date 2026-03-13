@@ -3,20 +3,29 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 
+interface IncomeGroup {
+  slug: string;
+  name: string;
+}
+
+interface Resource {
+  id: string;
+  name: string;
+  provider_name: string;
+  description: string;
+  url: string;
+  category: { slug: string; name: string } | null;
+  cost_type: { slug: string; name: string } | null;
+  mode: { slug: string; name: string } | null;
+  income_groups: Array<{ income_groups: IncomeGroup }>;
+  education_levels: Array<{ education_levels: { slug: string; name: string } }>;
+  languages: Array<{ languages: { code: string; name: string } }>;
+  tags: Array<{ tags: { slug: string; name: string } }>;
+  is_featured?: boolean;
+}
+
 interface ResourceCardProps {
-  resource: {
-    name: string;
-    provider: string;
-    description: string;
-    url: string;
-    category: string;
-    incomeGroups: string[];
-    cost: string;
-    mode: string;
-    language: string[];
-    tags: string[];
-    featured?: boolean;
-  };
+  resource: Resource;
 }
 
 const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
@@ -51,33 +60,33 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
       <CardHeader>
         <div className="flex items-start justify-between mb-2">
           <CardTitle className="text-xl">{resource.name}</CardTitle>
-          {resource.featured && (
+          {resource.is_featured && (
             <Badge className="bg-malaysia-gold text-white">Featured</Badge>
           )}
         </div>
         <CardDescription className="text-sm text-muted-foreground">
-          by {resource.provider}
+          by {resource.provider_name}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
         <p className="text-sm mb-4">{resource.description}</p>
-        
+
         <div className="space-y-3">
           {/* Cost Badge */}
           <div className="flex items-center gap-2">
-            <Badge className={getCostColor(resource.cost)}>
-              {resource.cost.charAt(0).toUpperCase() + resource.cost.slice(1)}
+            <Badge className={getCostColor(resource.cost_type?.slug || 'paid')}>
+              {(resource.cost_type?.name || 'Paid').charAt(0).toUpperCase() + (resource.cost_type?.name || 'Paid').slice(1)}
             </Badge>
             <Badge variant="outline" className="capitalize">
-              {getModeIcon(resource.mode)} {resource.mode}
+              {getModeIcon(resource.mode?.slug || 'in-person')} {resource.mode?.name || 'In-Person'}
             </Badge>
           </div>
 
           {/* Income Groups */}
           <div className="flex flex-wrap gap-2">
-            {resource.incomeGroups.map((group) => (
-              <Badge key={group} variant="secondary" className="text-xs">
-                {group}
+            {resource.income_groups.map((ig) => (
+              <Badge key={ig.income_groups.slug} variant="secondary" className="text-xs">
+                {ig.income_groups.name}
               </Badge>
             ))}
           </div>
@@ -85,7 +94,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
           {/* Category */}
           <div>
             <Badge variant="outline" className="capitalize">
-              {resource.category.replace('-', ' ')}
+              {resource.category?.name || 'Other'}
             </Badge>
           </div>
         </div>
