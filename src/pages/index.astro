@@ -42,22 +42,115 @@ const categoryCount = 10; // Fixed count for now
   <main>
     <Hero />
     
-    <!-- Stats Section -->
-    <section class="py-12 bg-slate-50">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div>
-            <div class="text-4xl font-bold text-malaysia-teal mb-2">{totalResources || '138'}+</div>
-            <div class="text-muted-foreground">Educational Resources</div>
+    <!-- Stats Section - Redesigned with Malaysian Education Context -->
+    <section class="relative py-section-md bg-surface overflow-hidden">
+      <!-- Decorative batik pattern background -->
+      <div class="absolute inset-0 opacity-[0.02] bg-batik-diamond" aria-hidden="true"></div>
+      
+      <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section header with distinctive typography -->
+        <div class="text-center mb-12 animate-fade-in">
+          <p class="text-sm font-medium text-primary mb-2 tracking-wide uppercase">Making Education Accessible</p>
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">
+            Empowering <span class="text-primary">138+</span> Educational Opportunities
+          </h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+            From B40 to T20, we connect Malaysian families with scholarships, courses, and resources that match their needs.
+          </p>
+        </div>
+
+        <!-- Stats grid with visual hierarchy -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
+          <!-- Stat 1: Resources -->
+          <div class="group relative bg-surface-elevated rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-border animate-fade-in-up">
+            <div class="absolute top-0 right-0 w-20 h-20 opacity-5 text-primary" aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="40" />
+              </svg>
+            </div>
+            <div class="relative">
+              <div class="text-5xl md:text-6xl font-display font-bold text-primary mb-2 tracking-tight">
+                {totalResources || '138'}+
+              </div>
+              <div class="text-foreground font-medium mb-3">Educational Resources</div>
+              <div class="text-sm text-muted-foreground leading-relaxed">
+                Scholarships, MOOCs, TVET programs, and more — all verified and updated.
+              </div>
+              <!-- Decorative divider -->
+              <div class="mt-4 pt-4 border-t border-border/50">
+                <div class="flex items-center gap-2 text-xs text-primary font-medium">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Continuously Growing</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="text-4xl font-bold text-malaysia-teal mb-2">{categoryCount}</div>
-            <div class="text-muted-foreground">Resource Categories</div>
+
+          <!-- Stat 2: Categories -->
+          <div class="group relative bg-surface-elevated rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-border animate-fade-in-up" style="animation-delay: 100ms;">
+            <div class="absolute top-0 right-0 w-20 h-20 opacity-5 text-accent" aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="currentColor">
+                <rect x="20" y="20" width="60" height="60" rx="8" />
+              </svg>
+            </div>
+            <div class="relative">
+              <div class="text-5xl md:text-6xl font-display font-bold text-accent mb-2 tracking-tight">
+                {categoryCount}
+              </div>
+              <div class="text-foreground font-medium mb-3">Resource Categories</div>
+              <div class="text-sm text-muted-foreground leading-relaxed">
+                From scholarships to elite institutions, find resources for every educational path.
+              </div>
+              <!-- Decorative divider -->
+              <div class="mt-4 pt-4 border-t border-border/50">
+                <div class="flex items-center gap-2 text-xs text-accent font-medium">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                  </svg>
+                  <span>Diverse Options</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="text-4xl font-bold text-malaysia-teal mb-2">3</div>
-            <div class="text-muted-foreground">Income Groups Served</div>
+
+          <!-- Stat 3: Income Groups -->
+          <div class="group relative bg-surface-elevated rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-border animate-fade-in-up" style="animation-delay: 200ms;">
+            <div class="absolute top-0 right-0 w-20 h-20 opacity-5 text-primary-light" aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" />
+              </svg>
+            </div>
+            <div class="relative">
+              <div class="text-5xl md:text-6xl font-display font-bold text-primary-light mb-2 tracking-tight">
+                3
+              </div>
+              <div class="text-foreground font-medium mb-3">Income Groups Served</div>
+              <div class="text-sm text-muted-foreground leading-relaxed">
+                B40, M40, and T20 — personalized recommendations for every Malaysian family.
+              </div>
+              <!-- Decorative divider -->
+              <div class="mt-4 pt-4 border-t border-border/50">
+                <div class="flex items-center gap-2 text-xs text-primary-light font-medium">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                  </svg>
+                  <span>Inclusive Access</span>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <!-- CTA to navigator -->
+        <div class="text-center animate-fade-in" style="animation-delay: 300ms;">
+          <a href="/navigate" class="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-dark transition-colors group">
+            Find Your Personalized Resources
+            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
