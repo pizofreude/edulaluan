@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import { GeometricStarPattern } from '../components/decorative/BatikPatterns';
 
 // Fetch resources from Supabase API
 const baseUrl = import.meta.env.PUBLIC_SUPABASE_URL || '';
@@ -185,63 +186,128 @@ const categoryCount = 10; // Fixed count for now
       </div>
     </section>
 
-    <!-- Featured Resources -->
-    <section class="py-16 bg-slate-50">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Resources</h2>
-          <p class="text-xl text-muted-foreground">
-            Popular and highly recommended educational opportunities
+    <!-- Featured Resources - Redesigned with Varied Layouts -->
+    <section class="relative py-section-lg bg-gradient-to-b from-surface to-surface-elevated">
+      <!-- Flowing wave divider (top) -->
+      <div class="absolute top-0 left-0 right-0 h-8 -translate-y-full text-surface" aria-hidden="true">
+        <svg width="100%" height="100%" viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 20 Q25 0 50 20 T100 20 T150 20 T200 20 T250 20 T300 20 T350 20 T400 20 T450 20 T500 20 T550 20 T600 20 T650 20 T700 20 T750 20 T800 20 T850 20 T900 20 T950 20 T1000 20 T1050 20 T1100 20 T1150 20 T1200 20 T1250 20 T1300 20 T1350 20 T1400 20 T1450 20" fill="none" stroke="currentColor" strokeWidth="0.5" className="opacity-20"/>
+        </svg>
+      </div>
+
+      <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section header with decorative accent -->
+        <div class="text-center mb-16 animate-fade-in">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <div class="h-px w-12 bg-gradient-to-r from-transparent to-primary/40"></div>
+            <GeometricStarPattern size={20} />
+            <div class="h-px w-12 bg-gradient-to-l from-transparent to-primary/40"></div>
+          </div>
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">
+            Featured <span class="text-primary">Opportunities</span>
+          </h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+            Hand-picked educational resources with exceptional value and impact for Malaysian students.
           </p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+
+        <!-- Featured resources grid with varied layouts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {featuredResources.length > 0 ? (
-            featuredResources.map((resource: any) => (
-              <div class="border rounded-lg p-6 bg-white hover:shadow-lg transition-shadow">
-                <h3 class="text-lg font-semibold mb-2">{resource.name}</h3>
-                <p class="text-sm text-muted-foreground mb-3">{resource.provider_name}</p>
-                <p class="text-sm mb-4">{resource.description}</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                    resource.cost_type?.slug === 'free' ? 'bg-green-100 text-green-800' :
-                    resource.cost_type?.slug === 'subsidized' ? 'bg-blue-100 text-blue-800' :
-                    'bg-amber-100 text-amber-800'
-                  }`}>
-                    {resource.cost_type?.name || 'Paid'}
-                  </span>
-                  {resource.income_groups?.map((ig: any) => (
-                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-slate-100 text-slate-800">
-                      {ig.income_groups?.name}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href={resource.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center text-sm font-medium text-malaysia-teal hover:text-malaysia-teal-700"
-                >
-                  Learn more
-                  <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            featuredResources.map((resource: any, index: number) => (
+              <article 
+                class={`group relative bg-surface-elevated rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-border animate-fade-in-up ${
+                  index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
+                }`}
+                style={index < 3 ? `animation-delay: ${index * 100}ms` : ''}
+              >
+                <!-- Batik accent corner (top right) -->
+                <div class="absolute top-0 right-0 w-16 h-16 opacity-[0.03] text-primary" aria-hidden="true">
+                  <svg viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M50 0 L100 50 L50 100 L0 50 Z" />
                   </svg>
-                </a>
-              </div>
+                </div>
+
+                <div class="p-6 md:p-8">
+                  <!-- Category badge -->
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4">
+                    {resource.category?.name || 'Resource'}
+                  </div>
+
+                  <!-- Resource name with distinctive typography -->
+                  <h3 class="font-display text-xl md:text-2xl font-bold mb-2 group-hover:text-primary transition-colors leading-tight">
+                    {resource.name}
+                  </h3>
+
+                  <!-- Provider -->
+                  <p class="text-sm text-muted-foreground mb-4 font-medium">
+                    by {resource.provider_name}
+                  </p>
+
+                  <!-- Description with varied length handling -->
+                  <p class={`text-foreground/80 mb-6 leading-relaxed ${
+                    index === 0 ? 'text-base md:text-lg' : 'text-sm md:text-base'
+                  }`}>
+                    {resource.description?.substring(0, index === 0 ? 180 : 120)}...
+                  </p>
+
+                  <!-- Tags / Badges -->
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span class={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold ${
+                      resource.cost_type?.slug === 'free' ? 'bg-green-100 text-green-800' :
+                      resource.cost_type?.slug === 'subsidized' ? 'bg-blue-100 text-blue-800' :
+                      'bg-amber-100 text-amber-800'
+                    }`}>
+                      {resource.cost_type?.name || 'Paid'}
+                    </span>
+                    {resource.income_groups?.slice(0, 3).map((ig: any) => (
+                      <span key={ig.income_groups?.slug} class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-100 text-slate-700">
+                        {ig.income_groups?.name}
+                      </span>
+                    ))}
+                  </div>
+
+                  <!-- CTA with arrow animation -->
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-dark transition-colors group/link"
+                  >
+                    Learn More
+                    <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+
+                <!-- Bottom accent line -->
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-light to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </article>
             ))
           ) : (
-            <div class="col-span-full text-center py-12">
-              <p class="text-muted-foreground">Featured resources loading...</p>
+            <div class="col-span-full text-center py-16 animate-fade-in">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
+                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+              <p class="text-muted-foreground text-lg">Featured resources loading...</p>
+              <p class="text-sm text-muted-foreground mt-2">Check back soon for curated opportunities</p>
             </div>
           )}
         </div>
-        
-        <div class="text-center">
-          <a 
+
+        <!-- View all CTA -->
+        <div class="text-center animate-fade-in" style="animation-delay: 400ms;">
+          <a
             href="/resources"
-            class="inline-flex items-center justify-center px-6 py-3 bg-malaysia-teal hover:bg-malaysia-teal-700 text-white font-semibold rounded-lg transition-colors"
+            class="group inline-flex items-center gap-3 px-8 py-4 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
             View All Resources
+            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
           </a>
         </div>
       </div>
