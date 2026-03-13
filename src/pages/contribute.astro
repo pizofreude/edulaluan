@@ -1,134 +1,141 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import { Button } from '../components/ui/button';
 ---
 
 <Layout title="Contribute to EduLaluan">
-  <div class="container mx-auto px-4 py-12 max-w-4xl">
-    <!-- Hero Section -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">
-        🤝 Contribute to EduLaluan
-      </h1>
-      <p class="text-xl text-gray-600 mb-6">
-        Help us grow Malaysia's education resource database!
-      </p>
-      <p class="text-gray-600">
-        Your contributions help Malaysian families discover educational opportunities.
-        No GitHub account needed - just fill out a simple form.
-      </p>
-    </div>
-
-    <!-- Contribution Options -->
-    <div class="grid gap-6 md:grid-cols-1 max-w-2xl mx-auto">
-      
-      <!-- Submit Education Resource -->
-      <div class="bg-white border-2 border-malaysia-teal-200 rounded-lg p-6 hover:border-malaysia-teal-400 transition-colors">
-        <div class="flex items-start gap-4">
-          <div class="text-4xl">📚</div>
-          <div class="flex-1">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-2">
-              Submit Education Resource
-            </h2>
-            <p class="text-gray-600 mb-4">
-              Share scholarships, free courses, training programs, schools, or any educational opportunity
-              that can help Malaysian students and families.
-            </p>
-            <a href="/contribute/resource" class="inline-block">
-              <Button className="bg-malaysia-teal-600 hover:bg-malaysia-teal-700">
-                Submit Resource →
-              </Button>
-            </a>
-          </div>
-        </div>
+  <Header />
+  
+  <main class="min-h-screen bg-[#f5f9f7]">
+    <div class="container mx-auto px-4 py-12 max-w-4xl">
+      <!-- Hero Section -->
+      <div class="text-center mb-12">
+        <h1 class="font-display text-4xl font-bold text-[#1e2926] mb-4">
+          🤝 Contribute to EduLaluan
+        </h1>
+        <p class="text-xl text-[#64746c] mb-6">
+          Help us grow Malaysia's education resource database!
+        </p>
+        <p class="text-[#64746c]">
+          Your contributions help Malaysian families discover educational opportunities.
+          No GitHub account needed - just fill out a simple form.
+        </p>
       </div>
 
-      <!-- Submit Financial Aid -->
-      <div class="bg-white border-2 border-malaysia-gold-200 rounded-lg p-6 hover:border-malaysia-gold-400 transition-colors">
-        <div class="flex items-start gap-4">
-          <div class="text-4xl">💰</div>
-          <div class="flex-1">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-2">
-              Submit Financial Aid Program
-            </h2>
-            <p class="text-gray-600 mb-4">
-              Offering scholarships, grants, bursaries, or sponsorships? Share your financial aid
-              program to help students access education. Open to organizations and individuals.
-            </p>
-            <a href="/contribute/financial-aid" class="inline-block">
-              <Button className="bg-malaysia-gold-600 hover:bg-malaysia-gold-700">
-                Submit Financial Aid →
-              </Button>
-            </a>
+      <!-- Contribution Options -->
+      <div class="grid gap-6 md:grid-cols-1 max-w-2xl mx-auto">
+
+        <!-- Submit Education Resource -->
+        <div class="bg-white border-2 border-[#0d9488]/20 rounded-lg p-6 hover:border-[#0d9488]/40 transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="text-4xl">📚</div>
+            <div class="flex-1">
+              <h2 class="font-display text-2xl font-semibold text-[#1e2926] mb-2">
+                Submit Education Resource
+              </h2>
+              <p class="text-[#64746c] mb-4">
+                Share scholarships, free courses, training programs, schools, or any educational opportunity
+                that can help Malaysian students and families.
+              </p>
+              <a href="/contribute/resource" class="inline-block">
+                <Button className="bg-[#0d9488] hover:bg-[#0f766e] text-white">
+                  Submit Resource →
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Request Feature -->
-      <div class="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-gray-400 transition-colors">
-        <div class="flex items-start gap-4">
-          <div class="text-4xl">💡</div>
-          <div class="flex-1">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-2">
-              Request a Feature
-            </h2>
-            <p class="text-gray-600 mb-4">
-              Have ideas to improve EduLaluan? Suggest new features, improvements,
-              or report issues to help us serve the community better.
-            </p>
-            <a href="/contribute/feature-request" class="inline-block">
-              <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
-                Request Feature →
-              </Button>
-            </a>
+        <!-- Submit Financial Aid -->
+        <div class="bg-white border-2 border-[#f59e0b]/20 rounded-lg p-6 hover:border-[#f59e0b]/40 transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="text-4xl">💰</div>
+            <div class="flex-1">
+              <h2 class="font-display text-2xl font-semibold text-[#1e2926] mb-2">
+                Submit Financial Aid Program
+              </h2>
+              <p class="text-[#64746c] mb-4">
+                Offering scholarships, grants, bursaries, or sponsorships? Share your financial aid
+                program to help students access education. Open to organizations and individuals.
+              </p>
+              <a href="/contribute/financial-aid" class="inline-block">
+                <Button className="bg-[#f59e0b] hover:bg-[#fbbf24] text-[#1e2926]">
+                  Submit Financial Aid →
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
+
+        <!-- Request Feature -->
+        <div class="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-gray-400 transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="text-4xl">💡</div>
+            <div class="flex-1">
+              <h2 class="font-display text-2xl font-semibold text-[#1e2926] mb-2">
+                Request a Feature
+              </h2>
+              <p class="text-[#64746c] mb-4">
+                Have ideas to improve EduLaluan? Suggest new features, improvements,
+                or report issues to help us serve the community better.
+              </p>
+              <a href="/contribute/feature-request" class="inline-block">
+                <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
+                  Request Feature →
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-    </div>
+      <!-- Already have GitHub -->
+      <div class="mt-12 text-center p-6 bg-white rounded-lg">
+        <p class="text-[#64746c] mb-3">
+          <strong>Already familiar with GitHub?</strong>
+        </p>
+        <p class="text-[#64746c]">
+          You can contribute directly via pull requests:
+          <a
+            href="https://github.com/pizofreude/edulaluan"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[#0d9488] hover:text-[#0f766e] underline ml-1"
+          >
+            GitHub Repository →
+          </a>
+        </p>
+      </div>
 
-    <!-- Already have GitHub -->
-    <div class="mt-12 text-center p-6 bg-gray-50 rounded-lg">
-      <p class="text-gray-600 mb-3">
-        <strong>Already familiar with GitHub?</strong>
-      </p>
-      <p class="text-gray-600">
-        You can contribute directly via pull requests:
-        <a 
-          href="https://github.com/pizofreude/edulaluan" 
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-malaysia-teal-600 hover:text-malaysia-teal-700 underline ml-1"
-        >
-          GitHub Repository →
-        </a>
-      </p>
+      <!-- What Happens Next -->
+      <div class="mt-12 bg-[#f0f7ff] border border-[#bfdbfe] rounded-lg p-6">
+        <h3 class="font-display text-lg font-semibold text-[#1e2926] mb-3">
+          📋 What happens after you submit?
+        </h3>
+        <ol class="space-y-2 text-[#374151]">
+          <li class="flex items-start gap-2">
+            <span class="font-semibold">1.</span>
+            <span>Your submission is received and validated</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-semibold">2.</span>
+            <span>Our team reviews it for accuracy and quality (typically 2-3 days)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-semibold">3.</span>
+            <span>Once approved, it goes live on the website</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-semibold">4.</span>
+            <span>You'll receive an email confirmation when it's published</span>
+          </li>
+        </ol>
+      </div>
     </div>
+  </main>
 
-    <!-- What Happens Next -->
-    <div class="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-gray-900 mb-3">
-        📋 What happens after you submit?
-      </h3>
-      <ol class="space-y-2 text-gray-700">
-        <li class="flex items-start gap-2">
-          <span class="font-semibold">1.</span>
-          <span>Your submission is received and validated</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="font-semibold">2.</span>
-          <span>Our team reviews it for accuracy and quality (typically 2-3 days)</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="font-semibold">3.</span>
-          <span>Once approved, it goes live on the website</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="font-semibold">4.</span>
-          <span>You'll receive an email confirmation when it's published</span>
-        </li>
-      </ol>
-    </div>
-
-  </div>
+  <Footer />
 </Layout>

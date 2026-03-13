@@ -1,23 +1,28 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 import { Button } from '../../components/ui/button';
 ---
 
 <Layout title="Submit Education Resource - EduLaluan">
-  <div class="container mx-auto px-4 py-8 max-w-3xl">
-    
-    <!-- Header -->
-    <div class="mb-8">
-      <a href="/contribute" class="text-malaysia-teal-600 hover:text-malaysia-teal-700 mb-4 inline-block">
-        ← Back to Contribute
-      </a>
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">
-        📚 Submit Education Resource
-      </h1>
-      <p class="text-gray-600">
-        Share an educational resource that can help Malaysian families. All fields marked with * are required.
-      </p>
-    </div>
+  <Header />
+  
+  <main class="min-h-screen bg-[#f5f9f7]">
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+
+      <!-- Header -->
+      <div class="mb-8">
+        <a href="/contribute" class="text-[#0d9488] hover:text-[#0f766e] mb-4 inline-block">
+          ← Back to Contribute
+        </a>
+        <h1 class="font-display text-3xl font-bold text-[#1e2926] mb-2">
+          📚 Submit Education Resource
+        </h1>
+        <p class="text-[#64746c]">
+          Share an educational resource that can help Malaysian families. All fields marked with * are required.
+        </p>
+      </div>
 
     <!-- Form -->
     <form 
@@ -315,18 +320,20 @@ import { Button } from '../../components/ui/button';
 
       <!-- Submit Button -->
       <div class="pt-4">
-        <Button 
-          type="submit" 
-          className="w-full bg-malaysia-teal-600 hover:bg-malaysia-teal-700 text-white py-3 text-lg"
+        <Button
+          type="submit"
+          className="w-full bg-[#0d9488] hover:bg-[#0f766e] text-white py-3 text-lg"
         >
           Submit Resource for Review
         </Button>
-        <p class="text-xs text-gray-500 text-center mt-3">
+        <p class="text-xs text-[#64746c] text-center mt-3">
           By submitting, you confirm that this information is accurate and you have the right to share it.
         </p>
       </div>
 
     </form>
 
-  </div>
+    </div>
+  </main>
+  <Footer />
 </Layout>
