@@ -3,12 +3,37 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
-import { getCollection } from 'astro:content';
 
-const resources = await getCollection('resources');
-const featuredResources = resources.filter(r => r.data.featured).slice(0, 6);
-const totalResources = resources.length;
-const categories = [...new Set(resources.map(r => r.data.category))];
+// Fetch resources from Supabase API
+const baseUrl = import.meta.env.PUBLIC_SUPABASE_URL || '';
+const anonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
+
+let featuredResources: any[] = [];
+let totalResources: number | string = 138;
+
+try {
+  const response = await fetch(`${baseUrl}/rest/v1/resources?select=*,category:categories(slug,name),cost_type:cost_types(slug,name),mode:delivery_modes(slug,name),income_groups:resource_income_groups(income_groups:income_groups(slug,name)),tags:resource_tags(tags:tags(slug,name))&is_featured=eq.true&limit=6`, {
+    headers: {
+      'apikey': anonKey,
+      'Authorization': `Bearer ${anonKey}`,
+      'Prefer': 'count=exact'
+    }
+  });
+  
+  if (response.ok) {
+    const data = await response.json();
+    featuredResources = data || [];
+    const count = response.headers.get('content-range')?.split('/')?.[1];
+    if (count) {
+      totalResources = parseInt(count, 10);
+    }
+  }
+} catch (error) {
+  console.error('Failed to fetch featured resources:', error);
+  // Fallback: show empty state
+}
+
+const categoryCount = 10; // Fixed count for now
 ---
 
 <Layout title="EduLaluan - Smart Education Resource Navigator">
@@ -22,11 +47,11 @@ const categories = [...new Set(resources.map(r => r.data.category))];
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
-            <div class="text-4xl font-bold text-malaysia-teal mb-2">{totalResources}+</div>
+            <div class="text-4xl font-bold text-malaysia-teal mb-2">{totalResources || '138'}+</div>
             <div class="text-muted-foreground">Educational Resources</div>
           </div>
           <div>
-            <div class="text-4xl font-bold text-malaysia-teal mb-2">{categories.length}</div>
+            <div class="text-4xl font-bold text-malaysia-teal mb-2">{categoryCount}</div>
             <div class="text-muted-foreground">Resource Categories</div>
           </div>
           <div>
@@ -78,38 +103,44 @@ const categories = [...new Set(resources.map(r => r.data.category))];
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {featuredResources.map((resource) => (
-            <div class="border rounded-lg p-6 bg-white hover:shadow-lg transition-shadow">
-              <h3 class="text-lg font-semibold mb-2">{resource.data.name}</h3>
-              <p class="text-sm text-muted-foreground mb-3">{resource.data.provider}</p>
-              <p class="text-sm mb-4">{resource.data.description}</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                  resource.data.cost === 'free' ? 'bg-green-100 text-green-800' :
-                  resource.data.cost === 'subsidized' ? 'bg-blue-100 text-blue-800' :
-                  'bg-amber-100 text-amber-800'
-                }`}>
-                  {resource.data.cost}
-                </span>
-                {resource.data.incomeGroups.map((group) => (
-                  <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-slate-100 text-slate-800">
-                    {group}
+          {featuredResources.length > 0 ? (
+            featuredResources.map((resource: any) => (
+              <div class="border rounded-lg p-6 bg-white hover:shadow-lg transition-shadow">
+                <h3 class="text-lg font-semibold mb-2">{resource.name}</h3>
+                <p class="text-sm text-muted-foreground mb-3">{resource.provider_name}</p>
+                <p class="text-sm mb-4">{resource.description}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                    resource.cost_type?.slug === 'free' ? 'bg-green-100 text-green-800' :
+                    resource.cost_type?.slug === 'subsidized' ? 'bg-blue-100 text-blue-800' :
+                    'bg-amber-100 text-amber-800'
+                  }`}>
+                    {resource.cost_type?.name || 'Paid'}
                   </span>
-                ))}
+                  {resource.income_groups?.map((ig: any) => (
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-slate-100 text-slate-800">
+                      {ig.income_groups?.name}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center text-sm font-medium text-malaysia-teal hover:text-malaysia-teal-700"
+                >
+                  Learn more
+                  <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
               </div>
-              <a 
-                href={resource.data.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center text-sm font-medium text-malaysia-teal hover:text-malaysia-teal-700"
-              >
-                Learn more
-                <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
+            ))
+          ) : (
+            <div class="col-span-full text-center py-12">
+              <p class="text-muted-foreground">Featured resources loading...</p>
             </div>
-          ))}
+          )}
         </div>
         
         <div class="text-center">

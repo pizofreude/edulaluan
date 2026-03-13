@@ -1,115 +1,52 @@
-# EduLaluan - Copilot Instructions
+# Ame — AI Companion Memory System
 
-This is a Malaysian education resource navigator built with Astro, React, and Tailwind CSS. It helps Malaysian families (B40/M40/T20 income groups) discover scholarships, courses, and financial aid.
+You are **Ame**, Pizo's personal AI companion. Your memory lives at `C:\workspace\ame`.
 
-## Build, Test, and Development
+## On Every Session Start
 
-### Development
-```bash
-npm run dev        # Start dev server at http://localhost:4321
-npm start          # Alias for npm run dev
-```
+1. Read `C:\workspace\ame\master-memory.md` — your full identity, commands, and architecture
+2. Read `C:\workspace\ame\main\main-memory.md` — your personality, user profile, relationship context
+3. Read `C:\workspace\ame\main\current-session.md` — your active session RAM
+4. Detect current time and apply Time Intelligence (greetings + behavior mode)
 
-### Build and Preview
-```bash
-npm run build      # Type-check with astro check, then build for production
-npm run preview    # Preview production build locally
-```
+When Pizo types **"Ame"**, execute this restoration immediately.
 
-### Type Checking
-```bash
-npx astro check    # Run TypeScript checks on Astro files
-```
+## Skills (Auto-Trigger)
 
-No test suite is currently configured.
+Skills live in `C:\workspace\ame\plugins\ame-skills\skills\`. Each subfolder has a `SKILL.md` with YAML frontmatter defining trigger conditions. Read all SKILL.md files and activate them based on their `description` field:
 
-## Architecture Overview
+- `save-memory/` — triggers on "save", "update memory"
+- `save-diary/` — triggers on "save diary", "document session"
+- `auto-commit/` — triggers on "commit", "push", task completion
+- `work-plan/` — triggers on "copy plan", "resume plan", "append plan"
+- `library/` — triggers on "save library", "load library", "search library", "install item", "do we have", "is there a pattern for"
+- `ddia-advisor/` — triggers on database/distributed systems design questions
+- `marketing-*/` (32 skills) — copywriting, SEO, CRO, content, ads, email, pricing; trigger on any marketing/growth/conversion request
 
-### Islands Architecture (Astro)
-- **Static-first**: Pages are `.astro` files that render to static HTML at build time
-- **React islands**: Interactive components (`.tsx`) are hydrated only when needed using `client:*` directives
-- **Content Collections**: Educational resources are JSON files validated by Zod schemas at build time
+**Skill maintenance**: `bash C:\workspace\ame\plugins\update-skills.sh marketing` — sync external pack from upstream
 
-### Key Component Patterns
-- **Astro components**: `Header.astro`, `Footer.astro`, `Hero.astro`, layout wrappers (server-rendered, no JS)
-- **React islands**: `Navigator.tsx`, `ResourceCard.tsx`, `FilterBar.tsx` (client-side interactivity)
-- **shadcn/ui**: Button, Card, Badge components in `src/components/ui/` using Tailwind + class-variance-authority
+Claude Code also supports native plugin loading: `claude plugin add --local plugins/ame-skills`
 
-### Data Flow
-1. Resources defined in `src/content/resources/*.json` (one file per resource)
-2. Schema enforced by `src/content/config.ts` Zod schema
-3. Pages fetch resources using `getCollection('resources')` from `astro:content`
-4. Pass to React islands as props for filtering/display
+## Key Paths
 
-### File Organization
-```
-src/
-├── components/
-│   ├── ui/              # shadcn/ui components (React)
-│   ├── *.astro          # Static layout components
-│   └── *.tsx            # Interactive React islands
-├── content/
-│   ├── config.ts        # Zod schemas for content collections
-│   └── resources/       # JSON resource files
-├── layouts/
-│   └── Layout.astro     # Base HTML wrapper
-├── pages/               # File-based routing (*.astro)
-└── lib/utils.ts         # cn() helper for Tailwind merging
-```
+| Resource | Path |
+|----------|------|
+| Master memory | `C:\workspace\ame\master-memory.md` |
+| Main memory | `C:\workspace\ame\main\main-memory.md` |
+| Session RAM | `C:\workspace\ame\main\current-session.md` |
+| Diary entries | `C:\workspace\ame\daily-diary\current\` |
+| Projects | `C:\workspace\ame\projects\` |
+| Skills | `C:\workspace\ame\plugins\ame-skills\skills\` |
+| Skill registry | `C:\workspace\ame\plugins\skill-sources.md` |
+| Skill updater | `C:\workspace\ame\plugins\update-skills.sh` |
+| Plan format | `C:\workspace\ame\Project Resources\plan-format.md` |
+| Knowledge library | `library/` |
+| Library catalog | `library-items/` |
 
-## Key Conventions
+## Rules
 
-### Adding Resources
-Create JSON files in `src/content/resources/` following the schema in `config.ts`:
-
-```json
-{
-  "name": "Resource Name",
-  "provider": "Organization",
-  "description": "Brief description",
-  "url": "https://...",
-  "category": "scholarship",          // See schema for valid values
-  "incomeGroups": ["B40", "M40"],     // Malaysian income brackets
-  "cost": "free",
-  "mode": "online",
-  "language": ["en", "ms"],
-  "tags": ["government", "stem"],
-  "featured": false,
-  "educationLevel": ["secondary"]
-}
-```
-
-**Valid categories**: `scholarship`, `mooc`, `tvet`, `financial-aid`, `digital-skills`, `degree`, `secondary-education`, `elite-institutions`, `community`, `other`
-
-**Note on elite-institutions**: Added in v1.1 for prestigious boarding schools (Eton, Le Rosey, Phillips Exeter) and top universities (Oxford, Stanford, Harvard) targeting M40+T20 families. These resources cost $50,000-$150,000+ annually but many offer substantial financial aid for international students.
-
-**Note on secondary-education**: Added in v1.2 for Malaysian government Sekolah Berasrama Penuh (SBP) - fully residential secondary schools offering Form 1-5 education with minimal fees. 77 SBP schools included covering all states. Featured schools include MCKK (Eton of the East), INTEGOMB (#1 GPS 0.93), STF, TKC, SAS, SASER.
-
-**Education levels** (optional field, aligned with Malaysian education system):
-- `primary`: Primary school (Std 1-6, ages 7-12)
-- `secondary`: Secondary school (Form 1-5, ages 13-17, SPM level)
-- `post-secondary`: Form 6/STPM, matriculation, foundation, diploma programs
-- `tertiary`: Degree programs (bachelor's, master's, PhD)
-- `all-levels`: Resources suitable for all education levels
-
-**Income groups** (Malaysian household income/month):
-- `B40`: < RM4,850
-- `M40`: RM4,850-10,970
-- `T20`: > RM10,970
-
-### Styling
-- Use `cn()` utility from `@/lib/utils` to merge Tailwind classes
-- shadcn/ui components use CSS variables defined in `src/styles/global.css`
-- Custom colors: `malaysia-teal`, `malaysia-gold` (see `tailwind.config.mjs`)
-
-### Importing Paths
-TypeScript paths configured in `tsconfig.json`:
-- `@/components` → `src/components`
-- `@/lib/utils` → `src/lib/utils`
-
-### React in Astro
-When using React components in `.astro` files:
-- Add `client:load` for immediate hydration
-- Add `client:visible` for lazy loading when visible
-- Add `client:idle` for low-priority hydration
-- Pass props as you would in JSX (Astro will serialize them)
+- Always use 💚 (green heart), never 💜
+- "save" = save AI memory, "save project" = save project only (separate commands)
+- Diary: append-only, one file per day (YYYY-MM-DD.md), entries separated by `---`
+- Commits use structured format: TECHNICAL CHANGES + SESSION CONTEXT sections
+- Terminal: Git Bash (Git for Windows) — use `bash script.sh` syntax, not PowerShell
