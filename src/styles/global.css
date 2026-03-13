@@ -1,59 +1,155 @@
+/* ============================================
+   EDULALUAN DESIGN SYSTEM
+   Modern Malaysian Education Aesthetics
+   ============================================ */
+
+/* Import distinctive fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Sora:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 173 65% 30%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 33 100% 43.7%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 173 65% 30%;
-    --radius: 0.5rem;
+    /* ============================================
+       OKLCH COLOR PALETTE
+       Malaysian Teal + Gold with modern color science
+       ============================================ */
+    
+    /* Primary - Malaysian Teal (elevated from #0d9488) */
+    --primary: oklch(0.65 0.15 180);
+    --primary-light: oklch(0.75 0.12 180);
+    --primary-dark: oklch(0.45 0.12 180);
+    
+    /* Accent - Malaysian Gold (elevated from traditional gold) */
+    --accent: oklch(0.75 0.12 85);
+    --accent-light: oklch(0.85 0.10 85);
+    --accent-dark: oklch(0.55 0.10 85);
+    
+    /* Neutrals - Tinted toward teal (not pure gray) */
+    --background: oklch(0.99 0.01 180);
+    --foreground: oklch(0.20 0.02 180);
+    --surface: oklch(0.97 0.01 180);
+    --surface-elevated: oklch(1.0 0 0);
+    
+    /* Muted - Teal-tinted grays */
+    --muted: oklch(0.92 0.015 180);
+    --muted-foreground: oklch(0.45 0.03 180);
+    
+    /* Semantic colors */
+    --card: var(--surface);
+    --card-foreground: var(--foreground);
+    --popover: var(--surface-elevated);
+    --popover-foreground: var(--foreground);
+    --primary-foreground: oklch(0.20 0.02 180);
+    --secondary: var(--muted);
+    --secondary-foreground: var(--foreground);
+    --accent-foreground: oklch(0.25 0.03 85);
+    --destructive: oklch(0.55 0.20 25);
+    --destructive-foreground: oklch(0.98 0 0);
+    --border: oklch(0.88 0.015 180);
+    --input: oklch(0.88 0.015 180);
+    --ring: var(--primary);
+    --radius: 0.75rem;
+    
+    /* ============================================
+       TYPOGRAPHY SCALE
+       Fluid, modular scale with 1.333 ratio
+       Display: Playfair Display | Body: Sora
+       ============================================ */
+    
+    /* Font families */
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* Fluid font sizes with clamp() */
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.65vw, 1.333rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+    --text-3xl: clamp(1.875rem, 1.6rem + 1.4vw, 2.667rem);
+    --text-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3.556rem);
+    --text-5xl: clamp(2.813rem, 2.3rem + 2.5vw, 4.741rem);
+    
+    /* Line heights */
+    --leading-tight: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    
+    /* Letter spacing */
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.025em;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 173 65% 45%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 33 100% 50%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 173 65% 45%;
+    /* Dark mode palette */
+    --background: oklch(0.15 0.02 180);
+    --foreground: oklch(0.95 0.01 180);
+    --surface: oklch(0.18 0.02 180);
+    --surface-elevated: oklch(0.22 0.02 180);
+    --muted: oklch(0.25 0.025 180);
+    --muted-foreground: oklch(0.65 0.03 180);
+    --primary: oklch(0.70 0.13 180);
+    --primary-light: oklch(0.80 0.10 180);
+    --primary-dark: oklch(0.50 0.10 180);
+    --accent: oklch(0.80 0.11 85);
+    --border: oklch(0.30 0.025 180);
+    --input: oklch(0.30 0.025 180);
   }
 }
 
 @layer base {
+  /* Typography defaults */
   * {
     @apply border-border;
   }
+  
   body {
-    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Display typography for headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--foreground);
+  }
+  
+  h1 { font-size: var(--text-5xl); }
+  h2 { font-size: var(--text-4xl); }
+  h3 { font-size: var(--text-3xl); }
+  h4 { font-size: var(--text-2xl); }
+  h5 { font-size: var(--text-xl); }
+  h6 { font-size: var(--text-lg); }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
