@@ -108,88 +108,166 @@ const Navigator: React.FC<NavigatorProps> = ({ initialResources = [] }) => {
   if (isLoading) {
     return (
       <div className="max-w-4xl mx-auto text-center py-12">
-        <p className="text-muted-foreground">Loading resources...</p>
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4 animate-pulse">
+          <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+        </div>
+        <p className="text-foreground font-medium">Loading resources...</p>
+        <p className="text-sm text-muted-foreground mt-2">Finding the best opportunities for you</p>
       </div>
     );
   }
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Progress Indicator */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-2">
-          {[1, 2, 3].map((s) => (
-            <div
-              key={s}
-              className={`flex items-center ${s < 3 ? 'flex-1' : ''}`}
-            >
-              <div
-                className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
-                  s <= step
-                    ? 'bg-malaysia-teal text-white border-malaysia-teal'
-                    : 'bg-white text-gray-400 border-gray-300'
-                }`}
-              >
-                {s}
-              </div>
-              {s < 3 && (
-                <div
-                  className={`flex-1 h-1 mx-2 ${
-                    s < step ? 'bg-malaysia-teal' : 'bg-gray-300'
-                  }`}
-                />
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-between text-sm text-muted-foreground">
-          <span>Income Group</span>
-          <span>Your Goal</span>
-          <span>Results</span>
+      {/* Progress Indicator - Journey Path Design */}
+      <div className="mb-12 animate-fade-in">
+        <div className="relative">
+          {/* Connection line (background) */}
+          <div className="absolute top-5 left-0 right-0 h-0.5 bg-border" aria-hidden="true"></div>
+          
+          {/* Progress line (active) */}
+          <div 
+            className="absolute top-5 left-0 h-0.5 bg-primary transition-all duration-500 ease-out"
+            style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%' }}
+            aria-hidden="true"
+          ></div>
+
+          {/* Step nodes */}
+          <div className="relative flex items-center justify-between">
+            {[
+              { num: 1, label: 'Income Group', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+              { num: 2, label: 'Your Goal', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4' },
+              { num: 3, label: 'Results', icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z' }
+            ].map((s, index) => {
+              const isActive = s.num <= step;
+              const isCurrent = s.num === step;
+              return (
+                <div key={s.num} className="flex flex-col items-center flex-1">
+                  <div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
+                      isActive
+                        ? 'bg-primary border-primary text-white shadow-lg shadow-primary/30'
+                        : 'bg-surface-elevated border-border text-muted-foreground'
+                  } ${isCurrent ? 'scale-110' : ''}`}
+                  >
+                    {isActive ? (
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={s.icon} />
+                      </svg>
+                    ) : (
+                      <span className="text-sm font-medium">{s.num}</span>
+                    )}
+                  </div>
+                  <span className={`text-xs mt-3 font-medium transition-colors duration-300 ${
+                    isActive ? 'text-primary' : 'text-muted-foreground'
+                  }`}>
+                    {s.label}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* Step 1: Income Group */}
       {step === 1 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>What's your household income bracket?</CardTitle>
-            <CardDescription>
-              This helps us recommend the most relevant resources for you.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {incomeGroups.map((group) => (
-                <button
-                  key={group}
-                  onClick={() => {
-                    setIncomeGroup(group);
-                    handleNext();
-                  }}
-                  className={`p-6 border-2 rounded-lg text-left transition-all ${
-                    incomeGroup === group
-                      ? 'border-malaysia-teal bg-teal-50'
-                      : 'border-gray-200 hover:border-malaysia-teal hover:bg-slate-50'
-                  }`}
-                >
-                  <div className="font-semibold text-lg mb-2">
-                    {group === 'b40' && 'B40'}
-                    {group === 'm40' && 'M40'}
-                    {group === 't20' && 'T20'}
-                    {group === 'all' && 'Not sure'}
+        <div className="animate-fade-in-up">
+          <div className="text-center mb-8">
+            <h3 className="font-display text-2xl md:text-3xl font-bold mb-3">
+              What's your <span className="text-primary">household income</span> bracket?
+            </h3>
+            <p className="text-muted-foreground text-base md:text-lg">
+              This helps us recommend the most relevant resources for your situation.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            {incomeGroups.map((group, index) => (
+              <button
+                key={group}
+                onClick={() => {
+                  setIncomeGroup(group);
+                  handleNext();
+                }}
+                className={`group relative p-6 md:p-8 rounded-2xl border-2 text-left transition-all duration-300 hover:shadow-xl animate-fade-in-up ${
+                  incomeGroup === group
+                    ? 'border-primary bg-primary/5 shadow-lg'
+                    : 'border-border bg-surface-elevated hover:border-primary/50'
+                }`}
+                style={{ animationDelay: `${index * 75}ms` }}
+              >
+                {/* Batik accent corner */}
+                <div className="absolute top-0 right-0 w-12 h-12 opacity-[0.03] text-primary" aria-hidden="true">
+                  <svg viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M50 0 L100 50 L50 100 L0 50 Z" />
+                  </svg>
+                </div>
+                
+                <div className="relative">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                      incomeGroup === group ? 'bg-primary text-white' : 'bg-primary/10 text-primary'
+                    }`}>
+                      {group === 'b40' && (
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                      )}
+                      {group === 'm40' && (
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      )}
+                      {group === 't20' && (
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                      )}
+                      {group === 'all' && (
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                      )}
+                    </div>
+                    <div className={`text-xl md:text-2xl font-display font-bold ${
+                      incomeGroup === group ? 'text-primary' : 'text-foreground'
+                    }`}>
+                      {group === 'b40' && 'B40'}
+                      {group === 'm40' && 'M40'}
+                      {group === 't20' && 'T20'}
+                      {group === 'all' && 'Not sure'}
+                    </div>
                   </div>
-                  <div className="text-sm text-muted-foreground">
-                    {group === 'b40' && 'Household income below RM4,850'}
-                    {group === 'm40' && 'Household income RM4,850 - RM10,970'}
-                    {group === 't20' && 'Household income above RM10,970'}
-                    {group === 'all' && "We'll show resources for everyone"}
+                  
+                  <p className={`text-sm md:text-base leading-relaxed ${
+                    incomeGroup === group ? 'text-foreground' : 'text-muted-foreground'
+                  }`}>
+                    {group === 'b40' && 'Household income below RM4,850 per month'}
+                    {group === 'm40' && 'Household income RM4,850 - RM10,970 per month'}
+                    {group === 't20' && 'Household income above RM10,970 per month'}
+                    {group === 'all' && "We'll show resources for all income groups"}
+                  </p>
+                  
+                  {/* Arrow indicator */}
+                  <div className={`absolute bottom-6 right-6 transition-all duration-300 ${
+                    incomeGroup === group ? 'text-primary opacity-100' : 'text-muted-foreground opacity-0 group-hover:opacity-50'
+                  }`}>
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
-                </button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                </div>
+              </button>
+            ))}
+          </div>
+          
+          <p className="text-center text-xs text-muted-foreground">
+            Click to select your income group and continue
+          </p>
+        </div>
       )}
 
       {/* Step 2: Goal */}
