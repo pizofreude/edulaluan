@@ -21,6 +21,7 @@
     --primary: oklch(0.65 0.15 180);
     --primary-light: oklch(0.75 0.12 180);
     --primary-dark: oklch(0.45 0.12 180);
+    --primary-darker: oklch(0.30 0.10 180);
     
     /* Accent - Malaysian Gold (elevated from traditional gold) */
     --accent: oklch(0.75 0.12 85);
