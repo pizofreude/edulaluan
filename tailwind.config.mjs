@@ -4,16 +4,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        // OKLCH-based design system colors
+        // OKLCH with RGB fallback for browser compatibility
         border: 'oklch(var(--border) / <alpha-value>)',
+        borderRgb: 'rgb(var(--border-rgb) / <alpha-value>)',
         input: 'oklch(var(--input) / <alpha-value>)',
+        inputRgb: 'rgb(var(--input-rgb) / <alpha-value>)',
         ring: 'oklch(var(--ring) / <alpha-value>)',
+        ringRgb: 'rgb(var(--ring-rgb) / <alpha-value>)',
         background: 'oklch(var(--background) / <alpha-value>)',
+        backgroundRgb: 'rgb(var(--background-rgb) / <alpha-value>)',
         foreground: 'oklch(var(--foreground) / <alpha-value>)',
+        foregroundRgb: 'rgb(var(--foreground-rgb) / <alpha-value>)',
         primary: {
           DEFAULT: 'oklch(var(--primary) / <alpha-value>)',
+          rgb: 'rgb(var(--primary-rgb) / <alpha-value>)',
           light: 'oklch(var(--primary-light) / <alpha-value>)',
+          lightRgb: 'rgb(var(--primary-light-rgb) / <alpha-value>)',
           dark: 'oklch(var(--primary-dark) / <alpha-value>)',
+          darkRgb: 'rgb(var(--primary-dark-rgb) / <alpha-value>)',
+          darker: 'oklch(var(--primary-darker) / <alpha-value>)',
+          darkerRgb: 'rgb(var(--primary-darker-rgb) / <alpha-value>)',
           foreground: 'oklch(var(--primary-foreground) / <alpha-value>)',
         },
         secondary: {
