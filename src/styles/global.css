@@ -339,3 +339,114 @@
   background-size: 1000px 100%;
   animation: shimmer 2s linear infinite;
 }
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   Container queries, fluid typography
+   ============================================ */
+
+@layer utilities {
+  /* Container widths */
+  .container-sm { max-width: var(--container-sm); }
+  .container-md { max-width: var(--container-md); }
+  .container-lg { max-width: var(--container-lg); }
+  .container-xl { max-width: var(--container-xl); }
+  .container-max { max-width: var(--container-max); }
+  
+  /* Fluid spacing */
+  .section-padding-sm { padding-block: var(--space-section-sm); }
+  .section-padding-md { padding-block: var(--space-section-md); }
+  .section-padding-lg { padding-block: var(--space-section-lg); }
+}
+
+/* ============================================
+   ACCESSIBILITY UTILITIES
+   Focus states, screen reader only, etc.
+   ============================================ */
+
+@layer utilities {
+  /* Focus visible */
+  .focus-visible-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+  
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Not sr only */
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  
+  /* Skip link */
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed top-4 left-4 z-50 px-4 py-2 bg-primary text-white font-semibold rounded-lg shadow-lg;
+  }
+  
+  /* High contrast focus */
+  .focus-high-contrast {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    --tw-ring-color: oklch(0.20 0.02 180);
+  }
+  
+  /* Reduced motion */
+  .motion-safe\\:transition {
+    @media (prefers-reduced-motion: no-preference) {
+      transition-property: all;
+    }
+  }
+}
+
+/* Focus states for interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid oklch(0.65 0.15 180);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .border {
+    border-color: oklch(0.20 0.02 180);
+  }
+  .text-muted-foreground {
+    color: oklch(0.20 0.02 180);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.15 0.02 180);
+    --foreground: oklch(0.95 0.01 180);
+    --surface: oklch(0.18 0.02 180);
+    --surface-elevated: oklch(0.22 0.02 180);
+    --muted: oklch(0.25 0.025 180);
+    --muted-foreground: oklch(0.65 0.03 180);
+    --border: oklch(0.30 0.025 180);
+    --input: oklch(0.30 0.025 180);
+  }
+}
