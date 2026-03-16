@@ -7,7 +7,25 @@
 
 **EduLaluan** (Education Path) helps Malaysian families discover scholarships, free courses, vocational training, and financial aid programs tailored to their income bracket and educational goals.
 
-🏆 **Built for Krackathon** - Category: Best Practical Use
+🏆 **Built for Krackathon & GodamSahur** - Category: Best Practical Use
+
+## 🌙 About GodamSahur
+
+EduLaluan was built for [**GodamSahur**](https://sahur.dev/) - a virtual hackathon running throughout Ramadan 1447H organized by [Amanz Media](https://amanz.my).
+
+**GodamSahur** combines "Godam" (forge/hammer) + "Sahur" (pre-dawn meal), encouraging participants to spend **one hour daily after sahur** building ideas or projects they've wanted to create. The mission is to:
+
+- Encourage developers to build projects during Ramadan with manageable daily commitment (1 hour/day)
+- Foster creation of projects that **help the community**
+- Promote building in public and sharing progress with others
+
+Projects span categories like:
+- **Kewangan** - Muslim-friendly personal finance tools
+- **Mini SaaS** - Simple platforms solving community problems
+- **Sosial** - Social impact projects
+- **API Integration** - Building on existing platforms
+
+💰 **RM10,000 in prizes** sponsored by Amanz, split among all MVP completers.
 
 ## ✨ Features
 
@@ -190,7 +208,8 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 🙏 Acknowledgments
 
-- Built for **Krackathon** hackathon
+- Built for **Krackathon** & **GodamSahur** hackathons
+- Organized by [**Amanz Media**](https://amanz.my) - Malaysian tech media company
 - Developed with assistance from **GitHub Copilot**
 - Inspired by the need to democratize access to education in Malaysia
 - Community resources curated from government agencies, NGOs, and educational platforms
@@ -206,4 +225,4 @@ EduLaluan is an independent community project not officially affiliated with any
 
 ---
 
-**Built with ❤️ for Malaysian communities** 🇲🇾
+**Built with 💚 for Malaysian communities** 🇲🇾

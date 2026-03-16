@@ -15,33 +15,49 @@ const { title, description = "A smart education resource navigator for Malaysian
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		
+
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		
+
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-		
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+		<!-- Theme Initialization - Run before page load to prevent flash -->
+		<script is:inline>
+			// Theme management - inline to prevent flash of unstyled content
+			(function() {
+				const THEME_KEY = 'edulaluan-theme';
+				
+				function getTheme() {
+					const stored = localStorage.getItem(THEME_KEY);
+					if (stored) return stored;
+					if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+					return 'light';
+				}
+				
+				const theme = getTheme();
+				if (theme === 'dark') {
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
+
 		<title>{title}</title>
-	</head>
-	<body class="font-sans antialiased">
-		<slot />
-	</body>
+</head>
+<body class="font-sans antialiased">
+	<slot />
+</body>
 </html>
 
 <style is:global>
 	@import "../styles/global.css";
-	
-	body {
-		font-family: 'Inter', system-ui, -apple-system, sans-serif;
-	}
 </style>

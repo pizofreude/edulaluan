@@ -49,3 +49,13 @@ GEMINI.md
 .github/copilot-instructions.md
 .kiro/
 .qwen/
+
+# Playwright test artifacts (Visual & Motion Design Tests)
+tests/
+playwright-report/
+test-results/
+screenshots/design-tests/
+screenshots/motion-tests/
+*.webm
+*.mp4
+SKILL-*.md

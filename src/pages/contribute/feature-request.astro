@@ -1,9 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 import { Button } from '../../components/ui/button';
 ---
 
 <Layout title="Request a Feature - EduLaluan">
+  <Header />
+  
+  <main class="min-h-screen bg-[#f5f9f7]">
   <div class="container mx-auto px-4 py-8 max-w-2xl">
     
     <!-- Header -->
@@ -96,14 +101,16 @@ import { Button } from '../../components/ui/button';
     </form>
 
     <!-- What happens next -->
-    <div class="mt-8 p-4 bg-gray-50 rounded-lg">
-      <h3 class="font-semibold text-gray-900 mb-2">What happens next?</h3>
-      <p class="text-sm text-gray-600">
+    <div class="mt-8 p-4 bg-white rounded-lg">
+      <h3 class="font-display font-semibold text-[#1e2926] mb-2">What happens next?</h3>
+      <p class="text-sm text-[#64746c]">
         Your feature request will be reviewed by our team. We'll consider factors like:
         feasibility, impact on users, alignment with our mission, and development resources.
         If we need more information, we'll reach out via email.
       </p>
     </div>
 
-  </div>
+    </div>
+  </main>
+  <Footer />
 </Layout>

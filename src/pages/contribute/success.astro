@@ -1,8 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 ---
 
 <Layout title="Submission Successful - EduLaluan">
+  <Header />
+  
+  <main class="min-h-screen bg-[#f5f9f7]">
   <div class="container mx-auto px-4 py-16 max-w-2xl">
     <div class="text-center">
       <!-- Success Icon -->
@@ -59,11 +64,14 @@ import Layout from '../../layouts/Layout.astro';
       </div>
 
       <!-- Community Appreciation -->
-      <div class="mt-12 pt-8 border-t border-border">
-        <p class="text-sm text-muted-foreground italic">
+      <div class="mt-12 pt-8 border-t border-[#e2e8f0]">
+        <p class="text-sm text-[#64746c] italic">
           "Your contribution helps make quality education accessible to all Malaysians. Thank you for being part of our community!"
         </p>
       </div>
     </div>
-  </div>
+
+    </div>
+  </main>
+  <Footer />
 </Layout>
