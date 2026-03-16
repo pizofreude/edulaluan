@@ -149,12 +149,12 @@ const Navigator: React.FC<NavigatorProps> = ({ initialResources = [] }) => {
                     className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
                       isActive
                         ? 'bg-primary border-primary text-white shadow-lg shadow-primary/30'
-                        : 'bg-surface-elevated border-border text-muted-foreground'
+                        : 'bg-background border-primary text-primary'
                   } ${isCurrent ? 'scale-110' : ''}`}
                   >
                     {isActive ? (
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={s.icon} />
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d={s.icon} />
                       </svg>
                     ) : (
                       <span className="text-sm font-medium">{s.num}</span>
@@ -250,12 +250,12 @@ const Navigator: React.FC<NavigatorProps> = ({ initialResources = [] }) => {
                     {group === 't20' && 'Household income above RM10,970 per month'}
                     {group === 'all' && "We'll show resources for all income groups"}
                   </p>
-                  
-                  {/* Arrow indicator */}
-                  <div className={`absolute bottom-6 right-6 transition-all duration-300 ${
-                    incomeGroup === group ? 'text-primary opacity-100' : 'text-muted-foreground opacity-0 group-hover:opacity-50'
+
+                  {/* Arrow indicator - centered vertically on right side */}
+                  <div className={`absolute right-6 top-1/2 -translate-y-1/2 transition-all duration-300 ${
+                    incomeGroup === group ? 'text-primary opacity-100 scale-110' : 'text-muted-foreground opacity-0 group-hover:opacity-50'
                   }`}>
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>

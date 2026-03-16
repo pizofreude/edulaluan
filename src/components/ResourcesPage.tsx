@@ -102,6 +102,22 @@ const ResourcesPage: React.FC<ResourcesPageProps> = () => {
         </div>
         <p className="text-foreground font-medium text-lg">Loading resources...</p>
         <p className="text-sm text-muted-foreground mt-2">Finding the best educational opportunities for you</p>
+        {/* Loading skeleton cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 max-w-6xl mx-auto">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="bg-surface-elevated rounded-2xl p-6 border border-border animate-pulse">
+              <div className="h-6 bg-muted rounded w-3/4 mb-4"></div>
+              <div className="h-4 bg-muted rounded w-1/2 mb-4"></div>
+              <div className="h-4 bg-muted rounded w-full mb-2"></div>
+              <div className="h-4 bg-muted rounded w-2/3 mb-4"></div>
+              <div className="flex gap-2 mb-4">
+                <div className="h-6 bg-muted rounded w-16"></div>
+                <div className="h-6 bg-muted rounded w-20"></div>
+              </div>
+              <div className="h-10 bg-muted rounded w-full"></div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -113,34 +129,47 @@ const ResourcesPage: React.FC<ResourcesPageProps> = () => {
       {filteredResources.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredResources.map((resource, index) => (
-            <div key={resource.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 50}ms` }}>
+            <div key={resource.id} className="animate-fade-in-up" style={{ animationDelay: `${Math.min(index * 50, 500)}ms` }}>
               <ResourceCard resource={resource} />
             </div>
           ))}
         </div>
       ) : (
         <div className="text-center py-16 bg-surface-elevated rounded-2xl border border-border animate-fade-in">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 text-amber-600 mb-4">
-            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+          {/* Decorative batik pattern */}
+          <div className="relative inline-block mb-6">
+            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
+              <svg className="w-10 h-10 text-primary opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <div className="absolute -top-1 -right-1 w-6 h-6 bg-accent/20 rounded-full" aria-hidden="true"></div>
           </div>
-          <h3 className="font-display text-xl font-bold mb-2">No resources found</h3>
-          <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+          
+          <h3 className="font-display text-2xl font-bold mb-3">No resources found</h3>
+          <p className="text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
             We couldn't find resources matching your current filters. Try adjusting your search criteria or clearing all filters to see more results.
           </p>
-          <div className="flex items-center justify-center gap-3">
-            <Button onClick={() => handleFilterChange({ search: '', category: 'all', incomeGroup: 'all', cost: 'all', educationLevel: 'all' })} variant="outline" className="gap-2">
+          
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button 
+              onClick={() => handleFilterChange({ search: '', category: 'all', incomeGroup: 'all', cost: 'all', educationLevel: 'all' })} 
+              variant="outline" 
+              className="gap-2 hover:border-primary/50 hover:text-primary transition-colors"
+            >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
               Clear All Filters
             </Button>
-            <a href="/navigate" className="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold rounded-lg transition-colors">
-              Try Navigator
+            <a 
+              href="/navigate" 
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+            >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
+              Try Navigator
             </a>
           </div>
         </div>

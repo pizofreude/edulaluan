@@ -135,18 +135,245 @@
   .dark {
     /* Dark mode palette */
     --background: oklch(0.15 0.02 180);
+    --background-rgb: 38, 43, 40;
     --foreground: oklch(0.95 0.01 180);
+    --foreground-rgb: 245, 247, 246;
     --surface: oklch(0.18 0.02 180);
+    --surface-rgb: 46, 48, 47;
     --surface-elevated: oklch(0.22 0.02 180);
+    --surface-elevated-rgb: 56, 58, 57;
     --muted: oklch(0.25 0.025 180);
+    --muted-rgb: 64, 69, 67;
     --muted-foreground: oklch(0.65 0.03 180);
+    --muted-foreground-rgb: 156, 171, 164;
     --primary: oklch(0.70 0.13 180);
     --primary-light: oklch(0.80 0.10 180);
     --primary-dark: oklch(0.50 0.10 180);
     --accent: oklch(0.80 0.11 85);
+    --accent-rgb: 251, 191, 36;
     --border: oklch(0.30 0.025 180);
+    --border-rgb: 77, 82, 80;
     --input: oklch(0.30 0.025 180);
+    --ring: oklch(0.70 0.13 180);
   }
+}
+
+/* Enable smooth theme transitions */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    color-scheme: light dark;
+  }
+  
+  body,
+  .bg-background,
+  .text-foreground,
+  .border,
+  .bg-muted,
+  .bg-surface,
+  .bg-surface-elevated,
+  .text-muted-foreground {
+    transition-property: background-color, color, border-color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* ============================================
+   DARK MODE OVERRIDES
+   Force dark colors when .dark class is present
+   ============================================ */
+
+/* Base dark mode colors */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+/* Override common Tailwind light colors in dark mode */
+html.dark .bg-white {
+  background-color: var(--surface) !important;
+}
+
+html.dark .bg-gray-50,
+html.dark .bg-slate-50,
+html.dark .bg-zinc-50 {
+  background-color: var(--surface) !important;
+}
+
+html.dark .bg-gray-100,
+html.dark .bg-slate-100,
+html.dark .bg-zinc-100 {
+  background-color: var(--muted) !important;
+}
+
+html.dark .text-gray-900,
+html.dark .text-slate-900,
+html.dark .text-zinc-900,
+html.dark .text-gray-800,
+html.dark .text-slate-800,
+html.dark .text-zinc-800,
+html.dark .text-gray-700,
+html.dark .text-slate-700,
+html.dark .text-zinc-700 {
+  color: var(--foreground) !important;
+}
+
+html.dark .text-gray-600,
+html.dark .text-slate-600,
+html.dark .text-zinc-600,
+html.dark .text-gray-500,
+html.dark .text-slate-500,
+html.dark .text-zinc-500 {
+  color: var(--muted-foreground) !important;
+}
+
+html.dark .border-gray-200,
+html.dark .border-slate-200,
+html.dark .border-zinc-200,
+html.dark .border-gray-300,
+html.dark .border-slate-300,
+html.dark .border-zinc-300 {
+  border-color: var(--border) !important;
+}
+
+/* Card backgrounds in dark mode */
+html.dark .bg-card,
+html.dark [class*="card"] {
+  background-color: var(--surface) !important;
+}
+
+/* Ensure headings are visible */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: var(--foreground) !important;
+}
+
+/* Links in dark mode - exclude elements with explicit text color classes */
+html.dark a:not([class*="text-"]) {
+  color: var(--primary-light) !important;
+}
+
+html.dark a:not([class*="text-"]):hover {
+  color: var(--primary) !important;
+}
+
+/* Fix gradient backgrounds in dark mode */
+html.dark .bg-gradient-to-r,
+html.dark .bg-gradient-to-br,
+html.dark .bg-gradient-to-bl,
+html.dark [class*="bg-gradient"] {
+  background: var(--surface) !important;
+}
+
+/* Fix hero sections in dark mode */
+html.dark section[class*="bg-gradient"],
+html.dark [class*="hero"] {
+  background: var(--background) !important;
+}
+
+/* Fix white cards and panels in dark mode */
+html.dark .bg-white,
+html.dark [style*="background: rgb(255"],
+html.dark [style*="background:#fff"],
+html.dark [style*="background: #fff"] {
+  background-color: var(--surface) !important;
+}
+
+/* Fix filter bars and search inputs */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: var(--muted) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+
+html.dark input::placeholder {
+  color: var(--muted-foreground) !important;
+}
+
+/* Fix dropdown menus */
+html.dark [role="listbox"],
+html.dark [role="menu"],
+html.dark .dropdown-menu {
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+/* Fix buttons in dark mode */
+html.dark button:not([class*="text-"]),
+html.dark .btn:not([class*="text-"]) {
+  color: var(--foreground) !important;
+}
+
+/* Fix FilterBar component in dark mode */
+html.dark .from-gray-50,
+html.dark .to-white {
+  --tw-gradient-from: var(--surface) !important;
+  --tw-gradient-to: var(--muted) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+html.dark .border-gray-200 {
+  border-color: var(--border) !important;
+}
+
+html.dark .text-gray-600,
+html.dark .text-gray-700 {
+  color: var(--muted-foreground) !important;
+}
+
+html.dark .bg-\[\#0d9488\]\/5 {
+  background-color: var(--primary) !important;
+  opacity: 0.1 !important;
+}
+
+html.dark .border-\[\#0d9488\]\/10,
+html.dark .border-\[\#0d9488\]\/20 {
+  border-color: var(--primary) !important;
+}
+
+html.dark .text-\[\#0d9488\] {
+  color: var(--primary-light) !important;
+}
+
+html.dark .from-\[\#0d9488\],
+html.dark .to-\[\#0f766e\] {
+  --tw-gradient-from: var(--primary) !important;
+  --tw-gradient-to: var(--primary-dark) !important;
+}
+
+/* Fix badge backgrounds in dark mode */
+html.dark .bg-white.bg-white {
+  background-color: var(--muted) !important;
+}
+
+/* Fix result count text */
+html.dark .text-gray-500 {
+  color: var(--muted-foreground) !important;
+}
+
+/* Fix SVG wave dividers in dark mode */
+html.dark svg[class*="wave"],
+html.dark [class*="wave"] svg,
+html.dark .absolute.bottom-0.left-0.right-0 svg {
+  color: var(--background) !important;
+  fill: var(--background) !important;
+}
+
+/* Fix any remaining white backgrounds from inline styles */
+html.dark [style*="background-color: rgb(255, 255, 255)"],
+html.dark [style*="background-color: #fff"],
+html.dark [style*="background-color:#fff"] {
+  background-color: var(--surface) !important;
 }
 
 @layer base {
@@ -465,3 +692,96 @@ textarea:focus-visible {
   }
 }
 */
+
+/* ============================================
+   THEME TOGGLE STYLES
+   Inspired by tweakcn.com
+   ============================================ */
+
+/* Theme toggle button animations */
+.theme-toggle-button {
+  /* Smooth hover transition */
+  transition-property: transform, box-shadow, background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.theme-toggle-button:active {
+  transform: scale(0.95);
+}
+
+/* Icon container rotation animation */
+.theme-icon-container {
+  transform-style: preserve-3d;
+}
+
+.theme-toggle-button.theme-animating .theme-icon-container {
+  animation: themeIconRotate 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes themeIconRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Sparkle effect */
+.theme-sparkle {
+  position: fixed;
+  pointer-events: none;
+  background: var(--accent);
+  border-radius: 50%;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate(0, 0) scale(0);
+  animation: sparkleAnimation 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--sparkle-delay, 0ms);
+  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+}
+
+@keyframes sparkleAnimation {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(calc(var(--sparkle-end-x) * 0.3), calc(var(--sparkle-end-y) * 0.3)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--sparkle-end-x), var(--sparkle-end-y)) scale(0.5);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-button,
+  .theme-icon-container,
+  .theme-sparkle {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .theme-toggle-button:hover,
+  .theme-toggle-button:active {
+    transform: none;
+  }
+}
+
+/* Dark mode sparkle - brighter gold */
+.dark .theme-sparkle {
+  background: oklch(0.85 0.12 85);
+  box-shadow: 0 0 10px oklch(0.85 0.12 85), 0 0 20px oklch(0.85 0.12 85);
+}

@@ -7,33 +7,33 @@ import { Button } from '../../components/ui/button';
 
 <Layout title="Submit Education Resource - EduLaluan">
   <Header />
-  
-  <main class="min-h-screen bg-[#f5f9f7]">
+
+  <main class="min-h-screen bg-background">
     <div class="container mx-auto px-4 py-8 max-w-3xl">
 
       <!-- Header -->
       <div class="mb-8">
-        <a href="/contribute" class="text-[#0d9488] hover:text-[#0f766e] mb-4 inline-block">
+        <a href="/contribute" class="text-primary hover:text-primary-dark mb-4 inline-block">
           ← Back to Contribute
         </a>
-        <h1 class="font-display text-3xl font-bold text-[#1e2926] mb-2">
+        <h1 class="font-display text-3xl font-bold text-foreground mb-2">
           📚 Submit Education Resource
         </h1>
-        <p class="text-[#64746c]">
+        <p class="text-muted-foreground">
           Share an educational resource that can help Malaysian families. All fields marked with * are required.
         </p>
       </div>
 
     <!-- Form -->
-    <form 
-      name="resource-submission" 
-      method="POST" 
+    <form
+      name="resource-submission"
+      method="POST"
       action="/contribute/success"
-      data-netlify="true" 
+      data-netlify="true"
       netlify-honeypot="bot-field"
-      class="bg-white border rounded-lg p-6 space-y-6"
+      class="bg-surface border rounded-lg p-6 space-y-6"
     >
-      
+
       <!-- Hidden fields for Netlify -->
       <input type="hidden" name="form-name" value="resource-submission" />
       <p class="hidden">
@@ -42,82 +42,82 @@ import { Button } from '../../components/ui/button';
 
       <!-- Basic Information -->
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Basic Information</h2>
-        
+        <h2 class="text-xl font-semibold text-foreground border-b border-border pb-2">Basic Information</h2>
+
         <div>
-          <label for="resourceName" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="resourceName" class="block text-sm font-medium text-foreground mb-1">
             Resource Name *
           </label>
-          <input 
-            type="text" 
-            id="resourceName" 
-            name="resourceName" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          <input
+            type="text"
+            id="resourceName"
+            name="resourceName"
+            required
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="e.g., Khan Academy Computer Science"
           />
         </div>
 
         <div>
-          <label for="provider" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="provider" class="block text-sm font-medium text-foreground mb-1">
             Provider/Organization *
           </label>
-          <input 
-            type="text" 
-            id="provider" 
-            name="provider" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          <input
+            type="text"
+            id="provider"
+            name="provider"
+            required
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="e.g., Khan Academy"
           />
         </div>
 
         <div>
-          <label for="url" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="url" class="block text-sm font-medium text-foreground mb-1">
             Website URL *
           </label>
-          <input 
-            type="url" 
-            id="url" 
-            name="url" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          <input
+            type="url"
+            id="url"
+            name="url"
+            required
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="https://example.com"
           />
-          <p class="text-xs text-gray-500 mt-1">Official website URL only (no shortened links)</p>
+          <p class="text-xs text-muted-foreground mt-1">Official website URL only (no shortened links)</p>
         </div>
 
         <div>
-          <label for="description" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="description" class="block text-sm font-medium text-foreground mb-1">
             Description * (150-500 words)
           </label>
-          <textarea 
-            id="description" 
-            name="description" 
-            required 
+          <textarea
+            id="description"
+            name="description"
+            required
             rows="6"
             minlength="150"
             maxlength="3000"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Describe the resource: What is it? Who is it for? What does it offer? How can students access it?"
           ></textarea>
-          <p class="text-xs text-gray-500 mt-1">Minimum 150 characters. Be clear and informative.</p>
+          <p class="text-xs text-muted-foreground mt-1">Minimum 150 characters. Be clear and informative.</p>
         </div>
       </div>
 
       <!-- Category & Details -->
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Category & Details</h2>
-        
+        <h2 class="text-xl font-semibold text-foreground border-b border-border pb-2">Category & Details</h2>
+
         <div>
-          <label for="category" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="category" class="block text-sm font-medium text-foreground mb-1">
             Category *
           </label>
-          <select 
-            id="category" 
-            name="category" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          <select
+            id="category"
+            name="category"
+            required
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">-- Select Category --</option>
             <option value="scholarship">Scholarship</option>
@@ -133,19 +133,19 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-foreground mb-2">
             Income Group Applicability * (select at least one)
           </label>
           <div class="space-y-2">
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="incomeGroups" value="B40" class="rounded" />
               <span>B40 (&lt; RM4,850/month)</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="incomeGroups" value="M40" class="rounded" />
               <span>M40 (RM4,850-10,970/month)</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="incomeGroups" value="T20" class="rounded" />
               <span>T20 (&gt; RM10,970/month)</span>
             </label>
@@ -153,19 +153,19 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-foreground mb-2">
             Cost Structure *
           </label>
           <div class="space-y-2">
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="radio" name="cost" value="free" required />
               <span>Free (no cost)</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="radio" name="cost" value="subsidized" required />
               <span>Subsidized (partially funded)</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="radio" name="cost" value="paid" required />
               <span>Paid (full cost required)</span>
             </label>
@@ -173,19 +173,19 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-foreground mb-2">
             Delivery Mode *
           </label>
           <div class="space-y-2">
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="radio" name="mode" value="online" required />
               <span>Online</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="radio" name="mode" value="in-person" required />
               <span>In-Person</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="radio" name="mode" value="hybrid" required />
               <span>Hybrid (both online and in-person)</span>
             </label>
@@ -193,27 +193,27 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-foreground mb-2">
             Education Level (optional, select all that apply)
           </label>
           <div class="space-y-2">
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="educationLevel" value="primary" />
               <span>Primary (Std 1-6)</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="educationLevel" value="secondary" />
               <span>Secondary (Form 1-5, SPM)</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="educationLevel" value="post-secondary" />
               <span>Post-Secondary (STPM, Diploma, Foundation)</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="educationLevel" value="tertiary" />
               <span>Tertiary (Degree, Master's, PhD)</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="educationLevel" value="all-levels" />
               <span>All Levels</span>
             </label>
@@ -221,23 +221,23 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-foreground mb-2">
             Languages Available * (select at least one)
           </label>
           <div class="space-y-2">
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="languages" value="en" />
               <span>English</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="languages" value="ms" />
               <span>Bahasa Malaysia</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="languages" value="zh" />
               <span>Chinese</span>
             </label>
-            <label class="flex items-center gap-2">
+            <label class="flex items-center gap-2 text-foreground">
               <input type="checkbox" name="languages" value="ta" />
               <span>Tamil</span>
             </label>
@@ -245,74 +245,74 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label for="tags" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="tags" class="block text-sm font-medium text-foreground mb-1">
             Tags (optional)
           </label>
-          <input 
-            type="text" 
-            id="tags" 
-            name="tags" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          <input
+            type="text"
+            id="tags"
+            name="tags"
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="e.g., stem, scholarship, engineering, free (comma-separated)"
           />
-          <p class="text-xs text-gray-500 mt-1">Add descriptive tags separated by commas</p>
+          <p class="text-xs text-muted-foreground mt-1">Add descriptive tags separated by commas</p>
         </div>
       </div>
 
       <!-- Your Contact Info -->
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Your Contact Info</h2>
-        <p class="text-sm text-gray-600">We'll use this to contact you if we need clarification.</p>
-        
+        <h2 class="text-xl font-semibold text-foreground border-b border-border pb-2">Your Contact Info</h2>
+        <p class="text-sm text-muted-foreground">We'll use this to contact you if we need clarification.</p>
+
         <div>
-          <label for="submitterName" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="submitterName" class="block text-sm font-medium text-foreground mb-1">
             Your Name
           </label>
-          <input 
-            type="text" 
-            id="submitterName" 
-            name="submitterName" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          <input
+            type="text"
+            id="submitterName"
+            name="submitterName"
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Optional"
           />
         </div>
 
         <div>
-          <label for="submitterEmail" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="submitterEmail" class="block text-sm font-medium text-foreground mb-1">
             Your Email *
           </label>
-          <input 
-            type="email" 
-            id="submitterEmail" 
-            name="submitterEmail" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          <input
+            type="email"
+            id="submitterEmail"
+            name="submitterEmail"
+            required
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="your@email.com"
           />
         </div>
 
         <div>
-          <label for="submitterOrganization" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="submitterOrganization" class="block text-sm font-medium text-foreground mb-1">
             Organization (if applicable)
           </label>
-          <input 
-            type="text" 
-            id="submitterOrganization" 
-            name="submitterOrganization" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          <input
+            type="text"
+            id="submitterOrganization"
+            name="submitterOrganization"
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Optional"
           />
         </div>
 
         <div>
-          <label for="additionalNotes" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="additionalNotes" class="block text-sm font-medium text-foreground mb-1">
             Additional Notes (optional)
           </label>
-          <textarea 
-            id="additionalNotes" 
-            name="additionalNotes" 
+          <textarea
+            id="additionalNotes"
+            name="additionalNotes"
             rows="3"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Any other information we should know?"
           ></textarea>
         </div>
@@ -322,11 +322,11 @@ import { Button } from '../../components/ui/button';
       <div class="pt-4">
         <Button
           type="submit"
-          className="w-full bg-[#0d9488] hover:bg-[#0f766e] text-white py-3 text-lg"
+          className="w-full bg-primary hover:bg-primary-dark text-primary-foreground py-3 text-lg"
         >
           Submit Resource for Review
         </Button>
-        <p class="text-xs text-[#64746c] text-center mt-3">
+        <p class="text-xs text-muted-foreground text-center mt-3">
           By submitting, you confirm that this information is accurate and you have the right to share it.
         </p>
       </div>

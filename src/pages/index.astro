@@ -156,45 +156,177 @@ const categoryCount = 10; // Fixed count for now
       </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="py-16">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
-          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Three simple steps to find the perfect educational resources for you
+    <!-- How It Works - Redesigned with Modern Malaysian Aesthetics -->
+    <section class="relative py-section-md bg-surface overflow-hidden">
+      <!-- Decorative batik pattern background -->
+      <div class="absolute inset-0 opacity-[0.02] bg-batik-diamond" aria-hidden="true"></div>
+
+      <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section header with decorative accent -->
+        <div class="text-center mb-16 animate-fade-in">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <div class="h-px w-12 bg-gradient-to-r from-transparent to-primary/40"></div>
+            <svg class="w-6 h-6 text-primary" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true">
+              <path d="M20 0L40 20L20 40L0 20Z"/>
+            </svg>
+            <div class="h-px w-12 bg-gradient-to-l from-transparent to-primary/40"></div>
+          </div>
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">
+            Your Path to <span class="text-primary">Education Success</span>
+          </h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+            Three simple steps to discover personalized educational resources for Malaysian families.
           </p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="w-16 h-16 bg-malaysia-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
-            <h3 class="text-xl font-semibold mb-3">Select Your Income Group</h3>
-            <p class="text-muted-foreground">Tell us your household income bracket (B40, M40, or T20) to get personalized recommendations.</p>
+
+        <!-- Steps grid with visual connectors -->
+        <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <!-- Connection line (desktop only) -->
+          <div class="hidden md:block absolute top-20 left-[16%] right-[16%] h-0.5" aria-hidden="true">
+            <div class="w-full h-full bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20"></div>
           </div>
-          <div class="text-center">
-            <div class="w-16 h-16 bg-malaysia-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
-            <h3 class="text-xl font-semibold mb-3">Choose Your Goal</h3>
-            <p class="text-muted-foreground">Select what you're looking for: scholarships, courses, skills training, or financial aid.</p>
+
+          <!-- Step 1: Income Group -->
+          <div class="group relative animate-fade-in-up" style="animation-delay: 100ms;">
+            <div class="relative bg-surface-elevated rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-border h-full">
+              <!-- Batik accent corner -->
+              <div class="absolute top-0 right-0 w-20 h-20 opacity-[0.03] text-primary" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="currentColor">
+                  <path d="M50 0 L100 50 L50 100 L0 50 Z" />
+                </svg>
+              </div>
+
+              <!-- Step number badge -->
+              <div class="relative mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl font-bold text-white">1</span>
+                </div>
+                <!-- Decorative dot -->
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent"></div>
+              </div>
+
+              <!-- Content -->
+              <div class="relative">
+                <h3 class="font-display text-xl font-bold mb-3 text-foreground">
+                  Select Your Income Group
+                </h3>
+                <p class="text-muted-foreground leading-relaxed">
+                  Tell us your household income bracket — B40, M40, or T20 — to get recommendations tailored to your financial situation.
+                </p>
+                <!-- Icon -->
+                <div class="mt-6 flex items-center gap-2 text-primary text-sm font-medium">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>For All Malaysians</span>
+                </div>
+              </div>
+
+              <!-- Hover accent line -->
+              <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-light to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-2xl"></div>
+            </div>
           </div>
-          <div class="text-center">
-            <div class="w-16 h-16 bg-malaysia-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
-            <h3 class="text-xl font-semibold mb-3">Discover Resources</h3>
-            <p class="text-muted-foreground">Get a curated list of resources tailored to your needs with direct links to apply.</p>
+
+          <!-- Step 2: Choose Goal -->
+          <div class="group relative animate-fade-in-up" style="animation-delay: 200ms;">
+            <div class="relative bg-surface-elevated rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-border h-full">
+              <!-- Batik accent corner -->
+              <div class="absolute top-0 right-0 w-20 h-20 opacity-[0.03] text-accent" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="currentColor">
+                  <path d="M50 0 L100 50 L50 100 L0 50 Z" />
+                </svg>
+              </div>
+
+              <!-- Step number badge -->
+              <div class="relative mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center shadow-lg shadow-accent/30 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl font-bold text-white">2</span>
+                </div>
+                <!-- Decorative dot -->
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary"></div>
+              </div>
+
+              <!-- Content -->
+              <div class="relative">
+                <h3 class="font-display text-xl font-bold mb-3 text-foreground">
+                  Choose Your Goal
+                </h3>
+                <p class="text-muted-foreground leading-relaxed">
+                  Select what you're looking for: scholarships, free courses, skills training, financial aid, or degree programs.
+                </p>
+                <!-- Icon -->
+                <div class="mt-6 flex items-center gap-2 text-accent text-sm font-medium">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  <span>7 Goal Categories</span>
+                </div>
+              </div>
+
+              <!-- Hover accent line -->
+              <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-accent-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-2xl"></div>
+            </div>
           </div>
+
+          <!-- Step 3: Discover Resources -->
+          <div class="group relative animate-fade-in-up" style="animation-delay: 300ms;">
+            <div class="relative bg-surface-elevated rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-border h-full">
+              <!-- Batik accent corner -->
+              <div class="absolute top-0 right-0 w-20 h-20 opacity-[0.03] text-primary-light" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="currentColor">
+                  <path d="M50 0 L100 50 L50 100 L0 50 Z" />
+                </svg>
+              </div>
+
+              <!-- Step number badge -->
+              <div class="relative mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-light to-primary flex items-center justify-center shadow-lg shadow-primary-light/30 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl font-bold text-white">3</span>
+                </div>
+                <!-- Decorative star -->
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent"></div>
+              </div>
+
+              <!-- Content -->
+              <div class="relative">
+                <h3 class="font-display text-xl font-bold mb-3 text-foreground">
+                  Discover Resources
+                </h3>
+                <p class="text-muted-foreground leading-relaxed">
+                  Get a curated list of resources tailored to your needs with direct links to apply or learn more.
+                </p>
+                <!-- Icon -->
+                <div class="mt-6 flex items-center gap-2 text-primary-light text-sm font-medium">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <span>138+ Verified Resources</span>
+                </div>
+              </div>
+
+              <!-- Hover accent line -->
+              <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-light via-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-2xl"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA to navigator -->
+        <div class="text-center mt-12 animate-fade-in" style="animation-delay: 400ms;">
+          <a href="/navigate" class="group inline-flex items-center gap-3 px-8 py-4 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            Start Your Journey
+            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <p class="text-sm text-muted-foreground mt-4">
+            Takes less than 30 seconds — get personalized results instantly
+          </p>
         </div>
       </div>
     </section>
 
     <!-- Featured Resources - Redesigned with Varied Layouts -->
-    <section class="relative py-section-lg bg-gradient-to-b from-surface to-surface-elevated">
-      <!-- Flowing wave divider (top) -->
-      <div class="absolute top-0 left-0 right-0 h-8 -translate-y-full text-surface" aria-hidden="true">
-        <svg width="100%" height="100%" viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 20 Q25 0 50 20 T100 20 T150 20 T200 20 T250 20 T300 20 T350 20 T400 20 T450 20 T500 20 T550 20 T600 20 T650 20 T700 20 T750 20 T800 20 T850 20 T900 20 T950 20 T1000 20 T1050 20 T1100 20 T1150 20 T1200 20 T1250 20 T1300 20 T1350 20 T1400 20 T1450 20" fill="none" stroke="currentColor" stroke-width="0.5" class="opacity-20"/>
-        </svg>
-      </div>
-
+    <section class="relative py-section-lg bg-gradient-to-b from-surface to-surface-elevated overflow-hidden">
       <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section header with decorative accent -->
         <div class="text-center mb-16 animate-fade-in">
@@ -327,14 +459,6 @@ const categoryCount = 10; // Fixed count for now
         </svg>
       </div>
 
-      <!-- Flowing wave accents (corners) -->
-      <div class="absolute top-0 right-0 w-96 h-24 opacity-10 text-[#f59e0b]" aria-hidden="true">
-        <svg width="100%" height="100%" viewBox="0 0 200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 20 Q25 0 50 20 T100 20 T150 20 T200 20" fill="none" stroke="currentColor" stroke-width="2" />
-          <path d="M0 25 Q25 5 50 25 T100 25 T150 25 T200 25" fill="none" stroke="currentColor" stroke-width="1" />
-        </svg>
-      </div>
-
       <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center animate-fade-in-up">
           <!-- Decorative star accent -->
@@ -395,15 +519,8 @@ const categoryCount = 10; // Fixed count for now
           </div>
         </div>
       </div>
-
-      <!-- Bottom wave transition to footer -->
-      <div class="absolute bottom-0 left-0 right-0 h-12 md:h-16 pointer-events-none" aria-hidden="true">
-        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none">
-          <path d="M0 60L60 50C120 40 240 20 360 13.3C480 6.7 600 13.3 720 20C840 26.7 960 33.3 1080 36.7C1200 40 1320 40 1380 40L1440 40V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="#f5f9f7"/>
-        </svg>
-      </div>
     </section>
   </main>
-  
+
   <Footer />
 </Layout>
