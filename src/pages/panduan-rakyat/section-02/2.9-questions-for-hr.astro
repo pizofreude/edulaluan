@@ -1,0 +1,210 @@
+---
+// Article 2.9: Questions for HR
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const articleData = {
+  sectionNumber: '02',
+  sectionTitle: 'Work and Employment',
+  sectionIcon: '💼',
+  articleTitle: 'Essential Questions to Ask HR Before Accepting a Job Offer',
+  articleDescription: 'What to clarify before signing your employment contract',
+  colorRgb: '37, 99, 235',
+  lastUpdated: 'March 2026',
+};
+
+const simpleContent = `
+  <h2 id="why-ask">Why ask questions?</h2>
+  <p>Before accepting a job, you need to understand your rights, benefits, and expectations. Don't be afraid to ask!</p>
+  
+  <h2 id="salary-questions">Questions about Salary:</h2>
+  <ul>
+    <li>💰 What is the basic salary?</li>
+    <li>💰 Are there allowances (housing, transport, phone)?</li>
+    <li>💰 When is salary paid?</li>
+    <li>💰 Is there a bonus?</li>
+  </ul>
+
+  <h2 id="benefits-questions">Questions about Benefits:</h2>
+  <ul>
+    <li>🏥 Is there medical insurance?</li>
+    <li>🏦 Do you contribute to EPF and SOCSO?</li>
+    <li>🏖️ How many annual leave days?</li>
+    <li>🤒 How many sick leave days?</li>
+  </ul>
+
+  <h2 id="work-questions">Questions about Work:</h2>
+  <ul>
+    <li>⏰ What are working hours?</li>
+    <li>⏰ Is overtime paid?</li>
+    <li>⏰ How many rest days per week?</li>
+    <li>⏰ Is remote work allowed?</li>
+  </ul>
+
+  <h2 id="probation">Questions about Probation:</h2>
+  <ul>
+    <li>📋 How long is probation?</li>
+    <li>📋 What happens after probation?</li>
+    <li>📋 How is performance reviewed?</li>
+  </ul>
+
+  <h2 id="important">Remember:</h2>
+  <ul>
+    <li>✅ Get everything in writing</li>
+    <li>✅ Read the contract carefully</li>
+    <li>✅ Ask for clarification if unsure</li>
+    <li>✅ Keep a copy of signed contract</li>
+  </ul>
+`;
+
+const detailedContent = `
+  <h2 id="overview">Overview</h2>
+  <p>Accepting a job offer is a major decision. Asking the right questions before signing protects you from unpleasant surprises.</p>
+
+  <h2 id="compensation">Compensation & Benefits</h2>
+  <h3>Salary Structure:</h3>
+  <ul>
+    <li>What is the basic salary vs. allowances breakdown?</li>
+    <li>Is salary reviewed annually? When and how?</li>
+    <li>What is the salary payment date?</li>
+    <li>Is there a 13th month salary or bonus?</li>
+  </ul>
+
+  <h3>Statutory Contributions:</h3>
+  <ul>
+    <li>Do you contribute to EPF? At what percentage? (Standard: 12-13%)</li>
+    <li>Do you contribute to SOCSO and EIS? (Mandatory)</li>
+    <li>Is PCB (tax) deducted automatically?</li>
+  </ul>
+
+  <h3>Medical & Insurance:</h3>
+  <ul>
+    <li>Is there medical insurance coverage?</li>
+    <li>What does it cover? (Outpatient, hospitalization, dental)</li>
+    <li>Does it cover family members?</li>
+  </ul>
+
+  <h3>Leave Entitlements:</h3>
+  <ul>
+    <li>How many annual leave days? (Standard: 8-16 days)</li>
+    <li>How many sick leave days? (Standard: 14-22 days)</li>
+    <li>What about maternity/paternity leave?</li>
+  </ul>
+
+  <h2 id="working-conditions">Working Conditions</h2>
+  <h3>Hours & Location:</h3>
+  <ul>
+    <li>What are the official working hours?</li>
+    <li>How many rest days per week?</li>
+    <li>Is remote/hybrid work allowed?</li>
+    <li>Will I need to travel? How often?</li>
+  </ul>
+
+  <h3>Overtime:</h3>
+  <ul>
+    <li>Is overtime expected? How often?</li>
+    <li>Is overtime paid or compensated with time off?</li>
+    <li>What is the OT rate? (Standard: 1.5× hourly rate)</li>
+  </ul>
+
+  <h2 id="probation-performance">Probation & Performance</h2>
+  <ul>
+    <li>How long is the probation period? (Standard: 3-6 months)</li>
+    <li>What are the performance expectations during probation?</li>
+    <li>How often are performance reviews conducted?</li>
+  </ul>
+
+  <h2 id="termination-resignation">Termination & Resignation</h2>
+  <ul>
+    <li>What is the notice period for resignation? (Standard: 1-2 months)</li>
+    <li>What is the notice period if company terminates?</li>
+    <li>Are there any bonds or penalties for early resignation?</li>
+  </ul>
+
+  <h2 id="red-flags">Red Flags to Watch For</h2>
+  <ul>
+    <li>❌ Vague answers about salary or benefits</li>
+    <li>❌ Refusal to provide written contract</li>
+    <li>❌ "We don't do EPF/SOCSO" (illegal!)</li>
+    <li>❌ Excessive overtime expectations without compensation</li>
+    <li>❌ Pressure to sign immediately without time to review</li>
+  </ul>
+
+  <h2 id="important-tips">Important Tips</h2>
+  <ul>
+    <li>✅ Get the offer in writing before resigning from current job</li>
+    <li>✅ Read the entire contract carefully</li>
+    <li>✅ Ask for clarification on unclear terms</li>
+    <li>✅ Negotiate if something doesn't meet your expectations</li>
+    <li>✅ Keep a signed copy for your records</li>
+  </ul>
+`;
+
+const faqs = [
+  {
+    question: "Is it okay to negotiate salary after receiving an offer?",
+    answer: "Yes, absolutely! Salary negotiation is expected. Do your research on market rates, highlight your value, and negotiate professionally."
+  },
+  {
+    question: "What if the employer refuses to provide a written contract?",
+    answer: "This is a major red flag. Under the Employment Act, you're entitled to a written contract. Politely insist on it. If they refuse, reconsider working for them."
+  },
+  {
+    question: "How long should I take to decide on an offer?",
+    answer: "It's reasonable to ask for 3-7 days to review the offer. A legitimate employer will respect this. Be wary of employers pressuring you to decide immediately."
+  },
+  {
+    question: "Should I disclose my current salary?",
+    answer: "You're not obligated to. Instead, focus on your expected salary based on market rates and your skills."
+  }
+];
+
+const headings = [
+  { id: 'overview', title: 'Overview', level: 2 },
+  { id: 'compensation', title: 'Compensation & Benefits', level: 2 },
+  { id: 'working-conditions', title: 'Working Conditions', level: 2 },
+  { id: 'probation-performance', title: 'Probation & Performance', level: 2 },
+  { id: 'termination-resignation', title: 'Termination & Resignation', level: 2 },
+  { id: 'red-flags', title: 'Red Flags', level: 2 },
+];
+---
+
+<Layout title={`${articleData.articleTitle} | People's Guide | EduLaluan`}>
+  <Header />
+  <main class="min-h-screen bg-background">
+    <section class="relative overflow-hidden py-section-lg border-b" style={{'--section-color': `rgb(${articleData.colorRgb})`,'border-bottom-color': `rgb(${articleData.colorRgb})`}}>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <Breadcrumb items={[{label:'Home',href:'/'},{label:"People's Guide",href:'/panduan-rakyat'},{label:`Section ${articleData.sectionNumber}`,href:`/panduan-rakyat/section-${articleData.sectionNumber}`},{label:articleData.articleTitle}]} />
+          <a href={`/panduan-rakyat/section-${articleData.sectionNumber}`} class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>Back to Section {parseInt(articleData.sectionNumber).toString()}</a>
+          <div class="flex items-start gap-4 mt-6"><div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl" style={{'backgroundColor': `rgb(${articleData.colorRgb})`,'color': 'white'}}>{articleData.sectionIcon}</div><div class="flex-1"><p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">Section {parseInt(articleData.sectionNumber).toString()}: {articleData.sectionTitle}</p><h1 class="font-display text-3xl sm:text-4xl font-bold text-foreground">{articleData.articleTitle}</h1><p class="text-lg text-muted-foreground mt-3">{articleData.articleDescription}</p></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 max-w-6xl mx-auto">
+          <div class="flex-1 min-w-0">
+            <div class="mb-8">
+              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+                <button id="tab-simple" class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm" aria-pressed="true" data-tab="simple"><span class="text-xl">🧒</span><span>Simple</span></button>
+                <button id="tab-detailed" class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground" aria-pressed="false" data-tab="detailed"><span class="text-xl">🧑</span><span>Detailed</span></button>
+              </div>
+              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
+              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
+            </div>
+            <script is:inline>document.addEventListener('DOMContentLoaded',function(){const tabs=document.querySelectorAll('[data-tab]');const contents={simple:document.getElementById('content-simple'),detailed:document.getElementById('content-detailed')};tabs.forEach(function(tab){tab.addEventListener('click',function(){const selectedTab=this.getAttribute('data-tab');tabs.forEach(function(t){if(t.getAttribute('data-tab')===selectedTab){t.classList.add('bg-surface-elevated','text-primary','shadow-sm');t.classList.remove('text-muted-foreground','hover:text-foreground');t.setAttribute('aria-pressed','true');}else{t.classList.remove('bg-surface-elevated','text-primary','shadow-sm');t.classList.add('text-muted-foreground','hover:text-foreground');t.setAttribute('aria-pressed','false');}});if(selectedTab==='simple'){contents.simple.classList.remove('hidden');contents.detailed.classList.add('hidden');}else{contents.detailed.classList.remove('hidden');contents.simple.classList.add('hidden');}});});});</script>
+            <div class="mt-12"><h2 class="font-display text-2xl font-bold text-foreground mb-6">Frequently Asked Questions</h2><div class="space-y-3">{faqs.map((faq)=>(<details class="group rounded-xl border bg-surface-elevated transition-all"><summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-foreground list-none">{faq.question}<svg class="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></summary><div class="px-5 pb-5 text-muted-foreground">{faq.answer}</div></details>))}</div></div>
+            <div class="mt-12 pt-6 border-t border-border"><p class="text-sm text-muted-foreground"><strong>Last updated:</strong> {articleData.lastUpdated}</p></div>
+          </div>
+          <aside class="sticky top-24 hidden lg:block w-64 shrink-0"><nav class="space-y-1" aria-label="Table of contents"><h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">On This Page</h3>{headings.map((heading)=>(<a href={`#${heading.id}`} class="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors" style={{paddingLeft:`${(heading.level-2)*12+12}px`}}>{heading.title}</a>))}</nav></aside>
+        </div>
+      </div>
+    </section>
+    <section class="py-section-md bg-background"><div class="container mx-auto px-4 sm:px-6 lg:px-8"><div class="mx-auto max-w-4xl"><div class="rounded-2xl border bg-surface-elevated p-6"><div class="flex items-center gap-3 text-muted-foreground"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><p class="text-sm"><strong>Disclaimer:</strong> This guide provides general information only. Always verify with official sources for the most current information.</p></div></div></div></div></section>
+  </main>
+  <Footer />
+</Layout>
+<style>:root{--section-padding-lg:clamp(3rem,5vw + 1rem,5rem);--section-padding-md:clamp(2rem,3vw + 1rem,3rem)}.py-section-lg{padding-top:var(--section-padding-lg);padding-bottom:var(--section-padding-lg)}.py-section-md{padding-top:var(--section-padding-md);padding-bottom:var(--section-padding-md)}.prose-panduan{font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--foreground)}.prose-panduan h2{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;margin-top:2.5rem;margin-bottom:1rem;color:var(--foreground)}.prose-panduan h3{font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;margin-top:2rem;margin-bottom:0.75rem;color:var(--foreground)}.prose-panduan p{margin-bottom:1.25rem}.prose-panduan ul,.prose-panduan ol{margin-bottom:1.25rem;padding-left:1.5rem}.prose-panduan li{margin-bottom:0.5rem}.prose-panduan a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}.prose-panduan a:hover{color:var(--primary-dark)}.prose-panduan strong{font-weight:600;color:var(--foreground)}.prose-panduan table{width:100%;border-collapse:collapse;margin:1.5rem 0}.prose-panduan th{background-color:var(--muted);font-weight:600;padding:0.75rem;border:1px solid var(--border)}.prose-panduan td{padding:0.75rem;border:1px solid var(--border)}.prose-panduan .bg-muted{background-color:var(--muted);padding:1rem;border-radius:0.5rem;margin:1.5rem 0}</style>

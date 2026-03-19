@@ -38,7 +38,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
       case 'paid':
         return 'bg-amber-500 text-white border-amber-600 hover:bg-amber-600';
       default:
-        return 'bg-gray-500 text-white border-gray-600 hover:bg-gray-600';
+        return 'bg-muted text-foreground border-border hover:bg-muted/80';
     }
   };
 

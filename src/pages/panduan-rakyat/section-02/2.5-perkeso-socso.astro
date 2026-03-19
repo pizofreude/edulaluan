@@ -1,0 +1,575 @@
+---
+// Article 2.5: PERKESO/SOCSO
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const articleData = {
+  sectionNumber: '02',
+  sectionTitle: 'Work and Employment',
+  sectionIcon: '💼',
+  articleTitle: 'Social Security Organisation (PERKESO/SOCSO)',
+  articleDescription: 'Employment injury protection and benefits',
+  colorRgb: '37, 99, 235',
+  lastUpdated: 'March 2026',
+};
+
+const simpleContent = `
+  <h2 id="what-is-perkeso">What is PERKESO?</h2>
+  <p>PERKESO (Pertubuhan Keselamatan Sosial) or SOCSO is a social security organization that protects workers if they get injured or sick because of their job.</p>
+  
+  <h2 id="who-is-covered">Who is covered?</h2>
+  <ul>
+    <li>✅ All Malaysian workers earning ≤ RM5,000/month</li>
+    <li>✅ Foreign workers with valid work permits</li>
+    <li>✅ Part-time and temporary workers</li>
+    <li>❌ Self-employed (can join voluntarily under SKSPS)</li>
+  </ul>
+
+  <h2 id="what-is-covered">What is covered?</h2>
+  <ul>
+    <li>🏥 Medical treatment for work injuries</li>
+    <li>💰 Cash benefits during sick leave</li>
+    <li>♿ Disability benefits</li>
+    <li>⚰️ Death benefits for family</li>
+    <li>🔄 Rehabilitation services</li>
+  </ul>
+
+  <h2 id="how-to-claim">How to make a claim:</h2>
+  <ol>
+    <li><strong>Report accident:</strong> Tell your employer immediately</li>
+    <li><strong>Get medical treatment:</strong> Go to panel clinic or hospital</li>
+    <li><strong>Employer files report:</strong> Form 21 within 7 days</li>
+    <li><strong>Submit claim:</strong> Form 10 with medical reports</li>
+    <li><strong>Wait for approval:</strong> PERKESO processes in 14-30 days</li>
+  </ol>
+
+  <h2 id="important-numbers">Important numbers:</h2>
+  <ul>
+    <li><strong>PERKESO Hotline:</strong> 03-8922 6333</li>
+    <li><strong>Website:</strong> perkeso.gov.my</li>
+    <li><strong>WhatsApp:</strong> 017-888 9900</li>
+  </ul>
+`;
+
+const detailedContent = `
+  <h2 id="overview">Overview</h2>
+  <p>The Pertubuhan Keselamatan Sosial (PERKESO) or Social Security Organisation (SOCSO) provides protection to employees against work-related injuries, occupational diseases, and death. Established in 1971, PERKESO covers over 10 million workers in Malaysia.</p>
+
+  <h2 id="schemes">PERKESO Schemes</h2>
+  <h3>1. Employment Injury Scheme (SKKP)</h3>
+  <p>Covers injuries, diseases, or death caused by work:</p>
+  <ul>
+    <li>Medical benefits (unlimited for work-related injuries)</li>
+    <li>Temporary disablement benefit (90% of wages)</li>
+    <li>Permanent disablement benefit (lump sum or pension)</li>
+    <li>Constant attendance allowance</li>
+    <li>Dependants' benefit (for death cases)</li>
+    <li>Funeral benefit (RM2,500)</li>
+    <li>Rehabilitation services</li>
+  </ul>
+
+  <h3>2. Invalidity Scheme (SKS)</h3>
+  <p>Covers non-work-related invalidity or death:</p>
+  <ul>
+    <li>Invalidity pension (if contribution conditions met)</li>
+    <li>Invalidity grant (one-time payment)</li>
+    <li>Survivors' pension (for family)</li>
+    <li>Funeral benefit (RM2,500)</li>
+  </ul>
+
+  <h3>3. Self-Employment Social Security Scheme (SKSPS)</h3>
+  <p>Voluntary scheme for self-employed individuals:</p>
+  <ul>
+    <li>Covers work-related injuries only</li>
+    <li>Monthly contribution: RM7.65 - RM242.85</li>
+    <li>Same benefits as Employment Injury Scheme</li>
+  </ul>
+
+  <h2 id="contribution-rates">Contribution Rates (2026)</h2>
+  <table class="w-full border-collapse border border-border my-4">
+    <thead>
+      <tr class="bg-muted">
+        <th class="border border-border p-3 text-left">Monthly Wages</th>
+        <th class="border border-border p-3 text-left">Employee</th>
+        <th class="border border-border p-3 text-left">Employer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-border p-3">≤ RM4,000</td>
+        <td class="border border-border p-3">0.5%</td>
+        <td class="border border-border p-3">1.25% - 1.75%</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">RM4,001 - RM5,000</td>
+        <td class="border border-border p-3">0.5%</td>
+        <td class="border border-border p-3">1.25% - 1.75%</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Foreign workers</td>
+        <td class="border border-border p-3">Not required</td>
+        <td class="border border-border p-3">1.25% - 1.75%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="text-sm text-muted-foreground mt-2">*Employer rate depends on industry risk classification</p>
+
+  <h2 id="what-is-covered">What Injuries Are Covered?</h2>
+  <h3>Covered Injuries:</h3>
+  <ul>
+    <li>✅ Accidents while performing work duties</li>
+    <li>✅ Accidents during lunch break at workplace</li>
+    <li>✅ Accidents while traveling to/from work (direct route)</li>
+    <li>✅ Occupational diseases (listed in regulations)</li>
+    <li>✅ Injuries during work-related travel</li>
+  </ul>
+
+  <h3>NOT Covered:</h3>
+  <ul>
+    <li>❌ Self-inflicted injuries</li>
+    <li>❌ Injuries under influence of drugs/alcohol</li>
+    <li>❌ Injuries from fighting (unless work-related)</li>
+    <li>❌ Injuries while committing a crime</li>
+  </ul>
+
+  <h2 id="how-to-claim">How to Make a Claim: Step by Step</h2>
+  <h3>Step 1: Report the Accident</h3>
+  <ul>
+    <li>Tell your employer immediately</li>
+    <li>Employer must report to PERKESO within 7 days (Form 21)</li>
+    <li>If employer doesn't report, you can report yourself (Form 21A)</li>
+  </ul>
+
+  <h3>Step 2: Get Medical Treatment</h3>
+  <ul>
+    <li>Go to PERKESO panel clinic or government hospital</li>
+    <li>Bring your IC and PERKESO card (if available)</li>
+    <li>Tell doctor it's a work-related injury</li>
+    <li>Keep all medical certificates and reports</li>
+  </ul>
+
+  <h3>Step 3: Submit Claim Forms</h3>
+  <ul>
+    <li><strong>Form 10:</strong> Claim for Employment Injury Benefit</li>
+    <li><strong>Form 11:</strong> Medical Report (by doctor)</li>
+    <li><strong>Form 12:</strong> Wage statement (by employer)</li>
+    <li>Submit to nearest PERKESO office</li>
+  </ul>
+
+  <h3>Step 4: PERKESO Assessment</h3>
+  <ul>
+    <li>PERKESO reviews your claim (14-30 days)</li>
+    <li>May call for additional medical examination</li>
+    <li>Decision letter sent by post</li>
+  </ul>
+
+  <h3>Step 5: Receive Benefits</h3>
+  <ul>
+    <li>If approved: Benefits paid via bank transfer</li>
+    <li>Medical bills paid directly to panel clinics</li>
+    <li>Ongoing treatment covered as needed</li>
+  </ul>
+
+  <h2 id="benefit-amounts">Benefit Amounts</h2>
+  <table class="w-full border-collapse border border-border my-4">
+    <thead>
+      <tr class="bg-muted">
+        <th class="border border-border p-3 text-left">Benefit Type</th>
+        <th class="border border-border p-3 text-left">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-border p-3">Temporary Disablement</td>
+        <td class="border border-border p-3">90% of wages (from day 2)</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Permanent Disablement</td>
+        <td class="border border-border p-3">Based on % disability (up to RM600,000)</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Death Benefit</td>
+        <td class="border border-border p-3">RM36,000 + monthly pension</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Funeral Benefit</td>
+        <td class="border border-border p-3">RM2,500</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Medical Benefit</td>
+        <td class="border border-border p-3">Unlimited for work injuries</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="important-numbers">PERKESO Offices & Contacts</h2>
+  <h3>National Contacts:</h3>
+  <ul>
+    <li><strong>Hotline:</strong> 03-8922 6333</li>
+    <li><strong>Toll-Free:</strong> 1-800-88-7760</li>
+    <li><strong>WhatsApp:</strong> 017-888 9900</li>
+    <li><strong>Website:</strong> perkeso.gov.my</li>
+    <li><strong>Email:</strong> info@perkeso.gov.my</li>
+  </ul>
+
+  <h3>Online Services:</h3>
+  <ul>
+    <li><strong>ASSIST Portal:</strong> For employer claims submission</li>
+    <li><strong>PERKESO Mobile App:</strong> Check contribution status</li>
+    <li><strong>e-Payment:</strong> Track benefit payments</li>
+  </ul>
+
+  <h2 id="tips">Important Tips</h2>
+  <ul>
+    <li>✅ Report accidents immediately (within 24 hours)</li>
+    <li>✅ Keep copies of all medical reports</li>
+    <li>✅ Follow up if claim takes longer than 30 days</li>
+    <li>✅ Use PERKESO panel clinics for faster processing</li>
+    <li>✅ Inform PERKESO if you change jobs</li>
+    <li>✅ Update your beneficiary details</li>
+  </ul>
+`;
+
+const faqs = [
+  {
+    question: "Is PERKESO the same as EPF?",
+    answer: "No. EPF is for retirement savings. PERKESO is for employment injury and invalidity protection. Both are mandatory but serve different purposes."
+  },
+  {
+    question: "Am I covered if I have an accident on the way to work?",
+    answer: "Yes, if you're on the direct route between home and workplace, and there's no significant detour for personal reasons. This is called 'journey coverage'."
+  },
+  {
+    question: "How long does PERKESO take to approve claims?",
+    answer: "Simple claims are processed within 14 days. Complex cases may take up to 30 days. Medical bills at panel clinics are paid directly and quickly."
+  },
+  {
+    question: "Can I claim PERKESO if I'm a foreign worker?",
+    answer: "Yes! Foreign workers with valid work permits are covered under the Employment Injury Scheme. Your employer must contribute for you."
+  },
+  {
+    question: "What if my employer didn't register me with PERKESO?",
+    answer: "You can still claim! Report to PERKESO with proof of employment (payslips, contract). Your employer may face penalties for non-compliance."
+  }
+];
+
+const headings = [
+  { id: 'overview', title: 'Overview', level: 2 },
+  { id: 'schemes', title: 'PERKESO Schemes', level: 2 },
+  { id: 'contribution-rates', title: 'Contribution Rates', level: 2 },
+  { id: 'what-is-covered', title: 'What Injuries Are Covered?', level: 2 },
+  { id: 'how-to-claim', title: 'How to Make a Claim', level: 2 },
+  { id: 'benefit-amounts', title: 'Benefit Amounts', level: 2 },
+  { id: 'tips', title: 'Important Tips', level: 2 },
+];
+---
+
+<Layout title={`${articleData.articleTitle} | People's Guide | EduLaluan`}>
+  <Header />
+
+  <main class="min-h-screen bg-background">
+    <!-- Article Header -->
+    <section 
+      class="relative overflow-hidden py-section-lg border-b"
+      style={{
+        '--section-color': `rgb(${articleData.colorRgb})`,
+        'border-bottom-color': `rgb(${articleData.colorRgb})`
+      }}
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <!-- Breadcrumb -->
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: "People's Guide", href: '/panduan-rakyat' },
+            { label: `Section ${articleData.sectionNumber}`, href: `/panduan-rakyat/section-${articleData.sectionNumber}` },
+            { label: articleData.articleTitle }
+          ]} />
+
+          <!-- Back Button -->
+          <a
+            href={`/panduan-rakyat/section-${articleData.sectionNumber}`}
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Section {parseInt(articleData.sectionNumber).toString()}
+          </a>
+
+          <!-- Article Title -->
+          <div class="flex items-start gap-4 mt-6">
+            <div 
+              class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl"
+              style={{ 
+                'backgroundColor': `rgb(${articleData.colorRgb})`,
+                'color': 'white'
+              }}
+            >
+              {articleData.sectionIcon}
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">
+                Section {parseInt(articleData.sectionNumber).toString()}: {articleData.sectionTitle}
+              </p>
+              <h1 class="font-display text-3xl sm:text-4xl font-bold text-foreground">
+                {articleData.articleTitle}
+              </h1>
+              <p class="text-lg text-muted-foreground mt-3">
+                {articleData.articleDescription}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 max-w-6xl mx-auto">
+          <!-- Main Content -->
+          <div class="flex-1 min-w-0">
+            <!-- Audience Tabs (Simple/Detailed) -->
+            <div class="mb-8">
+              <!-- Tab Buttons -->
+              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+                <button
+                  id="tab-simple"
+                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm"
+                  aria-pressed="true"
+                  data-tab="simple"
+                >
+                  <span class="text-xl">🧒</span>
+                  <span>Simple</span>
+                </button>
+                <button
+                  id="tab-detailed"
+                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground"
+                  aria-pressed="false"
+                  data-tab="detailed"
+                >
+                  <span class="text-xl">🧑</span>
+                  <span>Detailed</span>
+                </button>
+              </div>
+
+              <!-- Tab Content -->
+              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
+              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
+            </div>
+
+            <script is:inline>
+              document.addEventListener('DOMContentLoaded', function() {
+                const tabs = document.querySelectorAll('[data-tab]');
+                const contents = {
+                  simple: document.getElementById('content-simple'),
+                  detailed: document.getElementById('content-detailed')
+                };
+
+                tabs.forEach(function(tab) {
+                  tab.addEventListener('click', function() {
+                    const selectedTab = this.getAttribute('data-tab');
+                    
+                    tabs.forEach(function(t) {
+                      if (t.getAttribute('data-tab') === selectedTab) {
+                        t.classList.add('bg-surface-elevated', 'text-primary', 'shadow-sm');
+                        t.classList.remove('text-muted-foreground', 'hover:text-foreground');
+                        t.setAttribute('aria-pressed', 'true');
+                      } else {
+                        t.classList.remove('bg-surface-elevated', 'text-primary', 'shadow-sm');
+                        t.classList.add('text-muted-foreground', 'hover:text-foreground');
+                        t.setAttribute('aria-pressed', 'false');
+                      }
+                    });
+
+                    if (selectedTab === 'simple') {
+                      contents.simple.classList.remove('hidden');
+                      contents.detailed.classList.add('hidden');
+                    } else {
+                      contents.detailed.classList.remove('hidden');
+                      contents.simple.classList.add('hidden');
+                    }
+                  });
+                });
+              });
+            </script>
+
+            <!-- FAQ Section -->
+            <div class="mt-12">
+              <h2 class="font-display text-2xl font-bold text-foreground mb-6">
+                Frequently Asked Questions
+              </h2>
+              <div class="space-y-3">
+                {faqs.map((faq) => (
+                  <details
+                    class="group rounded-xl border bg-surface-elevated transition-all"
+                  >
+                    <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-foreground list-none">
+                      {faq.question}
+                      <svg
+                        class="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </summary>
+                    <div class="px-5 pb-5 text-muted-foreground">
+                      {faq.answer}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+
+            <!-- Last Updated -->
+            <div class="mt-12 pt-6 border-t border-border">
+              <p class="text-sm text-muted-foreground">
+                <strong>Last updated:</strong> {articleData.lastUpdated}
+              </p>
+            </div>
+          </div>
+
+          <!-- Table of Contents (Sidebar) -->
+          <aside class="sticky top-24 hidden lg:block w-64 shrink-0">
+            <nav class="space-y-1" aria-label="Table of contents">
+              <h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                On This Page
+              </h3>
+              {headings.map((heading) => (
+                <a
+                  href={`#${heading.id}`}
+                  class="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  style={{ paddingLeft: `${(heading.level - 2) * 12 + 12}px` }}
+                >
+                  {heading.title}
+                </a>
+              ))}
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <section class="py-section-md bg-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="rounded-2xl border bg-surface-elevated p-6">
+            <div class="flex items-center gap-3 text-muted-foreground">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-sm">
+                <strong>Disclaimer:</strong> This guide provides general information only. Always verify with official sources for the most current information.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Section padding utilities */
+  :root {
+    --section-padding-lg: clamp(3rem, 5vw + 1rem, 5rem);
+    --section-padding-md: clamp(2rem, 3vw + 1rem, 3rem);
+  }
+
+  .py-section-lg {
+    padding-top: var(--section-padding-lg);
+    padding-bottom: var(--section-padding-lg);
+  }
+
+  .py-section-md {
+    padding-top: var(--section-padding-md);
+    padding-bottom: var(--section-padding-md);
+  }
+
+  /* Article Typography */
+  .prose-panduan {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--foreground);
+  }
+
+  .prose-panduan h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+  }
+
+  .prose-panduan h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+  }
+
+  .prose-panduan p {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-panduan ul,
+  .prose-panduan ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-panduan li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-panduan a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose-panduan a:hover {
+    color: var(--primary-dark);
+  }
+
+  .prose-panduan strong {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .prose-panduan table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .prose-panduan th {
+    background-color: var(--muted);
+    font-weight: 600;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+  }
+
+  .prose-panduan td {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+  }
+
+  .prose-panduan .bg-muted {
+    background-color: var(--muted);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+</style>

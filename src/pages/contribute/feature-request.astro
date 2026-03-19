@@ -25,15 +25,15 @@ import { Button } from '../../components/ui/button';
     </div>
 
     <!-- Form -->
-    <form 
-      name="feature-request" 
-      method="POST" 
+    <form
+      name="feature-request"
+      method="POST"
       action="/contribute/success"
-      data-netlify="true" 
+      data-netlify="true"
       netlify-honeypot="bot-field"
-      class="bg-white border rounded-lg p-6 space-y-6"
+      class="bg-surface border rounded-lg p-6 space-y-6"
     >
-      
+
       <!-- Hidden fields for Netlify -->
       <input type="hidden" name="form-name" value="feature-request" />
       <p class="hidden">
@@ -41,59 +41,59 @@ import { Button } from '../../components/ui/button';
       </p>
 
       <div>
-        <label for="featureTitle" class="block text-sm font-medium text-gray-700 mb-1">
+        <label for="featureTitle" class="block text-sm font-medium text-foreground mb-1">
           Feature Title *
         </label>
-        <input 
-          type="text" 
-          id="featureTitle" 
-          name="featureTitle" 
-          required 
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+        <input
+          type="text"
+          id="featureTitle"
+          name="featureTitle"
+          required
+          class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Brief one-line description"
         />
-        <p class="text-xs text-gray-500 mt-1">e.g., "Add filtering by language" or "Mobile app version"</p>
+        <p class="text-xs text-muted-foreground mt-1">e.g., "Add filtering by language" or "Mobile app version"</p>
       </div>
 
       <div>
-        <label for="featureDescription" class="block text-sm font-medium text-gray-700 mb-1">
+        <label for="featureDescription" class="block text-sm font-medium text-foreground mb-1">
           Detailed Description *
         </label>
-        <textarea 
-          id="featureDescription" 
-          name="featureDescription" 
-          required 
+        <textarea
+          id="featureDescription"
+          name="featureDescription"
+          required
           rows="8"
           minlength="50"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+          class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Please describe:&#10;&#10;1. What feature would you like?&#10;2. Why would it be useful?&#10;3. How would it work?&#10;&#10;Be as detailed as possible to help us understand your idea."
         ></textarea>
-        <p class="text-xs text-gray-500 mt-1">Minimum 50 characters. The more detail, the better!</p>
+        <p class="text-xs text-muted-foreground mt-1">Minimum 50 characters. The more detail, the better!</p>
       </div>
 
       <div>
-        <label for="submitterEmail" class="block text-sm font-medium text-gray-700 mb-1">
+        <label for="submitterEmail" class="block text-sm font-medium text-foreground mb-1">
           Your Email (optional)
         </label>
-        <input 
-          type="email" 
-          id="submitterEmail" 
-          name="submitterEmail" 
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+        <input
+          type="email"
+          id="submitterEmail"
+          name="submitterEmail"
+          class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="your@email.com"
         />
-        <p class="text-xs text-gray-500 mt-1">In case we need clarification or want to update you on progress</p>
+        <p class="text-xs text-muted-foreground mt-1">In case we need clarification or want to update you on progress</p>
       </div>
 
       <!-- Submit Button -->
       <div class="pt-4">
-        <Button 
-          type="submit" 
-          className="w-full bg-malaysia-teal-600 hover:bg-malaysia-teal-700 text-white py-3 text-lg"
+        <Button
+          type="submit"
+          className="w-full bg-primary hover:bg-primary-dark text-white py-3 text-lg"
         >
           Submit Feature Request
         </Button>
-        <p class="text-xs text-gray-500 text-center mt-3">
+        <p class="text-xs text-muted-foreground text-center mt-3">
           Thank you for helping us improve EduLaluan!
         </p>
       </div>
@@ -101,9 +101,9 @@ import { Button } from '../../components/ui/button';
     </form>
 
     <!-- What happens next -->
-    <div class="mt-8 p-4 bg-white rounded-lg">
-      <h3 class="font-display font-semibold text-[#1e2926] mb-2">What happens next?</h3>
-      <p class="text-sm text-[#64746c]">
+    <div class="mt-8 p-4 bg-surface-elevated rounded-lg">
+      <h3 class="font-display font-semibold text-foreground mb-2">What happens next?</h3>
+      <p class="text-sm text-muted-foreground">
         Your feature request will be reviewed by our team. We'll consider factors like:
         feasibility, impact on users, alignment with our mission, and development resources.
         If we need more information, we'll reach out via email.

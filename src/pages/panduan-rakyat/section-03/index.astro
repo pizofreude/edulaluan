@@ -1,0 +1,247 @@
+---
+// Section 03: Tax and Finance - Hub Page
+
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const sectionNumber = '03';
+const sectionTitle = 'Tax and Finance';
+const sectionDescription = 'LHDN, tax reliefs, personal finance, and zakat';
+const sectionIcon = '💰';
+const colorRgb = '5, 150, 105';
+
+const articles = [
+  {
+    slug: '3.1-lhdn-efiling',
+    title: 'LHDN and e-Filing',
+    description: 'How to register, file taxes, and manage your tax account',
+  },
+  {
+    slug: '3.2-understanding-pcb',
+    title: 'Understanding PCB (Monthly Tax Deduction)',
+    description: 'How monthly tax deductions work and when to pay',
+  },
+  {
+    slug: '3.3-tax-reliefs',
+    title: 'Tax Reliefs and Deductions',
+    description: 'Complete guide to claiming tax reliefs in Malaysia',
+  },
+  {
+    slug: '3.4-business-tax',
+    title: 'Business Tax Basics',
+    description: 'Tax obligations for sole proprietors and companies',
+  },
+  {
+    slug: '3.5-bnm-financial-regulation',
+    title: 'Bank Negara Malaysia and Financial Regulation',
+    description: 'Understanding financial regulations and consumer protection',
+  },
+  {
+    slug: '3.6-zakat',
+    title: 'Zakat: Obligations and How to Pay',
+    description: 'Islamic tax calculations and payment channels',
+  },
+  {
+    slug: '3.7-creators',
+    title: 'Recommended Creators and Channels on Tax and Finance',
+    description: 'Trusted sources for financial literacy and tax advice',
+  },
+];
+
+const formattedSectionNum = parseInt(sectionNumber).toString();
+---
+
+<Layout title={`${sectionTitle} | People's Guide | EduLaluan`}>
+  <Header />
+
+  <main class="min-h-screen bg-background">
+    <!-- Hero Section -->
+    <section 
+      class="relative overflow-hidden py-section-lg"
+      style={{
+        '--section-color': `rgb(${colorRgb})`,
+        'background': `linear-gradient(135deg, rgb(${colorRgb})/0.1 0%, var(--background) 50%, var(--accent)/0.05 100%)`
+      }}
+    >
+      <!-- Decorative batik pattern -->
+      <div class="absolute inset-0 opacity-[0.03]" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="sectionDiamond" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M20 0 L40 20 L20 40 L0 20 Z" fill="currentColor" stroke="none" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#sectionDiamond)" class="text-primary" />
+        </svg>
+      </div>
+
+      <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <!-- Breadcrumb -->
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: "People's Guide", href: '/panduan-rakyat' },
+            { label: sectionTitle }
+          ]} />
+
+          <!-- Back Button -->
+          <a
+            href="/panduan-rakyat"
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to People's Guide
+          </a>
+
+          <!-- Section Header -->
+          <div class="flex items-start gap-4 mb-6">
+            <div 
+              class="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl text-4xl"
+              style={{ 
+                'backgroundColor': `rgb(${colorRgb})`,
+                'color': 'white'
+              }}
+            >
+              {sectionIcon}
+            </div>
+            <div>
+              <p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">
+                Section {formattedSectionNum}
+              </p>
+              <h1 class="font-display text-4xl sm:text-5xl font-bold text-foreground">
+                {sectionTitle}
+              </h1>
+            </div>
+          </div>
+
+          <p class="text-lg text-muted-foreground max-w-3xl">
+            {sectionDescription}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <h2 class="font-display text-2xl font-bold text-foreground">
+            Topics in This Section
+          </h2>
+          <p class="text-muted-foreground mt-2">
+            {articles.length} {articles.length === 1 ? 'article' : 'articles'} available
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          {articles.map((article) => (
+            <a
+              href={`/panduan-rakyat/section-${sectionNumber}/${article.slug}`}
+              class="group relative overflow-hidden rounded-2xl border-2 bg-surface-elevated transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              style={{
+                '--section-color': `rgb(${colorRgb})`,
+                'border-color': `rgb(${colorRgb})`
+              }}
+            >
+              <!-- Batik accent corner -->
+              <div 
+                class="absolute top-0 right-0 h-16 w-16 opacity-30 transition-opacity group-hover:opacity-50"
+                style={{
+                  'background': `radial-gradient(circle at top right, rgb(${colorRgb}) 0%, transparent 70%)`
+                }}
+              />
+
+              <div class="p-6">
+                <h3 
+                  class="mb-2 text-xl font-bold transition-colors group-hover:text-primary"
+                  style={{ 'color': `rgb(${colorRgb})` }}
+                >
+                  {article.title}
+                </h3>
+                <p class="text-sm text-muted-foreground mb-4">
+                  {article.description}
+                </p>
+                <div class="flex items-center justify-between">
+                  <span 
+                    class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium"
+                    style={{
+                      'backgroundColor': `rgb(${colorRgb})`,
+                      'color': 'white'
+                    }}
+                  >
+                    Read Article
+                  </span>
+                  <span 
+                    class="text-sm font-medium transition-transform group-hover:translate-x-1"
+                    style={{ 'color': `rgb(${colorRgb})` }}
+                  >
+                    Learn More →
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bottom accent bar -->
+              <div 
+                class="h-1 w-full"
+                style={{ 'backgroundColor': `rgb(${colorRgb})` }}
+              />
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Reference Box -->
+    <section class="py-section-md bg-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div 
+            class="rounded-2xl border-2 p-8 bg-surface-elevated"
+            style={{
+              '--section-color': `rgb(${colorRgb})`,
+              'border-color': `rgb(${colorRgb})`
+            }}
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-2xl">
+                💡
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-foreground mb-2">
+                  Quick Reference
+                </h3>
+                <p class="text-muted-foreground">
+                  Important tax dates: <strong>e-Filing deadline (April 30)</strong> | <strong>LHDN Hotline: 03-8911 1000</strong> | <strong>Zakat calculation:</strong> 2.5% of savings above nisab.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Section padding utilities */
+  :root {
+    --section-padding-lg: clamp(3rem, 5vw + 1rem, 5rem);
+    --section-padding-md: clamp(2rem, 3vw + 1rem, 3rem);
+  }
+
+  .py-section-lg {
+    padding-top: var(--section-padding-lg);
+    padding-bottom: var(--section-padding-lg);
+  }
+
+  .py-section-md {
+    padding-top: var(--section-padding-md);
+    padding-bottom: var(--section-padding-md);
+  }
+</style>

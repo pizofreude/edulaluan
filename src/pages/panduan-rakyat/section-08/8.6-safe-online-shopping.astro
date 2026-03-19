@@ -1,0 +1,187 @@
+---
+// Article 8.6: Safe Online Shopping
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const articleData = {
+  sectionNumber: '08',
+  sectionTitle: 'Digital and Online Safety',
+  sectionIcon: '🔒',
+  articleTitle: 'Safe Online Shopping',
+  articleDescription: 'Shopping securely online',
+  colorRgb: '8, 145, 178',
+  lastUpdated: 'March 2026',
+};
+
+const simpleContent = `
+  <h2 id="why-safe-shopping">Why safe online shopping matters</h2>
+  <p>Online shopping is convenient but has risks. Follow safety tips to protect yourself.</p>
+  
+  <h2 id="safe-shopping-tips">Safe shopping tips:</h2>
+  <ul>
+    <li>✅ Shop from reputable sites</li>
+    <li>✅ Check for HTTPS</li>
+    <li>✅ Use credit cards (not debit)</li>
+    <li>✅ Don't save card details</li>
+    <li>✅ Keep order confirmations</li>
+  </ul>
+
+  <h2 id="red-flags">Red flags:</h2>
+  <ul>
+    <li>❌ Prices too good to be true</li>
+    <li>❌ No contact information</li>
+    <li>❌ Only bank transfer payment</li>
+    <li>❌ No customer reviews</li>
+  </ul>
+
+  <h2 id="before-buying">Before buying:</h2>
+  <ul>
+    <li>Read reviews</li>
+    <li>Check return policy</li>
+    <li>Verify seller reputation</li>
+    <li>Compare prices</li>
+  </ul>
+`;
+
+const detailedContent = `
+  <h2 id="overview">Overview</h2>
+  <p>Online shopping is convenient but requires caution. Smart practices protect your money and personal information.</p>
+
+  <h2 id="verify-seller">Verify the Seller</h2>
+  <h3>Check:</h3>
+  <ul>
+    <li>Website URL (look for typos)</li>
+    <li>Contact information (address, phone)</li>
+    <li>Customer reviews (multiple sources)</li>
+    <li>Social media presence</li>
+    <li>Business registration (SSM for Malaysia)</li>
+  </ul>
+
+  <h2 id="secure-payment">Secure Payment Methods</h2>
+  <h3>Safest Options:</h3>
+  <ul>
+    <li>Credit cards (fraud protection)</li>
+    <li>PayPal/e-wallets (buyer protection)</li>
+    <li>Cash on delivery</li>
+  </ul>
+
+  <h3>Avoid:</h3>
+  <ul>
+    <li>Direct bank transfer to individuals</li>
+    <li>Wire transfers</li>
+    <li>Cryptocurrency (no recourse)</li>
+  </ul>
+
+  <h2 id="website-security">Website Security Signs</h2>
+  <table class="w-full border-collapse border border-border my-4">
+    <thead><tr class="bg-muted"><th class="border border-border p-3 text-left">Sign</th><th class="border border-border p-3 text-left">What to Look For</th></tr></thead>
+    <tbody>
+      <tr><td class="border border-border p-3">HTTPS</td><td class="border border-border p-3">Padlock icon in URL bar</td></tr>
+      <tr><td class="border border-border p-3">Contact Info</td><td class="border border-border p-3">Physical address, phone number</td></tr>
+      <tr><td class="border border-border p-3">Return Policy</td><td class="border border-border p-3">Clear return/refund terms</td></tr>
+      <tr><td class="border border-border p-3">Reviews</td><td class="border border-border p-3">Multiple reviews across platforms</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="common-scams">Common Online Shopping Scams</h2>
+  <ul>
+    <li><strong>Non-delivery:</strong> Pay but never receive item</li>
+    <li><strong>Counterfeit goods:</strong> Fake branded items</li>
+    <li><strong>Phishing sites:</strong> Fake shopping sites</li>
+    <li><strong>Too-good deals:</strong> Unrealistic discounts</li>
+  </ul>
+
+  <h2 id="protection-steps">Protection Steps</h2>
+  <ol>
+    <li>Use secure network (not public Wi-Fi)</li>
+    <li>Don't save card details on sites</li>
+    <li>Monitor bank statements</li>
+    <li>Keep order confirmations</li>
+    <li>Use unique passwords for shopping sites</li>
+  </ol>
+
+  <h2 id="if-scammed">If You're Scammed</h2>
+  <ol>
+    <li>Contact seller immediately</li>
+    <li>Report to platform (if marketplace)</li>
+    <li>Contact bank to dispute charge</li>
+    <li>Report to Consumer Tribunal</li>
+    <li>File police report</li>
+  </ol>
+
+  <h2 id="important-numbers">Important Contacts</h2>
+  <ul>
+    <li><strong>TTPM:</strong> 03-8911 1299</li>
+    <li><strong>KPDN:</strong> 03-8883 4000</li>
+    <li><strong>NSRC:</strong> 15999</li>
+  </ul>
+`;
+
+const faqs = [
+  {
+    question: "Is it safe to shop from overseas sites?",
+    answer: "Can be safe if reputable (Amazon, eBay). Check seller ratings, return policies, and import duties."
+  },
+  {
+    question: "Should I use debit or credit card online?",
+    answer: "Credit cards offer better fraud protection. Debit cards directly access your bank account."
+  },
+  {
+    question: "Are marketplace sites (Shopee, Lazada) safe?",
+    answer: "Generally yes, they have buyer protection. Still verify individual seller ratings and reviews."
+  },
+  {
+    question: "What if item received is different from description?",
+    answer: "Contact seller first, then platform. Take photos as evidence. File dispute if unresolved."
+  }
+];
+
+const headings = [
+  { id: 'overview', title: 'Overview', level: 2 },
+  { id: 'verify-seller', title: 'Verify Seller', level: 2 },
+  { id: 'secure-payment', title: 'Secure Payment', level: 2 },
+  { id: 'website-security', title: 'Website Security', level: 2 },
+  { id: 'common-scams', title: 'Common Scams', level: 2 },
+  { id: 'protection-steps', title: 'Protection Steps', level: 2 },
+];
+---
+
+<Layout title={`${articleData.articleTitle} | People's Guide | EduLaluan`}>
+  <Header />
+  <main class="min-h-screen bg-background">
+    <section class="relative overflow-hidden py-section-lg border-b" style={{'--section-color': `rgb(${articleData.colorRgb})`,'border-bottom-color': `rgb(${articleData.colorRgb})`}}>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <Breadcrumb items={[{label:'Home',href:'/'},{label:"People's Guide",href:'/panduan-rakyat'},{label:`Section ${articleData.sectionNumber}`,href:`/panduan-rakyat/section-${articleData.sectionNumber}`},{label:articleData.articleTitle}]} />
+          <a href={`/panduan-rakyat/section-${articleData.sectionNumber}`} class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>Back to Section {parseInt(articleData.sectionNumber).toString()}</a>
+          <div class="flex items-start gap-4 mt-6"><div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl" style={{'backgroundColor': `rgb(${articleData.colorRgb})`,'color': 'white'}}>{articleData.sectionIcon}</div><div class="flex-1"><p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">Section {parseInt(articleData.sectionNumber).toString()}: {articleData.sectionTitle}</p><h1 class="font-display text-3xl sm:text-4xl font-bold text-foreground">{articleData.articleTitle}</h1><p class="text-lg text-muted-foreground mt-3">{articleData.articleDescription}</p></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 max-w-6xl mx-auto">
+          <div class="flex-1 min-w-0">
+            <div class="mb-8">
+              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+                <button id="tab-simple" class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm" aria-pressed="true" data-tab="simple"><span class="text-xl">🧒</span><span>Simple</span></button>
+                <button id="tab-detailed" class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground" aria-pressed="false" data-tab="detailed"><span class="text-xl">🧑</span><span>Detailed</span></button>
+              </div>
+              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
+              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
+            </div>
+            <script is:inline>document.addEventListener('DOMContentLoaded',function(){const tabs=document.querySelectorAll('[data-tab]');const contents={simple:document.getElementById('content-simple'),detailed:document.getElementById('content-detailed')};tabs.forEach(function(tab){tab.addEventListener('click',function(){const selectedTab=this.getAttribute('data-tab');tabs.forEach(function(t){if(t.getAttribute('data-tab')===selectedTab){t.classList.add('bg-surface-elevated','text-primary','shadow-sm');t.classList.remove('text-muted-foreground','hover:text-foreground');t.setAttribute('aria-pressed','true');}else{t.classList.remove('bg-surface-elevated','text-primary','shadow-sm');t.classList.add('text-muted-foreground','hover:text-foreground');t.setAttribute('aria-pressed','false');}});if(selectedTab==='simple'){contents.simple.classList.remove('hidden');contents.detailed.classList.add('hidden');}else{contents.detailed.classList.remove('hidden');contents.simple.classList.add('hidden');}});});});</script>
+            <div class="mt-12"><h2 class="font-display text-2xl font-bold text-foreground mb-6">Frequently Asked Questions</h2><div class="space-y-3">{faqs.map((faq)=>(<details class="group rounded-xl border bg-surface-elevated transition-all"><summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-foreground list-none">{faq.question}<svg class="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></summary><div class="px-5 pb-5 text-muted-foreground">{faq.answer}</div></details>))}</div></div>
+            <div class="mt-12 pt-6 border-t border-border"><p class="text-sm text-muted-foreground"><strong>Last updated:</strong> {articleData.lastUpdated}</p></div>
+          </div>
+          <aside class="sticky top-24 hidden lg:block w-64 shrink-0"><nav class="space-y-1" aria-label="Table of contents"><h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">On This Page</h3>{headings.map((heading)=>(<a href={`#${heading.id}`} class="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors" style={{paddingLeft:`${(heading.level-2)*12+12}px`}}>{heading.title}</a>))}</nav></aside>
+        </div>
+      </div>
+    </section>
+    <section class="py-section-md bg-background"><div class="container mx-auto px-4 sm:px-6 lg:px-8"><div class="mx-auto max-w-4xl"><div class="rounded-2xl border bg-surface-elevated p-6"><div class="flex items-center gap-3 text-muted-foreground"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><p class="text-sm"><strong>Disclaimer:</strong> This guide provides general information only. Always verify with official sources for the most current information.</p></div></div></div></div></section>
+  </main>
+  <Footer />
+</Layout>
+<style>:root{--section-padding-lg:clamp(3rem,5vw + 1rem,5rem);--section-padding-md:clamp(2rem,3vw + 1rem,3rem)}.py-section-lg{padding-top:var(--section-padding-lg);padding-bottom:var(--section-padding-lg)}.py-section-md{padding-top:var(--section-padding-md);padding-bottom:var(--section-padding-md)}.prose-panduan{font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--foreground)}.prose-panduan h2{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;margin-top:2.5rem;margin-bottom:1rem;color:var(--foreground)}.prose-panduan h3{font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;margin-top:2rem;margin-bottom:0.75rem;color:var(--foreground)}.prose-panduan p{margin-bottom:1.25rem}.prose-panduan ul,.prose-panduan ol{margin-bottom:1.25rem;padding-left:1.5rem}.prose-panduan li{margin-bottom:0.5rem}.prose-panduan a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}.prose-panduan a:hover{color:var(--primary-dark)}.prose-panduan strong{font-weight:600;color:var(--foreground)}.prose-panduan table{width:100%;border-collapse:collapse;margin:1.5rem 0}.prose-panduan th{background-color:var(--muted);font-weight:600;padding:0.75rem;border:1px solid var(--border)}.prose-panduan td{padding:0.75rem;border:1px solid var(--border)}.prose-panduan .bg-muted{background-color:var(--muted);padding:1rem;border-radius:0.5rem;margin:1.5rem 0}</style>

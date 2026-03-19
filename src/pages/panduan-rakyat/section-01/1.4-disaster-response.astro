@@ -1,0 +1,502 @@
+---
+// Article 1.4: Disaster Response (Floods, Landslides, Earthquakes)
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const articleData = {
+  sectionNumber: '01',
+  sectionTitle: 'Safety and Emergencies',
+  sectionIcon: '🚨',
+  articleTitle: 'Disaster Response (Floods, Landslides, Earthquakes)',
+  articleDescription: 'Emergency response, evacuation centers, and disaster preparedness',
+  colorRgb: '220, 38, 38',
+  lastUpdated: 'March 2026',
+};
+
+const simpleContent = `
+  <h2 id="what-is-disaster">What is a disaster?</h2>
+  <p>A disaster is something dangerous that happens suddenly and affects many people at once. In Malaysia, the most common disasters are floods, landslides, and sometimes earthquakes.</p>
+  
+  <h2 id="what-to-do">What should you do if a disaster happens?</h2>
+  <ul>
+    <li>Listen to your parents or guardians.</li>
+    <li>Go to a safe place away from water, mud, or damaged buildings.</li>
+    <li>Do not go near flooded roads or rivers.</li>
+    <li>Call 999 if someone is in danger.</li>
+  </ul>
+
+  <h2 id="prepare-before">How do you prepare before a disaster?</h2>
+  <ul>
+    <li>Keep a small bag ready with important things: IC, medicine, water, a torch, and extra clothes.</li>
+    <li>Know the address of your nearest relief centre (Pusat Pemindahan).</li>
+    <li>Save emergency numbers in your phone.</li>
+  </ul>
+
+  <h2 id="important-numbers">Important numbers:</h2>
+  <ul>
+    <li><strong>Emergency:</strong> 999</li>
+    <li><strong>Civil Defence:</strong> 991</li>
+    <li><strong>NADMA:</strong> 03-8870 0150</li>
+  </ul>
+
+  <h2 id="types-of-disasters">Types of disasters in Malaysia:</h2>
+  <ul>
+    <li>🌊 <strong>Floods</strong> - Most common, especially during monsoon season</li>
+    <li>🏔️ <strong>Landslides</strong> - In hilly areas during heavy rain</li>
+    <li>🌍 <strong>Earthquakes</strong> - Mostly in Sabah and Sarawak</li>
+  </ul>
+`;
+
+const detailedContent = `
+  <h2 id="overview">Overview</h2>
+  <p>Malaysia is highly vulnerable to hydro-meteorological disasters, particularly floods and landslides during the two monsoon seasons (Northeast Monsoon from November to March, Southwest Monsoon from May to September). Earthquakes affect primarily Sabah and Sarawak due to proximity to the Pacific Ring of Fire.</p>
+  <p>The National Disaster Management Agency (NADMA) under the Prime Minister's Department coordinates all national-level disaster response, working alongside state-level Majlis Keselamatan Negara (MKN) committees, JKM, JPAM, BOMBA, PDRM, and the Malaysian Armed Forces (ATM).</p>
+
+  <h2 id="types-of-disasters">Types of Disasters Covered</h2>
+  <table class="w-full border-collapse border border-border my-4">
+    <thead>
+      <tr class="bg-muted">
+        <th class="border border-border p-3 text-left">Disaster</th>
+        <th class="border border-border p-3 text-left">Highest Risk Areas</th>
+        <th class="border border-border p-3 text-left">Season</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-border p-3">Monsoon floods</td>
+        <td class="border border-border p-3">Kelantan, Terengganu, Pahang, Johor, Sabah</td>
+        <td class="border border-border p-3">Nov to March</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Flash floods</td>
+        <td class="border border-border p-3">All urban areas, KL, Penang, JB</td>
+        <td class="border border-border p-3">Year-round</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Landslides</td>
+        <td class="border border-border p-3">Cameron Highlands, Genting, Ampang, Sabah</td>
+        <td class="border border-border p-3">During heavy rain</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Earthquakes</td>
+        <td class="border border-border p-3">Sabah (Ranau fault line), Sarawak</td>
+        <td class="border border-border p-3">Year-round</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="before-disaster">Before a Disaster: Preparation</h2>
+  <h3>Emergency Go-Bag Checklist:</h3>
+  <ul>
+    <li>✅ IC/passport copies (in waterproof bag)</li>
+    <li>✅ Essential medications (7-day supply)</li>
+    <li>✅ Bottled water and non-perishable food</li>
+    <li>✅ Torch light with extra batteries</li>
+    <li>✅ First aid kit</li>
+    <li>✅ Mobile phone and power bank</li>
+    <li>✅ Cash in small denominations</li>
+    <li>✅ Change of clothes</li>
+    <li>✅ Important documents (land title, insurance policies)</li>
+  </ul>
+
+  <h2 id="during-disaster">During a Disaster</h2>
+  <h3>Flood Safety:</h3>
+  <ul>
+    <li>Move to higher ground immediately</li>
+    <li>Do NOT walk or drive through floodwater (6 inches can knock you down)</li>
+    <li>Turn off electricity and gas if time permits</li>
+    <li>Follow evacuation orders from authorities</li>
+  </ul>
+
+  <h3>Landslide Safety:</h3>
+  <ul>
+    <li>Move away from the path of the landslide</li>
+    <li>If escape is not possible, curl into a tight ball and protect your head</li>
+    <li>Watch for signs: cracking sounds, tilting trees, new cracks in ground</li>
+  </ul>
+
+  <h3>Earthquake Safety:</h3>
+  <ul>
+    <li><strong>Drop, Cover, and Hold On</strong></li>
+    <li>Stay away from windows, mirrors, and heavy furniture</li>
+    <li>If outdoors, move away from buildings and power lines</li>
+    <li>Do NOT use elevators</li>
+  </ul>
+
+  <h2 id="after-disaster">After a Disaster</h2>
+  <ul>
+    <li>Wait for official "all clear" before returning home</li>
+    <li>Check for injuries and provide first aid</li>
+    <li>Document damage with photos for insurance claims</li>
+    <li>Apply for Bantuan Bencana through JKM if eligible</li>
+    <li>Boil water before drinking until authorities confirm safety</li>
+  </ul>
+
+  <h2 id="relief-centers">Relief Centers (Pusat Pemindahan)</h2>
+  <p>During major disasters, the government opens temporary relief centers in schools, community halls, and mosques. These provide:</p>
+  <ul>
+    <li>Temporary shelter</li>
+    <li>Food and water</li>
+    <li>Basic medical care</li>
+    <li>Clothing and blankets</li>
+  </ul>
+  <p>Check with your local district office (Pejabat Daerah) for the nearest relief center location.</p>
+
+  <h2 id="applying-for-aid">Applying for Disaster Aid (Bantuan Bencana)</h2>
+  <ol>
+    <li>Visit the nearest JKM office or relief center</li>
+    <li>Bring IC, proof of residence, and damage photos</li>
+    <li>Fill out the Bantuan Bencana application form</li>
+    <li>JKM will assess the damage and verify eligibility</li>
+    <li>Approved aid is disbursed within 14-30 days</li>
+  </ol>
+
+  <h2 id="important-numbers">Important Numbers</h2>
+  <ul>
+    <li><strong>999</strong> - General emergency</li>
+    <li><strong>991</strong> - Civil Defence (JPAM)</li>
+    <li><strong>NADMA:</strong> 03-8870 0150</li>
+    <li><strong>JKM Helpline:</strong> 1-800-88-6600</li>
+    <li><strong>MySejahtera App</strong> - Real-time disaster alerts</li>
+  </ul>
+`;
+
+const faqs = [
+  {
+    question: "How do I know if my area is flood-prone?",
+    answer: "Check with your local district office (Pejabat Daerah) or visit the JPS (Jabatan Pengairan dan Saliran) website for flood risk maps. Areas near rivers, low-lying areas, and places with poor drainage are typically at higher risk."
+  },
+  {
+    question: "What should I do if I'm driving and encounter floodwater?",
+    answer: "Turn around immediately and find an alternate route. Never drive through floodwater - 30cm (1 foot) of water can float most vehicles, and 60cm (2 feet) can sweep away SUVs. If your car stalls, abandon it and move to higher ground."
+  },
+  {
+    question: "Is disaster relief aid automatic or do I need to apply?",
+    answer: "You need to apply. Visit the nearest JKM office or relief center with your IC, proof of residence, and photos of damage. The aid amount varies based on the severity of damage and family size."
+  },
+  {
+    question: "How can I volunteer to help during disasters?",
+    answer: "Contact organizations like Malaysian Red Crescent, St. John Ambulance, or Mercy Malaysia. They often recruit volunteers for disaster relief operations. You can also coordinate through your local district office."
+  }
+];
+
+const headings = [
+  { id: 'overview', title: 'Overview', level: 2 },
+  { id: 'types-of-disasters', title: 'Types of Disasters', level: 2 },
+  { id: 'before-disaster', title: 'Before a Disaster: Preparation', level: 2 },
+  { id: 'during-disaster', title: 'During a Disaster', level: 2 },
+  { id: 'after-disaster', title: 'After a Disaster', level: 2 },
+  { id: 'relief-centers', title: 'Relief Centers', level: 2 },
+  { id: 'applying-for-aid', title: 'Applying for Disaster Aid', level: 2 },
+];
+---
+
+<Layout title={`${articleData.articleTitle} | People's Guide | EduLaluan`}>
+  <Header />
+
+  <main class="min-h-screen bg-background">
+    <!-- Article Header -->
+    <section 
+      class="relative overflow-hidden py-section-lg border-b"
+      style={{
+        '--section-color': `rgb(${articleData.colorRgb})`,
+        'border-bottom-color': `rgb(${articleData.colorRgb})`
+      }}
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <!-- Breadcrumb -->
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: "People's Guide", href: '/panduan-rakyat' },
+            { label: `Section ${articleData.sectionNumber}`, href: `/panduan-rakyat/section-${articleData.sectionNumber}` },
+            { label: articleData.articleTitle }
+          ]} />
+
+          <!-- Back Button -->
+          <a
+            href={`/panduan-rakyat/section-${articleData.sectionNumber}`}
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Section {parseInt(articleData.sectionNumber).toString()}
+          </a>
+
+          <!-- Article Title -->
+          <div class="flex items-start gap-4 mt-6">
+            <div 
+              class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl"
+              style={{ 
+                'backgroundColor': `rgb(${articleData.colorRgb})`,
+                'color': 'white'
+              }}
+            >
+              {articleData.sectionIcon}
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">
+                Section {parseInt(articleData.sectionNumber).toString()}: {articleData.sectionTitle}
+              </p>
+              <h1 class="font-display text-3xl sm:text-4xl font-bold text-foreground">
+                {articleData.articleTitle}
+              </h1>
+              <p class="text-lg text-muted-foreground mt-3">
+                {articleData.articleDescription}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 max-w-6xl mx-auto">
+          <!-- Main Content -->
+          <div class="flex-1 min-w-0">
+            <!-- Audience Tabs (Simple/Detailed) -->
+            <div class="mb-8">
+              <!-- Tab Buttons -->
+              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+                <button
+                  id="tab-simple"
+                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm"
+                  aria-pressed="true"
+                  data-tab="simple"
+                >
+                  <span class="text-xl">🧒</span>
+                  <span>Simple</span>
+                </button>
+                <button
+                  id="tab-detailed"
+                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground"
+                  aria-pressed="false"
+                  data-tab="detailed"
+                >
+                  <span class="text-xl">🧑</span>
+                  <span>Detailed</span>
+                </button>
+              </div>
+
+              <!-- Tab Content -->
+              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
+              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
+            </div>
+
+            <script is:inline>
+              document.addEventListener('DOMContentLoaded', function() {
+                const tabs = document.querySelectorAll('[data-tab]');
+                const contents = {
+                  simple: document.getElementById('content-simple'),
+                  detailed: document.getElementById('content-detailed')
+                };
+
+                tabs.forEach(function(tab) {
+                  tab.addEventListener('click', function() {
+                    const selectedTab = this.getAttribute('data-tab');
+                    
+                    tabs.forEach(function(t) {
+                      if (t.getAttribute('data-tab') === selectedTab) {
+                        t.classList.add('bg-surface-elevated', 'text-primary', 'shadow-sm');
+                        t.classList.remove('text-muted-foreground', 'hover:text-foreground');
+                        t.setAttribute('aria-pressed', 'true');
+                      } else {
+                        t.classList.remove('bg-surface-elevated', 'text-primary', 'shadow-sm');
+                        t.classList.add('text-muted-foreground', 'hover:text-foreground');
+                        t.setAttribute('aria-pressed', 'false');
+                      }
+                    });
+
+                    if (selectedTab === 'simple') {
+                      contents.simple.classList.remove('hidden');
+                      contents.detailed.classList.add('hidden');
+                    } else {
+                      contents.detailed.classList.remove('hidden');
+                      contents.simple.classList.add('hidden');
+                    }
+                  });
+                });
+              });
+            </script>
+
+            <!-- FAQ Section -->
+            <div class="mt-12">
+              <h2 class="font-display text-2xl font-bold text-foreground mb-6">
+                Frequently Asked Questions
+              </h2>
+              <div class="space-y-3">
+                {faqs.map((faq) => (
+                  <details
+                    class="group rounded-xl border bg-surface-elevated transition-all"
+                  >
+                    <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-foreground list-none">
+                      {faq.question}
+                      <svg
+                        class="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </summary>
+                    <div class="px-5 pb-5 text-muted-foreground">
+                      {faq.answer}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+
+            <!-- Last Updated -->
+            <div class="mt-12 pt-6 border-t border-border">
+              <p class="text-sm text-muted-foreground">
+                <strong>Last updated:</strong> {articleData.lastUpdated}
+              </p>
+            </div>
+          </div>
+
+          <!-- Table of Contents (Sidebar) -->
+          <aside class="sticky top-24 hidden lg:block w-64 shrink-0">
+            <nav class="space-y-1" aria-label="Table of contents">
+              <h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                On This Page
+              </h3>
+              {headings.map((heading) => (
+                <a
+                  href={`#${heading.id}`}
+                  class="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  style={{ paddingLeft: `${(heading.level - 2) * 12 + 12}px` }}
+                >
+                  {heading.title}
+                </a>
+              ))}
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <section class="py-section-md bg-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="rounded-2xl border bg-surface-elevated p-6">
+            <div class="flex items-center gap-3 text-muted-foreground">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-sm">
+                <strong>Disclaimer:</strong> This guide provides general information only. Always verify with official sources for the most current information.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Section padding utilities */
+  :root {
+    --section-padding-lg: clamp(3rem, 5vw + 1rem, 5rem);
+    --section-padding-md: clamp(2rem, 3vw + 1rem, 3rem);
+  }
+
+  .py-section-lg {
+    padding-top: var(--section-padding-lg);
+    padding-bottom: var(--section-padding-lg);
+  }
+
+  .py-section-md {
+    padding-top: var(--section-padding-md);
+    padding-bottom: var(--section-padding-md);
+  }
+
+  /* Article Typography */
+  .prose-panduan {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--foreground);
+  }
+
+  .prose-panduan h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+  }
+
+  .prose-panduan h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+  }
+
+  .prose-panduan p {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-panduan ul,
+  .prose-panduan ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-panduan li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-panduan a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose-panduan a:hover {
+    color: var(--primary-dark);
+  }
+
+  .prose-panduan strong {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .prose-panduan table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .prose-panduan th {
+    background-color: var(--muted);
+    font-weight: 600;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+  }
+
+  .prose-panduan td {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+  }
+
+  .prose-panduan .bg-muted {
+    background-color: var(--muted);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+</style>

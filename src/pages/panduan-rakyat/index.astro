@@ -1,0 +1,294 @@
+---
+// Panduan Rakyat Landing Page
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionCard from '../../components/panduan-rakyat/SectionCard';
+
+// Section data with Malaysian cultural context
+const sections = [
+  {
+    slug: 'section-01',
+    title: 'Safety and Emergencies',
+    description: 'Emergency services, disaster response, and keeping yourself safe',
+    page_count: 7,
+    colorRgb: '220, 38, 38',
+    icon: '🚨',
+  },
+  {
+    slug: 'section-02',
+    title: 'Work and Employment',
+    description: 'Labour rights, EPF, SOCSO, and navigating your career',
+    page_count: 10,
+    colorRgb: '37, 99, 235',
+    icon: '💼',
+  },
+  {
+    slug: 'section-03',
+    title: 'Tax and Finance',
+    description: 'LHDN, tax reliefs, personal finance, and zakat',
+    page_count: 9,
+    colorRgb: '5, 150, 105',
+    icon: '💰',
+  },
+  {
+    slug: 'section-04',
+    title: 'Health and Wellbeing',
+    description: 'Healthcare system, mental health, and community resources',
+    page_count: 8,
+    colorRgb: '245, 158, 11',
+    icon: '🏥',
+  },
+  {
+    slug: 'section-05',
+    title: 'Government Services',
+    description: 'MyKad, passports, MyGOV, and civil service access',
+    page_count: 7,
+    colorRgb: '124, 58, 237',
+    icon: '🏛️',
+  },
+  {
+    slug: 'section-06',
+    title: 'Starting a Business',
+    description: 'SSM registration, licenses, grants, and funding',
+    page_count: 7,
+    colorRgb: '234, 88, 12',
+    icon: '🚀',
+  },
+  {
+    slug: 'section-07',
+    title: 'Rights and Consumer Protection',
+    description: 'Consumer rights, tenancy, Tribunal Tuntutan Pengguna',
+    page_count: 7,
+    colorRgb: '219, 39, 119',
+    icon: '🛡️',
+  },
+  {
+    slug: 'section-08',
+    title: 'Digital and Online Safety',
+    description: 'Scam prevention, data privacy, and ethical tech',
+    page_count: 13,
+    colorRgb: '8, 145, 178',
+    icon: '🔒',
+  },
+  {
+    slug: 'section-09',
+    title: 'Tech Services in Malaysia',
+    description: 'Telcos, broadband, e-wallets, and digital platforms',
+    page_count: 11,
+    colorRgb: '79, 70, 229',
+    icon: '📱',
+  },
+  {
+    slug: 'section-10',
+    title: 'KidZone',
+    description: 'Emergency numbers, online safety, and money basics for kids',
+    page_count: 7,
+    colorRgb: '236, 72, 153',
+    icon: '🧒',
+  },
+];
+
+// Calculate total pages
+const totalPages = sections.reduce((sum, section) => sum + section.page_count, 0);
+---
+
+<Layout title="People's Guide | EduLaluan" description="Comprehensive guide to navigating life in Malaysia - from emergency services to business grants, healthcare to digital safety.">
+  <Header />
+
+  <main class="min-h-screen bg-background">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-accent/5 py-section-lg">
+      <!-- Decorative batik pattern -->
+      <div class="absolute inset-0 opacity-[0.03]" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="heroDiamond" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M20 0 L40 20 L20 40 L0 20 Z" fill="currentColor" stroke="none" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#heroDiamond)" class="text-primary" />
+        </svg>
+      </div>
+
+      <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl text-center">
+          <!-- Eyebrow -->
+          <p class="text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+            Panduan Rakyat
+          </p>
+
+          <!-- Title -->
+          <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-foreground">
+            PEOPLE'S GUIDE
+          </h1>
+
+          <!-- Icon -->
+          <div class="mb-6 flex justify-center">
+            <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10 text-5xl">
+              🇲🇾
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-lg text-muted-foreground sm:text-xl max-w-3xl mx-auto">
+            Your comprehensive guide to navigating life in Malaysia. From emergency services to business grants, 
+            healthcare to digital safety — everything you need to know, explained simply.
+          </p>
+
+          <!-- Stats -->
+          <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 max-w-3xl mx-auto">
+            <div class="rounded-xl bg-surface-elevated p-4 border border-border">
+              <div class="text-3xl font-bold text-primary">{sections.length}</div>
+              <div class="mt-1 text-sm text-muted-foreground">Sections</div>
+            </div>
+            <div class="rounded-xl bg-surface-elevated p-4 border border-border">
+              <div class="text-3xl font-bold text-primary">{totalPages}</div>
+              <div class="mt-1 text-sm text-muted-foreground">Pages</div>
+            </div>
+            <div class="rounded-xl bg-surface-elevated p-4 border border-border">
+              <div class="text-3xl font-bold text-primary">100%</div>
+              <div class="mt-1 text-sm text-muted-foreground">Free Access</div>
+            </div>
+            <div class="rounded-xl bg-surface-elevated p-4 border border-border">
+              <div class="text-3xl font-bold text-primary">24/7</div>
+              <div class="mt-1 text-sm text-muted-foreground">Available</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Start Guide -->
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="rounded-2xl border-2 border-primary bg-surface-elevated p-6 sm:p-8">
+            <h2 class="mb-6 font-display text-2xl font-bold text-foreground text-center">
+              How to Use This Guide
+            </h2>
+            <div class="grid gap-6 sm:grid-cols-3">
+              <div class="flex flex-col items-center text-center">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white font-bold text-lg mb-3">
+                  1
+                </div>
+                <h3 class="font-semibold text-foreground mb-2">Browse by Section</h3>
+                <p class="text-sm text-muted-foreground">Explore 10 comprehensive sections covering all aspects of Malaysian life</p>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white font-bold text-lg mb-3">
+                  2
+                </div>
+                <h3 class="font-semibold text-foreground mb-2">Choose Your View</h3>
+                <p class="text-sm text-muted-foreground">Switch between Simple (🧒) and Detailed (🧑) explanations</p>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white font-bold text-lg mb-3">
+                  3
+                </div>
+                <h3 class="font-semibold text-foreground mb-2">Get Step-by-Step Help</h3>
+                <p class="text-sm text-muted-foreground">Use interactive wizards for complex processes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sections Grid -->
+    <section class="py-section-lg bg-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 text-center">
+          <h2 class="font-display text-3xl font-bold text-foreground sm:text-4xl">
+            Explore All Sections
+          </h2>
+          <p class="mt-3 text-lg text-muted-foreground">
+            Everything you need to navigate Malaysian systems and services
+          </p>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {sections.map((section) => (
+            <SectionCard
+              slug={section.slug}
+              title={section.title}
+              description={section.description}
+              page_count={section.page_count}
+              colorRgb={section.colorRgb}
+              icon={section.icon}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Contribution CTA -->
+    <section class="py-section-md bg-gradient-to-br from-accent/10 via-background to-accent/5">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center rounded-2xl border-2 border-accent bg-surface-elevated p-8 sm:p-12">
+          <div class="mb-4 text-5xl">🤝</div>
+          <h2 class="font-display text-3xl font-bold text-foreground">
+            Help Your Community
+          </h2>
+          <p class="mt-4 text-lg text-muted-foreground">
+            Share your experiences and help others navigate Malaysian systems. 
+            Our community-contributed pages are moderated for quality and accuracy.
+          </p>
+          <div class="mt-8">
+            <a
+              href="/panduan-rakyat/section-04/4.7-circumcision"
+              class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3 font-semibold text-primary-foreground transition-all hover:bg-primary-dark shadow-md hover:shadow-lg"
+            >
+              View Community Pages
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Note -->
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl text-center">
+          <div class="rounded-xl bg-muted/50 p-6 border border-border">
+            <p class="text-sm text-muted-foreground">
+              <strong>Disclaimer:</strong> This guide provides general information only and does not constitute legal, 
+              financial, or professional advice. Always verify with official sources for the most current information.
+            </p>
+            <p class="mt-4 text-xs text-muted-foreground">
+              Last updated: March 2026
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Section padding utilities matching brand kit */
+  :root {
+    --section-padding-lg: clamp(3rem, 5vw + 1rem, 5rem);
+    --section-padding-md: clamp(2rem, 3vw + 1rem, 3rem);
+  }
+
+  .py-section-lg {
+    padding-top: var(--section-padding-lg);
+    padding-bottom: var(--section-padding-lg);
+  }
+
+  .py-section-md {
+    padding-top: var(--section-padding-md);
+    padding-bottom: var(--section-padding-md);
+  }
+</style>

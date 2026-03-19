@@ -1,0 +1,477 @@
+---
+// Article 1.1: Fire and Rescue (BOMBA)
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const articleData = {
+  sectionNumber: '01',
+  sectionTitle: 'Safety and Emergencies',
+  sectionIcon: '🚨',
+  articleTitle: 'Fire and Rescue (BOMBA)',
+  articleDescription: 'How to contact BOMBA, when to call, and what to expect during emergencies',
+  colorRgb: '220, 38, 38',
+  lastUpdated: 'March 2026',
+};
+
+const simpleContent = `
+  <h2 id="what-is-bomba">What is BOMBA?</h2>
+  <p>BOMBA is Malaysia's Fire and Rescue Department. They help with fires, rescues, and emergencies.</p>
+  
+  <h2 id="emergency-number">Emergency Number</h2>
+  <p><strong>Call 999</strong> or <strong>991</strong> for BOMBA emergencies.</p>
+  <ul>
+    <li>Free to call from any phone</li>
+    <li>Available 24 hours</li>
+    <li>Operators speak Malay, English, Chinese, Tamil</li>
+  </ul>
+
+  <h2 id="when-to-call">When to Call BOMBA</h2>
+  <ul>
+    <li>🔥 Fire in your building or nearby</li>
+    <li>🚗 Traffic accidents with trapped people</li>
+    <li>🏢 Building collapse</li>
+    <li>🌊 Flood rescue needed</li>
+    <li>🐍 Snake rescue (in some areas)</li>
+    <li>🏗️ Any rescue situation</li>
+  </ul>
+
+  <h2 id="what-to-say">What to Say When Calling</h2>
+  <ol>
+    <li><strong>Your name</strong></li>
+    <li><strong>Your phone number</strong></li>
+    <li><strong>Exact location</strong> (address, landmarks)</li>
+    <li><strong>What happened</strong> (fire, accident, etc.)</li>
+    <li><strong>Any injuries or trapped people</strong></li>
+  </ol>
+
+  <h2 id="while-waiting">While Waiting for BOMBA</h2>
+  <ul>
+    <li>Move to a safe place</li>
+    <li>Stay calm</li>
+    <li>Wait at a visible location</li>
+    <li>Call someone to guide the fire truck if possible</li>
+  </ul>
+`;
+
+const detailedContent = `
+  <h2 id="what-is-bomba">What is BOMBA?</h2>
+  <p>The Jabatan Bomba dan Penyelamat Malaysia (JBPM), commonly known as BOMBA, is Malaysia's national fire and rescue service. Established in 1883, BOMBA operates under the Ministry of Housing and Local Government (KPKT).</p>
+  
+  <h2 id="organizational-structure">Organizational Structure</h2>
+  <p>BOMBA has headquarters in Putrajaya and state-level offices in all 13 states plus Federal Territories. Each state has multiple stations strategically located for rapid response.</p>
+
+  <h2 id="emergency-numbers">Emergency Numbers</h2>
+  <div class="bg-muted p-4 rounded-lg my-4">
+    <p class="font-bold text-lg mb-2">📞 Emergency Contacts:</p>
+    <ul>
+      <li><strong>999</strong> - General emergency (toll-free from all phones)</li>
+      <li><strong>991</strong> - BOMBA direct line</li>
+      <li><strong>SMS 15888</strong> - For hearing/speech impaired</li>
+    </ul>
+  </div>
+
+  <h2 id="when-to-call">When to Call BOMBA</h2>
+  <h3>Emergency Situations:</h3>
+  <ul>
+    <li>🔥 <strong>Fires:</strong> Building, vehicle, forest, or any uncontrolled fire</li>
+    <li>🚗 <strong>Rescue Operations:</strong> Traffic accidents, industrial accidents</li>
+    <li>🏢 <strong>Structural Collapse:</strong> Building, bridge, or trench collapse</li>
+    <li>🌊 <strong>Flood Rescue:</strong> People trapped by floodwaters</li>
+    <li>🐍 <strong>Animal Rescue:</strong> Snakes, wild animals in residential areas (service availability varies)</li>
+    <li>⛰️ <strong>Mountain Rescue:</strong> Lost or injured hikers</li>
+    <li>🏗️ <strong>Confined Space Rescue:</strong> Wells, tanks, silos</li>
+    <li>☣️ <strong>Hazmat Incidents:</strong> Chemical spills, gas leaks</li>
+  </ul>
+
+  <h2 id="call-procedure">Call Procedure: What Information to Provide</h2>
+  <ol>
+    <li><strong>Caller Information:</strong>
+      <ul>
+        <li>Full name</li>
+        <li>Contact number (ensure phone is not on silent)</li>
+        <li>Alternate contact if available</li>
+      </ul>
+    </li>
+    <li><strong>Location Details:</strong>
+      <ul>
+        <li>Complete address with postcode</li>
+        <li>Nearest landmarks (mosque, school, shop lot)</li>
+        <li>Taman/residential area name</li>
+        <li>GPS coordinates if available (use WhatsApp location share)</li>
+      </ul>
+    </li>
+    <li><strong>Incident Details:</strong>
+      <ul>
+        <li>Type of emergency (fire, rescue, etc.)</li>
+        <li>Size/severity (e.g., "whole house on fire" vs "small kitchen fire")</li>
+        <li>Number of people involved or trapped</li>
+        <li>Any injuries or casualties</li>
+        <li>Special hazards (gas cylinders, chemicals, etc.)</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2 id="response-procedure">BOMBA Response Procedure</h2>
+  <ol>
+    <li><strong>Call Receipt:</strong> Emergency call logged and categorized</li>
+    <li><strong>Dispatch:</strong> Nearest station alerted (target: &lt; 60 seconds)</li>
+    <li><strong>Response:</strong> Fire trucks depart (target: &lt; 90 seconds from alert)</li>
+    <li><strong>Arrival:</strong> Target response time is 8-10 minutes in urban areas</li>
+    <li><strong>Assessment:</strong> Officer in charge assesses situation</li>
+    <li><strong>Operation:</strong> Rescue/firefighting begins</li>
+    <li><strong>Handover:</strong> Scene handed to police/ambulance if needed</li>
+  </ol>
+
+  <h2 id="while-waiting">What to Do While Waiting</h2>
+  <ul>
+    <li>✅ Move to a safe assembly point</li>
+    <li>✅ Ensure all family members/colleagues are accounted for</li>
+    <li>✅ Send someone to wait at the main entrance to guide fire trucks</li>
+    <li>✅ Keep your phone line open</li>
+    <li>✅ Prepare building plans if it's a commercial property</li>
+    <li>❌ Do NOT re-enter burning buildings</li>
+    <li>❌ Do NOT use elevators during fire emergencies</li>
+  </ul>
+
+  <h2 id="non-emergency-services">Non-Emergency Services</h2>
+  <p>BOMBA also provides:</p>
+  <ul>
+    <li>Fire safety inspections for businesses</li>
+    <li>Fire extinguisher training</li>
+    <li>School visits and community education</li>
+    <li>Fire permit issuance (for certain activities)</li>
+  </ul>
+  <p>Contact your nearest BOMBA station during office hours for these services.</p>
+
+  <h2 id="fire-safety-tips">Fire Prevention Tips</h2>
+  <ul>
+    <li>Install smoke detectors on every floor</li>
+    <li>Keep fire extinguishers accessible (ABC type recommended)</li>
+    <li>Don't overload electrical sockets</li>
+    <li>Never leave cooking unattended</li>
+    <li>Don't smoke in bed</li>
+    <li>Have an escape plan and practice it</li>
+  </ul>
+`;
+
+const faqs = [
+  {
+    question: "Is calling 999 free?",
+    answer: "Yes, calling 999 is completely free from all phones including mobile phones with no credit."
+  },
+  {
+    question: "Can BOMBA help with snake removal?",
+    answer: "Yes, BOMBA provides snake rescue services in most areas. However, response priority is given to life-threatening emergencies."
+  },
+  {
+    question: "What if I accidentally call 999?",
+    answer: "Stay on the line and inform the operator it was a mistake. Don't hang up immediately as they may think there's an emergency."
+  },
+  {
+    question: "Can I report a fire on social media instead of calling?",
+    answer: "No! Always call 999 first. Social media reports are not monitored 24/7 and will delay emergency response."
+  }
+];
+
+const headings = [
+  { id: 'what-is-bomba', title: 'What is BOMBA?', level: 2 },
+  { id: 'emergency-numbers', title: 'Emergency Numbers', level: 2 },
+  { id: 'when-to-call', title: 'When to Call BOMBA', level: 2 },
+  { id: 'call-procedure', title: 'Call Procedure', level: 2 },
+  { id: 'response-procedure', title: 'Response Procedure', level: 2 },
+  { id: 'while-waiting', title: 'What to Do While Waiting', level: 2 },
+  { id: 'fire-safety-tips', title: 'Fire Prevention Tips', level: 2 },
+];
+---
+
+<Layout title={`${articleData.articleTitle} | People's Guide | EduLaluan`}>
+  <Header />
+
+  <main class="min-h-screen bg-background">
+    <!-- Article Header -->
+    <section 
+      class="relative overflow-hidden py-section-lg border-b"
+      style={{
+        '--section-color': `rgb(${articleData.colorRgb})`,
+        'border-bottom-color': `rgb(${articleData.colorRgb})`
+      }}
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <!-- Breadcrumb -->
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: "People's Guide", href: '/panduan-rakyat' },
+            { label: `Section ${articleData.sectionNumber}`, href: `/panduan-rakyat/section-${articleData.sectionNumber}` },
+            { label: articleData.articleTitle }
+          ]} />
+
+          <!-- Back Button -->
+          <a
+            href={`/panduan-rakyat/section-${articleData.sectionNumber}`}
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Section {parseInt(articleData.sectionNumber).toString()}
+          </a>
+
+          <!-- Article Title -->
+          <div class="flex items-start gap-4 mt-6">
+            <div 
+              class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl"
+              style={{ 
+                'backgroundColor': `rgb(${articleData.colorRgb})`,
+                'color': 'white'
+              }}
+            >
+              {articleData.sectionIcon}
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">
+                Section {parseInt(articleData.sectionNumber).toString()}: {articleData.sectionTitle}
+              </p>
+              <h1 class="font-display text-3xl sm:text-4xl font-bold text-foreground">
+                {articleData.articleTitle}
+              </h1>
+              <p class="text-lg text-muted-foreground mt-3">
+                {articleData.articleDescription}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 max-w-6xl mx-auto">
+          <!-- Main Content -->
+          <div class="flex-1 min-w-0">
+            <!-- Audience Tabs (Simple/Detailed) -->
+            <div class="mb-8">
+              <!-- Tab Buttons -->
+              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+                <button
+                  id="tab-simple"
+                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm"
+                  aria-pressed="true"
+                  data-tab="simple"
+                >
+                  <span class="text-xl">🧒</span>
+                  <span>Simple</span>
+                </button>
+                <button
+                  id="tab-detailed"
+                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground"
+                  aria-pressed="false"
+                  data-tab="detailed"
+                >
+                  <span class="text-xl">🧑</span>
+                  <span>Detailed</span>
+                </button>
+              </div>
+
+              <!-- Tab Content -->
+              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
+              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
+            </div>
+
+            <script is:inline>
+              document.addEventListener('DOMContentLoaded', function() {
+                const tabs = document.querySelectorAll('[data-tab]');
+                const contents = {
+                  simple: document.getElementById('content-simple'),
+                  detailed: document.getElementById('content-detailed')
+                };
+
+                tabs.forEach(function(tab) {
+                  tab.addEventListener('click', function() {
+                    const selectedTab = this.getAttribute('data-tab');
+                    
+                    tabs.forEach(function(t) {
+                      if (t.getAttribute('data-tab') === selectedTab) {
+                        t.classList.add('bg-surface-elevated', 'text-primary', 'shadow-sm');
+                        t.classList.remove('text-muted-foreground', 'hover:text-foreground');
+                        t.setAttribute('aria-pressed', 'true');
+                      } else {
+                        t.classList.remove('bg-surface-elevated', 'text-primary', 'shadow-sm');
+                        t.classList.add('text-muted-foreground', 'hover:text-foreground');
+                        t.setAttribute('aria-pressed', 'false');
+                      }
+                    });
+
+                    if (selectedTab === 'simple') {
+                      contents.simple.classList.remove('hidden');
+                      contents.detailed.classList.add('hidden');
+                    } else {
+                      contents.detailed.classList.remove('hidden');
+                      contents.simple.classList.add('hidden');
+                    }
+                  });
+                });
+              });
+            </script>
+
+            <!-- FAQ Section -->
+            <div class="mt-12">
+              <h2 class="font-display text-2xl font-bold text-foreground mb-6">
+                Frequently Asked Questions
+              </h2>
+              <div class="space-y-3">
+                {faqs.map((faq) => (
+                  <details
+                    class="group rounded-xl border bg-surface-elevated transition-all"
+                  >
+                    <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-foreground list-none">
+                      {faq.question}
+                      <svg
+                        class="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </summary>
+                    <div class="px-5 pb-5 text-muted-foreground">
+                      {faq.answer}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+
+            <!-- Last Updated -->
+            <div class="mt-12 pt-6 border-t border-border">
+              <p class="text-sm text-muted-foreground">
+                <strong>Last updated:</strong> {articleData.lastUpdated}
+              </p>
+            </div>
+          </div>
+
+          <!-- Table of Contents (Sidebar) -->
+          <aside class="sticky top-24 hidden lg:block w-64 shrink-0">
+            <nav class="space-y-1" aria-label="Table of contents">
+              <h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                On This Page
+              </h3>
+              {headings.map((heading) => (
+                <a
+                  href={`#${heading.id}`}
+                  class="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  style={{ paddingLeft: `${(heading.level - 2) * 12 + 12}px` }}
+                >
+                  {heading.title}
+                </a>
+              ))}
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <section class="py-section-md bg-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="rounded-2xl border bg-surface-elevated p-6">
+            <div class="flex items-center gap-3 text-muted-foreground">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-sm">
+                <strong>Disclaimer:</strong> This guide provides general information only. Always verify with official sources for the most current information.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Section padding utilities */
+  :root {
+    --section-padding-lg: clamp(3rem, 5vw + 1rem, 5rem);
+    --section-padding-md: clamp(2rem, 3vw + 1rem, 3rem);
+  }
+
+  .py-section-lg {
+    padding-top: var(--section-padding-lg);
+    padding-bottom: var(--section-padding-lg);
+  }
+
+  .py-section-md {
+    padding-top: var(--section-padding-md);
+    padding-bottom: var(--section-padding-md);
+  }
+
+  /* Article Typography */
+  .prose-panduan {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--foreground);
+  }
+
+  .prose-panduan h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+  }
+
+  .prose-panduan h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+  }
+
+  .prose-panduan p {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-panduan ul,
+  .prose-panduan ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-panduan li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-panduan a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose-panduan a:hover {
+    color: var(--primary-dark);
+  }
+
+  .prose-panduan strong {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .prose-panduan .bg-muted {
+    background-color: var(--muted);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+</style>
