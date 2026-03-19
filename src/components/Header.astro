@@ -27,6 +27,7 @@ function isActive(path: string): boolean {
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex md:items-center md:space-x-6">
         <a href="/" class={`text-sm font-medium transition-colors nav-link ${isActive('/') ? 'nav-link-active' : ''}`}>Home</a>
+        <a href="/panduan-rakyat" class={`text-sm font-medium transition-colors nav-link ${currentPage.startsWith('/panduan-rakyat') ? 'nav-link-active' : ''}`}>People's Guide</a>
         <a href="/navigate" class={`text-sm font-medium transition-colors nav-link ${isActive('/navigate') ? 'nav-link-active' : ''}`}>Navigate</a>
         <a href="/resources" class={`text-sm font-medium transition-colors nav-link ${isActive('/resources') ? 'nav-link-active' : ''}`}>Resources</a>
         <a href="/contribute" class={`text-sm font-medium transition-colors nav-link ${isActive('/contribute') ? 'nav-link-active' : ''}`}>Contribute</a>
@@ -51,6 +52,7 @@ function isActive(path: string): boolean {
     <div id="mobile-menu" class="hidden md:hidden pb-4">
       <div class="flex flex-col space-y-2">
         <a href="/" class={`text-sm font-medium transition-colors nav-link ${isActive('/') ? 'nav-link-active' : ''}`}>Home</a>
+        <a href="/panduan-rakyat" class={`text-sm font-medium transition-colors nav-link ${currentPage.startsWith('/panduan-rakyat') ? 'nav-link-active' : ''}`}>People's Guide</a>
         <a href="/navigate" class={`text-sm font-medium transition-colors nav-link ${isActive('/navigate') ? 'nav-link-active' : ''}`}>Navigate</a>
         <a href="/resources" class={`text-sm font-medium transition-colors nav-link ${isActive('/resources') ? 'nav-link-active' : ''}`}>Resources</a>
         <a href="/contribute" class={`text-sm font-medium transition-colors nav-link ${isActive('/contribute') ? 'nav-link-active' : ''}`}>Contribute</a>

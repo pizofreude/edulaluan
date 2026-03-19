@@ -66,6 +66,51 @@
     --input: oklch(0.88 0.015 180);
     --ring: var(--primary);
     --radius: 0.75rem;
+
+    /* ============================================
+       PEOPLE'S GUIDE SECTION COLORS
+       10 sections with distinct colors (OKLCH + RGB)
+       ============================================ */
+
+    /* Section 01: Safety and Emergencies - Red */
+    --section-01: oklch(0.65 0.20 25);
+    --section-01-rgb: 220, 38, 38;
+
+    /* Section 02: Work and Employment - Blue */
+    --section-02: oklch(0.55 0.18 250);
+    --section-02-rgb: 37, 99, 235;
+
+    /* Section 03: Tax and Finance - Green */
+    --section-03: oklch(0.60 0.18 160);
+    --section-03-rgb: 5, 150, 105;
+
+    /* Section 04: Health and Wellbeing - Amber */
+    --section-04: oklch(0.70 0.18 65);
+    --section-04-rgb: 245, 158, 11;
+
+    /* Section 05: Government Services - Purple */
+    --section-05: oklch(0.55 0.20 270);
+    --section-05-rgb: 124, 58, 237;
+
+    /* Section 06: Starting a Business - Orange */
+    --section-06: oklch(0.65 0.20 40);
+    --section-06-rgb: 234, 88, 12;
+
+    /* Section 07: Rights and Consumer Protection - Pink */
+    --section-07: oklch(0.55 0.22 340);
+    --section-07-rgb: 219, 39, 119;
+
+    /* Section 08: Digital and Online Safety - Cyan */
+    --section-08: oklch(0.60 0.18 195);
+    --section-08-rgb: 8, 145, 178;
+
+    /* Section 09: Tech Services in Malaysia - Indigo */
+    --section-09: oklch(0.50 0.18 265);
+    --section-09-rgb: 79, 70, 229;
+
+    /* Section 10: KidZone - Pink-Purple */
+    --section-10: oklch(0.60 0.22 330);
+    --section-10-rgb: 236, 72, 153;
     
     /* ============================================
        TYPOGRAPHY SCALE
@@ -155,8 +200,45 @@
     --border-rgb: 77, 82, 80;
     --input: oklch(0.30 0.025 180);
     --ring: oklch(0.70 0.13 180);
+
+    /* People's Guide Section Colors - Dark Mode (brighter for contrast) */
+    --section-01: oklch(0.70 0.18 25);
+    --section-02: oklch(0.65 0.16 250);
+    --section-03: oklch(0.70 0.16 160);
+    --section-04: oklch(0.75 0.16 65);
+    --section-05: oklch(0.65 0.18 270);
+    --section-06: oklch(0.70 0.18 40);
+    --section-07: oklch(0.65 0.20 340);
+    --section-08: oklch(0.70 0.16 195);
+    --section-09: oklch(0.60 0.16 265);
+    --section-10: oklch(0.70 0.20 330);
   }
 }
+
+/* ============================================
+   UTILITY CLASSES
+   Map Tailwind classes to CSS variables
+   ============================================ */
+
+/* Background utilities */
+.bg-background { background-color: var(--background) !important; }
+.bg-surface { background-color: var(--surface) !important; }
+.bg-surface-elevated { background-color: var(--surface-elevated) !important; }
+.bg-muted { background-color: var(--muted) !important; }
+.bg-foreground { background-color: var(--foreground) !important; }
+
+/* Tailwind slate color utilities - map to theme variables */
+.bg-slate-50 { background-color: var(--background) !important; }
+.bg-slate-100 { background-color: var(--muted) !important; }
+.bg-slate-200 { background-color: var(--border) !important; }
+.bg-slate-900 { background-color: var(--foreground) !important; }
+
+/* Text utilities */
+.text-foreground { color: var(--foreground) !important; }
+.text-muted-foreground { color: var(--muted-foreground) !important; }
+
+/* Border utilities */
+.border { border-color: var(--border) !important; }
 
 /* Enable smooth theme transitions */
 @media (prefers-reduced-motion: no-preference) {

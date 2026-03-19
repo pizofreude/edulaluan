@@ -1,0 +1,222 @@
+---
+// Article 4.8: Recommended Creators on Health
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const articleData = {
+  sectionNumber: '04',
+  sectionTitle: 'Health and Wellbeing',
+  sectionIcon: '🏥',
+  articleTitle: 'Recommended Creators and Channels on Health and Wellbeing',
+  articleDescription: 'Trusted sources for health information and wellness',
+  colorRgb: '245, 158, 11',
+  lastUpdated: 'March 2026',
+};
+
+const simpleContent = `
+  <h2 id="why-follow">Why follow trusted creators?</h2>
+  <p>There is a lot of health advice online. Some is good, but some is wrong. Trusted creators share accurate information from medical professionals.</p>
+  
+  <h2 id="official-channels">Official Government Channels:</h2>
+  <ul>
+    <li>🏥 <strong>KKM</strong> - Health alerts and information</li>
+    <li>💉 <strong>JKM</strong> - Vaccination updates</li>
+    <li>🏛️ <strong>IMR</strong> - Medical research</li>
+  </ul>
+
+  <h2 id="recommended-creators">Recommended Content Creators:</h2>
+  <ul>
+    <li><strong>Doctor Rozeyana</strong> - General health tips</li>
+    <li><strong>Dr. Azlan</strong> - Medical education</li>
+    <li><strong>Malaysian Medical Association</strong> - Professional health info</li>
+  </ul>
+
+  <h2 id="what-to-learn">What can you learn?</h2>
+  <ul>
+    <li>Healthy lifestyle tips</li>
+    <li>Disease prevention</li>
+    <li>Nutrition advice</li>
+    <li>Mental health awareness</li>
+  </ul>
+
+  <h2 id="tips">Tips for learning online:</h2>
+  <ul>
+    <li>Always check if the source is a qualified medical professional</li>
+    <li>Cross-check advice with official sources</li>
+    <li>Be wary of "miracle cures"</li>
+    <li>Share only verified information</li>
+  </ul>
+`;
+
+const detailedContent = `
+  <h2 id="overview">Overview</h2>
+  <p>In the age of social media, anyone can share health advice—but not all information is accurate. This guide curates trusted sources for health and wellness information in Malaysia.</p>
+
+  <h2 id="official-government">Official Government Channels</h2>
+  <h3>🏥 Ministry of Health (KKM)</h3>
+  <ul>
+    <li><strong>Website:</strong> moh.gov.my</li>
+    <li><strong>Social Media:</strong> @KKMPutrajaya</li>
+    <li><strong>Content:</strong> Health alerts, disease outbreaks, vaccination info</li>
+    <li><strong>Why follow:</strong> Official health authority</li>
+  </ul>
+
+  <h3>💉 Institute for Medical Research (IMR)</h3>
+  <ul>
+    <li><strong>Website:</strong> imr.gov.my</li>
+    <li><strong>Content:</strong> Medical research, health studies</li>
+    <li><strong>Why follow:</strong> Research-based information</li>
+  </ul>
+
+  <h2 id="medical-associations">Medical Associations</h2>
+  <h3>Malaysian Medical Association (MMA)</h3>
+  <ul>
+    <li><strong>Website:</strong> mma.org.my</li>
+    <li><strong>Content:</strong> Professional health guidelines, doctor directory</li>
+    <li><strong>Why follow:</strong> Professional medical body</li>
+  </ul>
+
+  <h3>Academy of Medicine Malaysia</h3>
+  <ul>
+    <li><strong>Website:</strong> amm.org.my</li>
+    <li><strong>Content:</strong> Clinical practice guidelines</li>
+    <li><strong>Why follow:</strong> Specialist medical advice</li>
+  </ul>
+
+  <h2 id="independent-educators">Independent Educators (Verified)</h2>
+  <h3>Doctor Rozeyana</h3>
+  <ul>
+    <li><strong>Platform:</strong> Instagram, TikTok</li>
+    <li><strong>Content:</strong> General health tips, myth-busting</li>
+    <li><strong>Why follow:</strong> Qualified doctor, easy to understand</li>
+  </ul>
+
+  <h3>Dr. Azlan</h3>
+  <ul>
+    <li><strong>Platform:</strong> YouTube, Social Media</li>
+    <li><strong>Content:</strong> Medical education, health awareness</li>
+    <li><strong>Why follow:</strong> Medical professional, evidence-based</li>
+  </ul>
+
+  <h2 id="what-to-learn">What You Can Learn</h2>
+  <table class="w-full border-collapse border border-border my-4">
+    <thead>
+      <tr class="bg-muted">
+        <th class="border border-border p-3 text-left">Topic</th>
+        <th class="border border-border p-3 text-left">Best Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-border p-3">General Health</td>
+        <td class="border border-border p-3">KKM, qualified doctors</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Nutrition</td>
+        <td class="border border-border p-3">Certified dietitians, KKM</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Mental Health</td>
+        <td class="border border-border p-3">Licensed psychologists, psychiatrists</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Fitness</td>
+        <td class="border border-border p-3">Certified trainers, physiotherapists</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="tips-for-learning">Tips for Learning Online</h2>
+  <h3>Verify the Source:</h3>
+  <ul>
+    <li>Check if the creator has medical credentials (MD, MBBS, etc.)</li>
+    <li>Look for affiliations with recognized medical bodies</li>
+    <li>Cross-reference information with official sources</li>
+  </ul>
+
+  <h3>Red Flags to Avoid:</h3>
+  <ul>
+    <li>❌ "Miracle cures" or "secret remedies"</li>
+    <li>❌ Advice that contradicts medical consensus</li>
+    <li>❌ No verifiable credentials</li>
+    <li>❌ Selling unproven supplements or treatments</li>
+    <li>❌ Fear-mongering about vaccines or treatments</li>
+  </ul>
+
+  <h2 id="important-resources">Important Resources & Links</h2>
+  <ul>
+    <li><strong>KKM:</strong> moh.gov.my</li>
+    <li><strong>MMA:</strong> mma.org.my</li>
+    <li><strong>IMR:</strong> imr.gov.my</li>
+    <li><strong>Healthline Malaysia:</strong> healthline.com</li>
+  </ul>
+`;
+
+const faqs = [
+  {
+    question: "Can I trust health advice from social media?",
+    answer: "Be cautious. Only trust creators with verifiable medical credentials (MD, MBBS, licensed healthcare professionals) who cite official sources. Cross-check any advice with official government health websites."
+  },
+  {
+    question: "Are health influencers qualified to give medical advice?",
+    answer: "Most are not. Only follow influencers who are licensed healthcare professionals. Fitness influencers, wellness coaches, and nutritionists without proper credentials should not be your primary health information source."
+  },
+  {
+    question: "How do I verify if someone is a real doctor?",
+    answer: "Check with Malaysian Medical Council (MMC) register. Real doctors will have their credentials listed. Be wary of people claiming to be doctors without verifiable credentials."
+  },
+  {
+    question: "Is it okay to follow multiple health advice sources?",
+    answer: "Yes, but cross-reference information. Different sources may have different perspectives. Always verify with official sources like KKM for health guidelines and medical advice."
+  }
+];
+
+const headings = [
+  { id: 'overview', title: 'Overview', level: 2 },
+  { id: 'official-government', title: 'Official Government Channels', level: 2 },
+  { id: 'medical-associations', title: 'Medical Associations', level: 2 },
+  { id: 'independent-educators', title: 'Independent Educators', level: 2 },
+  { id: 'what-to-learn', title: 'What You Can Learn', level: 2 },
+  { id: 'tips-for-learning', title: 'Tips for Learning', level: 2 },
+];
+---
+
+<Layout title={`${articleData.articleTitle} | People's Guide | EduLaluan`}>
+  <Header />
+  <main class="min-h-screen bg-background">
+    <section class="relative overflow-hidden py-section-lg border-b" style={{'--section-color': `rgb(${articleData.colorRgb})`,'border-bottom-color': `rgb(${articleData.colorRgb})`}}>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <Breadcrumb items={[{label:'Home',href:'/'},{label:"People's Guide",href:'/panduan-rakyat'},{label:`Section ${articleData.sectionNumber}`,href:`/panduan-rakyat/section-${articleData.sectionNumber}`},{label:articleData.articleTitle}]} />
+          <a href={`/panduan-rakyat/section-${articleData.sectionNumber}`} class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>Back to Section {parseInt(articleData.sectionNumber).toString()}</a>
+          <div class="flex items-start gap-4 mt-6"><div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl" style={{'backgroundColor': `rgb(${articleData.colorRgb})`,'color': 'white'}}>{articleData.sectionIcon}</div><div class="flex-1"><p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">Section {parseInt(articleData.sectionNumber).toString()}: {articleData.sectionTitle}</p><h1 class="font-display text-3xl sm:text-4xl font-bold text-foreground">{articleData.articleTitle}</h1><p class="text-lg text-muted-foreground mt-3">{articleData.articleDescription}</p></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 max-w-6xl mx-auto">
+          <div class="flex-1 min-w-0">
+            <div class="mb-8">
+              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+                <button id="tab-simple" class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm" aria-pressed="true" data-tab="simple"><span class="text-xl">🧒</span><span>Simple</span></button>
+                <button id="tab-detailed" class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground" aria-pressed="false" data-tab="detailed"><span class="text-xl">🧑</span><span>Detailed</span></button>
+              </div>
+              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
+              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
+            </div>
+            <script is:inline>document.addEventListener('DOMContentLoaded',function(){const tabs=document.querySelectorAll('[data-tab]');const contents={simple:document.getElementById('content-simple'),detailed:document.getElementById('content-detailed')};tabs.forEach(function(tab){tab.addEventListener('click',function(){const selectedTab=this.getAttribute('data-tab');tabs.forEach(function(t){if(t.getAttribute('data-tab')===selectedTab){t.classList.add('bg-surface-elevated','text-primary','shadow-sm');t.classList.remove('text-muted-foreground','hover:text-foreground');t.setAttribute('aria-pressed','true');}else{t.classList.remove('bg-surface-elevated','text-primary','shadow-sm');t.classList.add('text-muted-foreground','hover:text-foreground');t.setAttribute('aria-pressed','false');}});if(selectedTab==='simple'){contents.simple.classList.remove('hidden');contents.detailed.classList.add('hidden');}else{contents.detailed.classList.remove('hidden');contents.simple.classList.add('hidden');}});});});</script>
+            <div class="mt-12"><h2 class="font-display text-2xl font-bold text-foreground mb-6">Frequently Asked Questions</h2><div class="space-y-3">{faqs.map((faq)=>(<details class="group rounded-xl border bg-surface-elevated transition-all"><summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-foreground list-none">{faq.question}<svg class="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></summary><div class="px-5 pb-5 text-muted-foreground">{faq.answer}</div></details>))}</div></div>
+            <div class="mt-12 pt-6 border-t border-border"><p class="text-sm text-muted-foreground"><strong>Last updated:</strong> {articleData.lastUpdated}</p></div>
+          </div>
+          <aside class="sticky top-24 hidden lg:block w-64 shrink-0"><nav class="space-y-1" aria-label="Table of contents"><h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">On This Page</h3>{headings.map((heading)=>(<a href={`#${heading.id}`} class="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors" style={{paddingLeft:`${(heading.level-2)*12+12}px`}}>{heading.title}</a>))}</nav></aside>
+        </div>
+      </div>
+    </section>
+    <section class="py-section-md bg-background"><div class="container mx-auto px-4 sm:px-6 lg:px-8"><div class="mx-auto max-w-4xl"><div class="rounded-2xl border bg-surface-elevated p-6"><div class="flex items-center gap-3 text-muted-foreground"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><p class="text-sm"><strong>Disclaimer:</strong> This guide provides general information only. Always verify with official sources for the most current information.</p></div></div></div></div></section>
+  </main>
+  <Footer />
+</Layout>
+<style>:root{--section-padding-lg:clamp(3rem,5vw + 1rem,5rem);--section-padding-md:clamp(2rem,3vw + 1rem,3rem)}.py-section-lg{padding-top:var(--section-padding-lg);padding-bottom:var(--section-padding-lg)}.py-section-md{padding-top:var(--section-padding-md);padding-bottom:var(--section-padding-md)}.prose-panduan{font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--foreground)}.prose-panduan h2{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;margin-top:2.5rem;margin-bottom:1rem;color:var(--foreground)}.prose-panduan h3{font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;margin-top:2rem;margin-bottom:0.75rem;color:var(--foreground)}.prose-panduan p{margin-bottom:1.25rem}.prose-panduan ul,.prose-panduan ol{margin-bottom:1.25rem;padding-left:1.5rem}.prose-panduan li{margin-bottom:0.5rem}.prose-panduan a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}.prose-panduan a:hover{color:var(--primary-dark)}.prose-panduan strong{font-weight:600;color:var(--foreground)}.prose-panduan table{width:100%;border-collapse:collapse;margin:1.5rem 0}.prose-panduan th{background-color:var(--muted);font-weight:600;padding:0.75rem;border:1px solid var(--border)}.prose-panduan td{padding:0.75rem;border:1px solid var(--border)}.prose-panduan .bg-muted{background-color:var(--muted);padding:1rem;border-radius:0.5rem;margin:1.5rem 0}</style>

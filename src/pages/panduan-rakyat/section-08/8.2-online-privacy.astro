@@ -1,0 +1,178 @@
+---
+// Article 8.2: Online Privacy
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const articleData = {
+  sectionNumber: '08',
+  sectionTitle: 'Digital and Online Safety',
+  sectionIcon: '🔒',
+  articleTitle: 'Online Privacy',
+  articleDescription: 'Managing your digital footprint',
+  colorRgb: '8, 145, 178',
+  lastUpdated: 'March 2026',
+};
+
+const simpleContent = `
+  <h2 id="what-is-online-privacy">What is online privacy?</h2>
+  <p>Online privacy means controlling what information about you is shared online and who can see it.</p>
+  
+  <h2 id="protect-privacy">How to protect privacy:</h2>
+  <ul>
+    <li>✅ Use privacy settings</li>
+    <li>✅ Don't share too much</li>
+    <li>✅ Use private browsing</li>
+    <li>✅ Clear cookies regularly</li>
+    <li>✅ Use VPN for sensitive tasks</li>
+  </ul>
+
+  <h2 id="what-not-share">What not to share:</h2>
+  <ul>
+    <li>IC number</li>
+    <li>Home address</li>
+    <li>Phone number</li>
+    <li>Bank details</li>
+    <li>Passwords</li>
+  </ul>
+
+  <h2 id="social-media">Social media privacy:</h2>
+  <ul>
+    <li>Review privacy settings</li>
+    <li>Limit who can see posts</li>
+    <li>Don't accept unknown friend requests</li>
+  </ul>
+`;
+
+const detailedContent = `
+  <h2 id="overview">Overview</h2>
+  <p>Online privacy protects your personal information from unauthorized access and misuse. Taking control of your digital footprint is essential.</p>
+
+  <h2 id="privacy-risks">Privacy Risks Online</h2>
+  <ul>
+    <li><strong>Data collection:</strong> Websites track your activity</li>
+    <li><strong>Cookies:</strong> Track browsing habits</li>
+    <li><strong>Social media:</strong> Shares information with third parties</li>
+    <li><strong>Public Wi-Fi:</strong> Can intercept your data</li>
+  </ul>
+
+  <h2 id="protection-steps">Steps to Protect Privacy</h2>
+  <h3>1. Browser Privacy:</h3>
+  <ul>
+    <li>Use private/incognito mode</li>
+    <li>Clear cookies regularly</li>
+    <li>Disable third-party cookies</li>
+    <li>Use privacy-focused browsers</li>
+  </ul>
+
+  <h3>2. Search Engine Privacy:</h3>
+  <ul>
+    <li>Use DuckDuckGo or StartPage</li>
+    <li>Google tracks searches</li>
+    <li>Clear search history</li>
+  </ul>
+
+  <h3>3. Social Media Privacy:</h3>
+  <ul>
+    <li>Set profiles to private</li>
+    <li>Limit post visibility</li>
+    <li>Review tagged photos</li>
+    <li>Don't overshare personal info</li>
+  </ul>
+
+  <h3>4. Email Privacy:</h3>
+  <ul>
+    <li>Use encrypted email services</li>
+    <li>Don't click suspicious links</li>
+    <li>Enable two-factor authentication</li>
+  </ul>
+
+  <h2 id="vpn">Using VPN</h2>
+  <ul>
+    <li>Encrypts internet connection</li>
+    <li>Hides IP address</li>
+    <li>Use on public Wi-Fi</li>
+    <li>Choose reputable VPN providers</li>
+  </ul>
+
+  <h2 id="app-permissions">App Permissions</h2>
+  <ul>
+    <li>Review app permissions</li>
+    <li>Only grant necessary access</li>
+    <li>Revoke unused permissions</li>
+    <li>Delete unused apps</li>
+  </ul>
+
+  <h2 id="important-numbers">Important Resources</h2>
+  <ul>
+    <li><strong>PDPA Department:</strong> pdpa.gov.my</li>
+    <li><strong>Cyber999:</strong> 1-800-888-999</li>
+  </ul>
+`;
+
+const faqs = [
+  {
+    question: "Is incognito mode completely private?",
+    answer: "No, incognito only prevents local history storage. Your ISP, websites, and employer can still track you."
+  },
+  {
+    question: "Should I use real name on social media?",
+    answer: "Consider using limited name or nickname. Real names make you easier to find and track across platforms."
+  },
+  {
+    question: "Are free VPNs safe?",
+    answer: "Many free VPNs sell your data. Paid VPNs from reputable companies are more trustworthy."
+  },
+  {
+    question: "How do I remove my info from data broker sites?",
+    answer: "Many sites offer opt-out. Services like DeleteMe can help remove from multiple brokers."
+  }
+];
+
+const headings = [
+  { id: 'overview', title: 'Overview', level: 2 },
+  { id: 'privacy-risks', title: 'Privacy Risks', level: 2 },
+  { id: 'protection-steps', title: 'Protection Steps', level: 2 },
+  { id: 'vpn', title: 'Using VPN', level: 2 },
+  { id: 'app-permissions', title: 'App Permissions', level: 2 },
+];
+---
+
+<Layout title={`${articleData.articleTitle} | People's Guide | EduLaluan`}>
+  <Header />
+  <main class="min-h-screen bg-background">
+    <section class="relative overflow-hidden py-section-lg border-b" style={{'--section-color': `rgb(${articleData.colorRgb})`,'border-bottom-color': `rgb(${articleData.colorRgb})`}}>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <Breadcrumb items={[{label:'Home',href:'/'},{label:"People's Guide",href:'/panduan-rakyat'},{label:`Section ${articleData.sectionNumber}`,href:`/panduan-rakyat/section-${articleData.sectionNumber}`},{label:articleData.articleTitle}]} />
+          <a href={`/panduan-rakyat/section-${articleData.sectionNumber}`} class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>Back to Section {parseInt(articleData.sectionNumber).toString()}</a>
+          <div class="flex items-start gap-4 mt-6"><div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl" style={{'backgroundColor': `rgb(${articleData.colorRgb})`,'color': 'white'}}>{articleData.sectionIcon}</div><div class="flex-1"><p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">Section {parseInt(articleData.sectionNumber).toString()}: {articleData.sectionTitle}</p><h1 class="font-display text-3xl sm:text-4xl font-bold text-foreground">{articleData.articleTitle}</h1><p class="text-lg text-muted-foreground mt-3">{articleData.articleDescription}</p></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 max-w-6xl mx-auto">
+          <div class="flex-1 min-w-0">
+            <div class="mb-8">
+              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+                <button id="tab-simple" class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm" aria-pressed="true" data-tab="simple"><span class="text-xl">🧒</span><span>Simple</span></button>
+                <button id="tab-detailed" class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground" aria-pressed="false" data-tab="detailed"><span class="text-xl">🧑</span><span>Detailed</span></button>
+              </div>
+              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
+              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
+            </div>
+            <script is:inline>document.addEventListener('DOMContentLoaded',function(){const tabs=document.querySelectorAll('[data-tab]');const contents={simple:document.getElementById('content-simple'),detailed:document.getElementById('content-detailed')};tabs.forEach(function(tab){tab.addEventListener('click',function(){const selectedTab=this.getAttribute('data-tab');tabs.forEach(function(t){if(t.getAttribute('data-tab')===selectedTab){t.classList.add('bg-surface-elevated','text-primary','shadow-sm');t.classList.remove('text-muted-foreground','hover:text-foreground');t.setAttribute('aria-pressed','true');}else{t.classList.remove('bg-surface-elevated','text-primary','shadow-sm');t.classList.add('text-muted-foreground','hover:text-foreground');t.setAttribute('aria-pressed','false');}});if(selectedTab==='simple'){contents.simple.classList.remove('hidden');contents.detailed.classList.add('hidden');}else{contents.detailed.classList.remove('hidden');contents.simple.classList.add('hidden');}});});});</script>
+            <div class="mt-12"><h2 class="font-display text-2xl font-bold text-foreground mb-6">Frequently Asked Questions</h2><div class="space-y-3">{faqs.map((faq)=>(<details class="group rounded-xl border bg-surface-elevated transition-all"><summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-foreground list-none">{faq.question}<svg class="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></summary><div class="px-5 pb-5 text-muted-foreground">{faq.answer}</div></details>))}</div></div>
+            <div class="mt-12 pt-6 border-t border-border"><p class="text-sm text-muted-foreground"><strong>Last updated:</strong> {articleData.lastUpdated}</p></div>
+          </div>
+          <aside class="sticky top-24 hidden lg:block w-64 shrink-0"><nav class="space-y-1" aria-label="Table of contents"><h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">On This Page</h3>{headings.map((heading)=>(<a href={`#${heading.id}`} class="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors" style={{paddingLeft:`${(heading.level-2)*12+12}px`}}>{heading.title}</a>))}</nav></aside>
+        </div>
+      </div>
+    </section>
+    <section class="py-section-md bg-background"><div class="container mx-auto px-4 sm:px-6 lg:px-8"><div class="mx-auto max-w-4xl"><div class="rounded-2xl border bg-surface-elevated p-6"><div class="flex items-center gap-3 text-muted-foreground"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><p class="text-sm"><strong>Disclaimer:</strong> This guide provides general information only. Always verify with official sources for the most current information.</p></div></div></div></div></section>
+  </main>
+  <Footer />
+</Layout>
+<style>:root{--section-padding-lg:clamp(3rem,5vw + 1rem,5rem);--section-padding-md:clamp(2rem,3vw + 1rem,3rem)}.py-section-lg{padding-top:var(--section-padding-lg);padding-bottom:var(--section-padding-lg)}.py-section-md{padding-top:var(--section-padding-md);padding-bottom:var(--section-padding-md)}.prose-panduan{font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--foreground)}.prose-panduan h2{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;margin-top:2.5rem;margin-bottom:1rem;color:var(--foreground)}.prose-panduan h3{font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;margin-top:2rem;margin-bottom:0.75rem;color:var(--foreground)}.prose-panduan p{margin-bottom:1.25rem}.prose-panduan ul,.prose-panduan ol{margin-bottom:1.25rem;padding-left:1.5rem}.prose-panduan li{margin-bottom:0.5rem}.prose-panduan a{color:var(--primary);text-decoration:underline;text-underline-offset:2px}.prose-panduan a:hover{color:var(--primary-dark)}.prose-panduan strong{font-weight:600;color:var(--foreground)}.prose-panduan table{width:100%;border-collapse:collapse;margin:1.5rem 0}.prose-panduan th{background-color:var(--muted);font-weight:600;padding:0.75rem;border:1px solid var(--border)}.prose-panduan td{padding:0.75rem;border:1px solid var(--border)}.prose-panduan .bg-muted{background-color:var(--muted);padding:1rem;border-radius:0.5rem;margin:1.5rem 0}</style>

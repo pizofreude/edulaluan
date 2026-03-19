@@ -1,0 +1,565 @@
+---
+// Article 1.7: Recommended Creators and Channels on Safety and Emergencies
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
+
+const articleData = {
+  sectionNumber: '01',
+  sectionTitle: 'Safety and Emergencies',
+  sectionIcon: '🚨',
+  articleTitle: 'Recommended Creators and Channels on Safety and Emergencies',
+  articleDescription: 'Trusted sources for safety information and emergency preparedness',
+  colorRgb: '220, 38, 38',
+  lastUpdated: 'March 2026',
+};
+
+const simpleContent = `
+  <h2 id="why-follow">Why follow trusted creators?</h2>
+  <p>There is a lot of information online about safety and emergencies. Some is good, but some is wrong or dangerous. Trusted creators share accurate information from official sources.</p>
+  
+  <h2 id="official-channels">Official Government Channels:</h2>
+  <ul>
+    <li>🚒 <strong>BOMBA</strong> - Fire safety and rescue tips</li>
+    <li>👮 <strong>PDRM</strong> - Crime prevention and traffic safety</li>
+    <li>🏥 <strong>KKM (Ministry of Health)</strong> - Health emergencies</li>
+    <li>📱 <strong>MCMC</strong> - Cybersecurity and scam alerts</li>
+  </ul>
+
+  <h2 id="recommended-creators">Recommended Content Creators:</h2>
+  <ul>
+    <li><strong>St. John Ambulance Malaysia</strong> - First aid tutorials</li>
+    <li><strong>Malaysian Red Crescent</strong> - Community emergency preparedness</li>
+    <li><strong>APM Malaysia</strong> - Civil defence training</li>
+  </ul>
+
+  <h2 id="what-to-learn">What can you learn?</h2>
+  <ul>
+    <li>How to do CPR</li>
+    <li>What to do during a fire</li>
+    <li>How to prepare for floods</li>
+    <li>How to spot scams</li>
+    <li>Basic first aid</li>
+  </ul>
+
+  <h2 id="tips">Tips for learning online:</h2>
+  <ul>
+    <li>Always check if the source is official or certified</li>
+    <li>Look for recent videos (safety guidelines change)</li>
+    <li>Practice with certified instructors when possible</li>
+    <li>Share only verified information</li>
+  </ul>
+`;
+
+const detailedContent = `
+  <h2 id="overview">Overview</h2>
+  <p>In the age of social media, anyone can share safety advice—but not all information is accurate or safe to follow. This guide curates trusted sources for emergency preparedness, first aid, fire safety, and scam prevention in Malaysia.</p>
+  <p><strong>Important:</strong> Online content should supplement, not replace, certified training. For critical skills like CPR and first aid, attend in-person certified courses.</p>
+
+  <h2 id="official-government">Official Government Channels</h2>
+  <h3>🚒 BOMBA (Jabatan Bomba dan Penyelamat Malaysia)</h3>
+  <ul>
+    <li><strong>Facebook:</strong> @bombaofficial</li>
+    <li><strong>Content:</strong> Fire safety tips, rescue operations, disaster preparedness</li>
+    <li><strong>Language:</strong> Malay, some English</li>
+    <li><strong>Why follow:</strong> Official source, accurate information, real-time disaster updates</li>
+  </ul>
+
+  <h3>👮 PDRM (Polis Diraja Malaysia)</h3>
+  <ul>
+    <li><strong>Facebook:</strong> @PolisDirajaMalaysia</li>
+    <li><strong>Twitter:</strong> @PDRMsia</li>
+    <li><strong>Content:</strong> Crime alerts, traffic safety, scam warnings, community policing</li>
+    <li><strong>Language:</strong> Malay, English</li>
+    <li><strong>Why follow:</strong> Official crime statistics, verified scam alerts, traffic updates</li>
+  </ul>
+
+  <h3>🏥 KKM (Ministry of Health Malaysia)</h3>
+  <ul>
+    <li><strong>Facebook:</strong> @KKMPutrajaya</li>
+    <li><strong>Website:</strong> moh.gov.my</li>
+    <li><strong>Content:</strong> Health emergencies, disease outbreaks, vaccination info</li>
+    <li><strong>Language:</strong> Malay, English</li>
+    <li><strong>Why follow:</strong> Authoritative health information, pandemic updates</li>
+  </ul>
+
+  <h3>📱 MCMC (Malaysian Communications and Multimedia Commission)</h3>
+  <ul>
+    <li><strong>Website:</strong> mcmc.gov.my</li>
+    <li><strong>Content:</strong> Cybersecurity tips, scam alerts, digital safety</li>
+    <li><strong>Language:</strong> Malay, English</li>
+    <li><strong>Why follow:</strong> Latest scam trends, cyber threat advisories</li>
+  </ul>
+
+  <h2 id="ngo-organizations">NGO & Civil Society Organizations</h2>
+  <h3>🚑 St. John Ambulance of Malaysia (SJAM)</h3>
+  <ul>
+    <li><strong>Website:</strong> sjam.org.my</li>
+    <li><strong>Facebook:</strong> @StJohnAmbulanceMalaysia</li>
+    <li><strong>Content:</strong> First aid tutorials, CPR guides, community training</li>
+    <li><strong>Training:</strong> Certified first aid and CPR courses (paid)</li>
+    <li><strong>Why follow:</strong> Internationally recognized certification, practical skills</li>
+  </ul>
+
+  <h3>🤝 Malaysian Red Crescent (MRC)</h3>
+  <ul>
+    <li><strong>Website:</strong> redcrescent.org.my</li>
+    <li><strong>Facebook:</strong> @MalaysianRedCrescent</li>
+    <li><strong>Content:</strong> Disaster preparedness, community health, volunteer opportunities</li>
+    <li><strong>Training:</strong> First aid, disaster response, water safety</li>
+    <li><strong>Why follow:</strong> Part of International Red Cross network, quality training</li>
+  </ul>
+
+  <h3>🛡️ APM (Angkatan Pertahanan Awam Malaysia)</h3>
+  <ul>
+    <li><strong>Website:</strong> apm.gov.my</li>
+    <li><strong>Facebook:</strong> @APMMalaysia</li>
+    <li><strong>Content:</strong> Civil defence training, disaster response, search and rescue</li>
+    <li><strong>Training:</strong> Public courses in first aid, disaster preparedness</li>
+    <li><strong>Why follow:</strong> Government-backed civil defence authority</li>
+  </ul>
+
+  <h2 id="independent-educators">Independent Educators (Verified)</h2>
+  <h3>🩹 Medical First Aid Trainers</h3>
+  <ul>
+    <li><strong>Look for:</strong> Certified instructors with valid credentials</li>
+    <li><strong>Verify:</strong> Check their certification with recognized bodies (SJAM, MRC, Heart Association)</li>
+    <li><strong>Red flags:</strong> Unverified claims, outdated techniques, no certification</li>
+  </ul>
+
+  <h3>🔥 Fire Safety Consultants</h3>
+  <ul>
+    <li><strong>Look for:</strong> Former BOMBA personnel, certified fire safety officers</li>
+    <li><strong>Verify:</strong> Check credentials and affiliations</li>
+    <li><strong>Content:</strong> Fire extinguisher training, evacuation planning, home safety audits</li>
+  </ul>
+
+  <h2 id="what-to-learn">What You Can Learn Online</h2>
+  <table class="w-full border-collapse border border-border my-4">
+    <thead>
+      <tr class="bg-muted">
+        <th class="border border-border p-3 text-left">Skill</th>
+        <th class="border border-border p-3 text-left">Best Source</th>
+        <th class="border border-border p-3 text-left">Certification Available</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-border p-3">CPR</td>
+        <td class="border border-border p-3">SJAM, MRC, Heart Association</td>
+        <td class="border border-border p-3">✅ Yes (in-person required)</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">First Aid</td>
+        <td class="border border-border p-3">SJAM, MRC, APM</td>
+        <td class="border border-border p-3">✅ Yes (in-person required)</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Fire Safety</td>
+        <td class="border border-border p-3">BOMBA, certified consultants</td>
+        <td class="border border-border p-3">✅ Yes (paid courses)</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Disaster Preparedness</td>
+        <td class="border border-border p-3">NADMA, APM, MRC</td>
+        <td class="border border-border p-3">⚠️ Community courses</td>
+      </tr>
+      <tr>
+        <td class="border border-border p-3">Scam Prevention</td>
+        <td class="border border-border p-3">NSRC, PDRM, MCMC</td>
+        <td class="border border-border p-3">❌ Awareness only</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="tips-for-learning">Tips for Learning Online</h2>
+  <h3>Verify the Source:</h3>
+  <ul>
+    <li>Check if the creator has official certification</li>
+    <li>Look for affiliations with recognized organizations</li>
+    <li>Cross-reference information with official sources</li>
+    <li>Be wary of "miracle cures" or unverified techniques</li>
+  </ul>
+
+  <h3>Check Content Quality:</h3>
+  <ul>
+    <li>Information should be up-to-date (guidelines change)</li>
+    <li>Techniques should match current international standards</li>
+    <li>Look for citations or references to official guidelines</li>
+    <li>Avoid content that contradicts official health/safety advice</li>
+  </ul>
+
+  <h3>Practice Safely:</h3>
+  <ul>
+    <li>Never practice emergency techniques on real people without supervision</li>
+    <li>Use training manikins for CPR practice</li>
+    <li>Attend in-person courses for hands-on skills</li>
+    <li>Refresh certifications regularly (most expire after 2-3 years)</li>
+  </ul>
+
+  <h2 id="red-flags">Red Flags: When to Avoid a Source</h2>
+  <ul>
+    <li>❌ Claims of "secret techniques" not taught by official bodies</li>
+    <li>❌ Outdated methods (e.g., old CPR techniques before 2010 guidelines)</li>
+    <li>❌ No verifiable credentials or certifications</li>
+    <li>❌ Selling unproven safety products</li>
+    <li>❌ Contradicts official government health/safety advice</li>
+    <li>❌ Uses fear-mongering to gain followers</li>
+  </ul>
+
+  <h2 id="important-resources">Important Resources & Links</h2>
+  <ul>
+    <li><strong>BOMBA:</strong> bomba.gov.my</li>
+    <li><strong>PDRM:</strong> rmp.gov.my</li>
+    <li><strong>KKM:</strong> moh.gov.my</li>
+    <li><strong>MCMC:</strong> mcmc.gov.my</li>
+    <li><strong>NSRC (Scams):</strong> nsrc.mcmc.gov.my</li>
+    <li><strong>NADMA (Disasters):</strong> nadma.gov.my</li>
+    <li><strong>SJAM:</strong> sjam.org.my</li>
+    <li><strong>MRC:</strong> redcrescent.org.my</li>
+    <li><strong>APM:</strong> apm.gov.my</li>
+  </ul>
+`;
+
+const faqs = [
+  {
+    question: "Are online first aid courses as good as in-person training?",
+    answer: "Online courses are good for theory and awareness, but NOT sufficient for practical skills. CPR, bandaging, and emergency response require hands-on practice with certified instructors. Always attend in-person certified courses for critical skills."
+  },
+  {
+    question: "How often should I refresh my first aid certification?",
+    answer: "Most first aid and CPR certifications expire after 2-3 years. Guidelines update regularly, so refresh your certification every 2 years minimum. Some organizations recommend annual refreshers for CPR."
+  },
+  {
+    question: "Can I trust health and safety information from social media influencers?",
+    answer: "Be very cautious. Only trust influencers who are certified professionals (doctors, nurses, certified trainers) and who cite official sources. Cross-check any advice with official government health websites."
+  },
+  {
+    question: "What's the best way to learn about scam prevention?",
+    answer: "Follow official sources like NSRC (15999), PDRM CCID, and MCMC. They publish real-time scam alerts and verified prevention tips. Avoid learning about scams from unverified social media posts."
+  },
+  {
+    question: "Are there free first aid courses available in Malaysia?",
+    answer: "Some NGOs like MRC and SJAM occasionally offer free community courses. Check their Facebook pages for announcements. Corporate training is usually paid. APM also offers some free community workshops."
+  }
+];
+
+const headings = [
+  { id: 'overview', title: 'Overview', level: 2 },
+  { id: 'official-government', title: 'Official Government Channels', level: 2 },
+  { id: 'ngo-organizations', title: 'NGO Organizations', level: 2 },
+  { id: 'independent-educators', title: 'Independent Educators', level: 2 },
+  { id: 'what-to-learn', title: 'What You Can Learn', level: 2 },
+  { id: 'tips-for-learning', title: 'Tips for Learning Online', level: 2 },
+  { id: 'red-flags', title: 'Red Flags to Avoid', level: 2 },
+];
+---
+
+<Layout title={`${articleData.articleTitle} | People's Guide | EduLaluan`}>
+  <Header />
+
+  <main class="min-h-screen bg-background">
+    <!-- Article Header -->
+    <section 
+      class="relative overflow-hidden py-section-lg border-b"
+      style={{
+        '--section-color': `rgb(${articleData.colorRgb})`,
+        'border-bottom-color': `rgb(${articleData.colorRgb})`
+      }}
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <!-- Breadcrumb -->
+          <Breadcrumb items={[
+            { label: 'Home', href: '/' },
+            { label: "People's Guide", href: '/panduan-rakyat' },
+            { label: `Section ${articleData.sectionNumber}`, href: `/panduan-rakyat/section-${articleData.sectionNumber}` },
+            { label: articleData.articleTitle }
+          ]} />
+
+          <!-- Back Button -->
+          <a
+            href={`/panduan-rakyat/section-${articleData.sectionNumber}`}
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Section {parseInt(articleData.sectionNumber).toString()}
+          </a>
+
+          <!-- Article Title -->
+          <div class="flex items-start gap-4 mt-6">
+            <div 
+              class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl"
+              style={{ 
+                'backgroundColor': `rgb(${articleData.colorRgb})`,
+                'color': 'white'
+              }}
+            >
+              {articleData.sectionIcon}
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-primary mb-1 tracking-wide uppercase">
+                Section {parseInt(articleData.sectionNumber).toString()}: {articleData.sectionTitle}
+              </p>
+              <h1 class="font-display text-3xl sm:text-4xl font-bold text-foreground">
+                {articleData.articleTitle}
+              </h1>
+              <p class="text-lg text-muted-foreground mt-3">
+                {articleData.articleDescription}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-section-md bg-surface">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-8 max-w-6xl mx-auto">
+          <!-- Main Content -->
+          <div class="flex-1 min-w-0">
+            <!-- Audience Tabs (Simple/Detailed) -->
+            <div class="mb-8">
+              <!-- Tab Buttons -->
+              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+                <button
+                  id="tab-simple"
+                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm"
+                  aria-pressed="true"
+                  data-tab="simple"
+                >
+                  <span class="text-xl">🧒</span>
+                  <span>Simple</span>
+                </button>
+                <button
+                  id="tab-detailed"
+                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground"
+                  aria-pressed="false"
+                  data-tab="detailed"
+                >
+                  <span class="text-xl">🧑</span>
+                  <span>Detailed</span>
+                </button>
+              </div>
+
+              <!-- Tab Content -->
+              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
+              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
+            </div>
+
+            <script is:inline>
+              document.addEventListener('DOMContentLoaded', function() {
+                const tabs = document.querySelectorAll('[data-tab]');
+                const contents = {
+                  simple: document.getElementById('content-simple'),
+                  detailed: document.getElementById('content-detailed')
+                };
+
+                tabs.forEach(function(tab) {
+                  tab.addEventListener('click', function() {
+                    const selectedTab = this.getAttribute('data-tab');
+                    
+                    tabs.forEach(function(t) {
+                      if (t.getAttribute('data-tab') === selectedTab) {
+                        t.classList.add('bg-surface-elevated', 'text-primary', 'shadow-sm');
+                        t.classList.remove('text-muted-foreground', 'hover:text-foreground');
+                        t.setAttribute('aria-pressed', 'true');
+                      } else {
+                        t.classList.remove('bg-surface-elevated', 'text-primary', 'shadow-sm');
+                        t.classList.add('text-muted-foreground', 'hover:text-foreground');
+                        t.setAttribute('aria-pressed', 'false');
+                      }
+                    });
+
+                    if (selectedTab === 'simple') {
+                      contents.simple.classList.remove('hidden');
+                      contents.detailed.classList.add('hidden');
+                    } else {
+                      contents.detailed.classList.remove('hidden');
+                      contents.simple.classList.add('hidden');
+                    }
+                  });
+                });
+              });
+            </script>
+
+            <!-- FAQ Section -->
+            <div class="mt-12">
+              <h2 class="font-display text-2xl font-bold text-foreground mb-6">
+                Frequently Asked Questions
+              </h2>
+              <div class="space-y-3">
+                {faqs.map((faq) => (
+                  <details
+                    class="group rounded-xl border bg-surface-elevated transition-all"
+                  >
+                    <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-foreground list-none">
+                      {faq.question}
+                      <svg
+                        class="h-5 w-5 text-muted-foreground transition-transform group-open:rotate-180"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </summary>
+                    <div class="px-5 pb-5 text-muted-foreground">
+                      {faq.answer}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+
+            <!-- Last Updated -->
+            <div class="mt-12 pt-6 border-t border-border">
+              <p class="text-sm text-muted-foreground">
+                <strong>Last updated:</strong> {articleData.lastUpdated}
+              </p>
+            </div>
+          </div>
+
+          <!-- Table of Contents (Sidebar) -->
+          <aside class="sticky top-24 hidden lg:block w-64 shrink-0">
+            <nav class="space-y-1" aria-label="Table of contents">
+              <h3 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                On This Page
+              </h3>
+              {headings.map((heading) => (
+                <a
+                  href={`#${heading.id}`}
+                  class="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  style={{ paddingLeft: `${(heading.level - 2) * 12 + 12}px` }}
+                >
+                  {heading.title}
+                </a>
+              ))}
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <section class="py-section-md bg-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="rounded-2xl border bg-surface-elevated p-6">
+            <div class="flex items-center gap-3 text-muted-foreground">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-sm">
+                <strong>Disclaimer:</strong> This guide provides general information only. Always verify with official sources for the most current information.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Section padding utilities */
+  :root {
+    --section-padding-lg: clamp(3rem, 5vw + 1rem, 5rem);
+    --section-padding-md: clamp(2rem, 3vw + 1rem, 3rem);
+  }
+
+  .py-section-lg {
+    padding-top: var(--section-padding-lg);
+    padding-bottom: var(--section-padding-lg);
+  }
+
+  .py-section-md {
+    padding-top: var(--section-padding-md);
+    padding-bottom: var(--section-padding-md);
+  }
+
+  /* Article Typography */
+  .prose-panduan {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--foreground);
+  }
+
+  .prose-panduan h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+  }
+
+  .prose-panduan h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+  }
+
+  .prose-panduan p {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-panduan ul,
+  .prose-panduan ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-panduan li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-panduan a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose-panduan a:hover {
+    color: var(--primary-dark);
+  }
+
+  .prose-panduan strong {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .prose-panduan table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .prose-panduan th {
+    background-color: var(--muted);
+    font-weight: 600;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+  }
+
+  .prose-panduan td {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+  }
+
+  .prose-panduan .bg-muted {
+    background-color: var(--muted);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+</style>
