@@ -14,7 +14,12 @@
     "supabase:link": "npx supabase link",
     "supabase:gen-types": "npx supabase gen types --linked --lang typescript > src/types/supabase-db.ts",
     "db:push": "npx supabase db push",
-    "db:seed": "npx supabase db seed"
+    "db:seed": "npx supabase db seed",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report"
   },
   "keywords": [
     "education",

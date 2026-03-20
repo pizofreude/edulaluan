@@ -1,0 +1,200 @@
+---
+// Admin Moderation Queue Page
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AdminSidebar from '../../components/admin/AdminSidebar.astro';
+
+const currentPage = 'moderation';
+
+// Placeholder data - will connect to API
+const submissions: any[] = [];
+---
+
+<Layout title="Moderation Queue | EduLaluan">
+  <Header />
+
+  <div class="flex min-h-screen">
+    <!-- Admin Sidebar -->
+    <AdminSidebar current={currentPage} />
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-surface p-8">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-foreground">Moderation Queue</h1>
+        <p class="mt-2 text-sm text-muted-foreground">
+          Review and approve user submissions
+        </p>
+      </div>
+
+      <!-- Filters -->
+      <div class="rounded-xl border bg-surface-elevated p-4 mb-6">
+        <div class="flex flex-wrap items-center gap-4">
+          <!-- Type Filter -->
+          <div class="flex items-center gap-2">
+            <label for="type-filter" class="text-sm font-medium text-foreground">Type:</label>
+            <select
+              id="type-filter"
+              class="rounded-md border border-input bg-background px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="all">All Types</option>
+              <option value="resource">Resources</option>
+              <option value="financial_aid">Financial Aid</option>
+              <option value="feature_request">Feature Requests</option>
+              <option value="issue_report">Issue Reports</option>
+              <option value="circumcision">Circumcision Submissions</option>
+            </select>
+          </div>
+
+          <!-- Status Filter -->
+          <div class="flex items-center gap-2">
+            <label for="status-filter" class="text-sm font-medium text-foreground">Status:</label>
+            <select
+              id="status-filter"
+              class="rounded-md border border-input bg-background px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+              <option value="changes_requested">Changes Requested</option>
+            </select>
+          </div>
+
+          <!-- Search -->
+          <div class="flex-1 min-w-64">
+            <div class="relative">
+              <svg
+                class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search submissions..."
+                class="w-full rounded-md border border-input bg-background pl-10 pr-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submissions List -->
+      <div class="rounded-xl border bg-surface-elevated overflow-hidden">
+        {submissions.length === 0 ? (
+          <div class="text-center py-12">
+            <svg
+              class="mx-auto h-12 w-12 text-muted-foreground/50"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+              />
+            </svg>
+            <h3 class="mt-4 text-lg font-medium text-foreground">No submissions to review</h3>
+            <p class="mt-2 text-sm text-muted-foreground">
+              Great job! The moderation queue is empty.
+            </p>
+          </div>
+        ) : (
+          <div class="divide-y">
+            {submissions.map((submission) => (
+              <div class="p-4 hover:bg-accent/50 transition-colors">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                      <span
+                        class={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                          submission.type === 'resource'
+                            ? 'bg-blue-100 text-blue-800'
+                            : submission.type === 'financial_aid'
+                            ? 'bg-green-100 text-green-800'
+                            : submission.type === 'circumcision'
+                            ? 'bg-purple-100 text-purple-800'
+                            : 'bg-gray-100 text-gray-800'
+                        }`}
+                      >
+                        {submission.type}
+                      </span>
+                      <span class="text-xs text-muted-foreground">
+                        {submission.submittedAt}
+                      </span>
+                    </div>
+                    <h3 class="font-medium text-foreground">{submission.title}</h3>
+                    <p class="text-sm text-muted-foreground mt-1">
+                      Submitted by {submission.user.name} • {submission.user.tier}
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button
+                      class="inline-flex items-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-green-700"
+                    >
+                      Approve
+                    </button>
+                    <button
+                      class="inline-flex items-center rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium transition-colors hover:bg-accent"
+                    >
+                      Review
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Info Card -->
+      <div class="mt-6 rounded-xl border bg-blue-50 border-blue-200 p-4 dark:bg-blue-900/20 dark:border-blue-800">
+        <div class="flex gap-3">
+          <svg
+            class="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <div>
+            <h4 class="font-medium text-blue-900 dark:text-blue-100">Moderation Guidelines</h4>
+            <ul class="mt-2 text-sm text-blue-800 dark:text-blue-200 space-y-1">
+              <li>• Review submissions for accuracy, relevance, and appropriateness</li>
+              <li>• Check for duplicate content before approving</li>
+              <li>• For circumcision submissions: flag any FGM-related content immediately</li>
+              <li>• Award points based on submission type and quality</li>
+              <li>• Provide clear feedback when requesting changes or rejecting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Admin dashboard specific styles */
+  .nav-link-active {
+    background-color: var(--primary);
+    color: white !important;
+  }
+</style>

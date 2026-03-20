@@ -11,5 +11,15 @@ export default defineConfig({
     }),
   ],
   output: 'static',
+  // Skip SSR pages for static build
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          // Handle server-only pages
+        }
+      }
+    }
+  }
 });
 
