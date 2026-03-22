@@ -6,14 +6,14 @@ import Footer from '../../components/Footer.astro';
 
 <Layout title="Submission Successful - EduLaluan">
   <Header />
-
-  <main class="min-h-screen bg-background">
+  
+  <main class="min-h-screen bg-[#f5f9f7]">
   <div class="container mx-auto px-4 py-16 max-w-2xl">
     <div class="text-center">
       <!-- Success Icon -->
       <div class="flex justify-center mb-6">
-        <div class="rounded-full bg-green-100 dark:bg-green-900/30 p-6">
-          <svg class="h-16 w-16 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="rounded-full bg-green-100 p-6">
+          <svg class="h-16 w-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
           </svg>
         </div>
@@ -25,23 +25,23 @@ import Footer from '../../components/Footer.astro';
       </p>
 
       <!-- What Happens Next -->
-      <div class="bg-accent/50 dark:bg-accent/10 rounded-lg p-6 mb-8 text-left">
+      <div class="bg-accent/50 rounded-lg p-6 mb-8 text-left">
         <h2 class="text-lg font-semibold text-foreground mb-3">What happens next?</h2>
         <ol class="space-y-3 text-muted-foreground">
           <li class="flex items-start">
-            <span class="font-bold text-primary mr-2">1.</span>
+            <span class="font-bold text-malaysia-teal mr-2">1.</span>
             <span>We'll review your submission within 24-48 hours</span>
           </li>
           <li class="flex items-start">
-            <span class="font-bold text-primary mr-2">2.</span>
+            <span class="font-bold text-malaysia-teal mr-2">2.</span>
             <span>If approved, it will be added to the platform via GitHub</span>
           </li>
           <li class="flex items-start">
-            <span class="font-bold text-primary mr-2">3.</span>
+            <span class="font-bold text-malaysia-teal mr-2">3.</span>
             <span>Changes typically go live within 1-2 business days</span>
           </li>
           <li class="flex items-start">
-            <span class="font-bold text-primary mr-2">4.</span>
+            <span class="font-bold text-malaysia-teal mr-2">4.</span>
             <span>You'll be notified if we need any clarification</span>
           </li>
         </ol>
@@ -49,24 +49,23 @@ import Footer from '../../components/Footer.astro';
 
       <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/contribute"
-          style="background-color: #0f766e; color: white; font-weight: 600;"
-          class="inline-flex items-center justify-center px-6 py-3 rounded-md hover:bg-teal-800 transition-colors shadow-md hover:shadow-lg"
+        <a 
+          href="/contribute" 
+          class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-malaysia-teal text-white font-medium hover:bg-malaysia-teal/90 transition-colors"
         >
           Submit Another Contribution
         </a>
-        <a
-          href="/"
-          class="inline-flex items-center justify-center px-6 py-3 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors font-semibold"
+        <a 
+          href="/" 
+          class="inline-flex items-center justify-center px-6 py-3 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
         >
           Back to Home
         </a>
       </div>
 
       <!-- Community Appreciation -->
-      <div class="mt-12 pt-8 border-t border-border">
-        <p class="text-sm text-muted-foreground italic">
+      <div class="mt-12 pt-8 border-t border-[#e2e8f0]">
+        <p class="text-sm text-[#64746c] italic">
           "Your contribution helps make quality education accessible to all Malaysians. Thank you for being part of our community!"
         </p>
       </div>

@@ -7,7 +7,7 @@ import { GeometricStarPattern } from '../components/decorative/BatikPatterns';
 
 // Fetch resources from Supabase API
 const baseUrl = import.meta.env.PUBLIC_SUPABASE_URL || '';
-const anonKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || '';
+const anonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
 
 let featuredResources: any[] = [];
 let totalResources: number | string = 138;
@@ -20,7 +20,7 @@ try {
       'Prefer': 'count=exact'
     }
   });
-
+  
   if (response.ok) {
     const data = await response.json();
     featuredResources = data || [];
@@ -31,6 +31,7 @@ try {
   }
 } catch (error) {
   console.error('Failed to fetch featured resources:', error);
+  // Fallback: show empty state
 }
 
 const categoryCount = 10; // Fixed count for now
