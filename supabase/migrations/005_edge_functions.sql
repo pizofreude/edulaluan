@@ -9,7 +9,7 @@
 
 -- Store Edge Function configuration and secrets
 CREATE TABLE IF NOT EXISTS edge_function_configs (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     function_name TEXT NOT NULL UNIQUE,
     is_enabled BOOLEAN DEFAULT TRUE,
     config JSONB DEFAULT '{}',
@@ -53,7 +53,7 @@ CREATE POLICY "Admins can update edge function configs" ON edge_function_configs
 
 -- Track all emails sent via Edge Functions
 CREATE TABLE IF NOT EXISTS email_logs (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     function_name TEXT NOT NULL,
     to_email TEXT NOT NULL,
     to_name TEXT,
@@ -190,22 +190,28 @@ BEGIN
     
     -- Invoke Edge Function
     result := invoke_edge_function('send-invite-email', payload);
-    
+
     -- Log result
     IF result->>'success' = 'true' THEN
         UPDATE email_logs
         SET status = 'sent', sent_at = NOW()
-        WHERE function_name = 'send-invite-email'
-          AND to_email = p_to_email
-        ORDER BY created_at DESC
-        LIMIT 1;
+        WHERE ctid = (
+            SELECT ctid FROM email_logs
+            WHERE function_name = 'send-invite-email'
+              AND to_email = p_to_email
+            ORDER BY created_at DESC
+            LIMIT 1
+        );
     ELSE
         UPDATE email_logs
         SET status = 'failed', error_message = result->>'error'
-        WHERE function_name = 'send-invite-email'
-          AND to_email = p_to_email
-        ORDER BY created_at DESC
-        LIMIT 1;
+        WHERE ctid = (
+            SELECT ctid FROM email_logs
+            WHERE function_name = 'send-invite-email'
+              AND to_email = p_to_email
+            ORDER BY created_at DESC
+            LIMIT 1
+        );
     END IF;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
@@ -213,10 +219,10 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 -- Function: send_notification_email
 CREATE OR REPLACE FUNCTION send_notification_email(
     p_to_email TEXT,
-    p_to_name TEXT DEFAULT NULL,
     p_notification_type TEXT,
     p_title TEXT,
     p_message TEXT,
+    p_to_name TEXT DEFAULT NULL,
     p_link TEXT DEFAULT NULL
 )
 RETURNS VOID AS $$
@@ -236,22 +242,28 @@ BEGIN
     
     -- Invoke Edge Function
     result := invoke_edge_function('send-notification', payload);
-    
+
     -- Log result
     IF result->>'success' = 'true' THEN
         UPDATE email_logs
         SET status = 'sent', sent_at = NOW()
-        WHERE function_name = 'send-notification'
-          AND to_email = p_to_email
-        ORDER BY created_at DESC
-        LIMIT 1;
+        WHERE ctid = (
+            SELECT ctid FROM email_logs
+            WHERE function_name = 'send-notification'
+              AND to_email = p_to_email
+            ORDER BY created_at DESC
+            LIMIT 1
+        );
     ELSE
         UPDATE email_logs
         SET status = 'failed', error_message = result->>'error'
-        WHERE function_name = 'send-notification'
-          AND to_email = p_to_email
-        ORDER BY created_at DESC
-        LIMIT 1;
+        WHERE ctid = (
+            SELECT ctid FROM email_logs
+            WHERE function_name = 'send-notification'
+              AND to_email = p_to_email
+            ORDER BY created_at DESC
+            LIMIT 1
+        );
     END IF;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
@@ -259,10 +271,10 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 -- Function: send_moderation_decision_email
 CREATE OR REPLACE FUNCTION send_moderation_decision_email(
     p_to_email TEXT,
-    p_to_name TEXT DEFAULT NULL,
     p_decision TEXT,
     p_contribution_type TEXT,
     p_contribution_title TEXT,
+    p_to_name TEXT DEFAULT NULL,
     p_points_earned INT DEFAULT NULL,
     p_rejection_reason TEXT DEFAULT NULL,
     p_moderation_notes TEXT DEFAULT NULL,
@@ -289,22 +301,28 @@ BEGIN
     
     -- Invoke Edge Function
     result := invoke_edge_function('send-moderation-decision', payload);
-    
+
     -- Log result
     IF result->>'success' = 'true' THEN
         UPDATE email_logs
         SET status = 'sent', sent_at = NOW()
-        WHERE function_name = 'send-moderation-decision'
-          AND to_email = p_to_email
-        ORDER BY created_at DESC
-        LIMIT 1;
+        WHERE ctid = (
+            SELECT ctid FROM email_logs
+            WHERE function_name = 'send-moderation-decision'
+              AND to_email = p_to_email
+            ORDER BY created_at DESC
+            LIMIT 1
+        );
     ELSE
         UPDATE email_logs
         SET status = 'failed', error_message = result->>'error'
-        WHERE function_name = 'send-moderation-decision'
-          AND to_email = p_to_email
-        ORDER BY created_at DESC
-        LIMIT 1;
+        WHERE ctid = (
+            SELECT ctid FROM email_logs
+            WHERE function_name = 'send-moderation-decision'
+              AND to_email = p_to_email
+            ORDER BY created_at DESC
+            LIMIT 1
+        );
     END IF;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
@@ -343,10 +361,10 @@ BEGIN
             -- Send notification email via Edge Function
             PERFORM send_notification_email(
                 p_to_email => user_email,
-                p_to_name => user_name,
                 p_notification_type => 'admin_notification',
                 p_title => COALESCE(p_title, 'Admin Notification'),
                 p_message => p_message,
+                p_to_name => user_name,
                 p_link => '/admin/dashboard'
             );
         END IF;
@@ -435,28 +453,28 @@ BEGIN
         ELSIF p_type = 'badge_earned' THEN
             PERFORM send_notification_email(
                 p_to_email => user_email,
-                p_to_name => user_name,
                 p_notification_type => 'badge_earned',
                 p_title => p_title,
                 p_message => p_message,
+                p_to_name => user_name,
                 p_link => COALESCE(p_link, '/user/badges')
             );
         ELSIF p_type = 'tier_promoted' THEN
             PERFORM send_notification_email(
                 p_to_email => user_email,
-                p_to_name => user_name,
                 p_notification_type => 'tier_promoted',
                 p_title => p_title,
                 p_message => p_message,
+                p_to_name => user_name,
                 p_link => COALESCE(p_link, '/user/profile')
             );
         ELSIF p_type = 'welcome' THEN
             PERFORM send_notification_email(
                 p_to_email => user_email,
-                p_to_name => user_name,
                 p_notification_type => 'welcome',
                 p_title => p_title,
                 p_message => p_message,
+                p_to_name => user_name,
                 p_link => COALESCE(p_link, '/user/dashboard')
             );
         END IF;

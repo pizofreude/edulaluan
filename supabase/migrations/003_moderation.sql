@@ -8,7 +8,7 @@
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS admin_notifications (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     type TEXT NOT NULL, -- 'new_contribution', 'urgent', 'system_alert', 'tier_demotion'
     contribution_id UUID REFERENCES contributions(id) ON DELETE SET NULL,
     user_id UUID REFERENCES public.users(id) ON DELETE SET NULL,
@@ -37,7 +37,7 @@ CREATE INDEX IF NOT EXISTS idx_admin_notifications_contribution ON admin_notific
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS user_notifications (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     type TEXT NOT NULL, -- 'contribution_approved', 'contribution_rejected', 'changes_requested', 'badge_earned', 'tier_promoted', 'welcome'
     contribution_id UUID REFERENCES contributions(id) ON DELETE SET NULL,

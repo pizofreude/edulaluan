@@ -2,25 +2,23 @@
 // User Dashboard - Main overview page
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import UserSidebar from '../../components/user/UserSidebar.astro';
 
 const stats = {
-  pointsBalance: 0,
+  pointsBalance: 10, // Welcome bonus
   tier: 'Newcomer',
   submissionsCount: 0,
   badgesEarned: 0,
   leaderboardRank: '-',
 };
 
-// Placeholder data - will connect to API
 const recentSubmissions: any[] = [];
 const earnedBadges: any[] = [];
 
 const currentPage = 'dashboard';
 ---
 
-<Layout title="My Dashboard | EduLaluan">
+<Layout title="User Dashboard | EduLaluan">
   <Header />
 
   <div class="flex min-h-screen">
@@ -28,7 +26,7 @@ const currentPage = 'dashboard';
     <UserSidebar current={currentPage} />
 
     <!-- Main Content -->
-    <main class="flex-1 bg-surface p-8">
+    <main class="flex-1 ml-64 bg-surface p-8 transition-all duration-300" id="main-content">
       <!-- Welcome Header -->
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-foreground">Welcome back!</h1>
@@ -37,80 +35,70 @@ const currentPage = 'dashboard';
         </p>
       </div>
 
-      <!-- Stats Grid -->
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-5 mb-8">
+      <!-- Stats Grid - 3 columns on medium, 5 on large screens -->
+      <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 mb-8">
         <!-- Points Balance -->
         <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-sm font-medium text-muted-foreground">Points Balance</p>
-              <p class="text-3xl font-bold text-foreground mt-2">{stats.pointsBalance}</p>
-            </div>
-            <div class="rounded-full bg-amber-500/10 p-3">
+          <div class="flex flex-col items-center gap-2">
+            <div class="rounded-full bg-amber-100 p-3">
               <svg class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
+            <p class="text-sm font-semibold text-foreground text-center">Points Balance</p>
+            <p class="text-3xl font-bold text-foreground">{stats.pointsBalance}</p>
           </div>
         </div>
 
         <!-- Tier -->
         <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-sm font-medium text-muted-foreground">Tier</p>
-              <p class="text-3xl font-bold text-primary mt-2">{stats.tier}</p>
-            </div>
-            <div class="rounded-full bg-primary/10 p-3">
-              <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="flex flex-col items-center gap-2">
+            <div class="rounded-full bg-teal-100 p-3">
+              <svg class="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
               </svg>
             </div>
+            <p class="text-sm font-semibold text-foreground text-center">Tier</p>
+            <p class="text-2xl font-bold text-teal-600 text-center">{stats.tier}</p>
           </div>
         </div>
 
         <!-- Submissions -->
         <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-sm font-medium text-muted-foreground">Submissions</p>
-              <p class="text-3xl font-bold text-foreground mt-2">{stats.submissionsCount}</p>
-            </div>
-            <div class="rounded-full bg-blue-500/10 p-3">
+          <div class="flex flex-col items-center gap-2">
+            <div class="rounded-full bg-blue-100 p-3">
               <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
+            <p class="text-sm font-semibold text-foreground text-center">Submissions</p>
+            <p class="text-3xl font-bold text-foreground">{stats.submissionsCount}</p>
           </div>
         </div>
 
         <!-- Badges -->
         <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-sm font-medium text-muted-foreground">Badges Earned</p>
-              <p class="text-3xl font-bold text-foreground mt-2">{stats.badgesEarned}</p>
-            </div>
-            <div class="rounded-full bg-purple-500/10 p-3">
+          <div class="flex flex-col items-center gap-2">
+            <div class="rounded-full bg-purple-100 p-3">
               <svg class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
               </svg>
             </div>
+            <p class="text-sm font-semibold text-foreground text-center">Badges Earned</p>
+            <p class="text-3xl font-bold text-foreground">{stats.badgesEarned}</p>
           </div>
         </div>
 
         <!-- Leaderboard Rank -->
         <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-sm font-medium text-muted-foreground">Leaderboard Rank</p>
-              <p class="text-3xl font-bold text-foreground mt-2">#{stats.leaderboardRank}</p>
-            </div>
-            <div class="rounded-full bg-green-500/10 p-3">
+          <div class="flex flex-col items-center gap-2">
+            <div class="rounded-full bg-green-100 p-3">
               <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
             </div>
+            <p class="text-sm font-semibold text-foreground text-center">Rank</p>
+            <p class="text-3xl font-bold text-foreground">#{stats.leaderboardRank}</p>
           </div>
         </div>
       </div>
@@ -121,7 +109,7 @@ const currentPage = 'dashboard';
         <div class="flex flex-wrap gap-3">
           <a
             href="/contribute"
-            class="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            class="inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-teal-700"
           >
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -130,7 +118,7 @@ const currentPage = 'dashboard';
           </a>
           <a
             href="/user/submissions"
-            class="inline-flex items-center gap-2 rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
           >
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -139,7 +127,7 @@ const currentPage = 'dashboard';
           </a>
           <a
             href="/user/badges"
-            class="inline-flex items-center gap-2 rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
           >
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -153,30 +141,32 @@ const currentPage = 'dashboard';
       <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm mb-8">
         <h2 class="text-xl font-semibold text-foreground mb-4">Recent Submissions</h2>
         {recentSubmissions.length === 0 ? (
-          <div class="text-center py-8 text-muted-foreground">
-            <svg class="mx-auto h-12 w-12 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <div class="text-center py-12">
+            <svg class="mx-auto h-16 w-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <p class="mt-4 text-sm">No submissions yet</p>
-            <p class="mt-1 text-xs text-muted-foreground">Start contributing to earn points and badges!</p>
+            <p class="mt-4 text-gray-600">No submissions yet</p>
+            <a href="/contribute" class="mt-2 inline-flex items-center text-sm text-teal-600 hover:underline">
+              Make your first submission →
+            </a>
           </div>
         ) : (
-          <div class="divide-y">
+          <div class="divide-y divide-gray-200">
             {recentSubmissions.map((submission) => (
               <div class="py-3 flex items-center justify-between">
                 <div>
-                  <p class="font-medium text-foreground">{submission.title}</p>
-                  <p class="text-sm text-muted-foreground">{submission.submittedAt}</p>
+                  <p class="font-medium text-gray-900">{submission.title}</p>
+                  <p class="text-sm text-gray-500">{submission.submittedAt}</p>
                 </div>
                 <span
-                  class={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                  class={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${
                     submission.status === 'approved'
-                      ? 'bg-green-100 text-green-800'
+                      ? 'bg-green-100 text-green-700'
                       : submission.status === 'rejected'
-                      ? 'bg-red-100 text-red-800'
+                      ? 'bg-red-100 text-red-700'
                       : submission.status === 'changes_requested'
-                      ? 'bg-amber-100 text-amber-800'
-                      : 'bg-gray-100 text-gray-800'
+                      ? 'bg-amber-100 text-amber-700'
+                      : 'bg-gray-100 text-gray-700'
                   }`}
                 >
                   {submission.status}
@@ -191,27 +181,32 @@ const currentPage = 'dashboard';
       <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
         <h2 class="text-xl font-semibold text-foreground mb-4">Earned Badges</h2>
         {earnedBadges.length === 0 ? (
-          <div class="text-center py-8 text-muted-foreground">
-            <svg class="mx-auto h-12 w-12 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+          <div class="text-center py-12">
+            <svg class="mx-auto h-16 w-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
             </svg>
-            <p class="mt-4 text-sm">No badges earned yet</p>
-            <p class="mt-1 text-xs text-muted-foreground">Earn points to unlock badges!</p>
+            <p class="mt-4 text-gray-600">No badges earned yet</p>
+            <p class="mt-1 text-xs text-gray-500">Earn points to unlock badges!</p>
           </div>
         ) : (
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <div class="grid grid-cols-2 gap-4">
             {earnedBadges.map((badge) => (
-              <div class="text-center p-4 rounded-lg border bg-background">
-                <div class="text-3xl mb-2">{badge.icon}</div>
-                <p class="text-sm font-medium text-foreground">{badge.name}</p>
-                <p class="text-xs text-muted-foreground mt-1">{badge.earnedAt}</p>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                <div class="h-10 w-10 rounded-full bg-amber-100 flex items-center justify-center">
+                  <span class="text-xl">{badge.icon}</span>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-900">{badge.name}</p>
+                  <p class="text-xs text-gray-500">{badge.description}</p>
+                </div>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      <!-- Bottom spacing -->
+      <div class="h-20"></div>
     </main>
   </div>
-
-  <Footer />
 </Layout>

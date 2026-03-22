@@ -1,0 +1,135 @@
+---
+// User Badges Page - Badge Case
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import UserSidebar from '../../components/user/UserSidebar.astro';
+
+const currentPage = 'badges';
+
+// Placeholder data - will connect to API
+const earnedBadges: any[] = [];
+const availableBadges = [
+  { id: '1', name: 'First Contribution', description: 'Make your first submission', icon: '🎉', requirement: 'Complete 1 submission', earned: false },
+  { id: '2', name: 'Contributor', description: 'Make 5 submissions', icon: '🌟', requirement: 'Complete 5 submissions', earned: false },
+  { id: '3', name: 'Helper', description: 'Help 10 people', icon: '🤝', requirement: '10 approved submissions', earned: false },
+  { id: '4', name: 'Expert', description: 'Make 25 submissions', icon: '⭐', requirement: 'Complete 25 submissions', earned: false },
+  { id: '5', name: 'Leader', description: 'Reach top 10 leaderboard', icon: '👑', requirement: 'Top 10 ranking', earned: false },
+  { id: '6', name: 'Champion', description: 'Reach #1 leaderboard', icon: '🏆', requirement: '#1 ranking', earned: false },
+];
+---
+
+<Layout title="My Badges | EduLaluan">
+  <Header />
+
+  <div class="flex min-h-screen">
+    <!-- User Sidebar -->
+    <UserSidebar current={currentPage} />
+
+    <!-- Main Content -->
+    <main class="flex-1 ml-64 bg-surface p-8 transition-all duration-300" id="main-content">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-foreground">Badge Case</h1>
+        <p class="mt-2 text-base text-foreground/80">
+          Track your achievements and unlock new badges
+        </p>
+      </div>
+
+      <!-- Stats Summary -->
+      <div class="grid gap-6 sm:grid-cols-3 mb-8">
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-purple-500/10 p-3">
+              <svg class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground">Earned Badges</p>
+              <p class="text-2xl font-bold text-foreground">0 / 20</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-amber-500/10 p-3">
+              <svg class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground">Total Points</p>
+              <p class="text-2xl font-bold text-foreground">0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-primary/10 p-3">
+              <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground">Current Tier</p>
+              <p class="text-2xl font-bold text-primary">Newcomer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Earned Badges Section -->
+      <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm mb-8">
+        <h2 class="text-xl font-semibold text-foreground mb-4">Earned Badges</h2>
+        {earnedBadges.length === 0 ? (
+          <div class="text-center py-16">
+            <svg class="mx-auto h-16 w-16 text-foreground/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+            <h3 class="mt-6 text-xl font-semibold text-foreground">No badges earned yet</h3>
+            <p class="mt-3 text-base text-foreground/70">Start contributing to earn your first badge!</p>
+          </div>
+        ) : (
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {earnedBadges.map((badge) => (
+              <div class="text-center p-4 rounded-lg border bg-background hover:border-primary/50 transition-colors shadow-sm">
+                <div class="text-4xl mb-2">{badge.icon}</div>
+                <p class="text-sm font-semibold text-foreground">{badge.name}</p>
+                <p class="text-xs text-foreground/60 mt-1">{badge.earnedAt}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Available Badges Section -->
+      <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+        <h2 class="text-xl font-semibold text-foreground mb-4">Available Badges</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {availableBadges.map((badge) => (
+            <div class="flex items-start gap-4 rounded-lg border bg-background p-4 opacity-70 hover:opacity-100 transition-opacity">
+              <div class="rounded-full bg-muted p-3 text-2xl grayscale">
+                {badge.icon}
+              </div>
+              <div class="flex-1">
+                <h3 class="font-semibold text-foreground">{badge.name}</h3>
+                <p class="text-sm text-foreground/80 mt-1">{badge.description}</p>
+                <p class="text-xs font-medium text-foreground/70 mt-2 flex items-center gap-1">
+                  <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {badge.requirement}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <Footer />
+</Layout>

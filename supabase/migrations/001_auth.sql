@@ -46,7 +46,7 @@ CREATE INDEX IF NOT EXISTS idx_users_is_demo ON users(is_demo);
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS admin_settings (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     demo_data_enabled BOOLEAN DEFAULT TRUE,
     allow_public_contributions BOOLEAN DEFAULT TRUE,
     require_email_verification BOOLEAN DEFAULT TRUE,
@@ -65,7 +65,7 @@ ON CONFLICT DO NOTHING;
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS admin_invites (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email TEXT NOT NULL UNIQUE,
     token TEXT NOT NULL UNIQUE,
     role TEXT NOT NULL DEFAULT 'admin', -- 'admin' or 'moderator'
@@ -344,7 +344,7 @@ CREATE POLICY "Users can view own invite" ON public.admin_invites
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS audit_logs (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     table_name TEXT NOT NULL,
     record_id UUID NOT NULL,
     action TEXT NOT NULL, -- 'INSERT', 'UPDATE', 'DELETE'

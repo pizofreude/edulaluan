@@ -26,19 +26,16 @@ import { Button } from '../../components/ui/button';
 
     <!-- Form -->
     <form
-      name="resource-submission"
-      method="POST"
-      action="/contribute/success"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
+      id="resource-form"
       class="bg-surface border rounded-lg p-6 space-y-6"
     >
 
-      <!-- Hidden fields for Netlify -->
-      <input type="hidden" name="form-name" value="resource-submission" />
-      <p class="hidden">
-        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-      </p>
+      <!-- Status Messages -->
+      <div id="form-status" class="hidden rounded-lg p-4"></div>
+      <div id="form-loading" class="hidden text-center py-4">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
+        <p class="mt-2 text-muted-foreground">Submitting your resource...</p>
+      </div>
 
       <!-- Basic Information -->
       <div class="space-y-4">
@@ -320,13 +317,16 @@ import { Button } from '../../components/ui/button';
 
       <!-- Submit Button -->
       <div class="pt-4">
-        <Button
+        <button
           type="submit"
-          className="w-full bg-primary hover:bg-primary-dark text-primary-foreground py-3 text-lg"
+          form="resource-form"
+          style="background-color: #0f766e; color: white; font-weight: 600;"
+          class="w-full hover:bg-teal-800 py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+          id="submit-button"
         >
           Submit Resource for Review
-        </Button>
-        <p class="text-xs text-muted-foreground text-center mt-3">
+        </button>
+        <p class="text-xs text-gray-600 text-center mt-3">
           By submitting, you confirm that this information is accurate and you have the right to share it.
         </p>
       </div>
@@ -337,3 +337,127 @@ import { Button } from '../../components/ui/button';
   </main>
   <Footer />
 </Layout>
+
+<script>
+  // Resource submission form handler
+  const form = document.getElementById('resource-form') as HTMLFormElement;
+  const statusDiv = document.getElementById('form-status')!;
+  const loadingDiv = document.getElementById('form-loading')!;
+  const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Hide previous status
+    statusDiv.classList.add('hidden');
+    
+    // Validate required fields
+    const resourceName = (document.getElementById('resourceName') as HTMLInputElement).value.trim();
+    const provider = (document.getElementById('provider') as HTMLInputElement).value.trim();
+    const url = (document.getElementById('url') as HTMLInputElement).value.trim();
+    const description = (document.getElementById('description') as HTMLTextAreaElement).value.trim();
+    const category = (document.getElementById('category') as HTMLSelectElement).value;
+    const submitterEmail = (document.getElementById('submitterEmail') as HTMLInputElement).value.trim();
+    
+    // Get selected values
+    const incomeGroups = Array.from(document.querySelectorAll('input[name="incomeGroups"]:checked')).map(el => (el as HTMLInputElement).value);
+    const cost = (document.querySelector('input[name="cost"]:checked') as HTMLInputElement)?.value;
+    const mode = (document.querySelector('input[name="mode"]:checked') as HTMLInputElement)?.value;
+    const educationLevels = Array.from(document.querySelectorAll('input[name="educationLevel"]:checked')).map(el => (el as HTMLInputElement).value);
+    const languages = Array.from(document.querySelectorAll('input[name="languages"]:checked')).map(el => (el as HTMLInputElement).value);
+    const tags = (document.getElementById('tags') as HTMLInputElement).value.trim();
+    
+    // Validation
+    if (!resourceName || !provider || !url || !description || !category || !submitterEmail) {
+      showStatus('Please fill in all required fields', 'error');
+      return;
+    }
+    
+    if (description.length < 150) {
+      showStatus('Description must be at least 150 characters', 'error');
+      return;
+    }
+    
+    if (incomeGroups.length === 0) {
+      showStatus('Please select at least one income group', 'error');
+      return;
+    }
+    
+    if (!cost || !mode) {
+      showStatus('Please select cost structure and delivery mode', 'error');
+      return;
+    }
+    
+    if (languages.length === 0) {
+      showStatus('Please select at least one language', 'error');
+      return;
+    }
+    
+    // Show loading
+    loadingDiv.classList.remove('hidden');
+    submitButton.disabled = true;
+    
+    try {
+      // Prepare submission data
+      const submissionData = {
+        type: 'resource',
+        title: resourceName,
+        description: description,
+        url: url,
+        categoryId: category,
+        metadata: {
+          provider,
+          income_groups: incomeGroups,
+          cost_type: cost,
+          delivery_mode: mode,
+          education_levels: educationLevels,
+          languages,
+          tags: tags ? tags.split(',').map(t => t.trim()).filter(t => t) : [],
+          submitter_email: submitterEmail,
+          submitter_name: (document.getElementById('submitterName') as HTMLInputElement).value.trim(),
+          submitter_organization: (document.getElementById('submitterOrganization') as HTMLInputElement).value.trim(),
+          additional_notes: (document.getElementById('additionalNotes') as HTMLTextAreaElement).value.trim()
+        }
+      };
+      
+      // Submit to API
+      const response = await fetch('/api/contributions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submissionData)
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit');
+      }
+      
+      // Success
+      showStatus('Resource submitted successfully! It will be reviewed within 24-48 hours.', 'success');
+      form.reset();
+      
+      // Redirect to success page after delay
+      setTimeout(() => {
+        window.location.href = '/contribute/success';
+      }, 2000);
+      
+    } catch (error: any) {
+      showStatus(error.message || 'Failed to submit. Please try again.', 'error');
+    } finally {
+      loadingDiv.classList.add('hidden');
+      submitButton.disabled = false;
+    }
+  });
+  
+  function showStatus(message: string, type: 'success' | 'error') {
+    statusDiv.textContent = message;
+    statusDiv.className = `rounded-lg p-4 mb-4 ${
+      type === 'success' 
+        ? 'bg-green-100 border border-green-300 text-green-800' 
+        : 'bg-red-100 border border-red-300 text-red-800'
+    }`;
+    statusDiv.classList.remove('hidden');
+    statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>

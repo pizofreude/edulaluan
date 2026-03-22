@@ -2,8 +2,7 @@
 -- Migration: 001_initial_schema
 -- Description: Core tables for education resource navigator
 
--- Enable UUID extension
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- Note: gen_random_uuid() is built into Postgres 13+ (no extension needed)
 
 -- =============================================
 -- REFERENCE TABLES
@@ -11,7 +10,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Categories for education resources
 CREATE TABLE categories (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     slug TEXT NOT NULL UNIQUE,
     description TEXT,
@@ -34,7 +33,7 @@ INSERT INTO categories (name, slug, description) VALUES
 
 -- Income groups reference
 CREATE TABLE income_groups (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     slug TEXT NOT NULL UNIQUE,
     description TEXT,
@@ -51,7 +50,7 @@ INSERT INTO income_groups (name, slug, description, min_income, max_income) VALU
 
 -- Education levels reference
 CREATE TABLE education_levels (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     slug TEXT NOT NULL UNIQUE,
     description TEXT,
@@ -68,7 +67,7 @@ INSERT INTO education_levels (name, slug, description) VALUES
 
 -- Cost types
 CREATE TABLE cost_types (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     slug TEXT NOT NULL UNIQUE,
     created_at TIMESTAMPTZ DEFAULT NOW()
@@ -81,7 +80,7 @@ INSERT INTO cost_types (name, slug) VALUES
 
 -- Delivery modes
 CREATE TABLE delivery_modes (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     slug TEXT NOT NULL UNIQUE,
     created_at TIMESTAMPTZ DEFAULT NOW()
@@ -94,7 +93,7 @@ INSERT INTO delivery_modes (name, slug) VALUES
 
 -- Languages
 CREATE TABLE languages (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     code TEXT NOT NULL UNIQUE,
     created_at TIMESTAMPTZ DEFAULT NOW()
@@ -112,7 +111,7 @@ INSERT INTO languages (name, code) VALUES
 
 -- Providers (organizations offering resources)
 CREATE TABLE providers (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL,
     description TEXT,
     website_url TEXT,
@@ -127,7 +126,7 @@ CREATE INDEX idx_providers_name ON providers USING gin (to_tsvector('english', n
 
 -- Resources (main education opportunities table)
 CREATE TABLE resources (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL,
     provider_id UUID REFERENCES providers(id) ON DELETE SET NULL,
     provider_name TEXT NOT NULL, -- Denormalized for backward compatibility
@@ -187,7 +186,7 @@ CREATE TABLE resource_languages (
 
 -- Tags
 CREATE TABLE tags (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     slug TEXT NOT NULL UNIQUE,
     created_at TIMESTAMPTZ DEFAULT NOW()
@@ -219,7 +218,7 @@ CREATE TABLE resource_tags (
 
 -- Resource views analytics
 -- CREATE TABLE resource_views (
---     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+--     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 --     resource_id UUID REFERENCES resources(id) ON DELETE CASCADE,
 --     viewed_at TIMESTAMPTZ DEFAULT NOW(),
 --     session_id TEXT,
@@ -230,7 +229,7 @@ CREATE TABLE resource_tags (
 
 -- Resource reviews (future feature)
 -- CREATE TABLE resource_reviews (
---     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+--     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 --     resource_id UUID REFERENCES resources(id) ON DELETE CASCADE,
 --     user_id UUID REFERENCES auth.users(id),
 --     rating INTEGER CHECK (rating >= 1 AND rating <= 5),
@@ -242,7 +241,7 @@ CREATE TABLE resource_tags (
 
 -- Application deadlines (time-sensitive opportunities)
 -- CREATE TABLE application_deadlines (
---     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+--     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 --     resource_id UUID REFERENCES resources(id) ON DELETE CASCADE,
 --     deadline_date DATE NOT NULL,
 --     status TEXT CHECK (status IN ('open', 'closing-soon', 'closed', 'extended')),

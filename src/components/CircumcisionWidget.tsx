@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 // Sample submissions data (to be replaced with backend data)
 interface Submission {
@@ -10,6 +10,7 @@ interface Submission {
   clinicName: string;
   location: string;
   method: string;
+  methodOther?: string; // Custom method when "Other" is selected
   practitionerName?: string;
   clinicContact?: string;
   experience: string;
@@ -76,9 +77,10 @@ const maleMethods = [
   "Alisklamp",
   "Plastibell",
   "Stapler/ZSR",
+  "Other",
 ];
 
-const femaleMethods = ["Needle prick only"];
+const femaleMethods = ["Needle prick only", "Other"];
 
 interface CircumcisionWidgetProps {
   className?: string;
@@ -95,6 +97,7 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
     isAnonymous: false,
     gender: "" as "male" | "female",
     method: "",
+    methodOther: "", // Custom method when "Other" is selected
     clinicName: "",
     location: "",
     practitionerName: "",
@@ -102,18 +105,45 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
     experience: "",
   });
 
+  // Check auth status on mount
+  React.useEffect(() => {
+    let mounted = true;
+
+    const checkAuth = async () => {
+      try {
+        const { createClient } = await import('@supabase/supabase-js');
+        const supabase = createClient(
+          import.meta.env.PUBLIC_SUPABASE_URL,
+          import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+        );
+
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (mounted) {
+          setIsLoggedIn(!!session);
+          console.log('[CircumcisionWidget] Auth check - logged in:', !!session);
+        }
+      } catch (error) {
+        console.error('[CircumcisionWidget] Auth check failed:', error);
+        if (mounted) setIsLoggedIn(false);
+      }
+    };
+
+    checkAuth();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   const filteredSubmissions = React.useMemo(() => {
     if (filter === "all") return sampleSubmissions;
     return sampleSubmissions.filter((s) => s.gender === filter);
   }, [filter]);
 
-  const handleSimulateLogin = () => {
-    setIsLoggedIn(true);
-    setShowForm(true);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     // Validation
     if (!formData.displayName && !formData.isAnonymous) {
       alert("Please enter a display name or toggle anonymous");
@@ -125,6 +155,10 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
     }
     if (!formData.method) {
       alert("Please select method");
+      return;
+    }
+    if (formData.method === "Other" && !formData.methodOther.trim()) {
+      alert("Please specify the method");
       return;
     }
     if (!formData.clinicName) {
@@ -140,24 +174,57 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
       return;
     }
 
-    // Simulate submission (backend pending)
-    console.log("Submitting:", formData);
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setShowForm(false);
-      setFormSubmitted(false);
-      setFormData({
-        displayName: "",
-        isAnonymous: false,
-        gender: "" as "male" | "female",
-        method: "",
-        clinicName: "",
-        location: "",
-        practitionerName: "",
-        clinicContact: "",
-        experience: "",
+    try {
+      // Get auth token
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        import.meta.env.PUBLIC_SUPABASE_URL,
+        import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      );
+
+      const { data: { session } } = await supabase.auth.getSession();
+
+      // Submit to API
+      const response = await fetch('/api/circumcision/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(session?.access_token ? { 'Authorization': `Bearer ${session.access_token}` } : {})
+        },
+        body: JSON.stringify(formData),
       });
-    }, 3000);
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit');
+      }
+
+      console.log('[CircumcisionWidget] Submission successful:', result.submissionId);
+      setFormSubmitted(true);
+      
+      // Reset form after delay
+      setTimeout(() => {
+        setShowForm(false);
+        setFormSubmitted(false);
+        setFormData({
+          displayName: "",
+          isAnonymous: false,
+          gender: "" as "male" | "female",
+          method: "",
+          methodOther: "",
+          clinicName: "",
+          location: "",
+          practitionerName: "",
+          clinicContact: "",
+          experience: "",
+        });
+      }, 3000);
+
+    } catch (error: any) {
+      console.error('[CircumcisionWidget] Submission error:', error);
+      alert(error.message || 'Failed to submit. Please try again.');
+    }
   };
 
   const toggleExpand = (id: string) => {
@@ -170,21 +237,22 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
       ...prev,
       gender,
       method: gender === "female" ? "Needle prick only" : "",
+      methodOther: "", // Reset custom method when gender changes
     }));
   };
 
   return (
     <div className={cn("w-full", className)}>
       {/* Filter Bar */}
-      <div className="flex items-center justify-between mb-6 p-4 bg-muted rounded-xl">
+      <div className="flex items-center justify-between mb-6 p-4 bg-surface-elevated rounded-xl shadow-sm border">
         <div className="flex gap-2">
           <button
             onClick={() => setFilter("all")}
             className={cn(
-              "px-4 py-2 rounded-lg text-sm font-semibold transition-all",
+              "px-4 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-sm",
               filter === "all"
-                ? "bg-primary text-primary-foreground"
-                : "bg-background hover:bg-muted-foreground/10"
+                ? "bg-teal-700 text-white hover:bg-teal-800"
+                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             )}
           >
             All
@@ -192,10 +260,10 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
           <button
             onClick={() => setFilter("male")}
             className={cn(
-              "px-4 py-2 rounded-lg text-sm font-semibold transition-all",
+              "px-4 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-sm",
               filter === "male"
-                ? "bg-primary text-primary-foreground"
-                : "bg-background hover:bg-muted-foreground/10"
+                ? "bg-teal-700 text-white hover:bg-teal-800"
+                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             )}
           >
             Male (Sunat Lelaki)
@@ -203,69 +271,78 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
           <button
             onClick={() => setFilter("female")}
             className={cn(
-              "px-4 py-2 rounded-lg text-sm font-semibold transition-all",
+              "px-4 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-sm",
               filter === "female"
-                ? "bg-primary text-primary-foreground"
-                : "bg-background hover:bg-muted-foreground/10"
+                ? "bg-teal-700 text-white hover:bg-teal-800"
+                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             )}
           >
             Female (Sunat Perempuan)
           </button>
         </div>
-        <div className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+        <div className="inline-flex items-center gap-2 bg-teal-100 dark:bg-teal-900/30 text-teal-900 dark:text-teal-100 px-3 py-1.5 rounded-full text-sm font-semibold">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
           {filteredSubmissions.length} submission
           {filteredSubmissions.length !== 1 ? "s" : ""}
         </div>
       </div>
 
       {/* Submissions List */}
-      <div className="space-y-3 mb-8">
+      <div className="space-y-4 mb-8">
         {filteredSubmissions.map((submission) => (
           <div
             key={submission.id}
-            className="border rounded-xl bg-surface-elevated overflow-hidden transition-all"
+            className="border rounded-xl bg-surface-elevated overflow-hidden transition-all shadow-sm hover:shadow-md"
           >
-            {/* Preview */}
-            <div
-              className="flex items-center justify-between p-4 cursor-pointer hover:bg-muted/50"
+            {/* Preview - Clickable Header */}
+            <button
+              type="button"
+              className="w-full flex items-center justify-between p-5 hover:bg-surface/50 transition-colors text-left"
               onClick={() => toggleExpand(submission.id)}
+              aria-expanded={expandedId === submission.id}
+              aria-controls={`submission-content-${submission.id}`}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 flex-wrap">
                 <span
                   className={cn(
-                    "px-2 py-1 rounded text-xs font-semibold",
+                    "px-3 py-1.5 rounded-lg text-xs font-bold",
                     submission.gender === "male"
-                      ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                      : "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200"
+                      ? "bg-blue-100 text-blue-900 dark:bg-blue-900 dark:text-blue-100"
+                      : "bg-pink-100 text-pink-900 dark:bg-pink-900 dark:text-pink-100"
                   )}
                 >
                   {submission.gender === "male" ? "Male" : "Female"}
                 </span>
-                <span className="font-semibold text-foreground">
+                <span className="font-bold text-foreground text-base">
                   {submission.isAnonymous
                     ? "Anonymous"
                     : submission.contributorName}
                 </span>
-                <span className="text-muted-foreground">•</span>
-                <span className="text-muted-foreground">
+                <span className="text-muted-foreground hidden sm:inline">•</span>
+                <span className="text-foreground font-medium">
                   {submission.clinicName}
                 </span>
                 <span className="text-muted-foreground">
                   ({submission.location})
                 </span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="px-2 py-1 bg-secondary text-secondary-foreground rounded text-xs">
-                  {submission.method}
+              <div className="flex items-center gap-3 flex-shrink-0 ml-3">
+                <span className="px-3 py-1.5 bg-teal-100 dark:bg-teal-900/30 text-teal-900 dark:text-teal-100 rounded-lg text-xs font-bold hidden sm:inline-block">
+                  {submission.method === "Other" && submission.methodOther 
+                    ? submission.methodOther 
+                    : submission.method}
                 </span>
                 <svg
                   className={cn(
-                    "w-5 h-5 text-muted-foreground transition-transform",
+                    "w-6 h-6 text-muted-foreground transition-transform duration-200",
                     expandedId === submission.id && "rotate-180"
                   )}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
+                  style={{ transform: expandedId === submission.id ? 'rotate(180deg)' : 'rotate(0deg)' }}
                 >
                   <path
                     strokeLinecap="round"
@@ -275,60 +352,84 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
                   />
                 </svg>
               </div>
-            </div>
+            </button>
 
             {/* Expanded Details */}
             {expandedId === submission.id && (
-              <div className="border-t bg-muted/30 p-4 space-y-3">
-                <div className="grid gap-3">
-                  <div>
-                    <span className="text-sm font-medium text-muted-foreground">
-                      Clinic/Hospital:
-                    </span>
-                    <p className="text-foreground">{submission.clinicName}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm font-medium text-muted-foreground">
-                      Location:
-                    </span>
-                    <p className="text-foreground">{submission.location}</p>
+              <div id={`submission-content-${submission.id}`} className="border-t bg-surface/50 p-5 space-y-4">
+                <div className="grid gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <span className="text-sm font-bold text-foreground flex items-center gap-2">
+                        <svg className="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        Clinic/Hospital:
+                      </span>
+                      <p className="text-foreground mt-1">{submission.clinicName}</p>
+                    </div>
+                    <div>
+                      <span className="text-sm font-bold text-foreground flex items-center gap-2">
+                        <svg className="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Location:
+                      </span>
+                      <p className="text-foreground mt-1">{submission.location}</p>
+                    </div>
                   </div>
                   {submission.practitionerName && (
                     <div>
-                      <span className="text-sm font-medium text-muted-foreground">
+                      <span className="text-sm font-bold text-foreground flex items-center gap-2">
+                        <svg className="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
                         Practitioner:
                       </span>
-                      <p className="text-foreground">
-                        {submission.practitionerName}
-                      </p>
+                      <p className="text-foreground mt-1">{submission.practitionerName}</p>
                     </div>
                   )}
                   {submission.clinicContact && (
                     <div>
-                      <span className="text-sm font-medium text-muted-foreground">
+                      <span className="text-sm font-bold text-foreground flex items-center gap-2">
+                        <svg className="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
                         Contact:
                       </span>
-                      <p className="text-foreground">
-                        {submission.clinicContact}
-                      </p>
+                      <p className="text-foreground mt-1">{submission.clinicContact}</p>
                     </div>
                   )}
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">
+                    <span className="text-sm font-bold text-foreground flex items-center gap-2">
+                      <svg className="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                      </svg>
                       Method:
                     </span>
-                    <p className="text-foreground">{submission.method}</p>
+                    <p className="text-foreground mt-1">
+                      {submission.method === "Other" && submission.methodOther 
+                        ? `${submission.method} - ${submission.methodOther}`
+                        : submission.method}
+                    </p>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">
+                    <span className="text-sm font-bold text-foreground flex items-center gap-2">
+                      <svg className="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                      </svg>
                       Experience:
                     </span>
-                    <p className="text-foreground mt-1">
+                    <p className="text-foreground mt-2 leading-relaxed">
                       {submission.experience}
                     </p>
                   </div>
-                  <div className="pt-2 border-t">
-                    <span className="text-xs text-muted-foreground">
+                  <div className="pt-3 border-t">
+                    <span className="text-xs text-muted-foreground flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
                       Submitted: {submission.submittedAt}
                     </span>
                   </div>
@@ -350,32 +451,32 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
         </p>
 
         {!isLoggedIn ? (
-          <div className="p-6 bg-muted rounded-xl">
-            <p className="text-sm text-muted-foreground mb-4">
+          <div className="p-6 bg-blue-100 dark:bg-blue-900/30 border-2 border-blue-300 dark:border-blue-700 rounded-xl shadow-sm">
+            <p className="text-sm text-blue-950 dark:text-blue-50 mb-4 font-semibold">
               You need to be logged in to share your experience.
             </p>
-            <button
-              onClick={handleSimulateLogin}
-              className="btn-primary inline-flex items-center gap-2"
+            <a
+              href="/auth/login"
+              className="inline-flex items-center gap-2 bg-teal-700 text-white px-5 py-3 rounded-lg hover:bg-teal-800 transition-all font-semibold shadow-md hover:shadow-lg"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
               </svg>
               Login to Share
-            </button>
+            </a>
           </div>
         ) : showForm ? (
           formSubmitted ? (
-            <div className="p-6 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
+            <div className="p-6 bg-green-100 dark:bg-green-900/30 border-2 border-green-300 dark:border-green-700 rounded-xl shadow-sm">
               <div className="flex items-center gap-3 mb-3">
-                <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6 text-green-700 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <h4 className="font-semibold text-green-800 dark:text-green-200">
+                <h4 className="font-bold text-green-950 dark:text-green-100">
                   Submission Received!
                 </h4>
               </div>
-              <p className="text-sm text-green-700 dark:text-green-300">
+              <p className="text-sm text-green-900 dark:text-green-200">
                 Thank you for sharing. Your experience will be reviewed and published within 2-3 business days.
               </p>
             </div>
@@ -475,6 +576,31 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
                   </p>
                 )}
               </div>
+
+              {/* Custom Method Input (when "Other" is selected) */}
+              {formData.method === "Other" && (
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Specify Method <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.methodOther}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        methodOther: e.target.value,
+                      }))
+                    }
+                    className="w-full px-3 py-2 border border-input bg-background rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="e.g. SmartKlamp, Laser-assisted, etc."
+                    minLength={3}
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Please specify the circumcision method used (minimum 3 characters)
+                  </p>
+                </div>
+              )}
 
               {/* Clinic Name */}
               <div>
@@ -606,10 +732,10 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
             </form>
           )
         ) : (
-          <div className="p-6 bg-muted rounded-xl">
+          <div className="p-6 bg-surface-elevated rounded-xl border shadow-sm">
             <button
               onClick={() => setShowForm(true)}
-              className="w-full bg-primary text-primary-foreground px-4 py-3 rounded-lg hover:bg-primary/90 transition-colors font-semibold"
+              className="w-full bg-teal-700 text-white px-4 py-3.5 rounded-lg hover:bg-teal-800 transition-all font-semibold shadow-md hover:shadow-lg"
             >
               Share Your Experience
             </button>
@@ -618,16 +744,16 @@ export function CircumcisionWidget({ className }: CircumcisionWidgetProps) {
       </div>
 
       {/* Moderation Note */}
-      <div className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+      <div className="mt-6 p-4 bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 rounded-lg shadow-sm">
         <div className="flex items-start gap-3">
-          <svg className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-amber-700 dark:text-amber-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
           <div>
-            <h4 className="font-semibold text-amber-800 dark:text-amber-200 text-sm mb-1">
+            <h4 className="font-bold text-amber-900 dark:text-amber-100 text-sm mb-1">
               Moderation Policy
             </h4>
-            <p className="text-sm text-amber-700 dark:text-amber-300">
+            <p className="text-sm text-amber-800 dark:text-amber-200">
               All submissions are reviewed before publishing to ensure authenticity and accuracy. Submissions typically appear within 2-3 business days.
             </p>
           </div>

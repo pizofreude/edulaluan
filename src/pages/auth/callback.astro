@@ -1,0 +1,111 @@
+---
+// Auth Callback Page - Handle OAuth redirects
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const status = Astro.url.searchParams.get('status');
+const error = Astro.url.searchParams.get('error');
+---
+
+<Layout title="Authentication | EduLaluan">
+  <Header />
+
+  <main class="min-h-screen bg-background flex items-center justify-center">
+    <div class="container mx-auto px-4 max-w-md">
+      <div class="rounded-xl border bg-surface-elevated p-8 text-center shadow-sm">
+        
+        {status === 'logged_in' ? (
+          <>
+            <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h1 class="text-2xl font-bold text-foreground mb-2">Login Successful!</h1>
+            <p class="text-muted-foreground mb-6">You've been successfully logged in.</p>
+            <a
+              href="/user/dashboard"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-colors"
+            >
+              Go to Dashboard
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </>
+        ) : error ? (
+          <>
+            <div class="w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <h1 class="text-2xl font-bold text-foreground mb-2">Authentication Error</h1>
+            <p class="text-muted-foreground mb-6">
+              {error === 'access_denied' ? 'Access was denied.' : 'An error occurred during authentication.'}
+            </p>
+            <a
+              href="/auth/login"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-colors"
+            >
+              Back to Login
+            </a>
+          </>
+        ) : (
+          <>
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent mb-4"></div>
+            <h1 class="text-2xl font-bold text-foreground mb-2">Completing Login...</h1>
+            <p class="text-muted-foreground mb-6">Please wait while we complete your authentication.</p>
+            <p class="text-sm text-muted-foreground">You will be redirected shortly...</p>
+          </>
+        )}
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Handle OAuth callback
+  const urlParams = new URLSearchParams(window.location.search);
+  const error = urlParams.get('error');
+  const errorCode = urlParams.get('error_code');
+  const errorDesc = urlParams.get('error_description');
+  const status = urlParams.get('status');
+
+  console.log('[Auth Callback] Params:', { error, errorCode, errorDesc, status });
+
+  if (error) {
+    // Show error immediately
+    document.body.innerHTML = `
+      <div class="min-h-screen bg-background flex items-center justify-center">
+        <div class="container mx-auto px-4 max-w-md">
+          <div class="rounded-xl border bg-surface-elevated p-8 text-center shadow-sm">
+            <div class="w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <h1 class="text-2xl font-bold text-foreground mb-2">Authentication Error</h1>
+            <p class="text-muted-foreground mb-4">${errorDesc || 'An error occurred during authentication.'}</p>
+            <p class="text-sm text-red-600 mb-6">Error: ${error} (${errorCode || 'unknown'})</p>
+            <a href="/auth/login" class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-colors">
+              Back to Login
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (status === 'logged_in') {
+    // Already logged in, redirect to dashboard
+    window.location.href = '/user/dashboard';
+  } else {
+    // Wait for Supabase to process the OAuth callback, then redirect
+    setTimeout(() => {
+      window.location.href = '/user/dashboard';
+    }, 3000);
+  }
+</script>

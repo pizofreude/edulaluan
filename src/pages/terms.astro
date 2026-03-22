@@ -1,0 +1,131 @@
+---
+// Terms of Service Page
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Terms of Service | EduLaluan">
+  <Header />
+
+  <main class="min-h-screen bg-surface">
+    <div class="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-bold text-foreground mb-8">Terms of Service</h1>
+        <p class="text-sm text-muted-foreground mb-8">Last updated: March 20, 2026</p>
+
+        <div class="prose prose-slate dark:prose-invert max-w-none">
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">1. Acceptance of Terms</h2>
+          <p class="text-foreground mb-4">
+            By accessing and using EduLaluan, you accept and agree to be bound by the terms and provision of this agreement.
+            If you do not agree to abide by these terms, please do not use this service.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">2. Description of Service</h2>
+          <p class="text-foreground mb-4">
+            EduLaluan is an education resource navigator that helps Malaysian students and families discover scholarships,
+            courses, vocational training, and financial aid programs. The service provides:
+          </p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Education resource database</li>
+            <li>Scholarship and financial aid information</li>
+            <li>Community contribution platform</li>
+            <li>User accounts with gamification features</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">3. User Accounts</h2>
+          <p class="text-foreground mb-4">
+            To access certain features of the service, you must create an account. You agree to:
+          </p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Provide accurate and complete registration information</li>
+            <li>Maintain the security of your account credentials</li>
+            <li>Notify us immediately of any unauthorized use</li>
+            <li>Be responsible for all activities under your account</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">4. User Contributions</h2>
+          <p class="text-foreground mb-4">
+            Users may submit education resources, financial aid programs, and other content. By submitting content, you:
+          </p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Represent that you have the right to submit such content</li>
+            <li>Grant EduLaluan a license to use, display, and distribute the content</li>
+            <li>Agree that content will be reviewed by moderators</li>
+            <li>Understand that inappropriate content will be removed</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">5. Prohibited Conduct</h2>
+          <p class="text-foreground mb-4">You agree not to:</p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Submit false, misleading, or harmful information</li>
+            <li>Use the service for any illegal purpose</li>
+            <li>Attempt to gain unauthorized access to the service</li>
+            <li>Interfere with or disrupt the service</li>
+            <li>Harass, abuse, or harm other users</li>
+            <li>Submit spam or repetitive content</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">6. Gamification System</h2>
+          <p class="text-foreground mb-4">
+            EduLaluan includes a points and badges system to reward contributions. You agree that:
+          </p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Points and badges are awarded at EduLaluan's discretion</li>
+            <li>Abuse of the system may result in point removal or account suspension</li>
+            <li>Weekly submission limits apply based on user tier</li>
+            <li>EduLaluan reserves the right to modify the gamification system</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">7. Intellectual Property</h2>
+          <p class="text-foreground mb-4">
+            The EduLaluan service, including its design, features, and content, is protected by copyright and intellectual property laws.
+            You may not copy, modify, or distribute any part of the service without permission.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">8. Disclaimer of Warranties</h2>
+          <p class="text-foreground mb-4">
+            THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED.
+            EDULALUAN DOES NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">9. Limitation of Liability</h2>
+          <p class="text-foreground mb-4">
+            EDULALUAN SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM
+            YOUR USE OF THE SERVICE, INCLUDING BUT NOT LIMITED TO LOSS OF DATA, LOSS OF PROFITS, OR BUSINESS INTERRUPTION.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">10. Modifications to Terms</h2>
+          <p class="text-foreground mb-4">
+            We reserve the right to modify these terms at any time. Continued use of the service after changes constitutes acceptance of the new terms.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">11. Termination</h2>
+          <p class="text-foreground mb-4">
+            We may terminate or suspend your account at any time for violation of these terms or for any other reason at our discretion.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">12. Governing Law</h2>
+          <p class="text-foreground mb-4">
+            These terms shall be governed by and construed in accordance with the laws of Malaysia.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">13. Contact Information</h2>
+          <p class="text-foreground mb-4">
+            For questions about these Terms of Service, please contact us at:
+            <br />
+            Email: <a href="mailto:support@edulaluan.my" class="text-primary hover:underline">support@edulaluan.my</a>
+          </p>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-border">
+          <p class="text-sm text-muted-foreground">
+            By using EduLaluan, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

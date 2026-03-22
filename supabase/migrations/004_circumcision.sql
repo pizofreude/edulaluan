@@ -8,7 +8,7 @@
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS circumcision_submissions (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID REFERENCES public.users(id) ON DELETE SET NULL, -- NULL for anonymous
     contribution_id UUID REFERENCES contributions(id) ON DELETE CASCADE, -- Link to main contribution
     
@@ -157,11 +157,18 @@ $$ LANGUAGE plpgsql;
 -- Function to notify on circumcision submission (HIGH PRIORITY)
 CREATE OR REPLACE FUNCTION notify_circumcision_submission()
 RETURNS TRIGGER AS $$
+DECLARE
+    v_user_email TEXT;
 BEGIN
+    -- Get user email if available
+    IF NEW.user_id IS NOT NULL THEN
+        SELECT email INTO v_user_email FROM public.users WHERE id = NEW.user_id;
+    END IF;
+
     -- Send high-priority admin notification
     PERFORM send_admin_notification(
         'new_contribution',
-        FORMAT('New circumcision submission from %s at %s (%s)', 
+        FORMAT('New circumcision submission from %s at %s (%s)',
                COALESCE(NEW.display_name, 'Anonymous'),
                NEW.clinic_name,
                NEW.location),
@@ -170,21 +177,21 @@ BEGIN
         NEW.user_id,
         'New Circumcision Submission'
     );
-    
+
     -- If FGM check failed, send urgent notification
     IF NEW.fgm_check_passed = FALSE THEN
         PERFORM send_admin_notification(
             'urgent',
-            FORMAT('⚠️ FGM CHECK FAILED: Submission from %s at %s requires immediate review',
+            FORMAT('FGM CHECK FAILED: Submission from %s at %s requires immediate review',
                    COALESCE(NEW.display_name, 'Anonymous'),
                    NEW.clinic_name),
             'urgent',
             NEW.contribution_id,
             NEW.user_id,
-            '⚠️ URGENT: FGM Check Failed'
+            'URGENT: FGM Check Failed'
         );
     END IF;
-    
+
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -364,7 +371,7 @@ COMMENT ON VIEW approved_circumcision_resources IS 'Public view: approved circum
 
 -- Store the FGM editorial notice in a queryable format for the frontend
 CREATE TABLE IF NOT EXISTS editorial_notices (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     page_key TEXT NOT NULL UNIQUE,
     title TEXT NOT NULL,
     content TEXT NOT NULL,

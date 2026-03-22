@@ -8,7 +8,7 @@
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS contributions (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     type TEXT NOT NULL, -- 'resource', 'financial_aid', 'feature_request', 'issue_report', 'circumcision'
     title TEXT NOT NULL,
@@ -42,7 +42,7 @@ CREATE INDEX IF NOT EXISTS idx_contributions_moderated ON contributions(moderate
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS point_transactions (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     contribution_id UUID REFERENCES contributions(id) ON DELETE SET NULL,
     points INTEGER NOT NULL,
@@ -66,7 +66,7 @@ CREATE INDEX IF NOT EXISTS idx_point_transactions_created ON point_transactions(
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS badges (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     slug TEXT NOT NULL UNIQUE,
     description TEXT NOT NULL,
@@ -91,7 +91,7 @@ CREATE INDEX IF NOT EXISTS idx_badges_category ON badges(category);
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS user_badges (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     badge_id UUID NOT NULL REFERENCES badges(id) ON DELETE CASCADE,
     earned_at TIMESTAMPTZ DEFAULT NOW(),
@@ -112,7 +112,7 @@ CREATE INDEX IF NOT EXISTS idx_user_badges_displayed ON user_badges(is_displayed
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS leaderboard_cache (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     category TEXT NOT NULL DEFAULT 'all_time', -- 'all_time', 'monthly', 'weekly', 'by_type'
     subtype TEXT, -- For type-specific leaderboards (e.g., 'resource', 'financial_aid')
@@ -139,7 +139,7 @@ CREATE INDEX IF NOT EXISTS idx_leaderboard_period ON leaderboard_cache(period_st
 -- =============================================
 
 CREATE TABLE IF NOT EXISTS weekly_submission_limits (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     week_start DATE NOT NULL, -- Monday of the week
     submission_count INTEGER DEFAULT 0,
@@ -206,10 +206,10 @@ DECLARE
 BEGIN
     -- Get user tier
     SELECT tier INTO user_tier FROM public.users WHERE id = p_user_id;
-    
-    -- Get current week start (Monday)
-    week_start_date := date_trunc('week', CURRENT_DATE, 'Monday')::DATE;
-    
+
+    -- Get current week start (Monday) - FIXED: use simple date math
+    week_start_date := CURRENT_DATE - EXTRACT(DOW FROM CURRENT_DATE)::INTEGER + 1;
+
     -- Get submission limit for tier
     submission_limit := get_submission_limit_for_tier(user_tier);
     cooldown_hours := get_cooldown_hours_for_tier(user_tier);
@@ -253,9 +253,9 @@ DECLARE
     submission_limit INTEGER;
     cooldown_hours INTEGER;
 BEGIN
-    -- Get week start (Monday)
-    week_start_date := date_trunc('week', CURRENT_DATE, 'Monday')::DATE;
-    
+    -- Get week start (Monday) - FIXED: use simple date math
+    week_start_date := CURRENT_DATE - EXTRACT(DOW FROM CURRENT_DATE)::INTEGER + 1;
+
     -- Get user tier
     SELECT tier INTO user_tier FROM public.users WHERE id = NEW.user_id;
     

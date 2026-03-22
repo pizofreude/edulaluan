@@ -10,9 +10,14 @@ function isActive(path: string): boolean {
   return currentPage === path || currentPage === path + '/';
 }
 
-// Auth state (will be populated from cookies/localStorage in production)
-const isAuthenticated = false;
-const user = null;
+// Check if current page is under /contribute section
+const isContributeSection = currentPage.startsWith('/contribute');
+
+// Auth state management - check Supabase auth on page load
+let _isAuthenticated = false;
+let _user = null;
+
+// These will be populated by client-side auth check in the script below
 ---
 
 <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -30,18 +35,39 @@ const user = null;
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex md:items-center md:space-x-6">
-        <a href="/" class={`text-sm font-medium transition-colors nav-link ${isActive('/') ? 'nav-link-active' : ''}`}>Home</a>
-        <a href="/panduan-rakyat" class={`text-sm font-medium transition-colors nav-link ${currentPage.startsWith('/panduan-rakyat') ? 'nav-link-active' : ''}`}>People's Guide</a>
-        <a href="/navigate" class={`text-sm font-medium transition-colors nav-link ${isActive('/navigate') ? 'nav-link-active' : ''}`}>Navigate</a>
-        <a href="/resources" class={`text-sm font-medium transition-colors nav-link ${isActive('/resources') ? 'nav-link-active' : ''}`}>Resources</a>
-        <a href="/contribute" class={`text-sm font-medium transition-colors nav-link ${isActive('/contribute') ? 'nav-link-active' : ''}`}>Contribute</a>
-        <a href="/about" class={`text-sm font-medium transition-colors nav-link ${isActive('/about') ? 'nav-link-active' : ''}`}>About</a>
+        <a href="/" class={`text-sm font-medium transition-colors ${isActive('/') ? 'font-semibold' : ''}`} style={isActive('/') ? 'color: #0d9488; font-weight: 600;' : ''}>Home</a>
+        <a href="/panduan-rakyat" class={`text-sm font-medium transition-colors ${currentPage.startsWith('/panduan-rakyat') ? 'font-semibold' : ''}`} style={currentPage.startsWith('/panduan-rakyat') ? 'color: #0d9488; font-weight: 600;' : ''}>People's Guide</a>
+        <a href="/navigate" class={`text-sm font-medium transition-colors ${isActive('/navigate') ? 'font-semibold' : ''}`} style={isActive('/navigate') ? 'color: #0d9488; font-weight: 600;' : ''}>Navigate</a>
+        <a href="/resources" class={`text-sm font-medium transition-colors ${isActive('/resources') ? 'font-semibold' : ''}`} style={isActive('/resources') ? 'color: #0d9488; font-weight: 600;' : ''}>Resources</a>
+        
+        <!-- Community Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-primary">
+            <span>Community</span>
+            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute left-0 mt-2 w-48 rounded-lg border bg-surface-elevated py-2 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+            <a href="/contribute" class="block px-4 py-2 text-sm text-foreground hover:bg-accent">
+              📝 Contribute
+            </a>
+            <a href="/leaderboard" class="block px-4 py-2 text-sm text-foreground hover:bg-accent">
+              🏆 Leaderboard
+            </a>
+            <a href="/user/dashboard" id="community-dashboard-link" class="hidden block px-4 py-2 text-sm text-foreground hover:bg-accent">
+              📊 Dashboard
+            </a>
+          </div>
+        </div>
+        
+        <a href="/about" class={`text-sm font-medium transition-colors ${isActive('/about') ? 'font-semibold' : ''}`} style={isActive('/about') ? 'color: #0d9488; font-weight: 600;' : ''}>About</a>
       </nav>
 
       <!-- Right side actions -->
       <div class="flex items-center gap-2">
         <!-- Auth Buttons (when not authenticated) -->
-        <div id="auth-buttons" class="hidden md:flex items-center gap-2">
+        <div id="auth-buttons" class="flex items-center gap-2">
           <a
             href="/auth/login"
             class="text-sm font-medium text-foreground transition-colors hover:text-primary"
@@ -50,20 +76,14 @@ const user = null;
           </a>
           <a
             href="/auth/signup"
-            class="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90"
+            class="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Sign Up
           </a>
         </div>
 
         <!-- User Menu (when authenticated) -->
-        <div id="user-menu" class="hidden md:flex items-center gap-3">
-          <a
-            href="/user/dashboard"
-            class="text-sm font-medium text-foreground transition-colors hover:text-primary"
-          >
-            Dashboard
-          </a>
+        <div id="user-menu" class="hidden items-center gap-3">
           <div class="relative group">
             <button class="flex items-center gap-2 rounded-full bg-primary/10 p-1 pr-3 transition-colors hover:bg-primary/20">
               <div class="rounded-full bg-primary p-1.5">
@@ -77,12 +97,43 @@ const user = null;
               </svg>
             </button>
             <!-- Dropdown -->
-            <div class="absolute right-0 mt-2 w-48 rounded-lg border bg-surface-elevated py-1 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-              <a href="/user/dashboard" class="block px-4 py-2 text-sm text-foreground hover:bg-accent">Dashboard</a>
-              <a href="/user/submissions" class="block px-4 py-2 text-sm text-foreground hover:bg-accent">My Submissions</a>
-              <a href="/user/badges" class="block px-4 py-2 text-sm text-foreground hover:bg-accent">Badges</a>
-              <div class="border-t my-1"></div>
-              <button id="logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-accent">Sign Out</button>
+            <div class="absolute right-0 mt-2 w-56 rounded-lg border bg-surface-elevated py-2 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+              <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                <p class="text-sm font-medium text-foreground">Signed in as</p>
+                <p id="user-email" class="text-xs text-muted-foreground truncate">user@example.com</p>
+              </div>
+              <a href="/user/dashboard" class="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-accent">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Dashboard
+              </a>
+              <a href="/user/submissions" class="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-accent">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                My Submissions
+              </a>
+              <a href="/user/badges" class="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-accent">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+                Badges
+              </a>
+              <a href="/user/settings" class="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-accent">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Settings
+              </a>
+              <div class="border-t my-2"></div>
+              <button id="logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-accent flex items-center gap-2">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                Sign Out
+              </button>
             </div>
           </div>
         </div>
@@ -102,54 +153,49 @@ const user = null;
     <!-- Mobile Navigation -->
     <div id="mobile-menu" class="hidden md:hidden pb-4">
       <div class="flex flex-col space-y-2">
+        <!-- Mobile Auth Buttons (shown when not authenticated) -->
+        <div id="mobile-auth-buttons" class="hidden flex-col gap-2 pb-2 border-b mb-2">
+          <a
+            href="/auth/login"
+            class="w-full rounded-lg bg-primary px-4 py-3 text-center text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Sign In / Sign Up
+          </a>
+        </div>
+        <!-- Mobile User Menu (shown when authenticated) -->
+        <div id="mobile-user-menu" class="hidden flex-col gap-2 pb-2 border-b mb-2">
+          <a
+            href="/user/dashboard"
+            class="w-full rounded-lg bg-primary/10 px-4 py-3 text-center text-sm font-medium text-primary"
+          >
+            Dashboard
+          </a>
+          <a
+            href="/user/submissions"
+            class="w-full rounded-lg border border-input bg-background px-4 py-3 text-center text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            My Submissions
+          </a>
+          <a
+            href="/user/badges"
+            class="w-full rounded-lg border border-input bg-background px-4 py-3 text-center text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            Badges
+          </a>
+          <button
+            id="mobile-logout-btn"
+            class="w-full rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-600 transition-colors hover:bg-red-100"
+          >
+            Sign Out
+          </button>
+        </div>
+        <!-- Navigation Links -->
         <a href="/" class={`text-sm font-medium transition-colors nav-link ${isActive('/') ? 'nav-link-active' : ''}`}>Home</a>
         <a href="/panduan-rakyat" class={`text-sm font-medium transition-colors nav-link ${currentPage.startsWith('/panduan-rakyat') ? 'nav-link-active' : ''}`}>People's Guide</a>
         <a href="/navigate" class={`text-sm font-medium transition-colors nav-link ${isActive('/navigate') ? 'nav-link-active' : ''}`}>Navigate</a>
         <a href="/resources" class={`text-sm font-medium transition-colors nav-link ${isActive('/resources') ? 'nav-link-active' : ''}`}>Resources</a>
         <a href="/contribute" class={`text-sm font-medium transition-colors nav-link ${isActive('/contribute') ? 'nav-link-active' : ''}`}>Contribute</a>
         <a href="/about" class={`text-sm font-medium transition-colors nav-link ${isActive('/about') ? 'nav-link-active' : ''}`}>About</a>
-        <!-- Mobile Auth Buttons -->
-        <div id="mobile-auth-buttons" class="hidden pt-2 space-y-2">
-          <a
-            href="/auth/login"
-            class="block rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Sign In
-          </a>
-          <a
-            href="/auth/signup"
-            class="block rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90 text-center"
-          >
-            Sign Up
-          </a>
-        </div>
-        <!-- Mobile User Menu -->
-        <div id="mobile-user-menu" class="hidden pt-2 space-y-2">
-          <a
-            href="/user/dashboard"
-            class="block rounded-lg bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
-          >
-            Dashboard
-          </a>
-          <a
-            href="/user/submissions"
-            class="block rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            My Submissions
-          </a>
-          <a
-            href="/user/badges"
-            class="block rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Badges
-          </a>
-          <button
-            id="mobile-logout-btn"
-            class="w-full rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-100"
-          >
-            Sign Out
-          </button>
-        </div>
         <!-- Mobile Theme Toggle -->
         <div class="pt-2">
           <ThemeToggle client:load />
@@ -195,48 +241,115 @@ const user = null;
     menu?.classList.toggle('hidden');
   });
 
-  // Auth state management
-  function checkAuthState() {
-    const session = localStorage.getItem('edulaluan_session');
-    const user = localStorage.getItem('edulaluan_user');
-    const isAuthenticated = !!session && !!user;
+  // Auth state management - start with NOT authenticated by default
+  let currentUser: any = null;
+  let authChecked = false;
 
+  function updateAuthUI(isAuthenticated: boolean, userEmail?: string) {
     const authButtons = document.getElementById('auth-buttons');
     const userMenu = document.getElementById('user-menu');
     const mobileAuthButtons = document.getElementById('mobile-auth-buttons');
     const mobileUserMenu = document.getElementById('mobile-user-menu');
+    const userEmailEl = document.getElementById('user-email');
+    const dashboardLink = document.getElementById('community-dashboard-link');
 
     if (isAuthenticated) {
-      // Show user menu
+      // Show user menu, hide auth buttons
+      authButtons?.classList.remove('flex');
       authButtons?.classList.add('hidden');
       userMenu?.classList.remove('hidden');
+      userMenu?.classList.add('flex');
+      mobileAuthButtons?.classList.remove('flex');
       mobileAuthButtons?.classList.add('hidden');
       mobileUserMenu?.classList.remove('hidden');
+      mobileUserMenu?.classList.add('flex');
+      // Show dashboard link in Community dropdown
+      dashboardLink?.classList.remove('hidden');
+      // Set user email if available
+      if (userEmail && userEmailEl) {
+        userEmailEl.textContent = userEmail;
+      }
     } else {
-      // Show auth buttons
+      // Show auth buttons, hide user menu
       authButtons?.classList.remove('hidden');
+      authButtons?.classList.add('flex');
+      userMenu?.classList.remove('flex');
       userMenu?.classList.add('hidden');
       mobileAuthButtons?.classList.remove('hidden');
+      mobileAuthButtons?.classList.add('flex');
+      mobileUserMenu?.classList.remove('flex');
       mobileUserMenu?.classList.add('hidden');
+      // Hide dashboard link in Community dropdown
+      dashboardLink?.classList.add('hidden');
     }
   }
 
-  // Check auth state on load
+  async function checkAuthState() {
+    if (authChecked) return;
+
+    try {
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+      if (!supabaseUrl || !supabaseKey) {
+        updateAuthUI(false);
+        authChecked = true;
+        return;
+      }
+
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(supabaseUrl, supabaseKey);
+
+      const { data: { session }, error } = await supabase.auth.getSession();
+
+      if (error || !session) {
+        updateAuthUI(false);
+      } else {
+        currentUser = session.user;
+        updateAuthUI(true, session.user.email);
+      }
+    } catch (error) {
+      updateAuthUI(false);
+    }
+    authChecked = true;
+  }
+
+  // Check auth state on page load
   checkAuthState();
 
   // Logout handler
-  document.getElementById('logout-btn')?.addEventListener('click', () => {
-    localStorage.removeItem('edulaluan_session');
-    localStorage.removeItem('edulaluan_user');
-    window.location.href = '/';
-  });
+  async function handleLogout() {
+    try {
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+      const supabaseKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-  document.getElementById('mobile-logout-btn')?.addEventListener('click', () => {
-    localStorage.removeItem('edulaluan_session');
-    localStorage.removeItem('edulaluan_user');
-    window.location.href = '/';
-  });
+      if (supabaseUrl && supabaseKey) {
+        const { createClient } = await import('@supabase/supabase-js');
+        const supabase = createClient(supabaseUrl, supabaseKey);
+        await supabase.auth.signOut();
+      }
+
+      // Clear any local storage
+      localStorage.removeItem('edulaluan_session');
+      localStorage.removeItem('edulaluan_user');
+
+      // Force reload to reset UI
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Logout failed:', error);
+      // Force logout anyway
+      localStorage.removeItem('edulaluan_session');
+      localStorage.removeItem('edulaluan_user');
+      window.location.href = '/';
+    }
+  }
+
+  document.getElementById('logout-btn')?.addEventListener('click', handleLogout);
+  document.getElementById('mobile-logout-btn')?.addEventListener('click', handleLogout);
 
   // Listen for storage changes (logout from other tabs)
-  window.addEventListener('storage', checkAuthState);
+  window.addEventListener('storage', () => {
+    authChecked = false;
+    checkAuthState();
+  });
 </script>

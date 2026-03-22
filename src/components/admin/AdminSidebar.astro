@@ -9,6 +9,7 @@ const { current = 'dashboard' } = Astro.props;
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: 'dashboard', key: 'dashboard' },
   { href: '/admin/moderation', label: 'Moderation', icon: 'moderation', key: 'moderation' },
+  { href: '/admin/manage', label: 'Manage Admins', icon: 'manage', key: 'manage' },
   { href: '/admin/users', label: 'Users', icon: 'users', key: 'users' },
   { href: '/admin/settings', label: 'Settings', icon: 'settings', key: 'settings' },
 ];
@@ -23,6 +24,11 @@ function getIcon(name: string) {
     moderation: (
       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+    ),
+    manage: (
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
       </svg>
     ),
     users: (

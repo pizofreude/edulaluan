@@ -11,7 +11,7 @@ export const GET: APIRoute = async ({ request, url }) => {
   try {
     // Initialize Supabase client
     const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
     
     if (!supabaseUrl || !supabaseAnonKey) {
       console.error('Missing Supabase credentials');

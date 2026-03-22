@@ -1,6 +1,6 @@
 // EduLaluan API: User Login
 // POST /api/auth/login
-// Description: Handle user login with email/password
+// Description: Handle user login with email/password or GitHub OAuth
 
 import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
@@ -10,9 +10,43 @@ export const prerender = false;
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    const { email, password } = body;
+    const { email, password, provider } = body;
 
-    // Validation
+    // Handle GitHub OAuth
+    if (provider === 'github') {
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+      const supabasePublishableKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+      if (!supabaseUrl || !supabasePublishableKey) {
+        return new Response(
+          JSON.stringify({ error: 'Server configuration error' }),
+          { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      const supabase = createClient(supabaseUrl, supabasePublishableKey);
+
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+          redirectTo: 'http://localhost:4322/auth/callback'
+        }
+      });
+
+      if (error) {
+        return new Response(
+          JSON.stringify({ error: error.message }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      return new Response(
+        JSON.stringify({ url: data.url }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Handle email/password login
     if (!email || !password) {
       return new Response(
         JSON.stringify({ error: 'Email and password are required' }),
@@ -22,17 +56,17 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Initialize Supabase client (client-side for auth)
     const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-    
-    if (!supabaseUrl || !supabaseAnonKey) {
+    const supabasePublishableKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+    if (!supabaseUrl || !supabasePublishableKey) {
       console.error('Missing Supabase credentials');
       return new Response(
-        JSON.stringify({ error: 'Server configuration error' }), 
+        JSON.stringify({ error: 'Server configuration error' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    const supabase = createClient(supabaseUrl, supabasePublishableKey);
 
     // Attempt login
     const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
@@ -54,7 +88,7 @@ export const POST: APIRoute = async ({ request }) => {
       }
 
       return new Response(
-        JSON.stringify({ error: 'Invalid email or password' }), 
+        JSON.stringify({ error: 'Invalid email or password' }),
         { status: 401, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -74,7 +108,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Success response
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         success: true,
         message: 'Login successful',
         user: userProfile,
@@ -83,14 +117,14 @@ export const POST: APIRoute = async ({ request }) => {
           refreshToken: authData.session.refresh_token,
           expiresAt: authData.session.expires_at
         }
-      }), 
+      }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
 
   } catch (error) {
     console.error('Login error:', error);
     return new Response(
-      JSON.stringify({ error: 'An unexpected error occurred' }), 
+      JSON.stringify({ error: 'An unexpected error occurred' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }

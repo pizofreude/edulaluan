@@ -1,9 +1,13 @@
 import { createServerClient } from '@supabase/ssr'
 
 export function createClient(cookieHeader: string | null) {
+  // Use new API key model (2025/2026) with fallback to legacy
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseKey = import.meta.env.SUPABASE_SECRET_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
   return createServerClient(
-    import.meta.env.PUBLIC_SUPABASE_URL,
-    import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+    supabaseUrl,
+    supabaseKey,
     {
       cookies: {
         getAll() {
