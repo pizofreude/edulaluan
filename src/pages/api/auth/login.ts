@@ -25,7 +25,8 @@ export const POST: APIRoute = async ({ request }) => {
       }
 
       // Determine redirect URL based on environment
-      const siteUrl = import.meta.env.SITE_URL || 'https://edulaluan.netlify.app';
+      // Astro's import.meta.env.SITE is set in astro.config.mjs
+      const siteUrl = import.meta.env.SITE || 'https://edulaluan.netlify.app';
       const redirectTo = `${siteUrl}/auth/callback`;
 
       const supabase = createClient(supabaseUrl, supabasePublishableKey);

@@ -5,6 +5,7 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://edulaluan.netlify.app',
   integrations: [
     react(),
     tailwind({
