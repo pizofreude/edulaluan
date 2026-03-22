@@ -24,12 +24,16 @@ export const POST: APIRoute = async ({ request }) => {
         );
       }
 
+      // Determine redirect URL based on environment
+      const siteUrl = import.meta.env.SITE_URL || 'https://edulaluan.netlify.app';
+      const redirectTo = `${siteUrl}/auth/callback`;
+
       const supabase = createClient(supabaseUrl, supabasePublishableKey);
 
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
-          redirectTo: 'http://localhost:4321/auth/callback'
+          redirectTo
         }
       });
 
