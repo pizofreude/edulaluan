@@ -488,24 +488,38 @@ const currentPage = 'settings';
       if (!session?.access_token) return;
 
       // Get user data from users table
-      const { data: userData } = await supabase
+      const { data: userData, error: userError } = await supabase
         .from('users')
         .select('username, username_updated_at')
         .eq('id', session.user.id)
         .single();
 
-      if (userData) {
-        const usernameInput = document.getElementById('username') as HTMLInputElement;
-        const usernameStatus = document.getElementById('username-status');
-        
-        if (usernameInput) {
-          usernameInput.value = userData.username || '';
-          usernameInput.placeholder = userData.username ? userData.username : 'Not set';
-        }
+      if (userError) {
+        console.error('[Username] Failed to fetch user data:', userError);
+        return;
+      }
 
-        if (usernameStatus && userData.username) {
+      const usernameInput = document.getElementById('username') as HTMLInputElement;
+      const usernameStatus = document.getElementById('username-status');
+
+      if (userData?.username) {
+        // Username is set - display it
+        if (usernameInput) {
+          usernameInput.value = userData.username;
+          usernameInput.placeholder = '';
+        }
+        if (usernameStatus) {
           usernameStatus.textContent = '✓ Set';
           usernameStatus.className = 'absolute right-3 top-2 text-sm text-green-600';
+        }
+      } else {
+        // Username not set - show placeholder
+        if (usernameInput) {
+          usernameInput.value = '';
+          usernameInput.placeholder = 'Not set';
+        }
+        if (usernameStatus) {
+          usernameStatus.textContent = '';
         }
       }
     } catch (error) {
