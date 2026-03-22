@@ -24,12 +24,17 @@ export const POST: APIRoute = async ({ request }) => {
         );
       }
 
+      // Determine redirect URL based on environment
+      // Astro's import.meta.env.SITE is set in astro.config.mjs
+      const siteUrl = import.meta.env.SITE || 'https://edulaluan.netlify.app';
+      const redirectTo = `${siteUrl}/auth/callback`;
+
       const supabase = createClient(supabaseUrl, supabasePublishableKey);
 
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
-          redirectTo: 'http://localhost:4321/auth/callback'
+          redirectTo
         }
       });
 

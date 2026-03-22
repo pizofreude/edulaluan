@@ -9,6 +9,11 @@
 # GITHUB_CLIENT_ID
 # GITHUB_CLIENT_SECRET
 
+# Secrets scanning configuration
+# PUBLIC_* variables are intentionally public (client-side)
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_SUPABASE_URL,PUBLIC_SUPABASE_PUBLISHABLE_KEY"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
