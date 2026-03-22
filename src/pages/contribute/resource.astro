@@ -313,6 +313,19 @@ import { Button } from '../../components/ui/button';
             placeholder="Any other information we should know?"
           ></textarea>
         </div>
+
+        <div class="flex items-start gap-3 p-4 rounded-lg border bg-surface-elevated">
+          <input
+            type="checkbox"
+            id="isAnonymous"
+            name="isAnonymous"
+            class="mt-1 h-4 w-4 rounded border-gray-300"
+          />
+          <label for="isAnonymous" class="text-sm text-foreground">
+            <span class="font-medium">Submit anonymously</span>
+            <p class="text-muted-foreground">Your name will not be shown to the public. Admins can still see your identity.</p>
+          </label>
+        </div>
       </div>
 
       <!-- Submit Button -->
@@ -398,6 +411,14 @@ import { Button } from '../../components/ui/button';
     submitButton.disabled = true;
     
     try {
+      // Get auth token
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        import.meta.env.PUBLIC_SUPABASE_URL,
+        import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      );
+      const { data: { session } } = await supabase.auth.getSession();
+
       // Prepare submission data
       const submissionData = {
         type: 'resource',
@@ -405,6 +426,7 @@ import { Button } from '../../components/ui/button';
         description: description,
         url: url,
         categoryId: category,
+        isAnonymous: (document.getElementById('isAnonymous') as HTMLInputElement).checked,
         metadata: {
           provider,
           income_groups: incomeGroups,
@@ -419,11 +441,17 @@ import { Button } from '../../components/ui/button';
           additional_notes: (document.getElementById('additionalNotes') as HTMLTextAreaElement).value.trim()
         }
       };
-      
+
+      // Build headers
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+      }
+
       // Submit to API
       const response = await fetch('/api/contributions', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(submissionData)
       });
       

@@ -191,14 +191,32 @@ const currentPage = 'moderation';
 
   async function loadSubmissions() {
     try {
-      const response = await fetch('/api/admin/contributions?status=pending');
+      // Get access token from localStorage
+      const storageData = localStorage.getItem('sb-ngpqiaiwxnfyjsvcmxpe-auth-token');
+      let accessToken = null;
+      
+      if (storageData) {
+        try {
+          const parsed = JSON.parse(storageData);
+          accessToken = parsed.access_token;
+        } catch (e) {
+          console.warn('Failed to parse auth token from localStorage:', e);
+        }
+      }
+
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+
+      const response = await fetch('/api/admin/contributions?status=pending', { headers });
       const data = await response.json();
 
       if (!response.ok) throw new Error(data.error);
 
       allSubmissions = data.contributions || [];
       filteredSubmissions = [...allSubmissions];
-      
+
       updateStats();
       renderSubmissions();
     } catch (error) {
@@ -300,7 +318,7 @@ const currentPage = 'moderation';
                 <svg class="w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                <span class="text-foreground">${escapeHtml(sub.user?.full_name || sub.user?.email || 'Anonymous')}</span>
+                <span class="text-foreground">${escapeHtml(sub.is_anonymous ? 'Anonymous' : sub.user?.username || sub.user?.full_name || sub.user?.email || sub.metadata?.submitter_name || 'Unknown')}</span>
               </div>
               ${sub.url ? `
                 <div class="flex items-center gap-2">

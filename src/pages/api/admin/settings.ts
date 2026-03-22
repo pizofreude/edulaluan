@@ -8,47 +8,94 @@ import { createClient } from '@supabase/supabase-js';
 export const prerender = false;
 
 // GET: Get admin settings
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ request }) => {
   try {
-    // Initialize Supabase client (service role for admin access)
     const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+    const supabasePublishableKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
     const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
-    
-    if (!supabaseUrl || !supabaseServiceKey) {
+
+    if (!supabaseUrl || !supabasePublishableKey || !supabaseServiceKey) {
       console.error('Missing Supabase credentials');
       return new Response(
-        JSON.stringify({ error: 'Server configuration error' }), 
+        JSON.stringify({ error: 'Server configuration error' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    // Try to get access token from cookies first (SSR flow)
+    let accessToken: string | null = null;
 
-    // Get current user and verify admin status
-    const { data: { user } } = await supabase.auth.getUser();
-    
-    if (!user) {
+    // Check for SSR cookie (sb-{project-ref}-auth-token)
+    const cookieHeader = request.headers.get('cookie') || '';
+    const projectRef = supabaseUrl.split('://')[1].split('.')[0];
+    const ssrCookieName = `sb-${projectRef}-auth-token`;
+
+    if (cookieHeader) {
+      const cookieMatch = cookieHeader.match(new RegExp(`${ssrCookieName}=([^;]+)`));
+      if (cookieMatch) {
+        try {
+          const cookieData = JSON.parse(decodeURIComponent(cookieMatch[1]));
+          accessToken = cookieData?.access_token || null;
+        } catch (e) {
+          console.warn('Failed to parse SSR cookie:', e);
+        }
+      }
+    }
+
+    // If no SSR cookie, the client needs to send access token in Authorization header
+    if (!accessToken) {
+      const authHeader = request.headers.get('authorization');
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        accessToken = authHeader.substring(7);
+      }
+    }
+
+    if (!accessToken) {
+      console.error('No access token found in cookies or Authorization header');
       return new Response(
-        JSON.stringify({ error: 'Authentication required' }), 
+        JSON.stringify({ error: 'Authentication required - please log in again' }),
         { status: 401, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const { data: userData } = await supabase
+    // Use service role client to verify user and get role
+    const adminSupabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    const { data: { user }, error: userError } = await adminSupabase.auth.getUser(accessToken);
+
+    if (userError || !user) {
+      console.error('Failed to get user:', userError);
+      return new Response(
+        JSON.stringify({ error: 'Invalid or expired token' }),
+        { status: 401, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Get user role
+    const { data: userData, error: userRoleError } = await adminSupabase
       .from('users')
-      .select('is_admin')
+      .select('is_admin, role')
       .eq('id', user.id)
       .single();
 
-    if (!userData || !userData.is_admin) {
+    if (userRoleError || !userData) {
+      console.error('Failed to get user role:', userRoleError);
       return new Response(
-        JSON.stringify({ error: 'Admin access required' }), 
+        JSON.stringify({ error: 'User profile not found' }),
+        { status: 404, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Check admin access
+    if (!userData.is_admin) {
+      return new Response(
+        JSON.stringify({ error: 'Admin access required' }),
         { status: 403, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
     // Get current settings
-    const { data: settings, error: fetchError } = await supabase
+    const { data: settings, error: fetchError } = await adminSupabase
       .from('admin_settings')
       .select('*')
       .single();
@@ -56,18 +103,18 @@ export const GET: APIRoute = async () => {
     if (fetchError) {
       console.error('Failed to fetch settings:', fetchError);
       return new Response(
-        JSON.stringify({ error: 'Failed to fetch settings' }), 
+        JSON.stringify({ error: 'Failed to fetch settings' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
     // Get additional stats
-    const { count: demoUsersCount } = await supabase
+    const { count: demoUsersCount } = await adminSupabase
       .from('users')
       .select('*', { count: 'exact', head: true })
       .eq('is_demo', true);
 
-    const { count: pendingContributions } = await supabase
+    const { count: pendingContributions } = await adminSupabase
       .from('contributions')
       .select('*', { count: 'exact', head: true })
       .eq('status', 'pending');
@@ -105,39 +152,86 @@ export const PUT: APIRoute = async ({ request }) => {
     const body = await request.json();
     const { demoDataEnabled, allowPublicContributions, requireEmailVerification, maintenanceMode } = body;
 
-    // Initialize Supabase client (service role for admin access)
     const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+    const supabasePublishableKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
     const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
-    
-    if (!supabaseUrl || !supabaseServiceKey) {
+
+    if (!supabaseUrl || !supabasePublishableKey || !supabaseServiceKey) {
       console.error('Missing Supabase credentials');
       return new Response(
-        JSON.stringify({ error: 'Server configuration error' }), 
+        JSON.stringify({ error: 'Server configuration error' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    // Try to get access token from cookies first (SSR flow)
+    let accessToken: string | null = null;
 
-    // Get current user and verify admin status
-    const { data: { user } } = await supabase.auth.getUser();
-    
-    if (!user) {
+    // Check for SSR cookie (sb-{project-ref}-auth-token)
+    const cookieHeader = request.headers.get('cookie') || '';
+    const projectRef = supabaseUrl.split('://')[1].split('.')[0];
+    const ssrCookieName = `sb-${projectRef}-auth-token`;
+
+    if (cookieHeader) {
+      const cookieMatch = cookieHeader.match(new RegExp(`${ssrCookieName}=([^;]+)`));
+      if (cookieMatch) {
+        try {
+          const cookieData = JSON.parse(decodeURIComponent(cookieMatch[1]));
+          accessToken = cookieData?.access_token || null;
+        } catch (e) {
+          console.warn('Failed to parse SSR cookie:', e);
+        }
+      }
+    }
+
+    // If no SSR cookie, the client needs to send access token in Authorization header
+    if (!accessToken) {
+      const authHeader = request.headers.get('authorization');
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        accessToken = authHeader.substring(7);
+      }
+    }
+
+    if (!accessToken) {
+      console.error('No access token found in cookies or Authorization header');
       return new Response(
-        JSON.stringify({ error: 'Authentication required' }), 
+        JSON.stringify({ error: 'Authentication required - please log in again' }),
         { status: 401, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const { data: userData } = await supabase
+    // Use service role client to verify user and get role
+    const adminSupabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    const { data: { user }, error: userError } = await adminSupabase.auth.getUser(accessToken);
+
+    if (userError || !user) {
+      console.error('Failed to get user:', userError);
+      return new Response(
+        JSON.stringify({ error: 'Invalid or expired token' }),
+        { status: 401, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Get user role
+    const { data: userData, error: userRoleError } = await adminSupabase
       .from('users')
-      .select('is_admin')
+      .select('is_admin, role')
       .eq('id', user.id)
       .single();
 
-    if (!userData || !userData.is_admin) {
+    if (userRoleError || !userData) {
+      console.error('Failed to get user role:', userRoleError);
       return new Response(
-        JSON.stringify({ error: 'Admin access required' }), 
+        JSON.stringify({ error: 'User profile not found' }),
+        { status: 404, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Check admin access
+    if (!userData.is_admin) {
+      return new Response(
+        JSON.stringify({ error: 'Admin access required' }),
         { status: 403, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -173,17 +267,17 @@ export const PUT: APIRoute = async ({ request }) => {
     }
 
     // Update settings
-    const { error: updateError, data: updatedSettings } = await supabase
+    const { error: updateError, data: updatedSettings } = await adminSupabase
       .from('admin_settings')
       .update(updateData)
-      .eq('id', (await supabase.from('admin_settings').select('id').single()).data?.id)
+      .eq('id', (await adminSupabase.from('admin_settings').select('id').single()).data?.id)
       .select()
       .single();
 
     if (updateError) {
       console.error('Failed to update settings:', updateError);
       return new Response(
-        JSON.stringify({ error: 'Failed to update settings' }), 
+        JSON.stringify({ error: 'Failed to update settings' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -192,7 +286,7 @@ export const PUT: APIRoute = async ({ request }) => {
     if (typeof demoDataEnabled === 'boolean') {
       if (!demoDataEnabled) {
         // Disable demo data - mark all demo users as inactive (soft delete)
-        await supabase
+        await adminSupabase
           .from('users')
           .update({ is_demo: false })
           .eq('is_demo', true);
@@ -200,7 +294,7 @@ export const PUT: APIRoute = async ({ request }) => {
     }
 
     // Log audit event
-    await supabase
+    await adminSupabase
       .from('audit_logs')
       .insert({
         table_name: 'admin_settings',

@@ -2,7 +2,6 @@
 // Admin Management Page - Invite/Remove Admins (Super Admin Only)
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import AdminSidebar from '../../components/admin/AdminSidebar.astro';
 
 const currentPage = 'manage';
@@ -25,18 +24,15 @@ const currentPage = 'manage';
         </p>
       </div>
 
-      <!-- Super Admin Only Warning -->
-      <div class="rounded-xl border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-900/20 p-4 mb-8">
-        <div class="flex items-start gap-3">
-          <svg class="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      <!-- Super Admin Only Info -->
+      <div class="rounded-lg border border-border/50 bg-muted/30 p-3 mb-6">
+        <div class="flex items-start gap-2.5">
+          <svg class="w-4 h-4 text-muted-foreground/60 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <div>
-            <h3 class="font-semibold text-amber-900 dark:text-amber-100">Super Admin Only</h3>
-            <p class="text-sm text-amber-800 dark:text-amber-200 mt-1">
-              Only Super Admins can invite or remove admins. This action is protected by database-level security.
-            </p>
-          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Only Super Admins can invite or remove admins. This action is protected by database-level security.
+          </p>
         </div>
       </div>
 
@@ -63,9 +59,12 @@ const currentPage = 'manage';
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <div>
+            <div class="flex-1">
               <p class="text-sm font-semibold text-foreground">Admins</p>
               <p id="admin-count" class="text-2xl font-bold text-blue-600">-</p>
+              <p id="admin-empty-hint" class="text-xs text-muted-foreground mt-1 hidden">
+                <a href="#invite-form" class="text-primary hover:underline">Invite your first admin →</a>
+              </p>
             </div>
           </div>
         </div>
@@ -77,23 +76,26 @@ const currentPage = 'manage';
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <div>
+            <div class="flex-1">
               <p class="text-sm font-semibold text-foreground">Moderators</p>
               <p id="moderator-count" class="text-2xl font-bold text-teal-600">-</p>
+              <p id="moderator-empty-hint" class="text-xs text-muted-foreground mt-1 hidden">
+                <a href="#invite-form" class="text-primary hover:underline">Invite your first moderator →</a>
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Invite Admin Section -->
-      <div class="rounded-xl border bg-surface-elevated p-6 mb-8">
-        <h2 class="text-xl font-semibold text-foreground mb-4">📨 Invite New Admin</h2>
+      <div class="rounded-xl border bg-surface-elevated p-6 mb-8 shadow-sm">
+        <h2 class="text-xl font-semibold text-foreground mb-2">📨 Invite New Admin</h2>
         <p class="text-sm text-muted-foreground mb-6">
           Send an email invitation to grant admin access. The invite link expires after 7 days.
         </p>
 
-        <form id="invite-form" class="flex gap-4 items-end">
-          <div class="flex-1">
+        <form id="invite-form" class="flex flex-col sm:flex-row gap-3">
+          <div class="flex-1 min-w-0">
             <label for="invite-email" class="block text-sm font-medium text-foreground mb-2">
               Email Address *
             </label>
@@ -102,16 +104,18 @@ const currentPage = 'manage';
               id="invite-email"
               required
               placeholder="admin@example.com"
-              class="w-full rounded-md border border-input bg-background px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              class="w-full rounded-md border border-input bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
             />
           </div>
-          <button
-            type="submit"
-            id="invite-submit-btn"
-            class="px-6 py-2 bg-primary hover:bg-primary/90 text-white rounded-md text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Send Invite
-          </button>
+          <div class="sm:self-end">
+            <button
+              type="submit"
+              id="invite-submit-btn"
+              class="w-full sm:w-auto px-6 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-md text-sm font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow"
+            >
+              Send Invite
+            </button>
+          </div>
         </form>
 
         <div id="invite-message" class="hidden mt-4 p-4 rounded-lg"></div>
@@ -155,8 +159,6 @@ const currentPage = 'manage';
 
     </div>
   </main>
-
-  <Footer />
 </Layout>
 
 <script>
@@ -203,7 +205,27 @@ const currentPage = 'manage';
 
   async function loadAdmins() {
     try {
-      const response = await fetch('/api/admin/users?roles=super_admin,admin,moderator');
+      // Get access token from localStorage (OAuth implicit flow stores it there)
+      // Storage key format: sb-{project-ref}-auth-token
+      const storageData = localStorage.getItem('sb-ngpqiaiwxnfyjsvcmxpe-auth-token');
+      let accessToken = null;
+      
+      if (storageData) {
+        try {
+          const parsed = JSON.parse(storageData);
+          accessToken = parsed.access_token;
+        } catch (e) {
+          console.warn('Failed to parse auth token from localStorage:', e);
+        }
+      }
+
+      // Build headers with auth token
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+
+      const response = await fetch('/api/admin/users?roles=super_admin,admin,moderator', { headers });
       const data = await response.json();
 
       if (!response.ok) throw new Error(data.error);
@@ -271,9 +293,9 @@ const currentPage = 'manage';
 
   function renderRoleBadge(role: string) {
     const badges: Record<string, string> = {
-      super_admin: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300',
-      admin: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
-      moderator: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300'
+      super_admin: 'bg-purple-100 text-purple-950 dark:bg-purple-900/40 dark:text-purple-200',
+      admin: 'bg-blue-100 text-blue-950 dark:bg-blue-900/40 dark:text-blue-200',
+      moderator: 'bg-teal-100 text-teal-950 dark:bg-teal-900/40 dark:text-teal-200'
     };
 
     const icons: Record<string, string> = {
@@ -282,10 +304,10 @@ const currentPage = 'manage';
       moderator: '✅'
     };
 
-    const badgeClass = badges[role] || 'bg-gray-100 text-gray-800';
+    const badgeClass = badges[role] || 'bg-gray-100 text-gray-900';
     const icon = icons[role] || '👤';
 
-    return `<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${badgeClass}">
+    return `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide ${badgeClass}">
       <span>${icon}</span>
       <span>${role.replace('_', ' ').toUpperCase()}</span>
     </span>`;
@@ -299,6 +321,13 @@ const currentPage = 'manage';
     document.getElementById('super-admin-count')!.textContent = superAdmins.toString();
     document.getElementById('admin-count')!.textContent = adminCount.toString();
     document.getElementById('moderator-count')!.textContent = moderators.toString();
+
+    // Show empty state hints
+    const adminEmptyHint = document.getElementById('admin-empty-hint')!;
+    const moderatorEmptyHint = document.getElementById('moderator-empty-hint')!;
+
+    adminEmptyHint.classList.toggle('hidden', adminCount > 0);
+    moderatorEmptyHint.classList.toggle('hidden', moderators > 0);
   }
 
   function showMessage(container: HTMLElement, type: 'success' | 'error', message: string) {

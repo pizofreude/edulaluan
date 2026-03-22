@@ -69,17 +69,41 @@ const error = Astro.url.searchParams.get('error');
 </Layout>
 
 <script>
-  // Handle OAuth callback
-  const urlParams = new URLSearchParams(window.location.search);
-  const error = urlParams.get('error');
-  const errorCode = urlParams.get('error_code');
-  const errorDesc = urlParams.get('error_description');
-  const status = urlParams.get('status');
+  // Handle OAuth callback - CRITICAL: Must call Supabase to exchange code for session
+  import { createClient } from '@supabase/supabase-js';
 
-  console.log('[Auth Callback] Params:', { error, errorCode, errorDesc, status });
+  const urlParams = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(window.location.hash.substring(1));
+  
+  const error = urlParams.get('error') || hashParams.get('error');
+  const errorCode = urlParams.get('error_code') || hashParams.get('error_code');
+  const errorDesc = urlParams.get('error_description') || hashParams.get('error_description');
+  const status = urlParams.get('status');
+  const code = hashParams.get('code');
+  const providerToken = hashParams.get('provider_token');
+  const providerRefreshToken = hashParams.get('provider_refresh_token');
+  const accessToken = hashParams.get('access_token');
+  const refreshToken = hashParams.get('refresh_token');
+  const expiresIn = hashParams.get('expires_in');
+  const tokenType = hashParams.get('token_type');
+
+  console.log('[Auth Callback] Search Params:', Object.fromEntries(urlParams));
+  console.log('[Auth Callback] Hash Params:', Object.fromEntries(hashParams));
+  console.log('[Auth Callback] accessToken:', accessToken ? 'YES' : 'NO');
+  console.log('[Auth Callback] code:', code ? 'YES' : 'NO');
+
+  // Log all params for debugging
+  const allParams = {
+    error, errorCode, errorDesc, status, code,
+    accessToken: accessToken ? '***' : null,
+    refreshToken: refreshToken ? '***' : null,
+    expiresIn, tokenType
+  };
+  console.log('[Auth Callback] All params:', allParams);
 
   if (error) {
     // Show error immediately
+    console.error('[Auth Callback] Error:', error, errorCode, errorDesc);
     document.body.innerHTML = `
       <div class="min-h-screen bg-background flex items-center justify-center">
         <div class="container mx-auto px-4 max-w-md">
@@ -101,9 +125,56 @@ const error = Astro.url.searchParams.get('error');
     `;
   } else if (status === 'logged_in') {
     // Already logged in, redirect to dashboard
+    console.log('[Auth Callback] Already logged in, redirecting...');
     window.location.href = '/user/dashboard';
+  } else if (accessToken) {
+    // OAuth implicit flow - tokens in URL hash
+    console.log('[Auth Callback] ⚡ Implicit flow detected!');
+    console.log('[Auth Callback] Setting session...');
+    
+    const supabase = createClient(
+      import.meta.env.PUBLIC_SUPABASE_URL,
+      import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+    );
+
+    // Set the session from the hash parameters
+    supabase.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken || ''
+    }).then(({ error, data }) => {
+      if (error) {
+        console.error('[Auth Callback] ❌ Failed to set session:', error);
+      } else {
+        console.log('[Auth Callback] ✅ Session set successfully!');
+        console.log('[Auth Callback] User:', data?.user);
+        window.location.href = '/user/dashboard';
+      }
+    });
+  } else if (code) {
+    // OAuth PKCE flow - exchange code for tokens
+    console.log('[Auth Callback] 🔐 PKCE code detected!');
+    console.log('[Auth Callback] Exchanging code for session...');
+    
+    const supabase = createClient(
+      import.meta.env.PUBLIC_SUPABASE_URL,
+      import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+    );
+
+    // Exchange the code for a session
+    supabase.auth.exchangeCodeForSession(code).then(({ error, data }) => {
+      if (error) {
+        console.error('[Auth Callback] ❌ Failed to exchange code:', error);
+      } else {
+        console.log('[Auth Callback] ✅ Session exchanged successfully!');
+        console.log('[Auth Callback] User:', data?.user);
+        window.location.href = '/user/dashboard';
+      }
+    });
   } else {
-    // Wait for Supabase to process the OAuth callback, then redirect
+    // No tokens or code - just wait and redirect (fallback)
+    console.log('[Auth Callback] ⚠️ No tokens or code found!');
+    console.log('[Auth Callback] Waiting 3 seconds then redirecting...');
+    alert('No OAuth data found. Redirecting...');
     setTimeout(() => {
       window.location.href = '/user/dashboard';
     }, 3000);

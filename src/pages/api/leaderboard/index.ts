@@ -28,7 +28,7 @@ export const GET: APIRoute = async ({ url }) => {
     // Build query - use service role key so RLS is bypassed
     let query = supabase
       .from('users')
-      .select('id, email, full_name, avatar_url, points_balance, tier, total_contributions, approval_rate', { count: 'exact' });
+      .select('id, email, full_name, username, avatar_url, points_balance, tier, total_contributions, approval_rate', { count: 'exact' });
 
     // Apply ordering based on period
     switch (period) {
@@ -60,12 +60,13 @@ export const GET: APIRoute = async ({ url }) => {
     // Calculate total pages
     const totalPages = count ? Math.ceil(count / limit) : 1;
 
-    // Format response
+    // Format response - username takes priority, then full_name, then email
     const leaders = (users || []).map((user, index) => ({
       rank: offset + index + 1,
       userId: user.id,
-      username: user.full_name || user.email?.split('@')[0] || 'Anonymous',
+      username: user.username || user.full_name || user.email?.split('@')[0] || 'Anonymous',
       email: user.email,
+      fullName: user.full_name,
       avatarUrl: user.avatar_url,
       points: user.points_balance || 0,
       tier: user.tier || 1,

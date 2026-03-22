@@ -10,7 +10,7 @@ export const prerender = false;
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    const { type, title, description, url, categoryId, metadata } = body;
+    const { type, title, description, url, categoryId, metadata, isAnonymous } = body;
 
     // Minimal validation
     if (!type || !title) {
@@ -18,21 +18,43 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+    const supabasePublishableKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
     const supabaseServiceKey = import.meta.env.SUPABASE_SECRET_KEY;
 
-    if (!supabaseUrl || !supabaseServiceKey) {
+    if (!supabaseUrl || !supabasePublishableKey || !supabaseServiceKey) {
       return new Response(JSON.stringify({ error: 'Missing credentials' }), { status: 500 });
     }
 
-    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+    // Get access token from Authorization header
+    const authHeader = request.headers.get('authorization');
+    let accessToken: string | null = null;
 
-    // DIRECT INSERT - No function calls, no triggers
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      accessToken = authHeader.substring(7);
+    }
+
+    if (!accessToken) {
+      return new Response(JSON.stringify({ error: 'Authentication required' }), { status: 401 });
+    }
+
+    // Get current user from access token
+    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+    const { data: { user }, error: userError } = await supabaseAdmin.auth.getUser(accessToken);
+
+    if (userError || !user) {
+      console.error('Failed to get user:', userError);
+      return new Response(JSON.stringify({ error: 'Invalid or expired token' }), { status: 401 });
+    }
+
+    // DIRECT INSERT with user_id and is_anonymous flag
     const { data: contribution, error: insertError } = await supabaseAdmin.rpc('insert_contribution_direct', {
+      p_user_id: user.id,
       p_type: type,
       p_title: title,
       p_description: description || null,
       p_url: url || null,
-      p_metadata: metadata || {}
+      p_metadata: metadata || {},
+      p_is_anonymous: isAnonymous || false
     });
 
     if (insertError) {

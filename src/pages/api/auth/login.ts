@@ -29,7 +29,7 @@ export const POST: APIRoute = async ({ request }) => {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
-          redirectTo: 'http://localhost:4322/auth/callback'
+          redirectTo: 'http://localhost:4321/auth/callback'
         }
       });
 

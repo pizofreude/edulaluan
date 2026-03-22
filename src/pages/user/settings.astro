@@ -69,6 +69,53 @@ const currentPage = 'settings';
           </div>
         </div>
 
+        <!-- Username Section -->
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <h2 class="text-xl font-semibold text-foreground mb-4">Username</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-foreground mb-1">
+                Public Username
+              </label>
+              <div class="flex items-center gap-3">
+                <div class="relative flex-1">
+                  <input
+                    type="text"
+                    id="username"
+                    class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary pr-20"
+                    placeholder="Not set"
+                    minlength="3"
+                    maxlength="30"
+                    pattern="^[a-zA-Z][a-zA-Z0-9_]*$"
+                  />
+                  <span id="username-status" class="absolute right-3 top-2 text-sm"></span>
+                </div>
+                <button
+                  id="save-username-btn"
+                  style="background-color: #059669; color: white;"
+                  class="px-4 py-2 rounded-md font-semibold hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Save
+                </button>
+              </div>
+              <p class="text-xs text-muted-foreground mt-2">
+                Your username will be shown on leaderboards and public contributions instead of your real name.
+              </p>
+              <div class="mt-2 text-xs text-muted-foreground space-y-1">
+                <p>• 3-30 characters</p>
+                <p>• Letters, numbers, and underscores only</p>
+                <p>• Must start with a letter</p>
+                <p>• Can be changed once every 90 days</p>
+              </div>
+              <div id="username-suggestions" class="mt-3 hidden">
+                <p class="text-xs font-medium text-muted-foreground mb-2">Suggestions:</p>
+                <div class="flex flex-wrap gap-2" id="username-suggestions-list"></div>
+              </div>
+              <p id="username-message" class="text-sm mt-2 hidden"></p>
+            </div>
+          </div>
+        </div>
+
         <!-- Change Password Section -->
         <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
           <h2 class="text-xl font-semibold text-foreground mb-4">Change Password</h2>
@@ -419,5 +466,202 @@ const currentPage = 'settings';
     } catch (error: any) {
       alert(error.message || 'Failed to delete account');
     }
+  });
+
+  // ==========================================
+  // Username Management
+  // ==========================================
+
+  let usernameCheckTimeout: number;
+
+  // Load current username on page load
+  async function loadUsername() {
+    try {
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        import.meta.env.PUBLIC_SUPABASE_URL,
+        import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      );
+
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session?.access_token) return;
+
+      // Get user data from users table
+      const { data: userData } = await supabase
+        .from('users')
+        .select('username, username_updated_at')
+        .eq('id', session.user.id)
+        .single();
+
+      if (userData) {
+        const usernameInput = document.getElementById('username') as HTMLInputElement;
+        const usernameStatus = document.getElementById('username-status');
+        
+        if (usernameInput) {
+          usernameInput.value = userData.username || '';
+          usernameInput.placeholder = userData.username ? userData.username : 'Not set';
+        }
+
+        if (usernameStatus && userData.username) {
+          usernameStatus.textContent = '✓ Set';
+          usernameStatus.className = 'absolute right-3 top-2 text-sm text-green-600';
+        }
+      }
+    } catch (error) {
+      console.error('[Username] Failed to load username:', error);
+    }
+  }
+
+  // Load username on page load
+  loadUsername();
+
+  // Real-time username availability check
+  document.getElementById('username')?.addEventListener('input', async (e) => {
+    const username = (e.target as HTMLInputElement).value.trim();
+    const usernameStatus = document.getElementById('username-status');
+    const suggestionsDiv = document.getElementById('username-suggestions');
+    const suggestionsList = document.getElementById('username-suggestions-list');
+
+    // Clear previous timeout
+    clearTimeout(usernameCheckTimeout);
+
+    if (username.length < 3) {
+      if (usernameStatus) {
+        usernameStatus.textContent = '';
+        suggestionsDiv?.classList.add('hidden');
+      }
+      return;
+    }
+
+    // Debounce check
+    usernameCheckTimeout = setTimeout(async () => {
+      if (usernameStatus) {
+        usernameStatus.textContent = 'Checking...';
+        usernameStatus.className = 'absolute right-3 top-2 text-sm text-muted-foreground';
+      }
+
+      try {
+        const response = await fetch('/api/user/check-username', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username })
+        });
+
+        const result = await response.json();
+
+        if (result.available) {
+          if (usernameStatus) {
+            usernameStatus.textContent = '✓ Available';
+            usernameStatus.className = 'absolute right-3 top-2 text-sm text-green-600';
+          }
+          suggestionsDiv?.classList.add('hidden');
+        } else {
+          if (usernameStatus) {
+            usernameStatus.textContent = '✗ Taken';
+            usernameStatus.className = 'absolute right-3 top-2 text-sm text-red-600';
+          }
+
+          // Show suggestions
+          if (result.suggestions && result.suggestions.length > 0) {
+            suggestionsList!.innerHTML = result.suggestions
+              .map(s => `<button type="button" class="username-suggestion px-3 py-1 text-sm bg-surface hover:bg-surface-elevated border rounded-full transition-colors">@${s}</button>`)
+              .join('');
+            suggestionsDiv?.classList.remove('hidden');
+
+            // Add click handlers to suggestions
+            suggestionsList?.querySelectorAll('.username-suggestion').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const usernameInput = document.getElementById('username') as HTMLInputElement;
+                if (usernameInput) usernameInput.value = btn.textContent?.replace('@', '') || '';
+              });
+            });
+          }
+        }
+      } catch (error) {
+        console.error('[Username] Check failed:', error);
+      }
+    }, 500);
+  });
+
+  // Save username handler
+  document.getElementById('save-username-btn')?.addEventListener('click', async () => {
+    const messageEl = document.getElementById('username-message');
+    const usernameInput = document.getElementById('username') as HTMLInputElement;
+    const username = usernameInput?.value.trim();
+
+    if (!messageEl || !usernameInput) return;
+
+    if (!username) {
+      messageEl.textContent = 'Please enter a username';
+      messageEl.className = 'text-sm text-red-600';
+      messageEl.classList.remove('hidden');
+      return;
+    }
+
+    if (username.length < 3) {
+      messageEl.textContent = 'Username must be at least 3 characters';
+      messageEl.className = 'text-sm text-red-600';
+      messageEl.classList.remove('hidden');
+      return;
+    }
+
+    try {
+      messageEl.textContent = 'Saving...';
+      messageEl.className = 'text-sm text-muted-foreground';
+      messageEl.classList.remove('hidden');
+
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        import.meta.env.PUBLIC_SUPABASE_URL,
+        import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      );
+
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session?.access_token) {
+        throw new Error('Authentication required. Please log in again.');
+      }
+
+      const response = await fetch('/api/user/set-username', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`
+        },
+        body: JSON.stringify({ username })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        if (result.cooldown) {
+          messageEl.textContent = `You can only change your username once every 90 days. ${result.daysRemaining} days remaining.`;
+          messageEl.className = 'text-sm text-amber-600';
+        } else {
+          messageEl.textContent = result.error || 'Failed to save username';
+          messageEl.className = 'text-sm text-red-600';
+        }
+        return;
+      }
+
+      messageEl.textContent = 'Username saved successfully!';
+      messageEl.className = 'text-sm text-green-600';
+      
+      // Update status indicator
+      const usernameStatus = document.getElementById('username-status');
+      if (usernameStatus) {
+        usernameStatus.textContent = '✓ Set';
+        usernameStatus.className = 'absolute right-3 top-2 text-sm text-green-600';
+      }
+
+      // Hide suggestions
+      document.getElementById('username-suggestions')?.classList.add('hidden');
+    } catch (error: any) {
+      messageEl.textContent = error.message || 'Failed to save username';
+      messageEl.className = 'text-sm text-red-600';
+    }
+
+    setTimeout(() => messageEl.classList.add('hidden'), 5000);
   });
 </script>

@@ -91,7 +91,7 @@ let _user = null;
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </div>
-              <span class="text-sm font-medium text-foreground">My Account</span>
+              <span id="user-menu-button" class="text-sm font-medium text-foreground">My Account</span>
               <svg class="h-4 w-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -252,6 +252,7 @@ let _user = null;
     const mobileUserMenu = document.getElementById('mobile-user-menu');
     const userEmailEl = document.getElementById('user-email');
     const dashboardLink = document.getElementById('community-dashboard-link');
+    const userMenuButton = document.getElementById('user-menu-button');
 
     if (isAuthenticated) {
       // Show user menu, hide auth buttons
@@ -284,6 +285,34 @@ let _user = null;
     }
   }
 
+  // Load username from users table
+  async function loadUsername(accessToken: string): Promise<string | null> {
+    try {
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+      const supabaseServiceKey = import.meta.env.SUPABASE_SECRET_KEY || import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
+      
+      if (!supabaseUrl || !supabaseServiceKey) return null;
+
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+      const { data: { user } } = await supabase.auth.getUser(accessToken);
+      
+      if (!user) return null;
+
+      const { data: userData } = await supabase
+        .from('users')
+        .select('username')
+        .eq('id', user.id)
+        .single();
+
+      return userData?.username || null;
+    } catch (error) {
+      console.error('[Header] Failed to load username:', error);
+      return null;
+    }
+  }
+
   async function checkAuthState() {
     if (authChecked) return;
 
@@ -307,6 +336,13 @@ let _user = null;
       } else {
         currentUser = session.user;
         updateAuthUI(true, session.user.email);
+        
+        // Load username and update UI
+        const username = await loadUsername(session.access_token);
+        const userMenuButton = document.getElementById('user-menu-button');
+        if (username && userMenuButton) {
+          userMenuButton.textContent = username;
+        }
       }
     } catch (error) {
       updateAuthUI(false);

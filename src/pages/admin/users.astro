@@ -1,0 +1,289 @@
+---
+// User Management Page - View and manage all users
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import AdminSidebar from '../../components/admin/AdminSidebar.astro';
+
+const currentPage = 'users';
+---
+
+<Layout title="User Management | EduLaluan">
+  <Header />
+
+  <div class="flex min-h-screen">
+    <!-- Admin Sidebar -->
+    <AdminSidebar current={currentPage} />
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-surface p-8">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-foreground">👥 User Management</h1>
+        <p class="mt-2 text-sm text-muted-foreground">
+          View and manage all registered users
+        </p>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid gap-6 sm:grid-cols-4 mb-8">
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-purple-500/10 p-3">
+              <svg class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground">Total Users</p>
+              <p id="total-count" class="text-2xl font-bold text-purple-600">-</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-blue-500/10 p-3">
+              <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground">Super Admins</p>
+              <p id="super-admin-count" class="text-2xl font-bold text-blue-600">-</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-teal-500/10 p-3">
+              <svg class="h-6 w-6 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground">Admins</p>
+              <p id="admin-count" class="text-2xl font-bold text-teal-600">-</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-orange-500/10 p-3">
+              <svg class="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground">Active Today</p>
+              <p id="active-count" class="text-2xl font-bold text-orange-600">-</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Table -->
+      <div class="rounded-xl border bg-surface-elevated p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-semibold text-foreground">📋 All Users</h2>
+          <div class="flex gap-2">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search users..."
+              class="rounded-md border border-input bg-background px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="users-loading" class="text-center py-12">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
+          <p class="text-muted-foreground mt-4">Loading users...</p>
+        </div>
+
+        <!-- Users Table -->
+        <div id="users-table" class="hidden overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-muted/50 border-b border-border">
+              <tr>
+                <th class="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase">User</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase">Role</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase">Joined</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase">Last Active</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody" class="divide-y divide-border">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="users-empty" class="hidden text-center py-12">
+          <svg class="mx-auto h-12 w-12 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <p class="text-muted-foreground mt-4">No users found</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  let allUsers: any[] = [];
+
+  // Load users on page load
+  loadUsers();
+
+  // Search functionality
+  document.getElementById('search-input')?.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value.toLowerCase();
+    const filtered = allUsers.filter(user => 
+      user.email?.toLowerCase().includes(query) ||
+      user.full_name?.toLowerCase().includes(query)
+    );
+    renderUsers(filtered);
+  });
+
+  async function loadUsers() {
+    try {
+      // Get access token from localStorage
+      const storageData = localStorage.getItem('sb-ngpqiaiwxnfyjsvcmxpe-auth-token');
+      let accessToken = null;
+      
+      if (storageData) {
+        try {
+          const parsed = JSON.parse(storageData);
+          accessToken = parsed.access_token;
+        } catch (e) {
+          console.warn('Failed to parse auth token from localStorage:', e);
+        }
+      }
+
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+
+      const response = await fetch('/api/admin/users?roles=super_admin,admin,moderator,user', { headers });
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error);
+
+      allUsers = data.users || [];
+      renderUsers(allUsers);
+      updateStats(allUsers);
+    } catch (error) {
+      console.error('Failed to load users:', error);
+      showError('Failed to load users');
+    }
+  }
+
+  function renderUsers(users: any[]) {
+    const loadingDiv = document.getElementById('users-loading')!;
+    const tableDiv = document.getElementById('users-table')!;
+    const emptyDiv = document.getElementById('users-empty')!;
+    const tbody = document.getElementById('users-tbody')!;
+
+    loadingDiv.classList.add('hidden');
+
+    if (users.length === 0) {
+      tableDiv.classList.add('hidden');
+      emptyDiv.classList.remove('hidden');
+      return;
+    }
+
+    tableDiv.classList.remove('hidden');
+    emptyDiv.classList.add('hidden');
+
+    tbody.innerHTML = users.map(user => `
+      <tr class="hover:bg-surface/50 transition-colors">
+        <td class="px-4 py-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-surface-elevated border border-border flex items-center justify-center overflow-hidden">
+              ${user.avatar_url ? `
+                <img src="${user.avatar_url}" alt="${user.full_name || 'User'}" class="w-full h-full object-cover" />
+              ` : '<span class="text-lg">👤</span>'}
+            </div>
+            <div>
+              <p class="font-semibold text-foreground">${escapeHtml(user.full_name || user.email?.split('@')[0] || 'Anonymous')}</p>
+              <p class="text-xs text-muted-foreground">${escapeHtml(user.email)}</p>
+            </div>
+          </div>
+        </td>
+        <td class="px-4 py-3">
+          ${renderRoleBadge(user.role)}
+        </td>
+        <td class="px-4 py-3 text-sm text-foreground">
+          ${user.created_at ? new Date(user.created_at).toLocaleDateString() : '-'}
+        </td>
+        <td class="px-4 py-3 text-sm text-foreground">
+          ${user.last_login_at ? new Date(user.last_login_at).toLocaleDateString() : 'Never'}
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function renderRoleBadge(role: string) {
+    const badges: Record<string, string> = {
+      super_admin: 'bg-purple-100 text-purple-950 dark:bg-purple-900/40 dark:text-purple-200',
+      admin: 'bg-blue-100 text-blue-950 dark:bg-blue-900/40 dark:text-blue-200',
+      moderator: 'bg-teal-100 text-teal-950 dark:bg-teal-900/40 dark:text-teal-200',
+      user: 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-300'
+    };
+
+    const icons: Record<string, string> = {
+      super_admin: '👑',
+      admin: '🛡️',
+      moderator: '✅',
+      user: '👤'
+    };
+
+    const badgeClass = badges[role] || 'bg-gray-100 text-gray-900';
+    const icon = icons[role] || '👤';
+
+    return `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide ${badgeClass}">
+      <span>${icon}</span>
+      <span>${role.replace('_', ' ').toUpperCase()}</span>
+    </span>`;
+  }
+
+  function updateStats(userList: any[]) {
+    const total = userList.length;
+    const superAdmins = userList.filter(u => u.role === 'super_admin').length;
+    const admins = userList.filter(u => u.role === 'admin').length;
+    
+    // Active today (last login within 24 hours)
+    const now = new Date();
+    const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    const activeToday = userList.filter(u => {
+      if (!u.last_login_at) return false;
+      return new Date(u.last_login_at) > yesterday;
+    }).length;
+
+    document.getElementById('total-count')!.textContent = total.toString();
+    document.getElementById('super-admin-count')!.textContent = superAdmins.toString();
+    document.getElementById('admin-count')!.textContent = admins.toString();
+    document.getElementById('active-count')!.textContent = activeToday.toString();
+  }
+
+  function showError(message: string) {
+    const tableDiv = document.getElementById('users-table')!;
+    const emptyDiv = document.getElementById('users-empty')!;
+
+    tableDiv.classList.add('hidden');
+    emptyDiv.classList.remove('hidden');
+    emptyDiv.querySelector('p')!.textContent = message;
+  }
+
+  function escapeHtml(text: string): string {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+</script>
