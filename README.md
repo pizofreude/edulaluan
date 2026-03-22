@@ -45,6 +45,17 @@ Projects span categories like:
 - **🌐 Multi-Language**: Support for English and Bahasa Malaysia content
 - **📱 Mobile-First**: Fully responsive design for all devices
 - **⚡ Lightning Fast**: Static-first architecture with React islands
+- **🏆 Leaderboard**: GasBuddy-style public leaderboard with time period filters (All-Time, 30-Day, Half-Year)
+- **👥 Community Features**:
+  - User authentication via GitHub OAuth
+  - Role-based access control (Super Admin, Admin, Moderator, User)
+  - Contribution tracking and points system
+  - Community dashboard
+- **🛡️ Admin System**:
+  - Admin management dashboard
+  - Invite-based admin/moderator system
+  - Content moderation queue
+  - Super admin protection
 
 ## 🛠️ Tech Stack
 
@@ -122,14 +133,41 @@ edulaluan/
 │   │   ├── index.astro        # Landing page
 │   │   ├── navigate.astro     # Navigator page
 │   │   ├── resources.astro    # All resources
-│   │   └── about.astro        # About page
+│   │   ├── leaderboard.astro  # Public leaderboard ⭐
+│   │   ├── dashboard.astro    # User dashboard ⭐
+│   │   ├── contribute.astro   # Contribution form ⭐
+│   │   ├── auth/
+│   │   │   ├── login.astro    # Login page ⭐
+│   │   │   └── callback.astro # OAuth callback ⭐
+│   │   └── admin/
+│   │       ├── dashboard.astro    # Admin dashboard ⭐
+│   │       ├── moderation.astro   # Moderation queue ⭐
+│   │       └── manage.astro       # Admin management ⭐
 │   └── styles/
 │       └── global.css         # Global styles + Tailwind
+├── docs/                  # Project documentation
+│   ├── ADMIN_ARCHITECTURE.md
+│   ├── BRD.md
+│   ├── PRD.md
+│   ├── PROJECT_STATE.md
+│   └── peoples-guide/     # Rakyat's Guide content
 ├── astro.config.mjs     # Astro configuration
 ├── tailwind.config.mjs  # Tailwind configuration
 ├── tsconfig.json        # TypeScript configuration
 └── package.json
 ```
+
+## 📖 Documentation
+
+Detailed documentation is available in the `docs/` folder:
+
+- **[ADMIN_ARCHITECTURE.md](docs/ADMIN_ARCHITECTURE.md)** - Admin system design, roles, permissions, and API endpoints
+- **[BRD.md](docs/BRD.md)** - Business Requirements Document
+- **[PRD.md](docs/PRD.md)** - Product Requirements Document
+- **[PROJECT_STATE.md](docs/PROJECT_STATE.md)** - Current session state and accomplishments
+- **[peoples-guide/](docs/peoples-guide/)** - Rakyat's Guide content (10 sections)
+- **[privacy-policy.md](docs/privacy-policy.md)** - Privacy policy
+- **[terms-of-service.md](docs/terms-of-service.md)** - Terms of service
 
 ## 📝 Adding New Resources
 
@@ -213,6 +251,25 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - Developed with assistance from **GitHub Copilot**
 - Inspired by the need to democratize access to education in Malaysia
 - Community resources curated from government agencies, NGOs, and educational platforms
+
+## 🚀 Latest Session (March 22, 2026)
+
+**Status**: ✅ All features complete, zero TypeScript errors
+
+### Key Accomplishments:
+1. ✅ Fixed GitHub OAuth login - Created auth callback page, fixed user creation trigger
+2. ✅ Implemented complete role system - super_admin, admin, moderator, user
+3. ✅ Added Super Admin protection triggers - Cannot delete/demote super admins
+4. ✅ Created Admin Management page at `/admin/manage` with stats, invite form, and admins table
+5. ✅ Built API endpoints for admin invite, role removal, and user listing
+6. ✅ Fixed navbar - Added Community dropdown with Contribute, Leaderboard, Dashboard links
+7. ✅ Created GasBuddy-style public leaderboard at `/leaderboard` with time period filters
+8. ✅ Fixed all TypeScript errors
+9. ✅ Moved documentation to `docs/` folder
+
+**Super Admin**: ahafeezs@outlook.de
+
+---
 
 ## 📧 Contact
 

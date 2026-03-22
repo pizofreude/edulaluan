@@ -7,38 +7,35 @@ import { Button } from '../../components/ui/button';
 
 <Layout title="Request a Feature - EduLaluan">
   <Header />
-  
-  <main class="min-h-screen bg-[#f5f9f7]">
+
+  <main class="min-h-screen bg-background">
   <div class="container mx-auto px-4 py-8 max-w-2xl">
-    
+
     <!-- Header -->
     <div class="mb-8">
-      <a href="/contribute" class="text-malaysia-teal-600 hover:text-malaysia-teal-700 mb-4 inline-block">
+      <a href="/contribute" class="text-primary hover:text-primary-dark mb-4 inline-block">
         ← Back to Contribute
       </a>
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">
+      <h1 class="text-3xl font-bold text-foreground mb-2">
         💡 Request a Feature
       </h1>
-      <p class="text-gray-600">
+      <p class="text-muted-foreground">
         Have an idea to improve EduLaluan? We'd love to hear it! All fields marked with * are required.
       </p>
     </div>
 
     <!-- Form -->
     <form
-      name="feature-request"
-      method="POST"
-      action="/contribute/success"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
+      id="feature-request-form"
       class="bg-surface border rounded-lg p-6 space-y-6"
     >
 
-      <!-- Hidden fields for Netlify -->
-      <input type="hidden" name="form-name" value="feature-request" />
-      <p class="hidden">
-        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-      </p>
+      <!-- Status Messages -->
+      <div id="form-status" class="hidden rounded-lg p-4"></div>
+      <div id="form-loading" class="hidden text-center py-4">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
+        <p class="mt-2 text-muted-foreground">Submitting your feature request...</p>
+      </div>
 
       <div>
         <label for="featureTitle" class="block text-sm font-medium text-foreground mb-1">
@@ -85,15 +82,30 @@ import { Button } from '../../components/ui/button';
         <p class="text-xs text-muted-foreground mt-1">In case we need clarification or want to update you on progress</p>
       </div>
 
+      <div class="flex items-start gap-3 p-4 rounded-lg border bg-surface-elevated">
+        <input
+          type="checkbox"
+          id="isAnonymous"
+          name="isAnonymous"
+          class="mt-1 h-4 w-4 rounded border-gray-300"
+        />
+        <label for="isAnonymous" class="text-sm text-foreground">
+          <span class="font-medium">Submit anonymously</span>
+          <p class="text-muted-foreground">Your name will not be shown to the public. Admins can still see your identity.</p>
+        </label>
+      </div>
+
       <!-- Submit Button -->
       <div class="pt-4">
-        <Button
+        <button
           type="submit"
-          className="w-full bg-primary hover:bg-primary-dark text-white py-3 text-lg"
+          id="submit-button"
+          style="background-color: #0f766e; color: white; font-weight: 600;"
+          class="w-full hover:bg-teal-800 py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
         >
           Submit Feature Request
-        </Button>
-        <p class="text-xs text-muted-foreground text-center mt-3">
+        </button>
+        <p class="text-xs text-gray-600 dark:text-gray-400 text-center mt-3">
           Thank you for helping us improve EduLaluan!
         </p>
       </div>
@@ -114,3 +126,72 @@ import { Button } from '../../components/ui/button';
   </main>
   <Footer />
 </Layout>
+
+<script>
+  const form = document.getElementById('feature-request-form') as HTMLFormElement;
+  const statusDiv = document.getElementById('form-status')!;
+  const loadingDiv = document.getElementById('form-loading')!;
+  const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusDiv.classList.add('hidden');
+
+    const featureTitle = (document.getElementById('featureTitle') as HTMLInputElement).value.trim();
+    const description = (document.getElementById('featureDescription') as HTMLTextAreaElement).value.trim();
+    const submitterEmail = (document.getElementById('submitterEmail') as HTMLInputElement).value.trim();
+
+    if (!featureTitle || !description) { showStatus('Please fill in all required fields', 'error'); return; }
+    if (description.length < 50) { showStatus('Description must be at least 50 characters', 'error'); return; }
+
+    loadingDiv.classList.remove('hidden');
+    submitButton.disabled = true;
+
+    try {
+      // Get auth token
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        import.meta.env.PUBLIC_SUPABASE_URL,
+        import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      );
+      const { data: { session } } = await supabase.auth.getSession();
+
+      const isAnonymous = (document.getElementById('isAnonymous') as HTMLInputElement).checked;
+      const submissionData = { 
+        type: 'feature_request', 
+        title: featureTitle, 
+        description, 
+        categoryId: null, 
+        isAnonymous,
+        metadata: { 
+          submitter_email: submitterEmail 
+        } 
+      };
+
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+      }
+
+      const response = await fetch('/api/contributions', { method: 'POST', headers, body: JSON.stringify(submissionData) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Failed to submit');
+
+      showStatus('Feature request submitted successfully! Thank you for your feedback.', 'success');
+      form.reset();
+      setTimeout(() => { window.location.href = '/contribute/success'; }, 2000);
+    } catch (error: any) {
+      showStatus(error.message || 'Failed to submit. Please try again.', 'error');
+    } finally {
+      loadingDiv.classList.add('hidden');
+      submitButton.disabled = false;
+    }
+  });
+
+  function showStatus(message: string, type: 'success' | 'error') {
+    statusDiv.textContent = message;
+    statusDiv.className = `rounded-lg p-4 mb-4 ${type === 'success' ? 'bg-green-100 border border-green-300 text-green-800' : 'bg-red-100 border border-red-300 text-red-800'}`;
+    statusDiv.classList.remove('hidden');
+    statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>

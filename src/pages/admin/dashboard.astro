@@ -1,0 +1,179 @@
+---
+// Admin Dashboard - Main overview page
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AdminSidebar from '../../components/admin/AdminSidebar.astro';
+
+const stats = {
+  totalUsers: 0,
+  pendingSubmissions: 0,
+  approvedThisWeek: 0,
+  flaggedContent: 0,
+};
+
+// Fetch stats from API (placeholder - will connect to real API)
+// In production, these would be real API calls
+// For now, showing placeholder data
+
+const currentPage = 'dashboard';
+---
+
+<Layout title="Admin Dashboard | EduLaluan">
+  <Header />
+
+  <div class="flex min-h-screen">
+    <!-- Admin Sidebar -->
+    <AdminSidebar current={currentPage} />
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-surface p-8">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-foreground">Dashboard</h1>
+        <p class="mt-2 text-sm text-muted-foreground">
+          Overview of platform activity and moderation queue
+        </p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+        <!-- Total Users -->
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm font-medium text-muted-foreground">Total Users</p>
+              <p class="text-3xl font-bold text-foreground mt-2">{stats.totalUsers}</p>
+            </div>
+            <div class="rounded-full bg-primary/10 p-3">
+              <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center text-sm">
+            <span class="text-green-600 font-medium">+0%</span>
+            <span class="text-muted-foreground ml-2">from last week</span>
+          </div>
+        </div>
+
+        <!-- Pending Submissions -->
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm font-medium text-muted-foreground">Pending Review</p>
+              <p class="text-3xl font-bold text-foreground mt-2">{stats.pendingSubmissions}</p>
+            </div>
+            <div class="rounded-full bg-amber-500/10 p-3">
+              <svg class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center text-sm">
+            <span class="text-amber-600 font-medium">Action needed</span>
+            <span class="text-muted-foreground ml-2">in moderation queue</span>
+          </div>
+        </div>
+
+        <!-- Approved This Week -->
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm font-medium text-muted-foreground">Approved This Week</p>
+              <p class="text-3xl font-bold text-foreground mt-2">{stats.approvedThisWeek}</p>
+            </div>
+            <div class="rounded-full bg-green-500/10 p-3">
+              <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center text-sm">
+            <span class="text-green-600 font-medium">+0%</span>
+            <span class="text-muted-foreground ml-2">from last week</span>
+          </div>
+        </div>
+
+        <!-- Flagged Content -->
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm font-medium text-muted-foreground">Flagged Content</p>
+              <p class="text-3xl font-bold text-foreground mt-2">{stats.flaggedContent}</p>
+            </div>
+            <div class="rounded-full bg-red-500/10 p-3">
+              <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center text-sm">
+            <span class="text-red-600 font-medium">Urgent</span>
+            <span class="text-muted-foreground ml-2">requires review</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm mb-8">
+        <h2 class="text-xl font-semibold text-foreground mb-4">Quick Actions</h2>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="/admin/moderation"
+            class="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style="background-color: #059669;"
+            onmouseover="this.style.backgroundColor='#047857'"
+            onmouseout="this.style.backgroundColor='#059669'"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            Review Moderation Queue
+          </a>
+          <a
+            href="/admin/settings"
+            class="inline-flex items-center gap-2 rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Platform Settings
+          </a>
+          <a
+            href="/admin/invites"
+            class="inline-flex items-center gap-2 rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+            </svg>
+            Invite Admins
+          </a>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+        <h2 class="text-xl font-semibold text-foreground mb-4">Recent Activity</h2>
+        <div class="text-center py-12 text-muted-foreground">
+          <svg class="mx-auto h-12 w-12 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p class="mt-4 text-sm">No recent activity to display</p>
+          <p class="mt-1 text-xs text-muted-foreground">Activity will appear here as users submit content</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Admin dashboard specific styles */
+  .nav-link-active {
+    background-color: var(--primary);
+    color: white !important;
+  }
+</style>
