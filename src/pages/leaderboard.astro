@@ -1,0 +1,414 @@
+---
+// Public Leaderboard Page - GasBuddy Style
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Tier badges
+const tierBadges: Record<number, { name: string; icon: string; color: string }> = {
+  1: { name: 'Newcomer', icon: '🌱', color: 'bg-teal-100 text-teal-800' },
+  2: { name: 'Regular', icon: '⭐', color: 'bg-blue-100 text-blue-800' },
+  3: { name: 'Champion', icon: '🏆', color: 'bg-amber-100 text-amber-800' },
+  4: { name: 'Leader', icon: '👑', color: 'bg-purple-100 text-purple-800' }
+};
+---
+
+<Layout title="Community Leaderboard - EduLaluan">
+  <Header />
+
+  <main class="min-h-screen bg-background">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-6xl">
+      
+      <!-- Header -->
+      <div class="mb-8">
+        <h1 class="font-display text-4xl font-bold text-foreground mb-3">🏆 Community Leaderboard</h1>
+        <p class="text-lg text-muted-foreground mb-4">
+          See how you rank against top EduLaluan contributors when it comes to earning points.
+        </p>
+        <p class="text-sm text-muted-foreground mb-6">
+          Don't see yourself in the leaderboards? Contributing resources, financial aid programs, and feature requests can earn you points and improve your rank!
+        </p>
+        
+        <!-- Time Period Selector -->
+        <div class="flex items-center gap-4 mb-6">
+          <select id="period-selector" class="px-4 py-2 border border-input bg-background rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            <option value="all-time">All-Time</option>
+            <option value="30-day">Last 30 Days</option>
+            <option value="half-year">This Half-Year</option>
+          </select>
+          <span class="text-sm text-muted-foreground">Updated hourly</span>
+        </div>
+
+        <!-- Login CTA -->
+        <div id="login-cta" class="mb-6">
+          <a href="/auth/login" class="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold rounded-lg transition-colors shadow-md">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+            </svg>
+            Log In to See Your Rank
+          </a>
+        </div>
+
+        <!-- User's Rank (shown when logged in) -->
+        <div id="user-rank-card" class="hidden mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm font-semibold text-primary">Your Current Rank</p>
+              <p id="user-rank-display" class="text-3xl font-bold text-foreground mt-1">#--</p>
+            </div>
+            <div class="text-right">
+              <p class="text-sm text-muted-foreground">Points</p>
+              <p id="user-points-display" class="text-2xl font-bold text-foreground">0</p>
+              <p id="user-percentile-display" class="text-xs text-primary mt-1">Top --%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination Top -->
+      <div class="flex items-center justify-between mb-4" id="pagination-top">
+        <div class="flex items-center gap-2">
+          <button id="prev-page" class="px-3 py-1 border border-input rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-muted" disabled>
+            ‹‹
+          </button>
+          <button id="prev-page-single" class="px-3 py-1 border border-input rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-muted" disabled>
+            ‹
+          </button>
+          <span class="px-4 py-1 bg-muted rounded text-sm font-medium">
+            Page <span id="current-page">1</span> of <span id="total-pages">1</span>
+          </span>
+          <button id="next-page-single" class="px-3 py-1 border border-input rounded hover:bg-muted">
+            ›
+          </button>
+          <button id="next-page" class="px-3 py-1 border border-input rounded hover:bg-muted">
+            ››
+          </button>
+        </div>
+        <p class="text-sm text-muted-foreground">
+          Showing <span id="showing-start">1</span>-<span id="showing-end">100</span> of <span id="total-leaders">0</span>
+        </p>
+      </div>
+
+      <!-- Leaderboard Table - Two Column Layout -->
+      <div class="grid md:grid-cols-2 gap-4 mb-8" id="leaderboard-grid">
+        <!-- Will be populated by JavaScript -->
+        <div class="text-center py-12 col-span-2">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
+          <p class="text-muted-foreground mt-4">Loading leaderboard...</p>
+        </div>
+      </div>
+
+      <!-- Pagination Bottom -->
+      <div class="flex items-center justify-center gap-2 mb-12" id="pagination-bottom">
+        <button id="prev-page-bottom" class="px-3 py-2 border border-input rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-muted" disabled>
+          Previous
+        </button>
+        <span class="px-4 py-2 bg-muted rounded text-sm font-medium">
+          Page <span id="current-page-bottom">1</span>
+        </span>
+        <button id="next-page-bottom" class="px-3 py-2 border border-input rounded hover:bg-muted">
+          Next
+        </button>
+      </div>
+
+      <!-- About Section -->
+      <div class="border-t border-border pt-8">
+        <h2 class="font-display text-2xl font-bold text-foreground mb-4">About Leaderboards</h2>
+        <p class="text-muted-foreground mb-6">
+          EduLaluan's Community Leaderboards are a great way to compare your contribution progress by seeing how you compare to other EduLaluan members! Each table is updated frequently, so make sure to check back regularly to see if you've improved your standing.
+        </p>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-semibold text-foreground mb-2">All-Time</h3>
+            <p class="text-sm text-muted-foreground">
+              The All-Time Leaderboard tracks total points earned for the entirety of each member account's life. This is the ultimate measure of your contribution to the EduLaluan community!
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-foreground mb-2">Last 30 Days</h3>
+            <p class="text-sm text-muted-foreground">
+              The Last 30 Days Leaderboard tracks total points earned by each member over the past 30 days. Perfect for seeing who's been most active recently!
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-foreground mb-2">This Half-Year</h3>
+            <p class="text-sm text-muted-foreground">
+              There are two different Half-Year Leaderboards: First Half (January 1st to June 30th) and Second Half (July 1st to December 31st). This tracks your contributions within each half of the year.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to Earn Points -->
+      <div class="mt-8 p-6 bg-muted/50 rounded-xl">
+        <h3 class="font-semibold text-foreground mb-4">How to Earn Points</h3>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="flex items-start gap-3">
+            <div class="rounded-full bg-green-100 dark:bg-green-900/30 p-2 flex-shrink-0">
+              <svg class="h-5 w-5 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-foreground">Submit Resource</p>
+              <p class="text-sm text-muted-foreground">+50 points when approved</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="rounded-full bg-blue-100 dark:bg-blue-900/30 p-2 flex-shrink-0">
+              <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-foreground">Submit Financial Aid</p>
+              <p class="text-sm text-muted-foreground">+50 points when approved</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="rounded-full bg-purple-100 dark:bg-purple-900/30 p-2 flex-shrink-0">
+              <svg class="h-5 w-5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-foreground">Feature Request</p>
+              <p class="text-sm text-muted-foreground">+25 points when approved</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Leaderboard state
+  let currentPage = 1;
+  let totalPages = 1;
+  let currentPeriod = 'all-time';
+  let isLoggedIn = false;
+
+  // DOM elements
+  const leaderboardGrid = document.getElementById('leaderboard-grid');
+  const periodSelector = document.getElementById('period-selector');
+  const loginCta = document.getElementById('login-cta');
+  const userRankCard = document.getElementById('user-rank-card');
+
+  // Load leaderboard on page load
+  loadLeaderboard();
+  checkAuth();
+
+  // Period selector change
+  periodSelector?.addEventListener('change', (e) => {
+    currentPeriod = (e.target as HTMLSelectElement).value;
+    currentPage = 1;
+    loadLeaderboard();
+  });
+
+  // Pagination handlers
+  document.getElementById('prev-page')?.addEventListener('click', () => {
+    currentPage = 1;
+    loadLeaderboard();
+  });
+
+  document.getElementById('prev-page-single')?.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      loadLeaderboard();
+    }
+  });
+
+  document.getElementById('next-page-single')?.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      loadLeaderboard();
+    }
+  });
+
+  document.getElementById('next-page')?.addEventListener('click', () => {
+    currentPage = totalPages;
+    loadLeaderboard();
+  });
+
+  document.getElementById('prev-page-bottom')?.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      loadLeaderboard();
+    }
+  });
+
+  document.getElementById('next-page-bottom')?.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      loadLeaderboard();
+    }
+  });
+
+  async function loadLeaderboard() {
+    try {
+      const response = await fetch(`/api/leaderboard?period=${currentPeriod}&page=${currentPage}&limit=100`);
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error);
+
+      totalPages = data.totalPages;
+      renderLeaderboard(data.leaders);
+      updatePagination(data);
+    } catch (error) {
+      console.error('Failed to load leaderboard:', error);
+      leaderboardGrid!.innerHTML = `
+        <div class="text-center py-12 col-span-2">
+          <svg class="mx-auto h-12 w-12 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p class="text-muted-foreground mt-4">Failed to load leaderboard. Please try again.</p>
+        </div>
+      `;
+    }
+  }
+
+  function renderLeaderboard(leaders: any[]) {
+    if (leaders.length === 0) {
+      leaderboardGrid!.innerHTML = `
+        <div class="text-center py-12 col-span-2">
+          <svg class="mx-auto h-16 w-16 text-foreground/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          <h3 class="mt-4 text-lg font-semibold text-foreground">No rankings yet</h3>
+          <p class="mt-2 text-sm text-muted-foreground">Be the first to contribute and earn points!</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Split into two columns
+    const midpoint = Math.ceil(leaders.length / 2);
+    const leftColumn = leaders.slice(0, midpoint);
+    const rightColumn = leaders.slice(midpoint);
+
+    leaderboardGrid!.innerHTML = `
+      <div class="space-y-2">
+        ${leftColumn.map(renderLeaderRow).join('')}
+      </div>
+      <div class="space-y-2">
+        ${rightColumn.map(renderLeaderRow).join('')}
+      </div>
+    `;
+  }
+
+  function renderLeaderRow(leader: any) {
+    const tier = tierBadges[leader.tier] || tierBadges[1];
+    const rankDisplay = leader.rank <= 3 ? `
+      <span class="text-xl">${['🥇', '🥈', '🥉'][leader.rank - 1]}</span>
+    ` : `
+      <span class="text-sm font-mono font-bold ${leader.rank <= 10 ? 'text-foreground' : 'text-muted-foreground'}">${leader.rank}</span>
+    `;
+
+    return `
+      <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors ${leader.rank <= 3 ? 'bg-muted/30' : ''}">
+        ${rankDisplay}
+        <div class="w-8 h-8 rounded-full bg-surface-elevated border border-border flex items-center justify-center overflow-hidden flex-shrink-0">
+          ${leader.avatarUrl ? `
+            <img src="${leader.avatarUrl}" alt="${leader.username}" class="w-full h-full object-cover" />
+          ` : '<span class="text-sm">👤</span>'}
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-semibold text-foreground text-sm truncate">${escapeHtml(leader.username)}</p>
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold ${tier.color}">
+            <span>${tier.icon}</span>
+            <span>${tier.name}</span>
+          </span>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <p class="text-lg font-bold text-foreground">${leader.points.toLocaleString()}</p>
+          <p class="text-xs text-muted-foreground">${leader.totalContributions} contribs</p>
+        </div>
+      </div>
+    `;
+  }
+
+  function updatePagination(data: any) {
+    const start = (data.page - 1) * data.limit + 1;
+    const end = Math.min(start + data.leaders.length - 1, data.totalLeaders);
+
+    document.getElementById('current-page')!.textContent = data.page.toString();
+    document.getElementById('current-page-bottom')!.textContent = data.page.toString();
+    document.getElementById('total-pages')!.textContent = data.totalPages.toString();
+    document.getElementById('showing-start')!.textContent = start.toString();
+    document.getElementById('showing-end')!.textContent = end.toString();
+    document.getElementById('total-leaders')!.textContent = data.totalLeaders.toString();
+
+    // Update button states
+    const hasPrev = data.page > 1;
+    const hasNext = data.page < data.totalPages;
+
+    document.getElementById('prev-page')!.setAttribute('disabled', (!hasPrev).toString());
+    document.getElementById('prev-page-single')!.setAttribute('disabled', (!hasPrev).toString());
+    document.getElementById('prev-page-bottom')!.setAttribute('disabled', (!hasPrev).toString());
+    document.getElementById('next-page-single')!.setAttribute('disabled', (!hasNext).toString());
+    document.getElementById('next-page')!.setAttribute('disabled', (!hasNext).toString());
+    document.getElementById('next-page-bottom')!.setAttribute('disabled', (!hasNext).toString());
+  }
+
+  async function checkAuth() {
+    try {
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        import.meta.env.PUBLIC_SUPABASE_URL,
+        import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      );
+
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (session) {
+        isLoggedIn = true;
+        loginCta!.classList.add('hidden');
+        userRankCard!.classList.remove('hidden');
+        
+        // Load user's rank
+        loadUserRank(session.access_token);
+      }
+    } catch (error) {
+      console.error('Auth check failed:', error);
+    }
+  }
+
+  async function loadUserRank(accessToken: string) {
+    try {
+      const response = await fetch('/api/leaderboard/my-rank', {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        document.getElementById('user-rank-display')!.textContent = `#${data.rank}`;
+        document.getElementById('user-points-display')!.textContent = data.points.toLocaleString();
+        document.getElementById('user-percentile-display')!.textContent = `Top ${data.percentile}% - ${data.message}`;
+      }
+    } catch (error) {
+      console.error('Failed to load user rank:', error);
+    }
+  }
+
+  function escapeHtml(text: string): string {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  const tierBadges: Record<number, { name: string; icon: string; color: string }> = {
+    1: { name: 'Newcomer', icon: '🌱', color: 'bg-teal-100 text-teal-800' },
+    2: { name: 'Regular', icon: '⭐', color: 'bg-blue-100 text-blue-800' },
+    3: { name: 'Champion', icon: '🏆', color: 'bg-amber-100 text-amber-800' },
+    4: { name: 'Leader', icon: '👑', color: 'bg-purple-100 text-purple-800' }
+  };
+</script>

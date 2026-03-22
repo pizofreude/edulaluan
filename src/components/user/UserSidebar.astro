@@ -1,0 +1,231 @@
+---
+// User Sidebar Component - Collapsible with Profile
+interface Props {
+  current: string;
+}
+
+const { current = 'dashboard' } = Astro.props;
+
+const navItems = [
+  { href: '/user/dashboard', label: 'Dashboard', icon: 'dashboard', key: 'dashboard' },
+  { href: '/user/submissions', label: 'My Submissions', icon: 'submissions', key: 'submissions' },
+  { href: '/user/badges', label: 'Badge Case', icon: 'badges', key: 'badges' },
+  { href: '/user/settings', label: 'Settings', icon: 'settings', key: 'settings' },
+];
+---
+
+<aside class="fixed left-0 top-0 h-screen border-r bg-white dark:bg-gray-900 flex flex-col transition-all duration-300 z-50" id="user-sidebar" data-collapsed="false">
+  <!-- Sidebar Toggle Button -->
+  <button
+    id="sidebar-toggle"
+    class="absolute -right-3 top-8 rounded-full bg-teal-600 p-1.5 text-white shadow-md hover:bg-teal-700 transition-colors z-50"
+    aria-label="Toggle sidebar"
+  >
+    <svg class="h-4 w-4 transition-transform duration-300" id="toggle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- User Profile Header -->
+  <div class="border-b border-gray-200 dark:border-gray-700 p-4 sidebar-profile">
+    <div class="flex items-center gap-3">
+      <div class="rounded-full bg-teal-100 dark:bg-teal-900/30 p-2.5 flex-shrink-0">
+        <svg class="h-6 w-6 text-teal-600 dark:text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0 profile-info">
+        <h3 class="font-semibold text-gray-900 dark:text-white truncate">User</h3>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Contributions</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="flex-1 p-3 space-y-1 overflow-y-auto">
+    <a
+      href="/user/dashboard"
+      title="Dashboard"
+      class:list={[
+        'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+        current === 'dashboard'
+          ? 'bg-teal-600 text-white'
+          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+      ]}
+    >
+      <svg class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      <span class="nav-label">Dashboard</span>
+    </a>
+
+    <a
+      href="/user/submissions"
+      title="My Submissions"
+      class:list={[
+        'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+        current === 'submissions'
+          ? 'bg-teal-600 text-white'
+          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+      ]}
+    >
+      <svg class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+      <span class="nav-label">My Submissions</span>
+    </a>
+
+    <a
+      href="/user/badges"
+      title="Badge Case"
+      class:list={[
+        'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+        current === 'badges'
+          ? 'bg-teal-600 text-white'
+          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+      ]}
+    >
+      <svg class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+      </svg>
+      <span class="nav-label">Badge Case</span>
+    </a>
+
+    <a
+      href="/user/settings"
+      title="Settings"
+      class:list={[
+        'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+        current === 'settings'
+          ? 'bg-teal-600 text-white'
+          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+      ]}
+    >
+      <svg class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      <span class="nav-label">Settings</span>
+    </a>
+  </nav>
+
+  <!-- Back to Site Link -->
+  <div class="border-t border-gray-200 dark:border-gray-700 p-3">
+    <a
+      href="/"
+      title="Back to Site"
+      class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+    >
+      <svg class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      <span class="nav-label">Back to Site</span>
+    </a>
+  </div>
+</aside>
+
+<!-- Sidebar State Management Script -->
+<script>
+  // Sidebar collapse/expand functionality
+  const sidebar = document.getElementById('user-sidebar');
+  const toggleBtn = document.getElementById('sidebar-toggle');
+  const toggleIcon = document.getElementById('toggle-icon');
+  const navLabels = document.querySelectorAll('.nav-label');
+  const profileInfo = document.querySelector('.profile-info');
+  const mainContent = document.getElementById('main-content');
+
+  // Check localStorage for saved state
+  const savedState = localStorage.getItem('sidebar-collapsed');
+  if (savedState === 'true' && sidebar) {
+    collapseSidebar();
+  }
+
+  toggleBtn?.addEventListener('click', toggleSidebar);
+
+  function toggleSidebar() {
+    if (!sidebar) return;
+    const isCollapsed = sidebar.getAttribute('data-collapsed') === 'true';
+    if (isCollapsed) {
+      expandSidebar();
+    } else {
+      collapseSidebar();
+    }
+  }
+
+  function collapseSidebar() {
+    if (!sidebar) return;
+    sidebar.setAttribute('data-collapsed', 'true');
+    sidebar.classList.remove('w-64');
+    sidebar.classList.add('w-16');
+    toggleIcon?.classList.add('rotate-180');
+    navLabels.forEach(label => label.classList.add('hidden'));
+    profileInfo?.classList.add('hidden');
+    // Adjust main content margin
+    mainContent?.classList.remove('ml-64');
+    mainContent?.classList.add('ml-16');
+    localStorage.setItem('sidebar-collapsed', 'true');
+  }
+
+  function expandSidebar() {
+    if (!sidebar) return;
+    sidebar.setAttribute('data-collapsed', 'false');
+    sidebar.classList.remove('w-16');
+    sidebar.classList.add('w-64');
+    toggleIcon?.classList.remove('rotate-180');
+    navLabels.forEach(label => label.classList.remove('hidden'));
+    profileInfo?.classList.remove('hidden');
+    // Adjust main content margin
+    mainContent?.classList.remove('ml-16');
+    mainContent?.classList.add('ml-64');
+    localStorage.setItem('sidebar-collapsed', 'false');
+  }
+</script>
+
+<style>
+  /* Collapsed state styles */
+  #user-sidebar[data-collapsed="true"] .sidebar-profile {
+    justify-content: center;
+    padding: 1rem 0.5rem;
+  }
+
+  #user-sidebar[data-collapsed="true"] {
+    overflow: visible;
+  }
+
+  #user-sidebar[data-collapsed="true"] .sidebar-profile .flex {
+    justify-content: center;
+  }
+
+  /* Hide profile text when collapsed */
+  #user-sidebar[data-collapsed="true"] .profile-info {
+    display: none;
+  }
+
+  /* Center icons when collapsed */
+  #user-sidebar[data-collapsed="true"] nav a {
+    justify-content: center;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Tooltip on hover when collapsed */
+  #user-sidebar[data-collapsed="true"] nav a {
+    position: relative;
+  }
+
+  #user-sidebar[data-collapsed="true"] nav a:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    margin-left: 0.5rem;
+    z-index: 100;
+  }
+</style>

@@ -1,0 +1,384 @@
+---
+// Admin Management Page - Invite/Remove Admins (Super Admin Only)
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import AdminSidebar from '../../components/admin/AdminSidebar.astro';
+
+const currentPage = 'manage';
+---
+
+<Layout title="Admin Management | EduLaluan">
+  <Header />
+
+  <div class="flex min-h-screen">
+    <!-- Admin Sidebar -->
+    <AdminSidebar current={currentPage} />
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-surface p-8">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-foreground">👥 Admin Management</h1>
+        <p class="mt-2 text-sm text-muted-foreground">
+          Invite new admins and manage existing admin accounts
+        </p>
+      </div>
+
+      <!-- Super Admin Only Info -->
+      <div class="rounded-lg border border-border/50 bg-muted/30 p-3 mb-6">
+        <div class="flex items-start gap-2.5">
+          <svg class="w-4 h-4 text-muted-foreground/60 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Only Super Admins can invite or remove admins. This action is protected by database-level security.
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid gap-6 sm:grid-cols-3 mb-8">
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-purple-500/10 p-3">
+              <svg class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground">Super Admins</p>
+              <p id="super-admin-count" class="text-2xl font-bold text-purple-600">-</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-blue-500/10 p-3">
+              <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-semibold text-foreground">Admins</p>
+              <p id="admin-count" class="text-2xl font-bold text-blue-600">-</p>
+              <p id="admin-empty-hint" class="text-xs text-muted-foreground mt-1 hidden">
+                <a href="#invite-form" class="text-primary hover:underline">Invite your first admin →</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border bg-surface-elevated p-6 shadow-sm">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-teal-500/10 p-3">
+              <svg class="h-6 w-6 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-semibold text-foreground">Moderators</p>
+              <p id="moderator-count" class="text-2xl font-bold text-teal-600">-</p>
+              <p id="moderator-empty-hint" class="text-xs text-muted-foreground mt-1 hidden">
+                <a href="#invite-form" class="text-primary hover:underline">Invite your first moderator →</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Invite Admin Section -->
+      <div class="rounded-xl border bg-surface-elevated p-6 mb-8 shadow-sm">
+        <h2 class="text-xl font-semibold text-foreground mb-2">📨 Invite New Admin</h2>
+        <p class="text-sm text-muted-foreground mb-6">
+          Send an email invitation to grant admin access. The invite link expires after 7 days.
+        </p>
+
+        <form id="invite-form" class="flex flex-col sm:flex-row gap-3">
+          <div class="flex-1 min-w-0">
+            <label for="invite-email" class="block text-sm font-medium text-foreground mb-2">
+              Email Address *
+            </label>
+            <input
+              type="email"
+              id="invite-email"
+              required
+              placeholder="admin@example.com"
+              class="w-full rounded-md border border-input bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
+            />
+          </div>
+          <div class="sm:self-end">
+            <button
+              type="submit"
+              id="invite-submit-btn"
+              class="w-full sm:w-auto px-6 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-md text-sm font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow"
+            >
+              Send Invite
+            </button>
+          </div>
+        </form>
+
+        <div id="invite-message" class="hidden mt-4 p-4 rounded-lg"></div>
+      </div>
+
+      <!-- Current Admins List -->
+      <div class="rounded-xl border bg-surface-elevated p-6">
+        <h2 class="text-xl font-semibold text-foreground mb-4">👑 Current Admins</h2>
+        
+        <!-- Loading State -->
+        <div id="admins-loading" class="text-center py-12">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
+          <p class="text-muted-foreground mt-4">Loading admins...</p>
+        </div>
+
+        <!-- Admins Table -->
+        <div id="admins-table" class="hidden overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-muted/50 border-b border-border">
+              <tr>
+                <th class="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase">User</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase">Role</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase">Joined</th>
+                <th class="px-4 py-3 text-right text-xs font-semibold text-muted-foreground uppercase">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admins-tbody" class="divide-y divide-border">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="admins-empty" class="hidden text-center py-12">
+          <svg class="mx-auto h-12 w-12 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <p class="text-muted-foreground mt-4">No admins found</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  let allAdmins: any[] = [];
+
+  // Load admins on page load
+  loadAdmins();
+
+  // Invite form handler
+  document.getElementById('invite-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const emailInput = document.getElementById('invite-email') as HTMLInputElement;
+    const submitBtn = document.getElementById('invite-submit-btn') as HTMLButtonElement;
+    const messageDiv = document.getElementById('invite-message')!;
+    
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    try {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="animate-spin">⏳</span> Sending...';
+      messageDiv.classList.add('hidden');
+
+      const response = await fetch('/api/admin/invite', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) throw new Error(result.error);
+
+      showMessage(messageDiv, 'success', `Invite sent to ${email}! They will receive an email with instructions.`);
+      emailInput.value = '';
+    } catch (error: any) {
+      showMessage(messageDiv, 'error', `Failed to send invite: ${error.message}`);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Send Invite';
+    }
+  });
+
+  async function loadAdmins() {
+    try {
+      // Get access token from localStorage (OAuth implicit flow stores it there)
+      // Storage key format: sb-{project-ref}-auth-token
+      const storageData = localStorage.getItem('sb-ngpqiaiwxnfyjsvcmxpe-auth-token');
+      let accessToken = null;
+      
+      if (storageData) {
+        try {
+          const parsed = JSON.parse(storageData);
+          accessToken = parsed.access_token;
+        } catch (e) {
+          console.warn('Failed to parse auth token from localStorage:', e);
+        }
+      }
+
+      // Build headers with auth token
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+
+      const response = await fetch('/api/admin/users?roles=super_admin,admin,moderator', { headers });
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error);
+
+      allAdmins = data.users || [];
+      renderAdmins(allAdmins);
+      updateStats(allAdmins);
+    } catch (error) {
+      console.error('Failed to load admins:', error);
+      showError('Failed to load admins');
+    }
+  }
+
+  function renderAdmins(admins: any[]) {
+    const loadingDiv = document.getElementById('admins-loading')!;
+    const tableDiv = document.getElementById('admins-table')!;
+    const emptyDiv = document.getElementById('admins-empty')!;
+    const tbody = document.getElementById('admins-tbody')!;
+
+    loadingDiv.classList.add('hidden');
+
+    if (admins.length === 0) {
+      tableDiv.classList.add('hidden');
+      emptyDiv.classList.remove('hidden');
+      return;
+    }
+
+    tableDiv.classList.remove('hidden');
+    emptyDiv.classList.add('hidden');
+
+    tbody.innerHTML = admins.map(admin => `
+      <tr class="hover:bg-surface/50 transition-colors">
+        <td class="px-4 py-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-surface-elevated border border-border flex items-center justify-center overflow-hidden">
+              ${admin.avatar_url ? `
+                <img src="${admin.avatar_url}" alt="${admin.full_name || 'User'}" class="w-full h-full object-cover" />
+              ` : '<span class="text-lg">👤</span>'}
+            </div>
+            <div>
+              <p class="font-semibold text-foreground">${escapeHtml(admin.full_name || admin.email?.split('@')[0] || 'Anonymous')}</p>
+              <p class="text-xs text-muted-foreground">${escapeHtml(admin.email)}</p>
+            </div>
+          </div>
+        </td>
+        <td class="px-4 py-3">
+          ${renderRoleBadge(admin.role)}
+        </td>
+        <td class="px-4 py-3 text-sm text-foreground">
+          ${admin.created_at ? new Date(admin.created_at).toLocaleDateString() : '-'}
+        </td>
+        <td class="px-4 py-3 text-right">
+          ${admin.role !== 'super_admin' ? `
+            <button 
+              onclick="removeAdmin('${admin.id}', '${admin.role}')"
+              class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-md text-xs font-medium transition-colors"
+            >
+              Remove
+            </button>
+          ` : '<span class="text-xs text-muted-foreground italic">Protected</span>'}
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function renderRoleBadge(role: string) {
+    const badges: Record<string, string> = {
+      super_admin: 'bg-purple-100 text-purple-950 dark:bg-purple-900/40 dark:text-purple-200',
+      admin: 'bg-blue-100 text-blue-950 dark:bg-blue-900/40 dark:text-blue-200',
+      moderator: 'bg-teal-100 text-teal-950 dark:bg-teal-900/40 dark:text-teal-200'
+    };
+
+    const icons: Record<string, string> = {
+      super_admin: '👑',
+      admin: '🛡️',
+      moderator: '✅'
+    };
+
+    const badgeClass = badges[role] || 'bg-gray-100 text-gray-900';
+    const icon = icons[role] || '👤';
+
+    return `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide ${badgeClass}">
+      <span>${icon}</span>
+      <span>${role.replace('_', ' ').toUpperCase()}</span>
+    </span>`;
+  }
+
+  function updateStats(adminList: any[]) {
+    const superAdmins = adminList.filter(a => a.role === 'super_admin').length;
+    const adminCount = adminList.filter(a => a.role === 'admin').length;
+    const moderators = adminList.filter(a => a.role === 'moderator').length;
+
+    document.getElementById('super-admin-count')!.textContent = superAdmins.toString();
+    document.getElementById('admin-count')!.textContent = adminCount.toString();
+    document.getElementById('moderator-count')!.textContent = moderators.toString();
+
+    // Show empty state hints
+    const adminEmptyHint = document.getElementById('admin-empty-hint')!;
+    const moderatorEmptyHint = document.getElementById('moderator-empty-hint')!;
+
+    adminEmptyHint.classList.toggle('hidden', adminCount > 0);
+    moderatorEmptyHint.classList.toggle('hidden', moderators > 0);
+  }
+
+  function showMessage(container: HTMLElement, type: 'success' | 'error', message: string) {
+    container.className = `p-4 rounded-lg mb-4 ${
+      type === 'success' 
+        ? 'bg-green-100 border border-green-300 text-green-800' 
+        : 'bg-red-100 border border-red-300 text-red-800'
+    }`;
+    container.textContent = message;
+    container.classList.remove('hidden');
+  }
+
+  function showError(message: string) {
+    const tableDiv = document.getElementById('admins-table')!;
+    const emptyDiv = document.getElementById('admins-empty')!;
+    
+    tableDiv.classList.add('hidden');
+    emptyDiv.classList.remove('hidden');
+    emptyDiv.querySelector('p')!.textContent = message;
+  }
+
+  async function removeAdmin(userId: string, currentRole: string) {
+    if (!confirm(`Are you sure you want to remove this ${currentRole}? This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/users/${userId}/remove-role`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) throw new Error(result.error);
+
+      alert(`${currentRole} removed successfully!`);
+      await loadAdmins();
+    } catch (error: any) {
+      console.error('Failed to remove admin:', error);
+      alert('Failed to remove admin: ' + error.message);
+    }
+  }
+
+  function escapeHtml(text: string): string {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Expose removeAdmin to global scope for onclick handler
+  (window as any).removeAdmin = removeAdmin;
+</script>

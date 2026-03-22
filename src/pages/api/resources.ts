@@ -3,10 +3,17 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from '../../types/supabase';
 
 export const GET: APIRoute = async () => {
-  const supabase = createClient<Database>(
-    import.meta.env.PUBLIC_SUPABASE_URL,
-    import.meta.env.PUBLIC_SUPABASE_ANON_KEY
-  );
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    return new Response(JSON.stringify({ error: 'Missing Supabase credentials' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  const supabase = createClient<Database>(supabaseUrl, supabaseKey);
 
   try {
     const { data, error } = await supabase

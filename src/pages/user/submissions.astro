@@ -1,0 +1,199 @@
+---
+// User Submissions Page
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import UserSidebar from '../../components/user/UserSidebar.astro';
+
+const currentPage = 'submissions';
+
+// Placeholder data - will connect to API
+const submissions: any[] = [];
+
+const filters = {
+  type: 'all',
+  status: 'all',
+};
+---
+
+<Layout title="My Submissions | EduLaluan">
+  <Header />
+
+  <div class="flex min-h-screen">
+    <!-- User Sidebar -->
+    <UserSidebar current={currentPage} />
+
+    <!-- Main Content -->
+    <main class="flex-1 ml-64 bg-surface p-8 transition-all duration-300" id="main-content">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-foreground">My Submissions</h1>
+        <p class="mt-2 text-base text-foreground/80">
+          Track and manage your contributions
+        </p>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <!-- Filters -->
+        <div class="flex flex-wrap items-center gap-3">
+          <select
+            id="type-filter"
+            class="rounded-md border border-input bg-background px-3 py-2 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="all">All Types</option>
+            <option value="resource">Resources</option>
+            <option value="financial_aid">Financial Aid</option>
+            <option value="feature_request">Feature Requests</option>
+            <option value="issue_report">Issue Reports</option>
+            <option value="circumcision">Circumcision</option>
+          </select>
+
+          <select
+            id="status-filter"
+            class="rounded-md border border-input bg-background px-3 py-2 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="all">All Statuses</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+            <option value="changes_requested">Changes Requested</option>
+          </select>
+        </div>
+
+        <!-- New Submission Button -->
+        <a
+          href="/contribute"
+          class="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          New Submission
+        </a>
+      </div>
+
+      <!-- Submissions List -->
+      <div class="rounded-xl border bg-surface-elevated overflow-hidden shadow-sm">
+        {submissions.length === 0 ? (
+          <div class="text-center py-16">
+            <svg
+              class="mx-auto h-16 w-16 text-foreground/40"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            <h3 class="mt-6 text-xl font-semibold text-foreground">No submissions yet</h3>
+            <p class="mt-3 text-base text-foreground/70">
+              Start contributing to earn points and badges!
+            </p>
+            <a
+              href="/contribute"
+              class="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary/90"
+            >
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Make Your First Submission
+            </a>
+          </div>
+        ) : (
+          <div class="divide-y">
+            {submissions.map((submission) => (
+              <div class="p-4 hover:bg-accent/50 transition-colors">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                      <span
+                        class={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+                          submission.type === 'resource'
+                            ? 'bg-blue-100 text-blue-900'
+                            : submission.type === 'financial_aid'
+                            ? 'bg-green-100 text-green-900'
+                            : submission.type === 'circumcision'
+                            ? 'bg-purple-100 text-purple-900'
+                            : 'bg-gray-100 text-gray-900'
+                        }`}
+                      >
+                        {submission.type}
+                      </span>
+                      <span class="text-xs text-foreground/60">
+                        {submission.submittedAt}
+                      </span>
+                    </div>
+                    <h3 class="text-base font-semibold text-foreground">{submission.title}</h3>
+                    {submission.points && (
+                      <p class="text-sm font-medium text-amber-700 mt-1">
+                        +{submission.points} points
+                      </p>
+                    )}
+                    {submission.moderationNotes && (
+                      <div class="mt-2 rounded-md bg-amber-50 border border-amber-200 p-3 dark:bg-amber-900/20 dark:border-amber-800">
+                        <p class="text-sm text-amber-900 dark:text-amber-100">
+                          <strong>Feedback:</strong> {submission.moderationNotes}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <span
+                      class={`inline-flex rounded-full px-3 py-1 text-sm font-semibold ${
+                        submission.status === 'approved'
+                          ? 'bg-green-100 text-green-900'
+                          : submission.status === 'rejected'
+                          ? 'bg-red-100 text-red-900'
+                          : submission.status === 'changes_requested'
+                          ? 'bg-amber-100 text-amber-900'
+                          : 'bg-gray-100 text-gray-900'
+                      }`}
+                    >
+                      {submission.status}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Info Card -->
+      <div class="mt-6 rounded-xl border bg-blue-100/80 border-blue-300 p-5 dark:bg-blue-900/30 dark:border-blue-700 shadow-sm">
+        <div class="flex gap-3">
+          <svg
+            class="h-6 w-6 text-blue-700 flex-shrink-0 mt-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <div>
+            <h4 class="text-base font-semibold text-blue-950 dark:text-blue-50">Submission Guidelines</h4>
+            <ul class="mt-2.5 text-sm text-blue-900 dark:text-blue-100 space-y-1.5">
+              <li>• Ensure your submissions are accurate and relevant</li>
+              <li>• Provide clear descriptions and working URLs</li>
+              <li>• Avoid duplicate submissions</li>
+              <li>• Earn points based on submission type (50-75 points)</li>
+              <li>• Weekly submission limits apply based on your tier</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <Footer />
+</Layout>
