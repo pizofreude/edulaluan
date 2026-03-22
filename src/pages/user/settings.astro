@@ -477,15 +477,27 @@ const currentPage = 'settings';
   // Load current username on page load
   async function loadUsername() {
     try {
+      console.log('[Username] Starting to load username...');
+      
       const { createClient } = await import('@supabase/supabase-js');
       const supabase = createClient(
         import.meta.env.PUBLIC_SUPABASE_URL,
         import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
       );
 
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
 
-      if (!session?.access_token) return;
+      if (sessionError) {
+        console.error('[Username] Failed to get session:', sessionError);
+        return;
+      }
+
+      if (!session?.access_token) {
+        console.log('[Username] No session found - user not logged in');
+        return;
+      }
+
+      console.log('[Username] Session found, user ID:', session.user.id);
 
       // Get user data from users table
       const { data: userData, error: userError } = await supabase
@@ -496,17 +508,27 @@ const currentPage = 'settings';
 
       if (userError) {
         console.error('[Username] Failed to fetch user data:', userError);
+        console.error('[Username] Error details:', JSON.stringify(userError));
         return;
       }
 
+      console.log('[Username] User data fetched:', userData);
+
       const usernameInput = document.getElementById('username') as HTMLInputElement;
       const usernameStatus = document.getElementById('username-status');
+
+      console.log('[Username] DOM elements:', { 
+        usernameInput: !!usernameInput, 
+        usernameStatus: !!usernameStatus,
+        usernameValue: userData?.username 
+      });
 
       if (userData?.username) {
         // Username is set - display it
         if (usernameInput) {
           usernameInput.value = userData.username;
           usernameInput.placeholder = '';
+          console.log('[Username] Set username value to:', userData.username);
         }
         if (usernameStatus) {
           usernameStatus.textContent = '✓ Set';
@@ -517,6 +539,7 @@ const currentPage = 'settings';
         if (usernameInput) {
           usernameInput.value = '';
           usernameInput.placeholder = 'Not set';
+          console.log('[Username] No username set, showing placeholder');
         }
         if (usernameStatus) {
           usernameStatus.textContent = '';
