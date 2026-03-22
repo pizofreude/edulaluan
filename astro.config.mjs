@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,13 +12,11 @@ export default defineConfig({
     }),
   ],
   output: 'static',
-  // Skip SSR pages for static build
+  adapter: netlify(),
   vite: {
     build: {
       rollupOptions: {
-        output: {
-          // Handle server-only pages
-        }
+        output: {}
       }
     }
   }

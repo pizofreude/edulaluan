@@ -472,7 +472,7 @@ const currentPage = 'settings';
   // Username Management
   // ==========================================
 
-  let usernameCheckTimeout: number;
+  let usernameCheckTimeout: ReturnType<typeof setTimeout>;
 
   // Load current username on page load
   async function loadUsername() {
@@ -565,7 +565,7 @@ const currentPage = 'settings';
           // Show suggestions
           if (result.suggestions && result.suggestions.length > 0) {
             suggestionsList!.innerHTML = result.suggestions
-              .map(s => `<button type="button" class="username-suggestion px-3 py-1 text-sm bg-surface hover:bg-surface-elevated border rounded-full transition-colors">@${s}</button>`)
+              .map((s: string) => `<button type="button" class="username-suggestion px-3 py-1 text-sm bg-surface hover:bg-surface-elevated border rounded-full transition-colors">@${s}</button>`)
               .join('');
             suggestionsDiv?.classList.remove('hidden');
 
