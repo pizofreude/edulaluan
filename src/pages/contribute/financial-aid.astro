@@ -7,38 +7,35 @@ import { Button } from '../../components/ui/button';
 
 <Layout title="Submit Financial Aid Program - EduLaluan">
   <Header />
-  
-  <main class="min-h-screen bg-[#f5f9f7]">
+
+  <main class="min-h-screen bg-background">
   <div class="container mx-auto px-4 py-8 max-w-3xl">
-    
+
     <!-- Header -->
     <div class="mb-8">
-      <a href="/contribute" class="text-malaysia-teal-600 hover:text-malaysia-teal-700 mb-4 inline-block">
+      <a href="/contribute" class="text-primary hover:text-primary-dark mb-4 inline-block">
         ← Back to Contribute
       </a>
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">
+      <h1 class="text-3xl font-bold text-foreground mb-2">
         💰 Submit Financial Aid Program
       </h1>
-      <p class="text-gray-600">
+      <p class="text-muted-foreground">
         Share your scholarship, grant, bursary, or sponsorship program. Help students access education. All fields marked with * are required.
       </p>
     </div>
 
     <!-- Form -->
     <form
-      name="financial-aid-submission"
-      method="POST"
-      action="/contribute/success"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
+      id="financial-aid-form"
       class="bg-surface border rounded-lg p-6 space-y-6"
     >
 
-      <!-- Hidden fields for Netlify -->
-      <input type="hidden" name="form-name" value="financial-aid-submission" />
-      <p class="hidden">
-        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-      </p>
+      <!-- Status Messages -->
+      <div id="form-status" class="hidden rounded-lg p-4"></div>
+      <div id="form-loading" class="hidden text-center py-4">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
+        <p class="mt-2 text-muted-foreground">Submitting your financial aid program...</p>
+      </div>
 
       <!-- Program Information -->
       <div class="space-y-4">
@@ -73,14 +70,14 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label for="providerType" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="providerType" class="block text-sm font-medium text-foreground mb-1">
             Provider Type *
           </label>
           <select 
             id="providerType" 
             name="providerType" 
             required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">-- Select Provider Type --</option>
             <option value="government">Government Agency</option>
@@ -93,20 +90,20 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label for="websiteUrl" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="websiteUrl" class="block text-sm font-medium text-foreground mb-1">
             Website URL (optional for individuals)
           </label>
           <input 
             type="url" 
             id="websiteUrl" 
             name="websiteUrl" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="https://example.com"
           />
         </div>
 
         <div>
-          <label for="contactEmail" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="contactEmail" class="block text-sm font-medium text-foreground mb-1">
             Program Contact Email *
           </label>
           <input 
@@ -114,7 +111,7 @@ import { Button } from '../../components/ui/button';
             id="contactEmail" 
             name="contactEmail" 
             required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="program@example.com"
           />
         </div>
@@ -122,10 +119,10 @@ import { Button } from '../../components/ui/button';
 
       <!-- Aid Details -->
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Aid Details</h2>
+        <h2 class="text-xl font-semibold text-foreground border-b pb-2">Aid Details</h2>
         
         <div>
-          <label for="description" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="description" class="block text-sm font-medium text-foreground mb-1">
             Program Description *
           </label>
           <textarea 
@@ -135,21 +132,21 @@ import { Button } from '../../components/ui/button';
             rows="6"
             minlength="150"
             maxlength="3000"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Describe: Who is eligible? What is covered (tuition, living expenses, books)? How much (amount or percentage)? Duration (one-time, per semester, per year)?"
           ></textarea>
-          <p class="text-xs text-gray-500 mt-1">Minimum 150 characters. Be specific about coverage and eligibility.</p>
+          <p class="text-xs text-muted-foreground mt-1">Minimum 150 characters. Be specific about coverage and eligibility.</p>
         </div>
 
         <div>
-          <label for="aidCategory" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="aidCategory" class="block text-sm font-medium text-foreground mb-1">
             Aid Category *
           </label>
           <select 
             id="aidCategory" 
             name="aidCategory" 
             required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">-- Select Category --</option>
             <option value="scholarship">Scholarship (merit-based)</option>
@@ -164,10 +161,10 @@ import { Button } from '../../components/ui/button';
 
       <!-- Eligibility -->
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Eligibility Criteria</h2>
+        <h2 class="text-xl font-semibold text-foreground border-b pb-2">Eligibility Criteria</h2>
         
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-foreground mb-2">
             Income Group * (select all that apply)
           </label>
           <div class="space-y-2">
@@ -191,7 +188,7 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-foreground mb-2">
             Education Level * (select all that apply)
           </label>
           <div class="space-y-2">
@@ -215,27 +212,27 @@ import { Button } from '../../components/ui/button';
         </div>
 
         <div>
-          <label for="fieldOfStudy" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="fieldOfStudy" class="block text-sm font-medium text-foreground mb-1">
             Field of Study (optional)
           </label>
           <input 
             type="text" 
             id="fieldOfStudy" 
             name="fieldOfStudy" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="e.g., Engineering, Medicine, Islamic Studies (or leave blank for all fields)"
           />
         </div>
 
         <div>
-          <label for="otherRequirements" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="otherRequirements" class="block text-sm font-medium text-foreground mb-1">
             Other Requirements (optional)
           </label>
           <textarea 
             id="otherRequirements" 
             name="otherRequirements" 
             rows="3"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="e.g., Minimum 3.5 CGPA, active in co-curricular activities, must be Bumiputera"
           ></textarea>
         </div>
@@ -243,43 +240,43 @@ import { Button } from '../../components/ui/button';
 
       <!-- Application Details -->
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Application Details</h2>
+        <h2 class="text-xl font-semibold text-foreground border-b pb-2">Application Details</h2>
         
         <div>
-          <label for="applicationUrl" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="applicationUrl" class="block text-sm font-medium text-foreground mb-1">
             Application URL (optional)
           </label>
           <input 
             type="url" 
             id="applicationUrl" 
             name="applicationUrl" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="https://apply.example.com"
           />
         </div>
 
         <div>
-          <label for="applicationPeriod" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="applicationPeriod" class="block text-sm font-medium text-foreground mb-1">
             Application Period
           </label>
           <input 
             type="text" 
             id="applicationPeriod" 
             name="applicationPeriod" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="e.g., January-March annually, Open year-round"
           />
         </div>
 
         <div>
-          <label for="selectionProcess" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="selectionProcess" class="block text-sm font-medium text-foreground mb-1">
             Selection Process (optional)
           </label>
           <textarea 
             id="selectionProcess" 
             name="selectionProcess" 
             rows="3"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="e.g., Interview + academic results + essay"
           ></textarea>
         </div>
@@ -287,10 +284,10 @@ import { Button } from '../../components/ui/button';
 
       <!-- Your Contact Info -->
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-gray-900 border-b pb-2">Your Contact Info</h2>
+        <h2 class="text-xl font-semibold text-foreground border-b pb-2">Your Contact Info</h2>
         
         <div>
-          <label for="submitterName" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="submitterName" class="block text-sm font-medium text-foreground mb-1">
             Your Name *
           </label>
           <input 
@@ -298,12 +295,12 @@ import { Button } from '../../components/ui/button';
             id="submitterName" 
             name="submitterName" 
             required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
         <div>
-          <label for="submitterRole" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="submitterRole" class="block text-sm font-medium text-foreground mb-1">
             Your Role *
           </label>
           <input 
@@ -311,13 +308,13 @@ import { Button } from '../../components/ui/button';
             id="submitterRole" 
             name="submitterRole" 
             required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="e.g., Program Coordinator, Donor Representative"
           />
         </div>
 
         <div>
-          <label for="submitterEmail" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="submitterEmail" class="block text-sm font-medium text-foreground mb-1">
             Your Email *
           </label>
           <input 
@@ -325,20 +322,20 @@ import { Button } from '../../components/ui/button';
             id="submitterEmail" 
             name="submitterEmail" 
             required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="your@email.com"
           />
         </div>
 
         <div>
-          <label for="submitterPhone" class="block text-sm font-medium text-gray-700 mb-1">
+          <label for="submitterPhone" class="block text-sm font-medium text-foreground mb-1">
             Your Phone (optional)
           </label>
           <input 
             type="tel" 
             id="submitterPhone" 
             name="submitterPhone" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-malaysia-teal-500"
+            class="w-full px-3 py-2 border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="+60123456789"
           />
         </div>
@@ -346,26 +343,41 @@ import { Button } from '../../components/ui/button';
 
       <!-- Verification -->
       <div class="space-y-3 p-4 bg-blue-50 rounded-md">
-        <h3 class="font-semibold text-gray-900">Verification</h3>
+        <h3 class="font-semibold text-foreground">Verification</h3>
         <label class="flex items-start gap-2">
           <input type="checkbox" name="verifyAccuracy" required class="mt-1" />
-          <span class="text-sm text-gray-700">I confirm this information is accurate *</span>
+          <span class="text-sm text-foreground">I confirm this information is accurate *</span>
         </label>
         <label class="flex items-start gap-2">
           <input type="checkbox" name="verifyAuthority" required class="mt-1" />
-          <span class="text-sm text-gray-700">I have authority to submit this information on behalf of the provider *</span>
+          <span class="text-sm text-foreground">I have authority to submit this information on behalf of the provider *</span>
         </label>
+
+        <div class="flex items-start gap-3 p-4 rounded-lg border bg-surface-elevated">
+          <input
+            type="checkbox"
+            id="isAnonymous"
+            name="isAnonymous"
+            class="mt-1 h-4 w-4 rounded border-gray-300"
+          />
+          <label for="isAnonymous" class="text-sm text-foreground">
+            <span class="font-medium">Submit anonymously</span>
+            <p class="text-muted-foreground">Your name will not be shown to the public. Admins can still see your identity.</p>
+          </label>
+        </div>
       </div>
 
       <!-- Submit Button -->
       <div class="pt-4">
-        <Button 
-          type="submit" 
-          className="w-full bg-malaysia-gold-600 hover:bg-malaysia-gold-700 text-white py-3 text-lg"
+        <button
+          type="submit"
+          id="submit-button"
+          style="background-color: #b45309; color: white; font-weight: 600;"
+          class="w-full hover:bg-amber-800 py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
         >
           Submit Financial Aid for Review
-        </Button>
-        <p class="text-xs text-gray-500 text-center mt-3">
+        </button>
+        <p class="text-xs text-muted-foreground dark:text-gray-400 text-center mt-3">
           Your submission will be reviewed before publication to ensure legitimacy and accuracy.
         </p>
       </div>
@@ -376,3 +388,87 @@ import { Button } from '../../components/ui/button';
   </main>
   <Footer />
 </Layout>
+
+<script>
+  // Financial Aid submission form handler
+  const form = document.getElementById('financial-aid-form') as HTMLFormElement;
+  const statusDiv = document.getElementById('form-status')!;
+  const loadingDiv = document.getElementById('form-loading')!;
+  const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusDiv.classList.add('hidden');
+    
+    const programName = (document.getElementById('programName') as HTMLInputElement).value.trim();
+    const providerName = (document.getElementById('providerName') as HTMLInputElement).value.trim();
+    const url = (document.getElementById('websiteUrl') as HTMLInputElement).value.trim();
+    const description = (document.getElementById('description') as HTMLTextAreaElement).value.trim();
+    const category = 'financial-aid';
+    const submitterEmail = (document.getElementById('submitterEmail') as HTMLInputElement).value.trim();
+    
+    if (!programName || !providerName || !description || !submitterEmail) { showStatus('Please fill in all required fields', 'error'); return; }
+    if (description.length < 150) { showStatus('Description must be at least 150 characters', 'error'); return; }
+    
+    const verifyAccuracy = (document.querySelector('input[name="verifyAccuracy"]') as HTMLInputElement)?.checked;
+    const verifyAuthority = (document.querySelector('input[name="verifyAuthority"]') as HTMLInputElement)?.checked;
+    if (!verifyAccuracy || !verifyAuthority) { showStatus('Please confirm both verification checkboxes', 'error'); return; }
+    
+    loadingDiv.classList.remove('hidden');
+    submitButton.disabled = true;
+    
+    try {
+      // Get auth token
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        import.meta.env.PUBLIC_SUPABASE_URL,
+        import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      );
+      const { data: { session } } = await supabase.auth.getSession();
+
+      const isAnonymous = (document.getElementById('isAnonymous') as HTMLInputElement).checked;
+      const submissionData = { 
+        type: 'financial_aid', 
+        title: programName, 
+        description, 
+        url: url || null, 
+        categoryId: category, 
+        isAnonymous,
+        metadata: { 
+          provider: providerName, 
+          submitter_email: submitterEmail,
+          submitter_name: (document.getElementById('submitterName') as HTMLInputElement).value.trim()
+        } 
+      };
+
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+      }
+
+      const response = await fetch('/api/contributions', { method: 'POST', headers, body: JSON.stringify(submissionData) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Failed to submit');
+      
+      showStatus('Financial aid program submitted successfully! It will be reviewed within 24-48 hours.', 'success');
+      form.reset();
+      setTimeout(() => { window.location.href = '/contribute/success'; }, 2000);
+    } catch (error: any) {
+      showStatus(error.message || 'Failed to submit. Please try again.', 'error');
+    } finally {
+      loadingDiv.classList.add('hidden');
+      submitButton.disabled = false;
+    }
+  });
+  
+  function showStatus(message: string, type: 'success' | 'error') {
+    statusDiv.textContent = message;
+    statusDiv.className = `rounded-lg p-4 mb-4 ${
+      type === 'success' 
+        ? 'bg-green-100 border border-green-300 text-green-800' 
+        : 'bg-red-100 border border-red-300 text-red-800'
+    }`;
+    statusDiv.classList.remove('hidden');
+    statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>

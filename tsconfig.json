@@ -6,6 +6,13 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
-  }
+    },
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "exclude": [
+    "supabase/functions",
+    "e2e",
+    "node_modules"
+  ]
 }

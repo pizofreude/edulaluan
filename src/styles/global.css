@@ -686,6 +686,23 @@ html.dark [style*="background-color:#fff"] {
    Focus states, screen reader only, etc.
    ============================================ */
 
+/* Navigation link active state */
+.nav-link-active {
+  color: var(--primary) !important;
+  position: relative;
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+}
+
 @layer utilities {
   /* Focus visible */
   .focus-visible-ring {

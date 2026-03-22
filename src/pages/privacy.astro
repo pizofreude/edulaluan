@@ -1,0 +1,179 @@
+---
+// Privacy Policy Page
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Privacy Policy | EduLaluan">
+  <Header />
+
+  <main class="min-h-screen bg-surface">
+    <div class="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl font-bold text-foreground mb-8">Privacy Policy</h1>
+        <p class="text-sm text-muted-foreground mb-8">Last updated: March 20, 2026</p>
+
+        <div class="prose prose-slate dark:prose-invert max-w-none">
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">1. Introduction</h2>
+          <p class="text-foreground mb-4">
+            EduLaluan ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect,
+            use, disclose, and safeguard your information when you use our education resource navigator service.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">2. Information We Collect</h2>
+          
+          <h3 class="text-xl font-medium text-foreground mt-6 mb-3">2.1 Personal Information</h3>
+          <p class="text-foreground mb-4">When you create an account, we collect:</p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Email address</li>
+            <li>Full name</li>
+            <li>Profile information (optional)</li>
+            <li>Authentication credentials (securely hashed)</li>
+          </ul>
+
+          <h3 class="text-xl font-medium text-foreground mt-6 mb-3">2.2 Usage Information</h3>
+          <p class="text-foreground mb-4">We automatically collect:</p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Device information and browser type</li>
+            <li>IP address and approximate location</li>
+            <li>Pages visited and time spent</li>
+            <li>Search queries and interactions</li>
+          </ul>
+
+          <h3 class="text-xl font-medium text-foreground mt-6 mb-3">2.3 User Contributions</h3>
+          <p class="text-foreground mb-4">When you contribute to the platform:</p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Resource submissions and descriptions</li>
+            <li>Comments and feedback</li>
+            <li>Ratings and reviews</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">3. How We Use Your Information</h2>
+          <p class="text-foreground mb-4">We use the collected information to:</p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Provide, maintain, and improve our services</li>
+            <li>Create and manage your user account</li>
+            <li>Process and display your contributions</li>
+            <li>Send service-related notifications</li>
+            <li>Monitor and analyze usage patterns</li>
+            <li>Detect and prevent fraud and abuse</li>
+            <li>Respond to your inquiries and support requests</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">4. Information Sharing</h2>
+          <p class="text-foreground mb-4">We do NOT sell, trade, or rent your personal information. We may share information only in these situations:</p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li><strong>Public Contributions:</strong> Content you submit may be displayed publicly on the platform</li>
+            <li><strong>Service Providers:</strong> Third-party vendors who help operate our service (hosting, analytics)</li>
+            <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
+            <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">5. Data Storage and Security</h2>
+          <p class="text-foreground mb-4">
+            We implement appropriate technical and organizational measures to protect your information:
+          </p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Data encrypted in transit (HTTPS/TLS)</li>
+            <li>Passwords securely hashed using industry standards</li>
+            <li>Regular security audits and updates</li>
+            <li>Access controls and authentication requirements</li>
+            <li>Secure cloud infrastructure (Supabase)</li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">6. Cookies and Tracking</h2>
+          <p class="text-foreground mb-4">
+            We use cookies and similar technologies to:
+          </p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Maintain your login session</li>
+            <li>Remember your preferences</li>
+            <li>Analyze site traffic and usage</li>
+            <li>Improve user experience</li>
+          </ul>
+          <p class="text-foreground mb-4">
+            You can control cookies through your browser settings, but disabling them may limit functionality.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">7. Your Rights and Choices</h2>
+          <p class="text-foreground mb-4">You have the right to:</p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Access your personal information</li>
+            <li>Correct inaccurate data</li>
+            <li>Request deletion of your account and data</li>
+            <li>Export your data in a portable format</li>
+            <li>Opt-out of non-essential communications</li>
+          </ul>
+          <p class="text-foreground mb-4">
+            To exercise these rights, contact us at <a href="mailto:privacy@edulaluan.my" class="text-primary hover:underline">privacy@edulaluan.my</a>
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">8. Data Retention</h2>
+          <p class="text-foreground mb-4">
+            We retain your information for as long as necessary to:
+          </p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Provide our services</li>
+            <li>Comply with legal obligations</li>
+            <li>Resolve disputes</li>
+            <li>Enforce our agreements</li>
+          </ul>
+          <p class="text-foreground mb-4">
+            When you delete your account, we remove your personal information within 30 days, except where retention is required by law.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">9. Children's Privacy</h2>
+          <p class="text-foreground mb-4">
+            Our service is not directed to children under 13. We do not knowingly collect personal information from children under 13.
+            If we become aware that we have collected such information, we will take steps to delete it.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">10. International Data Transfers</h2>
+          <p class="text-foreground mb-4">
+            Your information may be processed in countries outside your country of residence. We ensure appropriate safeguards
+            are in place to protect your information in accordance with this Privacy Policy.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">11. Changes to This Policy</h2>
+          <p class="text-foreground mb-4">
+            We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the new
+            policy on this page and updating the "Last updated" date.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">12. Third-Party Links</h2>
+          <p class="text-foreground mb-4">
+            Our service may contain links to third-party websites. We are not responsible for the privacy practices of those sites.
+            We encourage you to review their privacy policies.
+          </p>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">13. Contact Us</h2>
+          <p class="text-foreground mb-4">
+            For questions or concerns about this Privacy Policy or our data practices:
+          </p>
+          <ul class="list-disc list-inside text-foreground mb-4 space-y-2">
+            <li>Email: <a href="mailto:privacy@edulaluan.my" class="text-primary hover:underline">privacy@edulaluan.my</a></li>
+            <li>General inquiries: <a href="mailto:support@edulaluan.my" class="text-primary hover:underline">support@edulaluan.my</a></li>
+          </ul>
+
+          <h2 class="text-2xl font-semibold text-foreground mt-8 mb-4">14. Data Controller</h2>
+          <p class="text-foreground mb-4">
+            For users in the European Economic Area (EEA), the data controller is:
+            <br />
+            EduLaluan
+            <br />
+            Malaysia
+          </p>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-border">
+          <p class="text-sm text-muted-foreground">
+            By using EduLaluan, you acknowledge that you have read and understood this Privacy Policy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
