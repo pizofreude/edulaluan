@@ -2,6 +2,17 @@
   command = "npm run build"
   publish = "dist"
 
+# Netlify adapter for Astro
+[functions]
+  node_bundler = "esbuild"
+
+# Environment variables (set these in Netlify UI)
+# PUBLIC_SUPABASE_URL
+# PUBLIC_SUPABASE_PUBLISHABLE_KEY
+# SUPABASE_SECRET_KEY
+# GITHUB_CLIENT_ID
+# GITHUB_CLIENT_SECRET
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

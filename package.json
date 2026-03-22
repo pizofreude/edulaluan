@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A smart education resource navigator for Malaysian B40, M40 & T20 communities",
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
