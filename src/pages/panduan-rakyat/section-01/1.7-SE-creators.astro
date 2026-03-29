@@ -3,6 +3,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
+import AudienceTabs from '../../../components/AudienceTabs.astro';
 import Breadcrumb from '../../../components/panduan-rakyat/Breadcrumb';
 
 const articleData = {
@@ -323,69 +324,10 @@ const headings = [
           <!-- Main Content -->
           <div class="flex-1 min-w-0">
             <!-- Audience Tabs (Simple/Detailed) -->
-            <div class="mb-8">
-              <!-- Tab Buttons -->
-              <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
-                <button
-                  id="tab-simple"
-                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 bg-surface-elevated text-primary shadow-sm"
-                  aria-pressed="true"
-                  data-tab="simple"
-                >
-                  <span class="text-xl">🧒</span>
-                  <span>Simple</span>
-                </button>
-                <button
-                  id="tab-detailed"
-                  class="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200 text-muted-foreground hover:text-foreground"
-                  aria-pressed="false"
-                  data-tab="detailed"
-                >
-                  <span class="text-xl">🧑</span>
-                  <span>Detailed</span>
-                </button>
-              </div>
-
-              <!-- Tab Content -->
-              <div id="content-simple" class="prose-panduan max-w-none tab-content" set:html={simpleContent} />
-              <div id="content-detailed" class="prose-panduan max-w-none tab-content hidden" set:html={detailedContent} />
-            </div>
-
-            <script is:inline>
-              document.addEventListener('DOMContentLoaded', function() {
-                const tabs = document.querySelectorAll('[data-tab]');
-                const contents = {
-                  simple: document.getElementById('content-simple'),
-                  detailed: document.getElementById('content-detailed')
-                };
-
-                tabs.forEach(function(tab) {
-                  tab.addEventListener('click', function() {
-                    const selectedTab = this.getAttribute('data-tab');
-                    
-                    tabs.forEach(function(t) {
-                      if (t.getAttribute('data-tab') === selectedTab) {
-                        t.classList.add('bg-surface-elevated', 'text-primary', 'shadow-sm');
-                        t.classList.remove('text-muted-foreground', 'hover:text-foreground');
-                        t.setAttribute('aria-pressed', 'true');
-                      } else {
-                        t.classList.remove('bg-surface-elevated', 'text-primary', 'shadow-sm');
-                        t.classList.add('text-muted-foreground', 'hover:text-foreground');
-                        t.setAttribute('aria-pressed', 'false');
-                      }
-                    });
-
-                    if (selectedTab === 'simple') {
-                      contents.simple.classList.remove('hidden');
-                      contents.detailed.classList.add('hidden');
-                    } else {
-                      contents.detailed.classList.remove('hidden');
-                      contents.simple.classList.add('hidden');
-                    }
-                  });
-                });
-              });
-            </script>
+            <AudienceTabs>
+              <Fragment slot="simple" set:html={simpleContent} />
+              <Fragment slot="detailed" set:html={detailedContent} />
+            </AudienceTabs>
 
             <!-- FAQ Section -->
             <div class="mt-12">

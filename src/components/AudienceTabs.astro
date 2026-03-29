@@ -1,0 +1,84 @@
+---
+interface Props {
+  defaultTab?: 'simple' | 'detailed';
+}
+
+const { defaultTab = 'simple' } = Astro.props;
+const nonce = Astro.locals.nonce;
+---
+
+<div class="audience-tabs mb-8">
+  <div class="mb-6 flex gap-2 rounded-xl bg-muted p-1.5">
+    <button
+      id="tab-simple"
+      class:list={[
+        "flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200",
+        defaultTab === 'simple'
+          ? "bg-surface-elevated text-primary shadow-sm"
+          : "text-muted-foreground hover:text-foreground"
+      ]}
+      aria-pressed={defaultTab === 'simple' ? 'true' : 'false'}
+      data-tab="simple"
+    >
+      <span class="text-xl">🧒</span>
+      <span>Simple</span>
+    </button>
+    <button
+      id="tab-detailed"
+      class:list={[
+        "flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-200",
+        defaultTab === 'detailed'
+          ? "bg-surface-elevated text-primary shadow-sm"
+          : "text-muted-foreground hover:text-foreground"
+      ]}
+      aria-pressed={defaultTab === 'detailed' ? 'true' : 'false'}
+      data-tab="detailed"
+    >
+      <span class="text-xl">🧑</span>
+      <span>Detailed</span>
+    </button>
+  </div>
+
+  <div id="content-simple" class:list={["prose-panduan max-w-none tab-content", defaultTab !== 'simple' && 'hidden']}>
+    <slot name="simple" />
+  </div>
+  <div id="content-detailed" class:list={["prose-panduan max-w-none tab-content", defaultTab !== 'detailed' && 'hidden']}>
+    <slot name="detailed" />
+  </div>
+</div>
+
+<script is:inline nonce={nonce}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.audience-tabs [data-tab]');
+    const contents = {
+      simple: document.getElementById('content-simple'),
+      detailed: document.getElementById('content-detailed')
+    };
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        const selectedTab = this.getAttribute('data-tab');
+        
+        tabs.forEach(function(t) {
+          if (t.getAttribute('data-tab') === selectedTab) {
+            t.classList.add('bg-surface-elevated', 'text-primary', 'shadow-sm');
+            t.classList.remove('text-muted-foreground', 'hover:text-foreground');
+            t.setAttribute('aria-pressed', 'true');
+          } else {
+            t.classList.remove('bg-surface-elevated', 'text-primary', 'shadow-sm');
+            t.classList.add('text-muted-foreground', 'hover:text-foreground');
+            t.setAttribute('aria-pressed', 'false');
+          }
+        });
+
+        if (selectedTab === 'simple') {
+          contents.simple.classList.remove('hidden');
+          contents.detailed.classList.add('hidden');
+        } else {
+          contents.detailed.classList.remove('hidden');
+          contents.simple.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

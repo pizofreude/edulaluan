@@ -5,6 +5,7 @@ interface Props {
 }
 
 const { title, description = "A smart education resource navigator for Malaysian B40, M40 & T20 communities" } = Astro.props;
+const nonce = Astro.locals.nonce;
 ---
 
 <!doctype html>
@@ -32,7 +33,7 @@ const { title, description = "A smart education resource navigator for Malaysian
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
 		<!-- Theme Initialization - Run before page load to prevent flash -->
-		<script is:inline>
+		<script is:inline nonce={nonce}>
 			// Theme management - inline to prevent flash of unstyled content
 			(function() {
 				const THEME_KEY = 'edulaluan-theme';
