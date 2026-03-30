@@ -4,7 +4,6 @@ interface Props {
 }
 
 const { defaultTab = 'simple' } = Astro.props;
-const nonce = Astro.locals.nonce;
 ---
 
 <div class="audience-tabs mb-8">
@@ -47,7 +46,7 @@ const nonce = Astro.locals.nonce;
   </div>
 </div>
 
-<script is:inline nonce={nonce}>
+<script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.audience-tabs [data-tab]');
     const contents = {
