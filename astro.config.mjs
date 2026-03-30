@@ -37,8 +37,8 @@ export default defineConfig({
       ],
       // Configure script-src directive
       scriptDirective: {
-        // Enable strict-dynamic for better security with bundled scripts
-        strictDynamic: true
+        // Note: strict-dynamic disabled to allow 'self' for bundled scripts
+        // Astro will auto-generate hashes for inline scripts
       },
       // Configure style-src directive for Google Fonts
       styleDirective: {
