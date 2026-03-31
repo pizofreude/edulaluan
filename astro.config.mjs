@@ -30,7 +30,7 @@ export default defineConfig({
       // Additional CSP directives
       directives: [
         "default-src 'self'",
-        "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
+        "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.withcallout.com",
         "img-src 'self' data: https:",
         "font-src 'self' data: https://fonts.gstatic.com",
         "frame-src 'self'"
@@ -39,6 +39,7 @@ export default defineConfig({
       scriptDirective: {
         // Note: strict-dynamic disabled to allow 'self' for bundled scripts
         // Astro will auto-generate hashes for inline scripts
+        resources: ["'self'", "https://cdn.withcallout.com"]
       },
       // Configure style-src directive for Google Fonts
       styleDirective: {

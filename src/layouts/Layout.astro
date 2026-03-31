@@ -1,10 +1,13 @@
 ---
+import CalloutIdentify from '../components/CalloutIdentify';
+
 interface Props {
 	title: string;
 	description?: string;
 }
 
 const { title, description = "A smart education resource navigator for Malaysian B40, M40 & T20 communities" } = Astro.props;
+const calloutProjectId = import.meta.env.PUBLIC_CALLOUT_PROJECT_ID;
 ---
 
 <!doctype html>
@@ -55,6 +58,16 @@ const { title, description = "A smart education resource navigator for Malaysian
 </head>
 <body class="font-sans antialiased">
 	<slot />
+	<!-- Callout Feedback Widget (https://withcallout.com) -->
+	{calloutProjectId && (
+		<>
+			<script is:inline define:vars={{ calloutProjectId }}>
+				window.CalloutConfig = { projectId: calloutProjectId };
+			</script>
+			<script src="https://cdn.withcallout.com/widget.js" defer></script>
+			<CalloutIdentify client:only="react" />
+		</>
+	)}
 </body>
 </html>
 

@@ -8,11 +8,12 @@
 # SUPABASE_SECRET_KEY
 # GITHUB_CLIENT_ID
 # GITHUB_CLIENT_SECRET
+# PUBLIC_CALLOUT_PROJECT_ID
 
 # Secrets scanning configuration
 # PUBLIC_* variables are intentionally public (client-side)
 [build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_SUPABASE_URL,PUBLIC_SUPABASE_PUBLISHABLE_KEY"
+  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_SUPABASE_URL,PUBLIC_SUPABASE_PUBLISHABLE_KEY,PUBLIC_CALLOUT_PROJECT_ID"
 
 [[headers]]
   for = "/*"
@@ -20,7 +21,7 @@
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-src 'self';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.withcallout.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.withcallout.com; frame-src 'self';"
 
 [[redirects]]
   from = "/*"
