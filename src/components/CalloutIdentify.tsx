@@ -11,11 +11,16 @@ export default function CalloutIdentify() {
     const supabase = createClient();
 
     function identify(user: { id: string; email?: string; user_metadata?: Record<string, unknown> }) {
-      window.Callout?.identify({
+      const payload: { id: string; email?: string; name: string } = {
         id: user.id,
-        email: user.email ?? '',
         name: (user.user_metadata?.full_name as string) ?? user.email ?? '',
-      });
+      };
+
+      if (user.email) {
+        payload.email = user.email;
+      }
+
+      window.Callout?.identify(payload);
     }
 
     // Identify on initial load if already signed in
@@ -23,10 +28,12 @@ export default function CalloutIdentify() {
       if (session?.user) identify(session.user);
     });
 
-    // Re-identify on login, clear on logout
+    // Re-identify on login, destroy widget session on logout
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session?.user) {
         identify(session.user);
+      } else if (event === 'SIGNED_OUT') {
+        window.Callout?.destroy();
       }
     });
 
